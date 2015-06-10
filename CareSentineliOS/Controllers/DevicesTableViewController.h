@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Device.h"
 
 @interface DevicesTableViewController : UITableViewController
-
+    -(void)addDevice:(Device *)targetDevice;
+    -(BOOL)containsDevice:(NSString *)deviceUUID;
+    -(Device *)deviceForPeripheral:(NSString *)deviceUUID;
 @end

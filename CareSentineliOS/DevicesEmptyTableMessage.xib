@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Devices Found" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8oG-db-Gdv">
+                    <rect key="frame" x="218" y="289" width="162.5" height="21.5"/>
+                    <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="18"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="monitor_big" translatesAutoresizingMaskIntoConstraints="NO" id="f4r-uR-af2">
+                    <rect key="frame" x="236" y="165" width="128" height="128"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="128" id="CNV-V0-B79"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To Add Devices, Tap &quot;Scan&quot; On The Top Bar." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ffl-1B-k1s">
+                    <rect key="frame" x="165" y="311" width="277" height="46.5"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="46.5" id="ate-4r-PQp"/>
+                        <constraint firstAttribute="width" constant="277" id="p9n-Kf-xFM"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="centerX" secondItem="f4r-uR-af2" secondAttribute="centerX" id="OU6-I4-s8U"/>
+                <constraint firstAttribute="centerY" secondItem="8oG-db-Gdv" secondAttribute="centerY" id="PsA-yS-W2Q"/>
+                <constraint firstAttribute="centerX" secondItem="ffl-1B-k1s" secondAttribute="centerX" constant="-3.5" id="WQi-8w-gEt"/>
+                <constraint firstItem="8oG-db-Gdv" firstAttribute="top" secondItem="f4r-uR-af2" secondAttribute="bottom" constant="-4" id="ZcA-R4-1S5"/>
+                <constraint firstItem="ffl-1B-k1s" firstAttribute="top" secondItem="8oG-db-Gdv" secondAttribute="bottom" constant="0.5" id="bRn-ce-SrY"/>
+                <constraint firstAttribute="centerX" secondItem="8oG-db-Gdv" secondAttribute="centerX" id="sPL-89-sIq"/>
+            </constraints>
+        </view>
+    </objects>
+    <resources>
+        <image name="monitor_big" width="128" height="128"/>
+    </resources>
+</document>

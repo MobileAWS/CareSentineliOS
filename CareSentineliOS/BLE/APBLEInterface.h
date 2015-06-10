@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreBluetooth/CoreBluetooth.h>
 #import "APBLEDevice.h"
+#import "DeviceUIDelegate.h"
 
 enum {
     APDeviceWarningNone       = 0,
@@ -40,6 +41,7 @@ enum {
 @property (strong, nonatomic) NSMutableArray               *ignoredArray;       // -- Devices that are being ignored.
 @property (strong, nonatomic) NSMutableArray               *activeDevices;      // -- Devices that are actively connected.
 @property (strong, nonatomic) NSMutableArray               *inactiveDevices;    // -- Devices that are registered but not connected.
+@property (weak,nonatomic) id<DeviceUIDelegate> uiDelegate;
 
 - (void)scanForDevices;
 - (void)removeRegisteredDevice:(APBLEDevice *)device;

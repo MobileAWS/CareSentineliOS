@@ -99,7 +99,7 @@
 
 // -- P-List Files
 #define kPListFileType              @"plist"
-#define kPListBLEDeviceTypes        @"BLEDeviceTypesList"
+#define kPListBLEDeviceTypes        @"DeviceTypesList"
 
 ////// -- Audio Player Status Change Message
 ////#define kPlayerPlayingNotification  @"com.AppPotential.BedAlert.PlayerControlPlaying"

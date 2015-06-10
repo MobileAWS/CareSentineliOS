@@ -11,6 +11,7 @@
 #import "APSettings.h"
 #import "Constants.h"
 #import "APAppServices.h"
+#import "AppDelegate.h"
 
 @interface APBLEInterface ()
 @property (strong, nonatomic) CBCentralManager             *centralManager;
@@ -40,13 +41,14 @@ static BOOL s_processing_restart = NO;
 // ------------------------------------------------------------------------------
 - (id)init {
     self = [super init];
-    if (self) {
+    if (self) { 
         if ([APAppServices osVersion] >= 7.0f) {
             _centralManager      = [[CBCentralManager alloc] initWithDelegate:self queue:nil options:@{ CBCentralManagerOptionRestoreIdentifierKey:kNameApp,
                                                                                                         CBCentralManagerOptionShowPowerAlertKey:[NSNumber numberWithBool:YES]}];
         } else {
             _centralManager      = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
         }
+        
         
         _centralManager.delegate = self;
         
@@ -65,8 +67,9 @@ static BOOL s_processing_restart = NO;
                                                              [CBUUID UUIDWithString:kUUIDCareSentinelService],
                                                              nil];
         
+        
         _activeDevices           = [[NSMutableArray alloc] init];
-        _inactiveDevices         = [[NSMutableArray alloc] initWithArray:_registeredArray];     // -- At load, all registered devices are inactive in the app.
+        //_inactiveDevices         = [[NSMutableArray alloc] initWithArray:_registeredArray];     // -- At load, all registered devices are inactive in the app.
         _discoveredPeripherals   = [[NSMutableArray alloc] init];
         _pendingNewDevices       = [[NSMutableArray alloc] init];
         
@@ -93,7 +96,7 @@ static BOOL s_processing_restart = NO;
     APLogDealloc;
 }
 - (void)scanForDevices {
-    [_centralManager scanForPeripheralsWithServices:_servicesArray options:nil]; ////options:@{CBCentralManagerScanOptionAllowDuplicatesKey : @YES}];  // -- ######## TI PROTYPE
+    [_centralManager scanForPeripheralsWithServices:nil options:nil]; ////options:@{CBCentralManagerScanOptionAllowDuplicatesKey : @YES}];  // -- ######## TI PROTYPE
     
     APLog(@"...Scanning for Devices...");    // ######################
 }
@@ -283,22 +286,23 @@ static BOOL s_processing_restart = NO;
         return;
     }
     
-    APDeviceType deviceType = [self deviceType:peripheral.name];
+    /*APDeviceType deviceType = [self deviceType:peripheral.name];
     if (!deviceType) {  // -- Can support multiple device types as define in PLIST
         APLog(@"Unsupported Device Ignored: %@.", peripheral.name);     // ######################
         [self cancelPeripheralConnection:peripheral];
         return;
-    }
+    }*/
     
     // -- Due to an iOS6 bug (security update?) need to connect to peripheral before accessing the UUID.  Will be nil on first time connection to the phone (acording to TI Sensor tag sample app).
     peripheral.delegate   = self;
 
     _lastRssi = [RSSI integerValue];
 
-    if (![_discoveredPeripherals containsObject:peripheral]) {
+    [self->_uiDelegate deviceDiscovered:peripheral advertisementData:advertisementData RSSI:RSSI];
+    
+    if (![_discoveredPeripherals containsObject:peripheral]){
         [_discoveredPeripherals addObject:peripheral];
         APLog(@"FOUND >>>>>>>>> %@   with RSSI: %ld", peripheral.name, (long)_lastRssi);   // ######################
-        
         // -- Don't attempt to connect ignored devices.
         APBLEDevice *ignoredDevice = [self findIgnoredDeviceUsingPeripheral:peripheral];
         if (ignoredDevice) {
@@ -306,10 +310,8 @@ static BOOL s_processing_restart = NO;
             return;
         }
         if ([APAppServices osVersion] >= 7.0f) {
-////       NSLog(@"------> PERIPHERAL STATE: %d", peripheral.state);
             if (peripheral.state != CBPeripheralStateConnected AND peripheral.state != CBPeripheralStateConnecting) {
                 [central connectPeripheral:peripheral options:nil];
-//>>>>###
             }
         } else {
 #ifndef __IPHONE_7_0
@@ -479,10 +481,13 @@ static BOOL s_processing_restart = NO;
             registeredDevice.name        = peripheral.name;
             registeredDevice.muteAll     = YES;                         // -- Make sure we ignore the device until it's accepted as a valid device by the user.
 
+            [self->_registeredArray addObject:registeredDevice];
+            /*
             [_pendingNewDevices addObject:registeredDevice];
             if (!_pendingDeviceTimer) {
                 _pendingDeviceTimer = [NSTimer scheduledTimerWithTimeInterval:kTimeIntervalPresentationCheck target:self selector:@selector(checkForNewDevice) userInfo:nil repeats:YES];
             }
+             */
             
         } else {
             registeredDevice.RSSI = _lastRssi;
@@ -692,6 +697,7 @@ static BOOL s_processing_restart = NO;
                     [peripheral readValueForCharacteristic:characteristic];
                 }
 
+                
                 break;
                 
             default:
@@ -704,7 +710,11 @@ static BOOL s_processing_restart = NO;
 - (void)peripheral:(CBPeripheral *)peripheral didUpdateNotificationStateForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error {
     if (error) {
         APLogErrMsg(@"%@ for Characteristic %@", error, characteristic.UUID);
+        return;
     }
+
+    APLog(@"Now receiving notification for %@",characteristic.UUID);
+    
 }
 
 - (void)peripheral:(CBPeripheral *)peripheral didWriteValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error {
@@ -836,7 +846,7 @@ static BOOL s_processing_restart = NO;
             NSLog(@"********######### 2 ##########***********");
         }
         
-        if (data.length == 1) {      // -- Trigger is subject to muting...
+        if (data.length == 2) {      // -- Trigger is subject to muting...
             uint16_t    value = 0;
             [data getBytes:&value length:sizeof (value)];
             
@@ -872,8 +882,8 @@ static BOOL s_processing_restart = NO;
                 }
             }
             ******/
+            [self.uiDelegate device:peripheral SensorChanged:value];
             
-    
             if (value & APSensorTriggerBed OR value & APSensorClearBed) {
                 [self processSensorType:APSensorTypeBed forSensor:workingDevice withValue:value];
             } else if (value & APSensorTriggerChair OR value & APSensorClearChair) {

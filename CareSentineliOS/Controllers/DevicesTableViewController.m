@@ -9,9 +9,13 @@
 #import "DevicesTableViewController.h"
 #import "DatabaseManager.h"
 #import "Device.h"
+#import <QuartzCore/QuartzCore.h>
+#import "UIResources.h"
 
 @interface DevicesTableViewController (){
-    NSArray *devicesData;
+    NSMutableArray *devicesData;
+    __weak IBOutlet UITableView *targetTableView;
+    __weak UIView *noRecordsView;
 }
 @end
 
@@ -29,6 +33,7 @@
     DatabaseManager *manager = [DatabaseManager getSharedIntance];
     self->devicesData = [manager listWithModel:[Device class] condition:@" id > 0"];
     
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 
 }
 
@@ -40,7 +45,25 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    
+    // Return the number of sections.
+    if (devicesData != nil && [devicesData count] > 0) {
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+        self.tableView.backgroundView = nil;
+        return 1;
+    } else {
+        if (noRecordsView == nil) {
+            NSArray *emptyViews = [[NSBundle mainBundle] loadNibNamed:@"DevicesEmptyTableMessage" owner:self options:nil];
+            // Display a message when the table is empty
+            noRecordsView = [emptyViews objectAtIndex:0];
+
+        }
+        [noRecordsView setFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
+        self.tableView.backgroundView = noRecordsView;
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;        
+    }
+    
+    return 0;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -50,13 +73,40 @@
     return 0;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DevicesTableCellIdentifier" forIndexPath:indexPath];
+- (UITableViewCell *)tableView:(UITableView *)targetTable cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [targetTable dequeueReusableCellWithIdentifier:@"DevicesTableCellIdentifier" forIndexPath:indexPath];
     Device *device = (Device *)devicesData[indexPath.row];
-    cell.textLabel.text = device.name;
+    ((UILabel *)[cell viewWithTag:1000]).text = device.name;
+    UIImageView *bgView = [[UIImageView alloc]initWithFrame:cell.frame];
+    bgView.backgroundColor = selectionBackgroundColorRef;
+    cell.selectedBackgroundView = bgView;
     return cell;
 }
 
+-(void)addDevice:(Device *)targetDevice{
+    [devicesData addObject:targetDevice];
+    [self->targetTableView reloadData];
+}
+
+-(BOOL)containsDevice:(NSString *)deviceUUID{
+    for(int i = 0; i < [devicesData count]; i++){
+        Device *currentDevice = (Device *)[devicesData objectAtIndex:i];
+        if([currentDevice.hwId isEqualToString:deviceUUID]) {
+            return YES;
+        }
+    }    
+    return NO;
+}
+
+-(Device *)deviceForPeripheral:(NSString *)deviceUUID{
+    for(int i = 0; i < [devicesData count]; i++){
+        Device *currentDevice = (Device *)[devicesData objectAtIndex:i];
+        if([currentDevice.hwId isEqualToString:deviceUUID]) {
+            return currentDevice;
+        }
+    }
+    return nil;
+}
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {

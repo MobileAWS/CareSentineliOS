@@ -12,6 +12,7 @@
 
 @implementation DatabaseManager{
     NSString *databasePath;
+    sqlite3 *database;
 }
 
 static DatabaseManager *sharedInstance = nil;
@@ -21,6 +22,7 @@ static DatabaseManager *sharedInstance = nil;
         sharedInstance = [[DatabaseManager alloc] initWithDatabaseName:@"CareSentinel.db"];
     }
     
+    sharedInstance.keepConnection = false;
     return sharedInstance;
 }
 
@@ -28,10 +30,9 @@ static DatabaseManager *sharedInstance = nil;
 - (id)initWithDatabaseName:(NSString *)name {
     self = [super init];
     if (self){
-        sqlite3 *database;
         NSString *docFolder;
         NSArray *tempFolders;
-        database = nil;
+        self->database = nil;
         tempFolders = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, TRUE);
         if ([tempFolders count] > 0) {
             docFolder = tempFolders[0];
@@ -44,7 +45,7 @@ static DatabaseManager *sharedInstance = nil;
                 sqlite3_stmt *statement;
                 /** Open the database */
                 int result = -1;
-                sqlite3_open([self->databasePath UTF8String], &database);
+                sqlite3_open([self->databasePath UTF8String], &self->database);
                 const char *sql = [sqlInit UTF8String];
                 sqlInit = nil;
                 const char *sqlTail;
@@ -59,9 +60,9 @@ static DatabaseManager *sharedInstance = nil;
                     }
                 }while (result == SQLITE_OK && strlen(sqlTail) > 0);
                 /** Clean and Close to finish creation process */
+                sqlite3_finalize(statement);
                 statement = nil;
-                sqlite3_close(database);
-                database = nil;
+                [self close];
             }
         }
     }
@@ -70,7 +71,7 @@ static DatabaseManager *sharedInstance = nil;
 
 
 
--(BOOL)save:(id<BaseModel>)data{
+-(id<BaseModel>)save:(id<BaseModel>)data{
     
     NSDictionary *properties = [[(NSObject *)data class] getPropertiesMapping];
     NSString *tableName = [[(NSObject *)data class] getTableName];
@@ -88,17 +89,22 @@ static DatabaseManager *sharedInstance = nil;
     }
     
     NSString *insertQuery = [NSString stringWithFormat:@"INSERT INTO %@(%@)VALUES(%@)",tableName,[fields componentsJoinedByString:@","],[valuesArray componentsJoinedByString:@","]];
-    sqlite3 *database;
-    sqlite3_open([self->databasePath UTF8String], &database);
-    sqlite3_stmt *statement;
-    sqlite3_prepare_v2(database, [insertQuery UTF8String], -1, &statement, nil);
-    if(sqlite3_step(statement) != SQLITE_DONE){
-        NSLog(@"Error executing Insert/Update Query: %s",sqlite3_errmsg(database));
-        sqlite3_close(database);
-        return false;
+    if (self->database == nil) {
+        sqlite3_open([self->databasePath UTF8String], &self->database);
     }
-    sqlite3_close(database);
-    return true;
+    sqlite3_stmt *statement;
+    sqlite3_prepare_v2(self->database, [insertQuery UTF8String], -1, &statement, nil);
+    if(sqlite3_step(statement) != SQLITE_DONE){
+        sqlite3_finalize(statement);
+        NSLog(@"Error executing Insert/Update Query: %s",sqlite3_errmsg(self->database));
+        if (self.keepConnection == false) {[self close];}
+        return nil;
+    }
+    sqlite3_finalize(statement);
+    NSNumber  *tmpId = [[NSNumber alloc] initWithLong:sqlite3_last_insert_rowid(self->database)];
+    [(NSObject *)data setValue:(tmpId) forKey:@"id"];
+    if (self.keepConnection == false) {[self close];}
+    return data;
 }
 
 -(id)findById:(NSNumber *)targetId{
@@ -106,15 +112,16 @@ static DatabaseManager *sharedInstance = nil;
 }
 
 
--(NSArray *)listWithModel:(Class)targetModel condition:(NSString *)condition{
+-(NSMutableArray *)listWithModel:(Class)targetModel condition:(NSString *)condition{
     NSDictionary * properties = [(id)targetModel getPropertiesMapping];
     NSString * model = [(id)targetModel getTableName];
     NSString *query = [NSString stringWithFormat:@"SELECT %@ FROM %@ WHERE %@",[[properties allKeys] componentsJoinedByString:@","],model,condition];
-    sqlite3 *database;
     sqlite3_stmt *statement;
     NSMutableArray *result = [[NSMutableArray alloc] init];
-    sqlite3_open([self->databasePath UTF8String], &database);
-    if(sqlite3_prepare_v2(database,[query UTF8String],-1,&statement,NULL) == SQLITE_OK){
+    if (self->database == nil) {
+        sqlite3_open([self->databasePath UTF8String], &self->database);
+    }
+    if(sqlite3_prepare_v2(self->database,[query UTF8String],-1,&statement,NULL) == SQLITE_OK){
         while(sqlite3_step(statement) == SQLITE_ROW){
             id<BaseModel> currentObject = [[targetModel alloc] init];
             NSArray *fields = [properties allKeys];
@@ -125,7 +132,8 @@ static DatabaseManager *sharedInstance = nil;
             [result addObject:currentObject];
         }
     }
-    sqlite3_close(database);
+    sqlite3_finalize(statement);
+    if (self.keepConnection == false) {[self close];}
     return result;
 }
 
@@ -133,10 +141,11 @@ static DatabaseManager *sharedInstance = nil;
     NSDictionary * properties = [(id)targetClass getPropertiesMapping];
     NSString * model = [(id)targetClass getTableName];
     NSString *query = [NSString stringWithFormat:@"SELECT %@ FROM %@ WHERE %@",[[properties allKeys] componentsJoinedByString:@","],model,condition];
-    sqlite3 *database;
-    sqlite3_open([self->databasePath UTF8String], &database);
+    if (self->database == nil) {
+        sqlite3_open([self->databasePath UTF8String], &self->database);
+    }
     sqlite3_stmt *statement;
-    sqlite3_prepare_v2(database, [query UTF8String], -1, &statement, nil);
+    sqlite3_prepare_v2(self->database, [query UTF8String], -1, &statement, nil);
     if(sqlite3_step(statement) == SQLITE_ROW){
         id<BaseModel> currentObject = [[targetClass alloc] init];
         NSArray *fields = [properties allKeys];
@@ -144,10 +153,13 @@ static DatabaseManager *sharedInstance = nil;
             id value = [self getColumnValueForRow:i withStatement:statement];
             [(NSObject *)currentObject setValue:value forKey:[properties objectForKey:[fields objectAtIndex:i]]];
         }
-        sqlite3_close(database);
+
+        if (self.keepConnection == false) {[self close];}
+        sqlite3_finalize(statement);
         return currentObject;
     }
-    sqlite3_close(database);
+    sqlite3_finalize(statement);
+    if (self.keepConnection == false) {[self close];}
     return nil;
 }
 
@@ -166,5 +178,42 @@ static DatabaseManager *sharedInstance = nil;
     return nil;
 }
 
+-(NSInteger)countWithQuery:(NSString *)condition{
+    NSString *targetQuery = [NSString stringWithFormat:@"SELECT COUNT(*) %@",condition];
+    if (self->database == nil) {
+        sqlite3_open([self->databasePath UTF8String], &self->database);
+    }
+    sqlite3_stmt *statement;
+    sqlite3_prepare_v2(self->database, [targetQuery UTF8String], -1, &statement, nil);
+    if(sqlite3_step(statement) == SQLITE_ROW){
+        NSNumber *targetCount = [self getColumnValueForRow:0 withStatement:statement];
+        sqlite3_finalize(statement);
+        if (self.keepConnection == false) {[self close];}
+        return [targetCount integerValue];
+    }
+    sqlite3_finalize(statement);
+    if (self.keepConnection == false) {[self close];}
+    return 0;
 
+}
+
+-(void)insert:(NSString *)insertQuery{
+    if (self->database == nil) {
+        sqlite3_open([self->databasePath UTF8String], &self->database);
+    }
+    sqlite3_stmt *statement;
+    sqlite3_prepare_v2(self->database, [insertQuery UTF8String], -1, &statement, nil);
+    if(sqlite3_step(statement) != SQLITE_DONE){
+        NSLog(@"Error executing Insert/Update Query: %s",sqlite3_errmsg(self->database));
+        if (self.keepConnection == false) {[self close];}
+        sqlite3_finalize(statement);
+        return;
+    }
+    if (self.keepConnection == false) {[self close];}
+}
+
+-(void)close{
+    sqlite3_close(self->database);
+    self->database = nil;
+}
 @end

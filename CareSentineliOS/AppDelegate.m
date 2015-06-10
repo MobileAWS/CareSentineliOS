@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 #import "DatabaseManager.h"
+#import "APAppServices.h"
+#import "UIResources.h"
 
 @interface AppDelegate ()
 
@@ -23,7 +25,21 @@
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [UIResources initResources];
     // Override point for customization after application launch.
+    [[APAppServices alloc] init];
+
+    /** Set the tab bar default appereance */
+    [[UITabBar appearance] setTintColor:[UIColor whiteColor]];
+    
+    /** Set the navitation bars default styles */
+    [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setTitleTextAttributes:
+     @{ NSForegroundColorAttributeName:[UIColor whiteColor],NSFontAttributeName:[UIFont fontWithName:@"Helvetica-Bold" size:15.0]}forState:UIControlStateNormal];
+    
+    UIUserNotificationType types = UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert;
+    UIUserNotificationSettings *userNotifcationSettings = [UIUserNotificationSettings settingsForTypes:types categories:nil];
+    [[UIApplication sharedApplication] registerUserNotificationSettings:userNotifcationSettings];
+    
     return YES;
 }
 
@@ -56,6 +72,10 @@
         appDelegate.window.rootViewController = mainViewController;
         [appDelegate.window makeKeyAndVisible];
     }];
+}
+
+-(void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings{
+    
 }
 
 @end

@@ -12,9 +12,12 @@
 		27009F051B176925003FBEAB /* APBLEInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 27009F021B176925003FBEAB /* APBLEInterface.m */; };
 		27009F0B1B177098003FBEAB /* APAppServices.m in Sources */ = {isa = PBXBuildFile; fileRef = 27009F071B177098003FBEAB /* APAppServices.m */; };
 		27009F0C1B177098003FBEAB /* APSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 27009F091B177098003FBEAB /* APSettings.m */; };
+		271071191B27AFF700A3D75B /* DevicesEmptyTableMessage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 271071181B27AFF700A3D75B /* DevicesEmptyTableMessage.xib */; };
 		271605661B139D3F002505E1 /* DevicesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 271605651B139D3F002505E1 /* DevicesTableViewController.m */; };
 		2716056C1B13D38B002505E1 /* Device.m in Sources */ = {isa = PBXBuildFile; fileRef = 2716056B1B13D38B002505E1 /* Device.m */; };
 		2716056F1B14C749002505E1 /* NewUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2716056E1B14C749002505E1 /* NewUserViewController.m */; };
+		27271D7C1B18CCCA00D369D6 /* Site.m in Sources */ = {isa = PBXBuildFile; fileRef = 27271D7B1B18CCCA00D369D6 /* Site.m */; };
+		27271D7F1B18CCE200D369D6 /* Customer.m in Sources */ = {isa = PBXBuildFile; fileRef = 27271D7E1B18CCE200D369D6 /* Customer.m */; };
 		273ED34B1AFC550700F4F82B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 273ED34A1AFC550700F4F82B /* main.m */; };
 		273ED34E1AFC550700F4F82B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 273ED34D1AFC550700F4F82B /* AppDelegate.m */; };
 		273ED3571AFC550700F4F82B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 273ED3551AFC550700F4F82B /* Main.storyboard */; };
@@ -22,12 +25,15 @@
 		273ED35C1AFC550700F4F82B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 273ED35A1AFC550700F4F82B /* LaunchScreen.xib */; };
 		273ED3681AFC550700F4F82B /* CareSentineliOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 273ED3671AFC550700F4F82B /* CareSentineliOSTests.m */; };
 		275C864E1B16B896000DB4F4 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 275C864D1B16B896000DB4F4 /* User.m */; };
+		27760EE61B1FDFA50047D49B /* DeviceTypesList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 27760EE51B1FDFA50047D49B /* DeviceTypesList.plist */; };
 		2777D80C1B0F6F6100CAC2AF /* DatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2777D80B1B0F6F6100CAC2AF /* DatabaseManager.m */; };
 		2777D80E1B0F6FB000CAC2AF /* database_v1.sql in Resources */ = {isa = PBXBuildFile; fileRef = 2777D80D1B0F6FB000CAC2AF /* database_v1.sql */; };
 		2777D81A1B0F706A00CAC2AF /* DevicesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2777D8131B0F706A00CAC2AF /* DevicesViewController.m */; };
 		2777D81B1B0F706A00CAC2AF /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2777D8151B0F706A00CAC2AF /* LoginViewController.m */; };
 		2777D81C1B0F706A00CAC2AF /* NotificationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2777D8171B0F706A00CAC2AF /* NotificationsViewController.m */; };
 		2777D81D1B0F706A00CAC2AF /* UploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2777D8191B0F706A00CAC2AF /* UploadViewController.m */; };
+		279997701B24FF2F0005E720 /* UIResources.m in Sources */ = {isa = PBXBuildFile; fileRef = 2799976F1B24FF2F0005E720 /* UIResources.m */; };
+		279997751B250B470005E720 /* MawsTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 279997741B250B470005E720 /* MawsTextView.m */; };
 		27DA27871B0CDBD300D1000A /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 27DA27861B0CDBD300D1000A /* libsqlite3.dylib */; };
 /* End PBXBuildFile section */
 
@@ -52,6 +58,7 @@
 		27009F081B177098003FBEAB /* APSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APSettings.h; sourceTree = "<group>"; };
 		27009F091B177098003FBEAB /* APSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APSettings.m; sourceTree = "<group>"; };
 		27009F0A1B177098003FBEAB /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		271071181B27AFF700A3D75B /* DevicesEmptyTableMessage.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DevicesEmptyTableMessage.xib; sourceTree = "<group>"; };
 		271605641B139D3F002505E1 /* DevicesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DevicesTableViewController.h; sourceTree = "<group>"; };
 		271605651B139D3F002505E1 /* DevicesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DevicesTableViewController.m; sourceTree = "<group>"; };
 		271605671B13CA77002505E1 /* BaseModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseModel.h; sourceTree = "<group>"; };
@@ -59,6 +66,10 @@
 		2716056B1B13D38B002505E1 /* Device.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Device.m; sourceTree = "<group>"; };
 		2716056D1B14C749002505E1 /* NewUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewUserViewController.h; sourceTree = "<group>"; };
 		2716056E1B14C749002505E1 /* NewUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewUserViewController.m; sourceTree = "<group>"; };
+		27271D7A1B18CCCA00D369D6 /* Site.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Site.h; sourceTree = "<group>"; };
+		27271D7B1B18CCCA00D369D6 /* Site.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Site.m; sourceTree = "<group>"; };
+		27271D7D1B18CCE200D369D6 /* Customer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Customer.h; sourceTree = "<group>"; };
+		27271D7E1B18CCE200D369D6 /* Customer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Customer.m; sourceTree = "<group>"; };
 		273ED3451AFC550700F4F82B /* CareSentineliOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CareSentineliOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		273ED3491AFC550700F4F82B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		273ED34A1AFC550700F4F82B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -72,6 +83,7 @@
 		273ED3671AFC550700F4F82B /* CareSentineliOSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CareSentineliOSTests.m; sourceTree = "<group>"; };
 		275C864C1B16B896000DB4F4 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		275C864D1B16B896000DB4F4 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		27760EE51B1FDFA50047D49B /* DeviceTypesList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DeviceTypesList.plist; sourceTree = "<group>"; };
 		2777D80A1B0F6F6100CAC2AF /* DatabaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatabaseManager.h; sourceTree = "<group>"; };
 		2777D80B1B0F6F6100CAC2AF /* DatabaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatabaseManager.m; sourceTree = "<group>"; };
 		2777D80D1B0F6FB000CAC2AF /* database_v1.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = database_v1.sql; sourceTree = "<group>"; };
@@ -83,6 +95,11 @@
 		2777D8171B0F706A00CAC2AF /* NotificationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationsViewController.m; sourceTree = "<group>"; };
 		2777D8181B0F706A00CAC2AF /* UploadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadViewController.h; sourceTree = "<group>"; };
 		2777D8191B0F706A00CAC2AF /* UploadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadViewController.m; sourceTree = "<group>"; };
+		2799976E1B24FF2F0005E720 /* UIResources.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIResources.h; sourceTree = "<group>"; };
+		2799976F1B24FF2F0005E720 /* UIResources.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIResources.m; sourceTree = "<group>"; };
+		279997731B250B470005E720 /* MawsTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MawsTextView.h; sourceTree = "<group>"; };
+		279997741B250B470005E720 /* MawsTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MawsTextView.m; sourceTree = "<group>"; };
+		279EF7F11B1E686F003FAB56 /* DeviceUIDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceUIDelegate.h; sourceTree = "<group>"; };
 		27DA27861B0CDBD300D1000A /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -122,6 +139,14 @@
 			path = BLE;
 			sourceTree = "<group>";
 		};
+		271071171B27AEB900A3D75B /* XIB */ = {
+			isa = PBXGroup;
+			children = (
+				271071181B27AFF700A3D75B /* DevicesEmptyTableMessage.xib */,
+			);
+			name = XIB;
+			sourceTree = "<group>";
+		};
 		273ED33C1AFC550700F4F82B = {
 			isa = PBXGroup;
 			children = (
@@ -145,6 +170,9 @@
 		273ED3471AFC550700F4F82B /* CareSentineliOS */ = {
 			isa = PBXGroup;
 			children = (
+				271071171B27AEB900A3D75B /* XIB */,
+				279997711B250AC40005E720 /* MAWS */,
+				279EF7F01B1E673C003FAB56 /* Support */,
 				27009EFC1B176925003FBEAB /* BLE */,
 				2777D8071B0F6F0300CAC2AF /* Resources */,
 				2777D8111B0F706A00CAC2AF /* Controllers */,
@@ -163,6 +191,7 @@
 		273ED3481AFC550700F4F82B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				27760EE51B1FDFA50047D49B /* DeviceTypesList.plist */,
 				273ED3491AFC550700F4F82B /* Info.plist */,
 				273ED34A1AFC550700F4F82B /* main.m */,
 			);
@@ -211,6 +240,10 @@
 				2716056B1B13D38B002505E1 /* Device.m */,
 				275C864C1B16B896000DB4F4 /* User.h */,
 				275C864D1B16B896000DB4F4 /* User.m */,
+				27271D7A1B18CCCA00D369D6 /* Site.h */,
+				27271D7B1B18CCCA00D369D6 /* Site.m */,
+				27271D7D1B18CCE200D369D6 /* Customer.h */,
+				27271D7E1B18CCE200D369D6 /* Customer.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -232,6 +265,33 @@
 				2716056E1B14C749002505E1 /* NewUserViewController.m */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		279997711B250AC40005E720 /* MAWS */ = {
+			isa = PBXGroup;
+			children = (
+				279997721B250B010005E720 /* UI */,
+			);
+			name = MAWS;
+			sourceTree = "<group>";
+		};
+		279997721B250B010005E720 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				279997731B250B470005E720 /* MawsTextView.h */,
+				279997741B250B470005E720 /* MawsTextView.m */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
+		279EF7F01B1E673C003FAB56 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				279EF7F11B1E686F003FAB56 /* DeviceUIDelegate.h */,
+				2799976E1B24FF2F0005E720 /* UIResources.h */,
+				2799976F1B24FF2F0005E720 /* UIResources.m */,
+			);
+			name = Support;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -283,6 +343,7 @@
 				TargetAttributes = {
 					273ED3441AFC550700F4F82B = {
 						CreatedOnToolsVersion = 6.1;
+						DevelopmentTeam = BJRCWA3N54;
 					};
 					273ED3601AFC550700F4F82B = {
 						CreatedOnToolsVersion = 6.1;
@@ -314,9 +375,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				271071191B27AFF700A3D75B /* DevicesEmptyTableMessage.xib in Resources */,
 				2777D80E1B0F6FB000CAC2AF /* database_v1.sql in Resources */,
 				273ED3571AFC550700F4F82B /* Main.storyboard in Resources */,
 				273ED35C1AFC550700F4F82B /* LaunchScreen.xib in Resources */,
+				27760EE61B1FDFA50047D49B /* DeviceTypesList.plist in Resources */,
 				273ED3591AFC550700F4F82B /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -336,11 +399,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				2777D81D1B0F706A00CAC2AF /* UploadViewController.m in Sources */,
+				279997701B24FF2F0005E720 /* UIResources.m in Sources */,
 				271605661B139D3F002505E1 /* DevicesTableViewController.m in Sources */,
 				27009F0B1B177098003FBEAB /* APAppServices.m in Sources */,
 				2777D81A1B0F706A00CAC2AF /* DevicesViewController.m in Sources */,
+				27271D7F1B18CCE200D369D6 /* Customer.m in Sources */,
 				27009F0C1B177098003FBEAB /* APSettings.m in Sources */,
 				2716056C1B13D38B002505E1 /* Device.m in Sources */,
+				27271D7C1B18CCCA00D369D6 /* Site.m in Sources */,
 				2716056F1B14C749002505E1 /* NewUserViewController.m in Sources */,
 				2777D80C1B0F6F6100CAC2AF /* DatabaseManager.m in Sources */,
 				27009F051B176925003FBEAB /* APBLEInterface.m in Sources */,
@@ -349,6 +415,7 @@
 				273ED34E1AFC550700F4F82B /* AppDelegate.m in Sources */,
 				273ED34B1AFC550700F4F82B /* main.m in Sources */,
 				2777D81B1B0F706A00CAC2AF /* LoginViewController.m in Sources */,
+				279997751B250B470005E720 /* MawsTextView.m in Sources */,
 				2777D81C1B0F706A00CAC2AF /* NotificationsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

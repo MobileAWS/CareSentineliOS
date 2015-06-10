@@ -10,9 +10,8 @@
 #import "BaseModel.h"
 
 @interface User : NSObject <BaseModel>
+@property NSNumber *id;
 @property NSString *email;
-@property NSString *siteId;
-@property NSString *customerId;
 @property NSString *password;
 @property NSNumber *createdAt;
 +(NSDictionary *)getPropertiesMapping;

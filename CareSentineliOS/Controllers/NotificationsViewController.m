@@ -8,6 +8,7 @@
 
 #import "NotificationsViewController.h"
 #import "AppDelegate.h"
+#import "UIResources.h"
 
 @interface NotificationsViewController ()
 
@@ -17,7 +18,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationController.navigationBar.barTintColor = [[UIColor alloc] initWithRed:0.09 green:0.74 blue: 0.75 alpha:0.6];
+    self.navigationController.navigationBar.barTintColor = baseBackgroundColor;
     self.navigationController.navigationBar.translucent = NO;
     self.navigationController.navigationBar.tintColor = [[UIColor alloc] initWithRed:1 green:1 blue: 1 alpha:1];
     [self.navigationController.navigationBar setTitleTextAttributes: @{NSForegroundColorAttributeName: [UIColor whiteColor]}];

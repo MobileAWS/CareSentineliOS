@@ -11,8 +11,12 @@
 
 @interface DatabaseManager : NSObject
 +(DatabaseManager *)getSharedIntance;
--(BOOL)save:(id<BaseModel>)data;
+-(id<BaseModel>)save:(id<BaseModel>)data;
 -(id)findById:(NSNumber *)targetId;
 -(id)findWithCondition:(NSString *)condition forModel:(Class)targetClass;
--(NSArray *)listWithModel:(Class)model condition:(NSString *)condition;
+-(NSMutableArray *)listWithModel:(Class)model condition:(NSString *)condition;
+-(NSInteger)countWithQuery:(NSString *)query;
+-(void)insert:(NSString *)insertQuery;
+-(void)close;
+@property BOOL keepConnection;
 @end

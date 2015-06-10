@@ -1,7 +1,20 @@
+CREATE TABLE sites(
+id INTEGER PRIMARY KEY,
+site_id varchar(255) UNIQUE NOT NULL
+);
+
+CREATE TABLE customers(
+id INTEGER PRIMARY KEY,
+customer_id varchar(255) UNIQUE NOT NULL
+);
+
+
 CREATE TABLE devices(
 id INTEGER PRIMARY KEY,
 name varchar(255) NOT NULL,
-site_id integer NOT NULL,
+hw_id varchar(255) NOT NULL,
+site_id varchar(255) NOT NULL,
+customer_id integer,
 created_at INTEGER
 );
 
@@ -9,7 +22,16 @@ CREATE TABLE users(
 id INTEGER PRIMARY KEY,
 email varchar(255) NOT NULL,
 password varchar(255) NOT NULL,
-site_id integer NOT NULL,
-customer_id INTEGER,
 created_at INTEGER
+);
+
+
+CREATE TABLE user_sites(
+site_id INTEGER NOT NULL,
+user_id INTEGER NOT NULL
+);
+
+CREATE TABLE user_customers(
+customer_id INTEGER NOT NULL,
+user_id INTEGER NOT NULL
 );

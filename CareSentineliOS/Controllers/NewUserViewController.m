@@ -11,15 +11,14 @@
 #import "AppDelegate.h"
 #import "User.h"
 #import "DatabaseManager.h"
+#import "UIResources.h"
 
-@interface NewUserViewController (){
+@interface NewUserViewController() <UITextFieldDelegate>{
     
     __weak IBOutlet UITextField *emailTextField;
     __weak IBOutlet UITextField *confirmEmail;
     __weak IBOutlet UITextField *passwordTextField;
     __weak IBOutlet UITextField *confirmPassword;
-    __weak IBOutlet UITextField *clientIdTextField;
-    __weak IBOutlet UITextField *siteIdTextField;
     __weak IBOutlet UIButton *createButton;
     __weak IBOutlet UIButton *cancelButton;
 }
@@ -30,42 +29,26 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    CGColorRef borderColor = [[UIColor colorWithRed:1 green:1 blue:1 alpha:1] CGColor];
-    
-    self->emailTextField.layer.borderColor = borderColor;
-    self->emailTextField.layer.borderWidth = 1.0f;
-    self->emailTextField.layer.cornerRadius = 8.0f;
-    
-    self->confirmEmail.layer.borderColor = borderColor;
-    self->confirmEmail.layer.borderWidth = 1.0f;
-    self->confirmEmail.layer.cornerRadius = 8.0f;
-    
-    self->passwordTextField.layer.borderColor = borderColor;
-    self->passwordTextField.layer.borderWidth = 1.0f;
-    self->passwordTextField.layer.cornerRadius = 8.0f;
-    
-    self->confirmPassword.layer.borderColor = borderColor;
-    self->confirmPassword.layer.borderWidth = 1.0f;
-    self->confirmPassword.layer.cornerRadius = 8.0f;
-
-    
-    self->clientIdTextField.layer.borderColor = borderColor;
-    self->clientIdTextField.layer.borderWidth = 1.0f;
-    self->clientIdTextField.layer.cornerRadius = 8.0f;
-    
-    
-    self->siteIdTextField.layer.borderColor = borderColor;
-    self->siteIdTextField.layer.borderWidth = 1.0f;
-    self->siteIdTextField.layer.cornerRadius = 8.0f;
+    self->emailTextField.delegate = self;
+    self->confirmEmail.delegate = self;
+    self->passwordTextField.delegate = self;
+    self->confirmPassword.delegate = self;
     
     self->createButton.layer.borderWidth = 1.0f;
     self->createButton.layer.cornerRadius = 8.0f;
+    self->createButton.layer.borderColor = buttonBorderColor;
 
     self->cancelButton.layer.borderWidth = 1.0f;
     self->cancelButton.layer.cornerRadius = 8.0f;
+    self->cancelButton.layer.borderColor = buttonBorderColor;
 
     
     
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [self.view endEditing:YES];
+    return NO;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -110,12 +93,6 @@
         return;
     }
 
-    tmpValue = self->siteIdTextField.text;
-    if (tmpValue == nil || [tmpValue isEqualToString:@""]) {
-        [AppDelegate showAlert:@"Site ID Field Is Required" withTitle:@"Invalid Data"];
-        return;
-    }
-
     DatabaseManager *databaseManager = [DatabaseManager getSharedIntance];
     
     id user = [databaseManager findWithCondition:[NSString stringWithFormat:@"email = '%@'",self->emailTextField.text ]forModel:[User class]];
@@ -128,7 +105,6 @@
     User *tmpUser = [[User alloc] init];
     tmpUser.email = self->emailTextField.text;
     tmpUser.password = [User getEncryptedPasswordFor:self->passwordTextField.text];
-    tmpUser.siteId = self->siteIdTextField.text;
     tmpUser.createdAt = [[NSNumber alloc] initWithInt:[[NSDate date] timeIntervalSince1970]];
     [databaseManager save:tmpUser];
     

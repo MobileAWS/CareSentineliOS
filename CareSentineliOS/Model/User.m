@@ -12,10 +12,9 @@
 @implementation User
 
 +(NSDictionary *)getPropertiesMapping{
-    return @{@"email":@"email",
-             @"site_id":@"siteId",
+    return @{@"id":@"id",
+             @"email":@"email",
              @"password":@"password",
-             @"customer_id":@"customerId",
              @"created_at":@"createdAt"
              };
 }
