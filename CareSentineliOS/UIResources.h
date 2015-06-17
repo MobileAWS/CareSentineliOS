@@ -15,5 +15,11 @@ extern CGColorRef buttonBorderColor;
 extern CGColorRef baseBackgroundColorRef;
 extern UIColor *selectionBackgroundColorRef;
 extern UIColor *baseBackgroundColor;
+extern UIImage *noBatteryImage;
+extern UIImage *noSignalImage;
+extern UIImage *batteryImage;
+extern UIImage *signalImage;
+extern NSDateFormatter *notificationsFormatter;
+
 +(void)initResources;
 @end

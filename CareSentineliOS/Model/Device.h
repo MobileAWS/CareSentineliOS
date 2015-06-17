@@ -12,16 +12,18 @@
 @interface Device : NSObject <BaseModel>
     +(NSString *)getTableName;
     +(NSDictionary *)getPropertiesMapping;
-    -(NSString *)getChangedSwitch:(uint16_t)value;
+    -(NSArray *)getChangedSwitch:(uint16_t)value;
     @property NSNumber *id;
     @property NSString *name;
     @property NSString *hwId;
-    @property NSString *siteId;
+    @property NSNumber *siteId;
     @property NSNumber *customerId;
+    @property NSNumber *userId;
     @property NSNumber *createdAt;
     @property BOOL bedSensorActivated;
     @property BOOL chairSensorActivated;
     @property BOOL toiletSensorActivated;
     @property BOOL incontinenceSensorActivated;
+    @property BOOL connected;
 
 @end

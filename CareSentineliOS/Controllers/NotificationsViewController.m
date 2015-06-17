@@ -9,8 +9,14 @@
 #import "NotificationsViewController.h"
 #import "AppDelegate.h"
 #import "UIResources.h"
+#import "DatabaseManager.h"
+#import "DeviceProperty.h"
+#import "PropertiesDao.h"
+#import "NotificationsTableViewController.h"
 
-@interface NotificationsViewController ()
+@interface NotificationsViewController (){
+    __weak NotificationsTableViewController *notificationsTable;
+}
 
 @end
 
@@ -22,8 +28,14 @@
     self.navigationController.navigationBar.translucent = NO;
     self.navigationController.navigationBar.tintColor = [[UIColor alloc] initWithRed:1 green:1 blue: 1 alpha:1];
     [self.navigationController.navigationBar setTitleTextAttributes: @{NSForegroundColorAttributeName: [UIColor whiteColor]}];
+}
 
-    // Do any additional setup after loading the view.
+
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if([segue.identifier isEqualToString:@"EmbedNotificationsTableViewSegue"]){
+        self->notificationsTable = segue.destinationViewController;
+    }
 }
 
 - (void)didReceiveMemoryWarning {

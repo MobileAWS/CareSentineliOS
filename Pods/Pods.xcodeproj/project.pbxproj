@@ -1,0 +1,773 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		061659ED5D1F6520AE86DBDD /* TSMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = C20C9C9149CB80451C06988B /* TSMessage.h */; };
+		071B93FF475075FE3AE629C8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2C5624295026AA30B3B26E9 /* Foundation.framework */; };
+		0C85884648B6311032A07EE5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2C5624295026AA30B3B26E9 /* Foundation.framework */; };
+		17C8FA5B0C61AF1298A9BAA2 /* Pods-CareSentineliOS-HexColors-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 86A34FC104711F9F754E33CA /* Pods-CareSentineliOS-HexColors-dummy.m */; };
+		2BFFA78339993419DA2A8EC8 /* TSBlurView.h in Headers */ = {isa = PBXBuildFile; fileRef = 69D06BD0DD248ADF95538E10 /* TSBlurView.h */; };
+		30D0D9D54015F9853973C9E1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2C5624295026AA30B3B26E9 /* Foundation.framework */; };
+		32FCE63317CA43454906C58B /* TSMessageView.h in Headers */ = {isa = PBXBuildFile; fileRef = F7B1315E87E9779903E2D82F /* TSMessageView.h */; };
+		3F7059BEEC9DCC894BFF2A42 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = B19D6827FFF0801A022EEFA3 /* MBProgressHUD.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		4F97647AC140D992033744F8 /* Pods-CareSentineliOS-MBProgressHUD-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B4377C0187547421B6F9D6D7 /* Pods-CareSentineliOS-MBProgressHUD-dummy.m */; };
+		520473125AEC58A35B125A9C /* Pods-CareSentineliOS-TSMessages-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C7702C5BD742B78070BDF0F1 /* Pods-CareSentineliOS-TSMessages-dummy.m */; };
+		67DA098BD3CBCECA12896C7F /* TSMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FA26D7B5274DAE0A750FEE /* TSMessageView.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		6AA882B2E90760D643640AEF /* MBProgressHUD.h in Headers */ = {isa = PBXBuildFile; fileRef = 0827FA689C5C0E5F8BA6614C /* MBProgressHUD.h */; };
+		942762F3AC0A88A9B25A8B84 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2C5624295026AA30B3B26E9 /* Foundation.framework */; };
+		972E8A3A1507BF3B3AC5086E /* TSBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6FC541940AFBD004863CD1 /* TSBlurView.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		9D788220CA502E4DBE2CEB35 /* TSMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = F26589ED462F4E0E0FF091A2 /* TSMessage.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		AAA26F82E0A097747277D4C1 /* Pods-CareSentineliOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = CBD70ECD68DBB37AAC99AE2E /* Pods-CareSentineliOS-dummy.m */; };
+		E6C0884DEFB44EF110C75A75 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7028D2B84A426245DBF12471 /* CoreGraphics.framework */; };
+		F024DDE9953B037D9B62D19E /* HexColor.h in Headers */ = {isa = PBXBuildFile; fileRef = 35039D6FADA992E0AE34D4ED /* HexColor.h */; };
+		F541A8F4FB0838D6EBE56183 /* HexColor.m in Sources */ = {isa = PBXBuildFile; fileRef = C111DE590BF4A4E8A39BFF67 /* HexColor.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		79E6FF58DAE4F5A407094AF3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4FDBC63C41238EA4672D7785 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 46549FD33191140AD8370ED6;
+			remoteInfo = "Pods-CareSentineliOS-HexColors";
+		};
+		9588F66FBBB6C5929854C904 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4FDBC63C41238EA4672D7785 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 46549FD33191140AD8370ED6;
+			remoteInfo = "Pods-CareSentineliOS-HexColors";
+		};
+		C8AD5F0ABCBCEE199C93F0F2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4FDBC63C41238EA4672D7785 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0DFF95370E96EEFE22838C69;
+			remoteInfo = "Pods-CareSentineliOS-TSMessages";
+		};
+		E54BC6181D93556F8A5CBB67 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4FDBC63C41238EA4672D7785 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = ABFF4370018E2D776B662E45;
+			remoteInfo = "Pods-CareSentineliOS-MBProgressHUD";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0827FA689C5C0E5F8BA6614C /* MBProgressHUD.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		11D1D66C0F9D5A4C5A7AE6FB /* NotificationBackgroundSuccessIcon@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "NotificationBackgroundSuccessIcon@2x.png"; path = "Pod/Assets/NotificationBackgroundSuccessIcon@2x.png"; sourceTree = "<group>"; };
+		172236CAA61A296E19BBE083 /* NotificationBackgroundWarningIcon@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "NotificationBackgroundWarningIcon@2x.png"; path = "Pod/Assets/NotificationBackgroundWarningIcon@2x.png"; sourceTree = "<group>"; };
+		18EA0A8D553D67AA0D0BA1F9 /* NotificationBackgroundError@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "NotificationBackgroundError@2x.png"; path = "Pod/Assets/NotificationBackgroundError@2x.png"; sourceTree = "<group>"; };
+		1F6FC541940AFBD004863CD1 /* TSBlurView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TSBlurView.m; path = Pod/Classes/TSBlurView.m; sourceTree = "<group>"; };
+		35039D6FADA992E0AE34D4ED /* HexColor.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = HexColor.h; path = Classes/HexColor.h; sourceTree = "<group>"; };
+		45FA26D7B5274DAE0A750FEE /* TSMessageView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TSMessageView.m; path = Pod/Classes/TSMessageView.m; sourceTree = "<group>"; };
+		474E9EA3B8F4A13B8B7C222E /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		4C47E96C40102874C9FDAB46 /* Pods-CareSentineliOS-TSMessages-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-CareSentineliOS-TSMessages-prefix.pch"; sourceTree = "<group>"; };
+		4E1F0032C5E06C2B2960A2CC /* Pods-CareSentineliOS-HexColors-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CareSentineliOS-HexColors-Private.xcconfig"; sourceTree = "<group>"; };
+		4F4E5FDC2BD1CE882FAA4095 /* TSMessagesDefaultDesign.json */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.json; name = TSMessagesDefaultDesign.json; path = Pod/Assets/TSMessagesDefaultDesign.json; sourceTree = "<group>"; };
+		52418414A39C30800D8960BF /* Pods-CareSentineliOS-HexColors.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CareSentineliOS-HexColors.xcconfig"; sourceTree = "<group>"; };
+		5B5311CD126B0D8FACB93042 /* NotificationBackgroundErrorIcon@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "NotificationBackgroundErrorIcon@2x.png"; path = "Pod/Assets/NotificationBackgroundErrorIcon@2x.png"; sourceTree = "<group>"; };
+		5F572BF5B31E23D280C3DEF2 /* libPods-CareSentineliOS-TSMessages.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CareSentineliOS-TSMessages.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		648AF2F0318031B814A5D23C /* Pods-CareSentineliOS-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-CareSentineliOS-acknowledgements.plist"; sourceTree = "<group>"; };
+		69D06BD0DD248ADF95538E10 /* TSBlurView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TSBlurView.h; path = Pod/Classes/TSBlurView.h; sourceTree = "<group>"; };
+		7028D2B84A426245DBF12471 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
+		7273B5E4F3AC4F98D2765BEE /* Pods-CareSentineliOS-MBProgressHUD-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CareSentineliOS-MBProgressHUD-Private.xcconfig"; sourceTree = "<group>"; };
+		7A63360928149FDE7DBDE30E /* NotificationBackgroundMessage.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = NotificationBackgroundMessage.png; path = Pod/Assets/NotificationBackgroundMessage.png; sourceTree = "<group>"; };
+		7C6EB6A6B09E3B1B8D261326 /* Pods-CareSentineliOS-TSMessages.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CareSentineliOS-TSMessages.xcconfig"; sourceTree = "<group>"; };
+		8386E0E3BEC12A6D6B10D45E /* Pods-CareSentineliOS-environment.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-CareSentineliOS-environment.h"; sourceTree = "<group>"; };
+		86A34FC104711F9F754E33CA /* Pods-CareSentineliOS-HexColors-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-CareSentineliOS-HexColors-dummy.m"; sourceTree = "<group>"; };
+		8763A04BC2846A0007B8AE00 /* NotificationBackgroundWarning@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "NotificationBackgroundWarning@2x.png"; path = "Pod/Assets/NotificationBackgroundWarning@2x.png"; sourceTree = "<group>"; };
+		8C91413E3B40487A883916FF /* Pods-CareSentineliOS-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-CareSentineliOS-acknowledgements.markdown"; sourceTree = "<group>"; };
+		8D4D80BA465F914088A0F1F1 /* libPods-CareSentineliOS-MBProgressHUD.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CareSentineliOS-MBProgressHUD.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		98F594F34312CE6FD57814B5 /* Pods-CareSentineliOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CareSentineliOS.release.xcconfig"; sourceTree = "<group>"; };
+		9C0DC40DEBB1606D36F3F065 /* NotificationBackgroundErrorIcon.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = NotificationBackgroundErrorIcon.png; path = Pod/Assets/NotificationBackgroundErrorIcon.png; sourceTree = "<group>"; };
+		A2BE5D76169A4D3DE02AE70B /* NotificationButtonBackground@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "NotificationButtonBackground@2x.png"; path = "Pod/Assets/NotificationButtonBackground@2x.png"; sourceTree = "<group>"; };
+		AB7CFF46A7E4CCBAEB266BF5 /* NotificationBackgroundError.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = NotificationBackgroundError.png; path = Pod/Assets/NotificationBackgroundError.png; sourceTree = "<group>"; };
+		B19D6827FFF0801A022EEFA3 /* MBProgressHUD.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		B4377C0187547421B6F9D6D7 /* Pods-CareSentineliOS-MBProgressHUD-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-CareSentineliOS-MBProgressHUD-dummy.m"; sourceTree = "<group>"; };
+		BADD92B78B3C6EB5F722E4C8 /* NotificationBackgroundSuccessIcon.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = NotificationBackgroundSuccessIcon.png; path = Pod/Assets/NotificationBackgroundSuccessIcon.png; sourceTree = "<group>"; };
+		BDDC2563D2B09E61C52CEB2F /* NotificationBackgroundSuccess@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "NotificationBackgroundSuccess@2x.png"; path = "Pod/Assets/NotificationBackgroundSuccess@2x.png"; sourceTree = "<group>"; };
+		C111DE590BF4A4E8A39BFF67 /* HexColor.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = HexColor.m; path = Classes/HexColor.m; sourceTree = "<group>"; };
+		C178220CBFF1037307350C38 /* libPods-CareSentineliOS-HexColors.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CareSentineliOS-HexColors.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C20C9C9149CB80451C06988B /* TSMessage.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TSMessage.h; path = Pod/Classes/TSMessage.h; sourceTree = "<group>"; };
+		C6B62DCAC1B0CD81A07BE8C9 /* NotificationBackgroundWarning.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = NotificationBackgroundWarning.png; path = Pod/Assets/NotificationBackgroundWarning.png; sourceTree = "<group>"; };
+		C7702C5BD742B78070BDF0F1 /* Pods-CareSentineliOS-TSMessages-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-CareSentineliOS-TSMessages-dummy.m"; sourceTree = "<group>"; };
+		C9B4E692FDB5FF4E5D595E3D /* NotificationButtonBackground.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = NotificationButtonBackground.png; path = Pod/Assets/NotificationButtonBackground.png; sourceTree = "<group>"; };
+		CB140A2413AEECA983119C63 /* Pods-CareSentineliOS-TSMessages-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CareSentineliOS-TSMessages-Private.xcconfig"; sourceTree = "<group>"; };
+		CBD70ECD68DBB37AAC99AE2E /* Pods-CareSentineliOS-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-CareSentineliOS-dummy.m"; sourceTree = "<group>"; };
+		CEA03112DA0BFCDF82640AD5 /* NotificationBackgroundWarningIcon.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = NotificationBackgroundWarningIcon.png; path = Pod/Assets/NotificationBackgroundWarningIcon.png; sourceTree = "<group>"; };
+		CF86AB22D46C2BAC947603CB /* Pods-CareSentineliOS-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CareSentineliOS-resources.sh"; sourceTree = "<group>"; };
+		DAED6B3C1BFAC4B5CE80BC22 /* libPods-CareSentineliOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CareSentineliOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB6E8877930B75F6F1A15DA6 /* NotificationBackgroundMessage@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "NotificationBackgroundMessage@2x.png"; path = "Pod/Assets/NotificationBackgroundMessage@2x.png"; sourceTree = "<group>"; };
+		E2C5624295026AA30B3B26E9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		F174524BC31E65D65FE72CC9 /* Pods-CareSentineliOS-HexColors-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-CareSentineliOS-HexColors-prefix.pch"; sourceTree = "<group>"; };
+		F1B4CA291E4381843567DA36 /* Pods-CareSentineliOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CareSentineliOS.debug.xcconfig"; sourceTree = "<group>"; };
+		F26589ED462F4E0E0FF091A2 /* TSMessage.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TSMessage.m; path = Pod/Classes/TSMessage.m; sourceTree = "<group>"; };
+		F41DEE5CAB3EC1BFA168F302 /* Pods-CareSentineliOS-MBProgressHUD-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-CareSentineliOS-MBProgressHUD-prefix.pch"; sourceTree = "<group>"; };
+		F52ECC922139E91B6141C17E /* Pods-CareSentineliOS-MBProgressHUD.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CareSentineliOS-MBProgressHUD.xcconfig"; sourceTree = "<group>"; };
+		F7B1315E87E9779903E2D82F /* TSMessageView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TSMessageView.h; path = Pod/Classes/TSMessageView.h; sourceTree = "<group>"; };
+		FB5B05BD76A4F5E89C826FC8 /* NotificationBackgroundSuccess.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = NotificationBackgroundSuccess.png; path = Pod/Assets/NotificationBackgroundSuccess.png; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8EA6708D1128DD247C85B95A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E6C0884DEFB44EF110C75A75 /* CoreGraphics.framework in Frameworks */,
+				30D0D9D54015F9853973C9E1 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AD67B984C1F0335102543F1C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				071B93FF475075FE3AE629C8 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BFA819B752246FF9B001693A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				942762F3AC0A88A9B25A8B84 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EE137D7849060F8949546032 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0C85884648B6311032A07EE5 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		001A606ABEF0ADDD42B2E98D /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				F52ECC922139E91B6141C17E /* Pods-CareSentineliOS-MBProgressHUD.xcconfig */,
+				7273B5E4F3AC4F98D2765BEE /* Pods-CareSentineliOS-MBProgressHUD-Private.xcconfig */,
+				B4377C0187547421B6F9D6D7 /* Pods-CareSentineliOS-MBProgressHUD-dummy.m */,
+				F41DEE5CAB3EC1BFA168F302 /* Pods-CareSentineliOS-MBProgressHUD-prefix.pch */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/Pods-CareSentineliOS-MBProgressHUD";
+			sourceTree = "<group>";
+		};
+		28D95563FCBC247F75192DB6 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				7C6EB6A6B09E3B1B8D261326 /* Pods-CareSentineliOS-TSMessages.xcconfig */,
+				CB140A2413AEECA983119C63 /* Pods-CareSentineliOS-TSMessages-Private.xcconfig */,
+				C7702C5BD742B78070BDF0F1 /* Pods-CareSentineliOS-TSMessages-dummy.m */,
+				4C47E96C40102874C9FDAB46 /* Pods-CareSentineliOS-TSMessages-prefix.pch */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/Pods-CareSentineliOS-TSMessages";
+			sourceTree = "<group>";
+		};
+		2A050483592B95C108361582 /* HexColors */ = {
+			isa = PBXGroup;
+			children = (
+				35039D6FADA992E0AE34D4ED /* HexColor.h */,
+				C111DE590BF4A4E8A39BFF67 /* HexColor.m */,
+				B71D3E719E75CD1B1FE4878D /* Support Files */,
+			);
+			path = HexColors;
+			sourceTree = "<group>";
+		};
+		32287FF03BDB2C533311E0D3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C27B7D2A73D7717060B80034 /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4287E74C2D15E8BD6CE49CEC /* TSMessages */ = {
+			isa = PBXGroup;
+			children = (
+				69D06BD0DD248ADF95538E10 /* TSBlurView.h */,
+				1F6FC541940AFBD004863CD1 /* TSBlurView.m */,
+				C20C9C9149CB80451C06988B /* TSMessage.h */,
+				F26589ED462F4E0E0FF091A2 /* TSMessage.m */,
+				F7B1315E87E9779903E2D82F /* TSMessageView.h */,
+				45FA26D7B5274DAE0A750FEE /* TSMessageView.m */,
+				E5B1FD1D63B310029F383EE7 /* Resources */,
+				28D95563FCBC247F75192DB6 /* Support Files */,
+			);
+			path = TSMessages;
+			sourceTree = "<group>";
+		};
+		71FD9C852B98446B09761AE1 = {
+			isa = PBXGroup;
+			children = (
+				474E9EA3B8F4A13B8B7C222E /* Podfile */,
+				32287FF03BDB2C533311E0D3 /* Frameworks */,
+				9DD5E49462E2AAF354FACD97 /* Pods */,
+				80FFC3BE370A8D6B45B1760E /* Products */,
+				8B985077A00B94D543891595 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		80FFC3BE370A8D6B45B1760E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DAED6B3C1BFAC4B5CE80BC22 /* libPods-CareSentineliOS.a */,
+				C178220CBFF1037307350C38 /* libPods-CareSentineliOS-HexColors.a */,
+				8D4D80BA465F914088A0F1F1 /* libPods-CareSentineliOS-MBProgressHUD.a */,
+				5F572BF5B31E23D280C3DEF2 /* libPods-CareSentineliOS-TSMessages.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8B985077A00B94D543891595 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				E764406C72ECF3558CF0DD04 /* Pods-CareSentineliOS */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		9DD5E49462E2AAF354FACD97 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2A050483592B95C108361582 /* HexColors */,
+				E913CB307963D6E80661EDF8 /* MBProgressHUD */,
+				4287E74C2D15E8BD6CE49CEC /* TSMessages */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		B71D3E719E75CD1B1FE4878D /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				52418414A39C30800D8960BF /* Pods-CareSentineliOS-HexColors.xcconfig */,
+				4E1F0032C5E06C2B2960A2CC /* Pods-CareSentineliOS-HexColors-Private.xcconfig */,
+				86A34FC104711F9F754E33CA /* Pods-CareSentineliOS-HexColors-dummy.m */,
+				F174524BC31E65D65FE72CC9 /* Pods-CareSentineliOS-HexColors-prefix.pch */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/Pods-CareSentineliOS-HexColors";
+			sourceTree = "<group>";
+		};
+		C27B7D2A73D7717060B80034 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				7028D2B84A426245DBF12471 /* CoreGraphics.framework */,
+				E2C5624295026AA30B3B26E9 /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		E5B1FD1D63B310029F383EE7 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				AB7CFF46A7E4CCBAEB266BF5 /* NotificationBackgroundError.png */,
+				18EA0A8D553D67AA0D0BA1F9 /* NotificationBackgroundError@2x.png */,
+				9C0DC40DEBB1606D36F3F065 /* NotificationBackgroundErrorIcon.png */,
+				5B5311CD126B0D8FACB93042 /* NotificationBackgroundErrorIcon@2x.png */,
+				7A63360928149FDE7DBDE30E /* NotificationBackgroundMessage.png */,
+				DB6E8877930B75F6F1A15DA6 /* NotificationBackgroundMessage@2x.png */,
+				FB5B05BD76A4F5E89C826FC8 /* NotificationBackgroundSuccess.png */,
+				BDDC2563D2B09E61C52CEB2F /* NotificationBackgroundSuccess@2x.png */,
+				BADD92B78B3C6EB5F722E4C8 /* NotificationBackgroundSuccessIcon.png */,
+				11D1D66C0F9D5A4C5A7AE6FB /* NotificationBackgroundSuccessIcon@2x.png */,
+				C6B62DCAC1B0CD81A07BE8C9 /* NotificationBackgroundWarning.png */,
+				8763A04BC2846A0007B8AE00 /* NotificationBackgroundWarning@2x.png */,
+				CEA03112DA0BFCDF82640AD5 /* NotificationBackgroundWarningIcon.png */,
+				172236CAA61A296E19BBE083 /* NotificationBackgroundWarningIcon@2x.png */,
+				C9B4E692FDB5FF4E5D595E3D /* NotificationButtonBackground.png */,
+				A2BE5D76169A4D3DE02AE70B /* NotificationButtonBackground@2x.png */,
+				4F4E5FDC2BD1CE882FAA4095 /* TSMessagesDefaultDesign.json */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		E764406C72ECF3558CF0DD04 /* Pods-CareSentineliOS */ = {
+			isa = PBXGroup;
+			children = (
+				8C91413E3B40487A883916FF /* Pods-CareSentineliOS-acknowledgements.markdown */,
+				648AF2F0318031B814A5D23C /* Pods-CareSentineliOS-acknowledgements.plist */,
+				CBD70ECD68DBB37AAC99AE2E /* Pods-CareSentineliOS-dummy.m */,
+				8386E0E3BEC12A6D6B10D45E /* Pods-CareSentineliOS-environment.h */,
+				CF86AB22D46C2BAC947603CB /* Pods-CareSentineliOS-resources.sh */,
+				F1B4CA291E4381843567DA36 /* Pods-CareSentineliOS.debug.xcconfig */,
+				98F594F34312CE6FD57814B5 /* Pods-CareSentineliOS.release.xcconfig */,
+			);
+			name = "Pods-CareSentineliOS";
+			path = "Target Support Files/Pods-CareSentineliOS";
+			sourceTree = "<group>";
+		};
+		E913CB307963D6E80661EDF8 /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				0827FA689C5C0E5F8BA6614C /* MBProgressHUD.h */,
+				B19D6827FFF0801A022EEFA3 /* MBProgressHUD.m */,
+				001A606ABEF0ADDD42B2E98D /* Support Files */,
+			);
+			path = MBProgressHUD;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		070BBBF20242E6697872887F /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6AA882B2E90760D643640AEF /* MBProgressHUD.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		09B953D67B60D7854FCD7D6F /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F024DDE9953B037D9B62D19E /* HexColor.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4CEC3499D9513C87465CA62A /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2BFFA78339993419DA2A8EC8 /* TSBlurView.h in Headers */,
+				061659ED5D1F6520AE86DBDD /* TSMessage.h in Headers */,
+				32FCE63317CA43454906C58B /* TSMessageView.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		0DFF95370E96EEFE22838C69 /* Pods-CareSentineliOS-TSMessages */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0562030549A6AA9EE2FD7F8C /* Build configuration list for PBXNativeTarget "Pods-CareSentineliOS-TSMessages" */;
+			buildPhases = (
+				88C895015AC44FA9FFB780C5 /* Sources */,
+				EE137D7849060F8949546032 /* Frameworks */,
+				4CEC3499D9513C87465CA62A /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7DD73E919C4F3A6881460FEF /* PBXTargetDependency */,
+			);
+			name = "Pods-CareSentineliOS-TSMessages";
+			productName = "Pods-CareSentineliOS-TSMessages";
+			productReference = 5F572BF5B31E23D280C3DEF2 /* libPods-CareSentineliOS-TSMessages.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		1A9A81E1DE7B8E6D276F667D /* Pods-CareSentineliOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CC7E946EB14F7EEBCA6EFDDD /* Build configuration list for PBXNativeTarget "Pods-CareSentineliOS" */;
+			buildPhases = (
+				29FC433E645F97B3DCB02E28 /* Sources */,
+				AD67B984C1F0335102543F1C /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				13251469CC6C0FFF3D8CE8EC /* PBXTargetDependency */,
+				A09C34599FEE1DAD043B7F64 /* PBXTargetDependency */,
+				098294290DF276432DFF4EEC /* PBXTargetDependency */,
+			);
+			name = "Pods-CareSentineliOS";
+			productName = "Pods-CareSentineliOS";
+			productReference = DAED6B3C1BFAC4B5CE80BC22 /* libPods-CareSentineliOS.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		46549FD33191140AD8370ED6 /* Pods-CareSentineliOS-HexColors */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7D3BB84F450249BEC612E892 /* Build configuration list for PBXNativeTarget "Pods-CareSentineliOS-HexColors" */;
+			buildPhases = (
+				E44D842194D4D55C87B84C37 /* Sources */,
+				BFA819B752246FF9B001693A /* Frameworks */,
+				09B953D67B60D7854FCD7D6F /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pods-CareSentineliOS-HexColors";
+			productName = "Pods-CareSentineliOS-HexColors";
+			productReference = C178220CBFF1037307350C38 /* libPods-CareSentineliOS-HexColors.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		ABFF4370018E2D776B662E45 /* Pods-CareSentineliOS-MBProgressHUD */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7F70D8D614CEFCE868D06ECF /* Build configuration list for PBXNativeTarget "Pods-CareSentineliOS-MBProgressHUD" */;
+			buildPhases = (
+				A50AE7694CA6FFFA50F183D8 /* Sources */,
+				8EA6708D1128DD247C85B95A /* Frameworks */,
+				070BBBF20242E6697872887F /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pods-CareSentineliOS-MBProgressHUD";
+			productName = "Pods-CareSentineliOS-MBProgressHUD";
+			productReference = 8D4D80BA465F914088A0F1F1 /* libPods-CareSentineliOS-MBProgressHUD.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4FDBC63C41238EA4672D7785 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0640;
+			};
+			buildConfigurationList = 2BDE29D173CE857AD01499AD /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 71FD9C852B98446B09761AE1;
+			productRefGroup = 80FFC3BE370A8D6B45B1760E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1A9A81E1DE7B8E6D276F667D /* Pods-CareSentineliOS */,
+				46549FD33191140AD8370ED6 /* Pods-CareSentineliOS-HexColors */,
+				ABFF4370018E2D776B662E45 /* Pods-CareSentineliOS-MBProgressHUD */,
+				0DFF95370E96EEFE22838C69 /* Pods-CareSentineliOS-TSMessages */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		29FC433E645F97B3DCB02E28 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AAA26F82E0A097747277D4C1 /* Pods-CareSentineliOS-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		88C895015AC44FA9FFB780C5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				520473125AEC58A35B125A9C /* Pods-CareSentineliOS-TSMessages-dummy.m in Sources */,
+				972E8A3A1507BF3B3AC5086E /* TSBlurView.m in Sources */,
+				9D788220CA502E4DBE2CEB35 /* TSMessage.m in Sources */,
+				67DA098BD3CBCECA12896C7F /* TSMessageView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A50AE7694CA6FFFA50F183D8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3F7059BEEC9DCC894BFF2A42 /* MBProgressHUD.m in Sources */,
+				4F97647AC140D992033744F8 /* Pods-CareSentineliOS-MBProgressHUD-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E44D842194D4D55C87B84C37 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F541A8F4FB0838D6EBE56183 /* HexColor.m in Sources */,
+				17C8FA5B0C61AF1298A9BAA2 /* Pods-CareSentineliOS-HexColors-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		098294290DF276432DFF4EEC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Pods-CareSentineliOS-TSMessages";
+			target = 0DFF95370E96EEFE22838C69 /* Pods-CareSentineliOS-TSMessages */;
+			targetProxy = C8AD5F0ABCBCEE199C93F0F2 /* PBXContainerItemProxy */;
+		};
+		13251469CC6C0FFF3D8CE8EC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Pods-CareSentineliOS-HexColors";
+			target = 46549FD33191140AD8370ED6 /* Pods-CareSentineliOS-HexColors */;
+			targetProxy = 9588F66FBBB6C5929854C904 /* PBXContainerItemProxy */;
+		};
+		7DD73E919C4F3A6881460FEF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Pods-CareSentineliOS-HexColors";
+			target = 46549FD33191140AD8370ED6 /* Pods-CareSentineliOS-HexColors */;
+			targetProxy = 79E6FF58DAE4F5A407094AF3 /* PBXContainerItemProxy */;
+		};
+		A09C34599FEE1DAD043B7F64 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Pods-CareSentineliOS-MBProgressHUD";
+			target = ABFF4370018E2D776B662E45 /* Pods-CareSentineliOS-MBProgressHUD */;
+			targetProxy = E54BC6181D93556F8A5CBB67 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		0AD31B52E7E7B6B61E7F0FF0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4E1F0032C5E06C2B2960A2CC /* Pods-CareSentineliOS-HexColors-Private.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-CareSentineliOS-HexColors/Pods-CareSentineliOS-HexColors-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		1611DA3DD5D00B876EF1504D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = "RELEASE=1";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1B48EF695133411C24A77E7F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CB140A2413AEECA983119C63 /* Pods-CareSentineliOS-TSMessages-Private.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-CareSentineliOS-TSMessages/Pods-CareSentineliOS-TSMessages-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		3B3F1C257504D9FA210E591D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				ONLY_ACTIVE_ARCH = YES;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		4BF3D82C2637D333D354137E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7273B5E4F3AC4F98D2765BEE /* Pods-CareSentineliOS-MBProgressHUD-Private.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-CareSentineliOS-MBProgressHUD/Pods-CareSentineliOS-MBProgressHUD-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		50DCC2207C541856BDE33762 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CB140A2413AEECA983119C63 /* Pods-CareSentineliOS-TSMessages-Private.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-CareSentineliOS-TSMessages/Pods-CareSentineliOS-TSMessages-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		787DC2B5DBB3602CDB71237C /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4E1F0032C5E06C2B2960A2CC /* Pods-CareSentineliOS-HexColors-Private.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-CareSentineliOS-HexColors/Pods-CareSentineliOS-HexColors-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		A87BC6D0EE0372560AEB0DC6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F1B4CA291E4381843567DA36 /* Pods-CareSentineliOS.debug.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		D1CD401ADE91AB3AA7E3277A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7273B5E4F3AC4F98D2765BEE /* Pods-CareSentineliOS-MBProgressHUD-Private.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-CareSentineliOS-MBProgressHUD/Pods-CareSentineliOS-MBProgressHUD-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		ED843B232807E38D1E58AFBE /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 98F594F34312CE6FD57814B5 /* Pods-CareSentineliOS.release.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0562030549A6AA9EE2FD7F8C /* Build configuration list for PBXNativeTarget "Pods-CareSentineliOS-TSMessages" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				50DCC2207C541856BDE33762 /* Debug */,
+				1B48EF695133411C24A77E7F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2BDE29D173CE857AD01499AD /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3B3F1C257504D9FA210E591D /* Debug */,
+				1611DA3DD5D00B876EF1504D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7D3BB84F450249BEC612E892 /* Build configuration list for PBXNativeTarget "Pods-CareSentineliOS-HexColors" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0AD31B52E7E7B6B61E7F0FF0 /* Debug */,
+				787DC2B5DBB3602CDB71237C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7F70D8D614CEFCE868D06ECF /* Build configuration list for PBXNativeTarget "Pods-CareSentineliOS-MBProgressHUD" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D1CD401ADE91AB3AA7E3277A /* Debug */,
+				4BF3D82C2637D333D354137E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CC7E946EB14F7EEBCA6EFDDD /* Build configuration list for PBXNativeTarget "Pods-CareSentineliOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A87BC6D0EE0372560AEB0DC6 /* Debug */,
+				ED843B232807E38D1E58AFBE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 4FDBC63C41238EA4672D7785 /* Project object */;
+}

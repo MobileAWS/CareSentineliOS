@@ -15,6 +15,7 @@
 -(id)findById:(NSNumber *)targetId;
 -(id)findWithCondition:(NSString *)condition forModel:(Class)targetClass;
 -(NSMutableArray *)listWithModel:(Class)model condition:(NSString *)condition;
+-(NSMutableArray *)listWithModel:(Class)model forQuery:(NSString *)query;
 -(NSInteger)countWithQuery:(NSString *)query;
 -(void)insert:(NSString *)insertQuery;
 -(void)close;

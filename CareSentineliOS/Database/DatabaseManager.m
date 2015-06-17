@@ -77,8 +77,11 @@ static DatabaseManager *sharedInstance = nil;
     NSString *tableName = [[(NSObject *)data class] getTableName];
     NSMutableArray *valuesArray = [[NSMutableArray alloc] init];
     NSArray *fields = [properties allKeys];
-    
+    BOOL hasId = false;
     for (int i = 0; i < fields.count; i++) {
+        if ([[fields objectAtIndex:i] isEqualToString:@"id"]) {
+            hasId = true;
+        }
         id tempValue = [(NSObject *)data valueForKey:[properties valueForKey:[fields objectAtIndex:i]]];
         if(tempValue == nil){
             [valuesArray addObject:@"NULL"];
@@ -101,8 +104,10 @@ static DatabaseManager *sharedInstance = nil;
         return nil;
     }
     sqlite3_finalize(statement);
-    NSNumber  *tmpId = [[NSNumber alloc] initWithLong:sqlite3_last_insert_rowid(self->database)];
-    [(NSObject *)data setValue:(tmpId) forKey:@"id"];
+    if (hasId){
+            NSNumber  *tmpId = [[NSNumber alloc] initWithLong:sqlite3_last_insert_rowid(self->database)];
+            [(NSObject *)data setValue:(tmpId) forKey:@"id"];
+    }
     if (self.keepConnection == false) {[self close];}
     return data;
 }
@@ -210,6 +215,30 @@ static DatabaseManager *sharedInstance = nil;
         return;
     }
     if (self.keepConnection == false) {[self close];}
+}
+
+-(NSMutableArray *)listWithModel:(Class)targetModel forQuery:(NSString *)query{
+    NSDictionary * properties = [(id)targetModel getPropertiesMapping];
+    sqlite3_stmt *statement;
+    NSMutableArray *result = [[NSMutableArray alloc] init];
+    if (self->database == nil) {
+        sqlite3_open([self->databasePath UTF8String], &self->database);
+    }
+    if(sqlite3_prepare_v2(self->database,[query UTF8String],-1,&statement,NULL) == SQLITE_OK){
+        while(sqlite3_step(statement) == SQLITE_ROW){
+            id<BaseModel> currentObject = [[targetModel alloc] init];
+            NSArray *fields = [properties allKeys];
+            for (int i = 0; i < fields.count; i++) {
+                id value = [self getColumnValueForRow:i withStatement:statement];
+                [(NSObject *)currentObject setValue:value forKey:[properties objectForKey:[fields objectAtIndex:i]]];
+            }
+            [result addObject:currentObject];
+        }
+    }
+    sqlite3_finalize(statement);
+    if (self.keepConnection == false) {[self close];}
+    return result;
+
 }
 
 -(void)close{

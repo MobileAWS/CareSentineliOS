@@ -9,7 +9,9 @@
 #import "Device.h"
 #import "APBLEDevice.h"
 
-@interface Device()
+@interface Device(){
+    BOOL initialized;
+}
 @end
 
 
@@ -22,6 +24,7 @@
              @"hw_id":@"hwId",
              @"site_id":@"siteId",
              @"customer_id":@"customerId",
+             @"user_id":@"userId",
              @"created_at":@"createdAt"
              };
 }
@@ -30,64 +33,72 @@
     return @"devices";
 }
 
--(NSString *)getChangedSwitch:(uint16_t)value{
+-(NSArray *)getChangedSwitch:(uint16_t)value{
     
-    NSLog([NSString stringWithFormat:@"Switch Value Is => %d",value]);
     
-    NSMutableString *result = [[NSMutableString alloc] init];
+    
+    NSMutableArray *switchChanges = [[NSMutableArray alloc]init];
+    NSMutableString *message = [[NSMutableString alloc] init];
+    NSString *valueString = @"value";
+    NSString *propertyName = @"propertyName";
+    NSString *on = @"On";
+    NSString *off = @"Off";
     
     /** Bed sensor */
     if (self.bedSensorActivated && (value & APSensorValuesBedLow)){
         self.bedSensorActivated = false;
-        [result appendString:@"Bed Sensor Has Been Turned Off\n"] ;
+        [switchChanges addObject:@{propertyName:@"Bed Sensor",valueString:off}];
     }
     
     if (!self.bedSensorActivated && (value & APSensorValuesBedHigh)){
         self.bedSensorActivated = true;
-        [result appendString:@"Bed Sensor Has Been Turned On\n"] ;
+        [switchChanges addObject:@{propertyName:@"Bed Sensor",valueString:on}];
+        [message appendString:@"Bed Sensor Has Been Turned On\n"] ;
     }
 
     /* Chair sensor */
     if (self.chairSensorActivated && (value & APSensorValuesChairLow)){
         self.chairSensorActivated = false;
-        [result appendString:@"Chair Sensor Has Been Turned Off\n"] ;
+        [switchChanges addObject:@{propertyName:@"Chair Sensor",valueString:off}];
     }
 
     
     if (!self.chairSensorActivated && (value & APSensorValuesChairHigh)){
         self.chairSensorActivated = true;
-        [result appendString:@"Chair Sensor Has Been Turned On\n"] ;
+        [switchChanges addObject:@{propertyName:@"Chair Sensor",valueString:on}];
     }
     
     /* Toilet Sensor */
     if (self.toiletSensorActivated && (value & APSensorValuesToiletLow)){
         self.toiletSensorActivated = false;
-        [result appendString:@"Toilet Sensor Has Been Turned Off\n"] ;
+        [switchChanges addObject:@{propertyName:@"Toilet Sensor",valueString:off}];
     }
     
     if (!self.toiletSensorActivated && (value & APSensorValuesToiletHigh)){
         self.toiletSensorActivated = true;
-        [result appendString:@"Toilet Sensor Has Been Turned Off\n"] ;
+        [switchChanges addObject:@{propertyName:@"Toilet Sensor",valueString:on}];
     }
 
     /* Incontinence Sensor */
     if (self.incontinenceSensorActivated && (value & APSensorValuesDampnessLow)){
         self.incontinenceSensorActivated = false;
-        [result appendString:@"Incontinence Sensor Has Been Turned Off\n"] ;
+        [switchChanges addObject:@{propertyName:@"Incontinence Sensor",valueString:off}];
     }
     
     if (!self.incontinenceSensorActivated && (value & APSesnorValuesDampnessHigh)){
         self.incontinenceSensorActivated = true;
-        [result appendString:@"Incontinence Sensor Has Been Turned On\n"] ;
+        [switchChanges addObject:@{propertyName:@"Incontinence Sensor",valueString:on}];
     }
     
-    
-    if ([result length] > 0){
-        [result deleteCharactersInRange:NSMakeRange([result length] -  1, 1)];
-         return result;
+    /** Only return changes if the device has been already initialized */
+    if (!self->initialized) {
+        self->initialized = true;
+        [switchChanges removeAllObjects];
+        switchChanges = nil;
+        return nil;
     }
-
-    return nil;
+    
+    return switchChanges;
 }
 
 

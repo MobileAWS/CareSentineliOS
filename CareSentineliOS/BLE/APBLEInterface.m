@@ -26,6 +26,7 @@
 @property (strong, nonatomic) NSTimer                      *pendingDeviceTimer;
 @property (strong, nonatomic) NSTimer                      *retryTimer;
 @property (strong, nonatomic) NSTimer                      *watchConnectionStatusTimer;
+@property (strong, nonatomic) NSTimer                      *deviceScanTimer;
 @property (assign, nonatomic) BOOL                          havePebble;          // #### Probably only need this BOOL for debugging.
 @end
 
@@ -95,10 +96,18 @@ static BOOL s_processing_restart = NO;
     
     APLogDealloc;
 }
+
+- (void)scanForDevicesExpired:(NSTimer *)timer{
+    [self.centralManager stopScan];
+    [timer invalidate];
+    self.deviceScanTimer = nil;
+    [AppDelegate hideLoadingMask];
+}
+
 - (void)scanForDevices {
-    [_centralManager scanForPeripheralsWithServices:nil options:nil]; ////options:@{CBCentralManagerScanOptionAllowDuplicatesKey : @YES}];  // -- ######## TI PROTYPE
-    
-    APLog(@"...Scanning for Devices...");    // ######################
+    self.deviceScanTimer = [NSTimer scheduledTimerWithTimeInterval:20 target:self selector: @selector(scanForDevicesExpired:) userInfo:nil repeats:false];
+    [_centralManager scanForPeripheralsWithServices:nil options:nil];
+    APLog(@"...Scanning for Devices...");
 }
 
 // ------------------------------------------------------------------------------
@@ -278,6 +287,11 @@ static BOOL s_processing_restart = NO;
 }
 
 - (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI {
+    
+    if([peripheral.name isEqualToString:@"Apple TV"]){
+        return;
+    }
+
     APLog(@"didDiscoverPeripheral: %@ (%3.2fdB)\n--------------------\n%@\n--------------------", peripheral.name, RSSI.floatValue, advertisementData);
 
     // -- Reject if signal is too weak.
@@ -433,7 +447,7 @@ static BOOL s_processing_restart = NO;
 - (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral {
     [peripheral readRSSI];
     APLog(@"connected peripheral %@",peripheral.name);
-    [peripheral discoverServices:_servicesArray];
+
     APLog(@"didConnectPeripheral: %@, discovering services...", peripheral.name);        // ######################
 //NSLog(@"* * * * * * * * didConnectPeripheral: %@, discovering services...", peripheral.name);        // ######################
     APDeviceType deviceType = [self deviceType:peripheral.name];
@@ -462,7 +476,7 @@ static BOOL s_processing_restart = NO;
             if ([peripheral.identifier isEqual:device.identifier]) {
                 registeredDevice            = device;
                 registeredDevice.peripheral = peripheral;
-
+                [peripheral discoverServices:_servicesArray];
                 break;
             }
         }
@@ -489,6 +503,9 @@ static BOOL s_processing_restart = NO;
             }
              */
             
+            [self connectDevice:registeredDevice];
+            [peripheral discoverServices:_servicesArray];
+
         } else {
             registeredDevice.RSSI = _lastRssi;
             APLog(@"1. ADDING INIT RSSI: %ld to DEVICE: %@", (long)registeredDevice.RSSI, registeredDevice);        // ######################
@@ -554,7 +571,7 @@ static BOOL s_processing_restart = NO;
             [_activeDevices removeObject:device];
             
             wasActiveDevice = YES;
-            
+            [self.uiDelegate disconnectDevice:peripheral];
             break;
         }
     }
@@ -714,6 +731,8 @@ static BOOL s_processing_restart = NO;
     }
 
     APLog(@"Now receiving notification for %@",characteristic.UUID);
+    [AppDelegate hideLoadingMask];
+
     
 }
 

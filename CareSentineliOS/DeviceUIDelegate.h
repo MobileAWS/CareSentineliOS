@@ -11,4 +11,5 @@
 @protocol DeviceUIDelegate
 -(void)deviceDiscovered:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI;
 -(void)device:(CBPeripheral *)peripheral SensorChanged:(uint16_t)value;
+-(void)disconnectDevice:(CBPeripheral *)peripheral;
 @end

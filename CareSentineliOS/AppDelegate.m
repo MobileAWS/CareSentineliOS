@@ -10,6 +10,7 @@
 #import "DatabaseManager.h"
 #import "APAppServices.h"
 #import "UIResources.h"
+#import "MBProgressHUD.h"
 
 @interface AppDelegate ()
 
@@ -66,6 +67,9 @@
 }
 
 - (void) logout{
+    self.currentCustomer = nil;
+    self.currentSite = nil;
+    self.currentUser = nil;
     UIViewController *mainViewController = [self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
     AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
     [appDelegate.window.rootViewController dismissViewControllerAnimated:false completion:^{
@@ -76,6 +80,14 @@
 
 -(void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings{
     
+}
+
++(void)showLoadingMask{
+    [MBProgressHUD showHUDAddedTo:[[UIApplication sharedApplication] keyWindow] animated:YES];
+}
+
++(void)hideLoadingMask{
+    [MBProgressHUD hideHUDForView:[[UIApplication sharedApplication] keyWindow] animated:YES];
 }
 
 @end

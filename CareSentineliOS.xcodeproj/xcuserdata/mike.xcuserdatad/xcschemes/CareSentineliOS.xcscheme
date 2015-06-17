@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "273ED3441AFC550700F4F82B"
-               BuildableName = "CareSentineliOS.app"
+               BuildableName = "Care Sentinel.app"
                BlueprintName = "CareSentineliOS"
                ReferencedContainer = "container:CareSentineliOS.xcodeproj">
             </BuildableReference>
@@ -57,7 +57,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "273ED3441AFC550700F4F82B"
-            BuildableName = "CareSentineliOS.app"
+            BuildableName = "Care Sentinel.app"
             BlueprintName = "CareSentineliOS"
             ReferencedContainer = "container:CareSentineliOS.xcodeproj">
          </BuildableReference>
@@ -72,11 +72,12 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "273ED3441AFC550700F4F82B"
-            BuildableName = "CareSentineliOS.app"
+            BuildableName = "Care Sentinel.app"
             BlueprintName = "CareSentineliOS"
             ReferencedContainer = "container:CareSentineliOS.xcodeproj">
          </BuildableReference>
@@ -90,11 +91,12 @@
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "273ED3441AFC550700F4F82B"
-            BuildableName = "CareSentineliOS.app"
+            BuildableName = "Care Sentinel.app"
             BlueprintName = "CareSentineliOS"
             ReferencedContainer = "container:CareSentineliOS.xcodeproj">
          </BuildableReference>

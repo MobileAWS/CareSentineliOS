@@ -154,6 +154,11 @@
     
     [dbManager close];
     
+    AppDelegate *application = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    application.currentUser = user;
+    application.currentSite = site;
+    application.currentCustomer = customer;
+    
     return true;
 }
 
