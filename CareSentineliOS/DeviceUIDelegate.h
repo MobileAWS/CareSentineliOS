@@ -7,9 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Device.h"
 
 @protocol DeviceUIDelegate
--(void)deviceDiscovered:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI;
+-(BOOL)deviceDiscovered:(CBPeripheral *)peripheral withName:(NSString *)deviceName;
 -(void)device:(CBPeripheral *)peripheral SensorChanged:(uint16_t)value;
 -(void)disconnectDevice:(CBPeripheral *)peripheral;
+-(Device *)deviceForUDID:(NSString *)udid;
+-(void)deviceConnected:(CBPeripheral *)peripheral;
 @end

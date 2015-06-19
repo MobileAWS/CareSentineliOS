@@ -18,6 +18,7 @@
 -(NSMutableArray *)listWithModel:(Class)model forQuery:(NSString *)query;
 -(NSInteger)countWithQuery:(NSString *)query;
 -(void)insert:(NSString *)insertQuery;
+-(void)update:(NSString *)updateQuery;
 -(void)close;
 @property BOOL keepConnection;
 @end

@@ -12,6 +12,8 @@
 #import <QuartzCore/QuartzCore.h>
 #import "UIResources.h"
 #import "AppDelegate.h"
+#import "DataLabel.h"
+#import "PropertiesDao.h"
 
 @interface DevicesTableViewController (){
     __weak IBOutlet UITableView *targetTableView;
@@ -96,15 +98,38 @@
         tmpImageView = (UIImageView *)[cell viewWithTag:3000];
         [tmpImageView setImage:noSignalImage];
         tmpImageView.tintColor = [UIColor redColor];
-    }    
-    bgView.backgroundColor = selectionBackgroundColorRef;
+    }
+
+    if (device.lastPropertyMessage != nil) {
+        DataLabel *alertLabel = (DataLabel *)[cell viewWithTag:4000];
+        [alertLabel setHidden:false];
+        alertLabel.layer.borderWidth = 1.0f;
+        alertLabel.layer.cornerRadius = 8.0f;
+        alertLabel.layer.borderColor = [[UIColor whiteColor] CGColor];
+        alertLabel.text = device.lastPropertyMessage;
+        alertLabel.targetData = cell;
+        [alertLabel.layer setMasksToBounds:YES];
+    }
+    else{
+        DataLabel *alertLabel = (DataLabel *)[cell viewWithTag:4000];
+        [alertLabel setHidden:true];
+        [alertLabel.layer setMasksToBounds:YES];
+
+    }
+    
+    //bgView.backgroundColor = selectionBackgroundColorRef;
+    
     cell.selectedBackgroundView = bgView;
     return cell;
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    Device *device = (Device *)application.devicesData[indexPath.row];
+    return device.lastPropertyMessage == nil? 44 : 90;
+}
+
 -(void)addDevice:(Device *)targetDevice{
     if (targetDevice.id == nil) {
-        AppDelegate *application = (AppDelegate *)[UIApplication sharedApplication].delegate;
         targetDevice.customerId = application.currentCustomer.id;
         targetDevice.siteId = application.currentSite.id;
         targetDevice.userId = application.currentUser.id;
@@ -139,48 +164,33 @@
     }
     return nil;
 }
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
+- (IBAction)dismissAlert:(id)sender {
+    
+    UIView *superView = [((UITapGestureRecognizer *)sender).view superview];
+    UIView *foundSuperView = nil;
+    
+    while (nil != superView && nil == foundSuperView) {
+        if ([superView isKindOfClass:[UITableViewCell class]]) {
+            foundSuperView = superView;
+        } else {
+            superView = superView.superview;
+        }
+    }
+    
+    if (superView != nil){
+        UITableViewCell *cell = (UITableViewCell *)superView;
+        NSIndexPath *indexPath = [self->targetTableView indexPathForCell:cell];
+        Device *device = (Device *)application.devicesData[indexPath.row];
+        
+        [PropertiesDao dismistProperty: device.lastPropertyChange.id];
+        device.lastPropertyMessage = nil;
+        device.lastPropertyChange = nil;
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
+        [self->targetTableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:indexPath.row inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+    }
+    
 
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
 }
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

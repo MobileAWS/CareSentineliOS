@@ -12,8 +12,11 @@
 #import "Constants.h"
 #import "APAppServices.h"
 #import "AppDelegate.h"
+#import "InputAlertViewDelegate.h"
 
-@interface APBLEInterface ()
+@interface APBLEInterface (){
+    NSMutableArray *pendingInputDelegates;
+}
 @property (strong, nonatomic) CBCentralManager             *centralManager;
 @property (strong, nonatomic) NSMutableArray               *discoveredPeripherals;
 @property (strong, nonatomic) NSMutableArray               *pendingNewDevices;
@@ -73,6 +76,7 @@ static BOOL s_processing_restart = NO;
         //_inactiveDevices         = [[NSMutableArray alloc] initWithArray:_registeredArray];     // -- At load, all registered devices are inactive in the app.
         _discoveredPeripherals   = [[NSMutableArray alloc] init];
         _pendingNewDevices       = [[NSMutableArray alloc] init];
+        pendingInputDelegates = [[NSMutableArray alloc]init];
         
         _retryTimer              = nil;
     }
@@ -286,33 +290,15 @@ static BOOL s_processing_restart = NO;
     return matchedType;
 }
 
-- (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI {
+-(void) input:(NSString *)input AcceptedWithObject:(id)target{
+
+    [pendingInputDelegates removeObject:target];
+    NSDictionary *values = (NSDictionary *)((InputAlertViewDelegate *)target).targetObject;
+    CBPeripheral *peripheral = (CBPeripheral *)[values objectForKey:@"peripheral"];
+    CBCentralManager *central = (CBCentralManager *)[values objectForKey:@"central"];
+    [_pendingNewDevices removeObject:[values objectForKey:@"peripheral"]];
     
-    if([peripheral.name isEqualToString:@"Apple TV"]){
-        return;
-    }
-
-    APLog(@"didDiscoverPeripheral: %@ (%3.2fdB)\n--------------------\n%@\n--------------------", peripheral.name, RSSI.floatValue, advertisementData);
-
-    // -- Reject if signal is too weak.
-    if (RSSI.integerValue > -32) {
-        NSLog(@"Rejected peripheral because RSSI is too weak.");
-        return;
-    }
-    
-    /*APDeviceType deviceType = [self deviceType:peripheral.name];
-    if (!deviceType) {  // -- Can support multiple device types as define in PLIST
-        APLog(@"Unsupported Device Ignored: %@.", peripheral.name);     // ######################
-        [self cancelPeripheralConnection:peripheral];
-        return;
-    }*/
-    
-    // -- Due to an iOS6 bug (security update?) need to connect to peripheral before accessing the UUID.  Will be nil on first time connection to the phone (acording to TI Sensor tag sample app).
-    peripheral.delegate   = self;
-
-    _lastRssi = [RSSI integerValue];
-
-    [self->_uiDelegate deviceDiscovered:peripheral advertisementData:advertisementData RSSI:RSSI];
+    [self->_uiDelegate deviceDiscovered:peripheral withName:input];
     
     if (![_discoveredPeripherals containsObject:peripheral]){
         [_discoveredPeripherals addObject:peripheral];
@@ -335,6 +321,55 @@ static BOOL s_processing_restart = NO;
 #endif
         }
     }
+}
+
+- (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI {
+
+    APLog(@"didDiscoverPeripheral: %@ (%3.2fdB)\n--------------------\n%@\n--------------------", peripheral.name, RSSI.floatValue, advertisementData);
+    
+
+    if ([_pendingNewDevices containsObject:peripheral]){
+        return;
+    }
+    
+    
+    Device *device = [self->_uiDelegate deviceForUDID:peripheral.identifier.UUIDString];
+    if (device != nil){
+        if (peripheral.state != CBPeripheralStateConnected AND peripheral.state != CBPeripheralStateConnecting) {
+            [_discoveredPeripherals addObject:peripheral];
+            [central connectPeripheral:peripheral options:nil];
+        }
+        return;
+    }
+
+        
+    // -- Reject if signal is too weak.
+    if (RSSI.integerValue > -32) {
+        NSLog(@"Rejected peripheral because RSSI is too weak.");
+        return;
+    }
+    
+    APDeviceType deviceType = [self deviceType:peripheral.name];
+    if (!deviceType) {  // -- Can support multiple device types as define in PLIST
+        APLog(@"Unsupported Device Ignored: %@.", peripheral.name);     // ######################
+        return;
+    }
+    
+    // -- Due to an iOS6 bug (security update?) need to connect to peripheral before accessing the UUID.  Will be nil on first time connection to the phone (acording to TI Sensor tag sample app).
+    peripheral.delegate   = self;
+
+    _lastRssi = [RSSI integerValue];
+    
+    
+    InputAlertViewDelegate *inputDelegate = [[InputAlertViewDelegate alloc]init];
+    inputDelegate.delegate = self;
+    inputDelegate.targetObject = @{@"peripheral":peripheral,@"central":central};
+    [pendingInputDelegates addObject:inputDelegate];
+    
+    [_pendingNewDevices addObject:peripheral];
+
+    [AppDelegate showInputWith:@"Please provide a name for the new device" title:@"Device Discovered" defaultText:peripheral.name delegate:inputDelegate];
+
 }
 
 - (void)connectDevice:(APBLEDevice *)registeredDevice {
@@ -361,6 +396,7 @@ static BOOL s_processing_restart = NO;
     APLog(@"CONNECTION COMPLETE: '%@'", registeredDevice.peripheral.name);   // ######################
     
     [registeredDevice checkProximity];      // -- Get initial RSSI value.
+    [self->_uiDelegate deviceConnected:registeredDevice.peripheral];
 }
 
 - (void)showAddControllerForPendingNewDevice {
@@ -431,7 +467,6 @@ static BOOL s_processing_restart = NO;
                     if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:kUUIDCareSentinelChar]]) {
                         if (characteristic.isNotifying) {
                             [peripheral setNotifyValue:NO forCharacteristic:characteristic];
-                            
                             break;
                         }
                     }
@@ -505,7 +540,6 @@ static BOOL s_processing_restart = NO;
             
             [self connectDevice:registeredDevice];
             [peripheral discoverServices:_servicesArray];
-
         } else {
             registeredDevice.RSSI = _lastRssi;
             APLog(@"1. ADDING INIT RSSI: %ld to DEVICE: %@", (long)registeredDevice.RSSI, registeredDevice);        // ######################

@@ -15,7 +15,7 @@
 
 @implementation PropertiesDao
 
-+(void)saveProperty:(NSString *)name forDevice:(Device *)device withValue:(NSString *)value{
++(DeviceProperty *)saveProperty:(NSString *)name forDevice:(Device *)device withValue:(NSString *)value{
     DatabaseManager *manager = [DatabaseManager getSharedIntance];
     Property *prop = (Property *)[manager findWithCondition:[NSString stringWithFormat:@"name = '%@'",name] forModel:[Property class]];
     
@@ -30,12 +30,20 @@
     propertyValue.value = value;
     propertyValue.propertyId = prop.id;
     propertyValue.createdAt = [[NSNumber alloc] initWithInt:[[NSDate date] timeIntervalSince1970]];
-    [manager save:propertyValue];    
+    [manager save:propertyValue];
+    return propertyValue;
 }
 
 +(NSMutableArray *)listPropertiesForUser:(NSNumber *) userId{
     DatabaseManager *manager = [DatabaseManager getSharedIntance];
-    return [manager listWithModel:[DevicePropertyDescriptor class] forQuery:[NSString stringWithFormat:@"SELECT %@ FROM devices,properties,devices_properties_values WHERE devices.id = device_id AND property_id = properties.id AND devices.user_id = %@ ORDER BY devices_properties_values.created_at DESC,devices.id DESC",[[[DevicePropertyDescriptor getPropertiesMapping] allKeys] componentsJoinedByString:@","],userId]];
+    return [manager listWithModel:[DevicePropertyDescriptor class] forQuery:[NSString stringWithFormat:@"SELECT %@ FROM devices,properties,devices_properties_values WHERE devices.id = device_id AND property_id = properties.id AND devices.user_id = %@ ORDER BY devices.id, devices_properties_values.created_at DESC",[[[DevicePropertyDescriptor getPropertiesMapping] allKeys] componentsJoinedByString:@","],userId]];
+
+}
+
++(void)dismistProperty:(NSNumber *)idValue{
+    DatabaseManager *manager = [DatabaseManager getSharedIntance];
+    int targetValue = [[[NSNumber alloc] initWithInt:[[NSDate date] timeIntervalSince1970]] intValue];
+    [manager update:[NSString stringWithFormat:@"UPDATE devices_properties_values SET dismissed_at = %d WHERE id = %@",targetValue,idValue]];
 
 }
 

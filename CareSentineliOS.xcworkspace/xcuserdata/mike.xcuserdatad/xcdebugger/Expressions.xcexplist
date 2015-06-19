@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "-[DevicesTableViewController dismissAlert:]:DevicesTableViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "application.devicesData">
+            </PersistentString>
+            <PersistentString
+               value = "((DataLabel *)((UITapGestureRecognizer *)sender).view).text">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[NotificationsTableViewController tableView:numberOfRowsInSection:]:NotificationsTableViewController.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[APBLEInterface centralManager:didDiscoverPeripheral:advertisementData:RSSI:]:APBLEInterface.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "peripheral.isConnected">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

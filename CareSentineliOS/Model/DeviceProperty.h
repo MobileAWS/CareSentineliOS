@@ -10,8 +10,10 @@
 #import "BaseModel.h"
 
 @interface DeviceProperty : NSObject <BaseModel>
+@property NSNumber *id;
 @property NSNumber *propertyId;
 @property NSNumber *deviceId;
 @property NSString *value;
 @property NSNumber *createdAt;
+@property NSNumber *dismissedAt;
 @end

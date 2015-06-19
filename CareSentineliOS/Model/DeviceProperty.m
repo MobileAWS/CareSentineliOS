@@ -12,10 +12,12 @@
 
 +(NSDictionary *)getPropertiesMapping{
     return @{
+             @"id": @"id",
              @"property_id":@"propertyId",
              @"device_id":@"deviceId",
              @"value":@"value",
-             @"created_at":@"createdAt"
+             @"created_at":@"createdAt",
+             @"dismissed_at":@"dismissedAt"
              };
 }
 

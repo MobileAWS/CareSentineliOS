@@ -8,8 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import "Device.h"
+#import "DeviceProperty.h"
 
 @interface PropertiesDao : NSObject
-+(void)saveProperty:(NSString *)name forDevice:(Device *)device withValue:(NSString *)value;
++(DeviceProperty *)saveProperty:(NSString *)name forDevice:(Device *)device withValue:(NSString *)value;
 +(NSMutableArray *)listPropertiesForUser:(NSNumber *) userId;
++(void)dismistProperty:(NSNumber *)idValue;
 @end

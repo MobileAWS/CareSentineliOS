@@ -10,6 +10,7 @@
 #import <CoreBluetooth/CoreBluetooth.h>
 #import "APBLEDevice.h"
 #import "DeviceUIDelegate.h"
+#import "AlertInputAcceptedDelegate.h"
 
 enum {
     APDeviceWarningNone       = 0,
@@ -35,7 +36,7 @@ enum {
 - (void)rssiUpdatedForDevice:(APBLEDevice *)device;
 @end
 
-@interface APBLEInterface : NSObject <CBCentralManagerDelegate,CBPeripheralDelegate>
+@interface APBLEInterface : NSObject <CBCentralManagerDelegate,CBPeripheralDelegate,AlertInputAcceptedDelegate>
 @property (assign, nonatomic) id <APBLEInterfaceDelegate>   delegate;
 @property (strong, nonatomic) NSMutableArray               *registeredArray;    // -- Devices that are registered.
 @property (strong, nonatomic) NSMutableArray               *ignoredArray;       // -- Devices that are being ignored.

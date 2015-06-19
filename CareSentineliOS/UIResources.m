@@ -32,6 +32,6 @@
         signalImage = [UIImage imageNamed:@"wifi3"];
         noSignalImage = [UIImage imageNamed:@"offline"];
         notificationsFormatter = [[NSDateFormatter alloc] init];
-        [notificationsFormatter setDateFormat:@"MM/dd/yyyy HH:MM:ss"];
+        [notificationsFormatter setDateFormat:@"MM/dd/yyyy HH:mm:ss"];
 }
 @end

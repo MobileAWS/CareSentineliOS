@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "BaseModel.h"
+#import "DevicePropertyDescriptor.h"
 
 @interface Device : NSObject <BaseModel>
     +(NSString *)getTableName;
@@ -25,5 +26,7 @@
     @property BOOL toiletSensorActivated;
     @property BOOL incontinenceSensorActivated;
     @property BOOL connected;
+    @property DevicePropertyDescriptor *lastPropertyChange;
+    @property NSString *lastPropertyMessage;
 
 @end

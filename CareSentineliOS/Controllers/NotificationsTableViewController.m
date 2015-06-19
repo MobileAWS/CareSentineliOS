@@ -83,7 +83,15 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (notificationsData != nil && notificationsData.count > 0) {
-        return notificationsData.count;
+        Device * device = (Device *)[application.devicesData objectAtIndex:section];
+        int count = 0;
+        for(int i = 0; i < notificationsData.count; i++){
+            NSNumber *deviceId = ((DevicePropertyDescriptor *)[notificationsData objectAtIndex:i]).deviceId;
+            if ([deviceId isEqualToNumber:device.id]) {
+                count++;
+            }
+        }
+        return count;
     }
     return 0;
 
@@ -92,7 +100,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NotificationsCellIdentifier" forIndexPath:indexPath];
-    DevicePropertyDescriptor *descriptor = [notificationsData objectAtIndex:indexPath.row];
+    DevicePropertyDescriptor *descriptor = [notificationsData objectAtIndex:(indexPath.section + indexPath.row)];
 
     /** Set Property Name */
     UILabel *tmpLabel = (UILabel *)[cell viewWithTag:1000];
@@ -113,6 +121,13 @@
     /** Set the event date/time */
     tmpLabel = (UILabel *)[cell viewWithTag:3000];
     tmpLabel.text = descriptor.createdAtDate;
+
+    tmpLabel = (UILabel *)[cell viewWithTag:4000];
+    if (descriptor.dismissedAt != nil){
+        tmpLabel.text = [NSString stringWithFormat:@"Acknowledged At %@",descriptor.dismissedAtDate];
+    }else{
+        tmpLabel.text = @"";
+    }
         
     return cell;
 }

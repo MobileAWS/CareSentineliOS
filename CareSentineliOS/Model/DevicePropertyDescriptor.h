@@ -12,4 +12,6 @@
     @property NSString *propertyName;
     @property NSString *deviceName;
     @property (readonly) NSString *createdAtDate;
+    @property (readonly) NSString *dismissedAtDate;
+- (id)initWithProperty:(DeviceProperty *)property AndDeviceName:(NSString *)name;
 @end

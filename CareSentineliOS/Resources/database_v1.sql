@@ -45,8 +45,10 @@ units varchar(255)
 );
 
 CREATE TABLE devices_properties_values(
+id INTEGER PRIMARY KEY,
 device_id INTEGER NOT NULL,
 property_id INTEGER NOT NULL,
 value varchar(255) NOT NULL,
-created_at INTEGER NOT NULL
+created_at INTEGER NOT NULL,
+dismissed_at INTEGER
 );

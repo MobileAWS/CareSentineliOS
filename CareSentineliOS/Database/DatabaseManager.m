@@ -241,6 +241,22 @@ static DatabaseManager *sharedInstance = nil;
 
 }
 
+
+-(void)update:(NSString *)insertQuery{
+    if (self->database == nil) {
+        sqlite3_open([self->databasePath UTF8String], &self->database);
+    }
+    sqlite3_stmt *statement;
+    sqlite3_prepare_v2(self->database, [insertQuery UTF8String], -1, &statement, nil);
+    if(sqlite3_step(statement) != SQLITE_DONE){
+        NSLog(@"Error executing Insert/Update Query: %s",sqlite3_errmsg(self->database));
+        if (self.keepConnection == false) {[self close];}
+        sqlite3_finalize(statement);
+        return;
+    }
+    if (self.keepConnection == false) {[self close];}
+}
+
 -(void)close{
     sqlite3_close(self->database);
     self->database = nil;

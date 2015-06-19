@@ -12,6 +12,7 @@
 #import "APBLEInterface.h"
 #import "UIResources.h"
 #import "PropertiesDao.h"
+#import "TSMessage.h"
 
 @interface DevicesViewController() <DeviceUIDelegate>{
     __weak DevicesTableViewController *devicesTableViewController;
@@ -56,21 +57,40 @@
 
 
 /** Devices UI delegate code */
+-(void)deviceConnected:(CBPeripheral *)peripheral{
+    Device *device = [self->devicesTableViewController deviceForPeripheral:peripheral.identifier.UUIDString];
+    if (device != nil) {
+        if (!device.connected){
+            device.connected = true;
+            [self->devicesTableViewController reloadDevice:device];
+        }
+        return;
+    }
+    return;
+}
 
--(void)deviceDiscovered:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI{
+
+-(Device *)deviceForUDID:(NSString *)udid{
+    return [self->devicesTableViewController deviceForPeripheral:udid];
+}
+
+
+-(BOOL)deviceDiscovered:(CBPeripheral *)peripheral withName:(NSString *)deviceName{
+    
     Device *device = [self->devicesTableViewController deviceForPeripheral:peripheral.identifier.UUIDString];
     if (device != nil) {
         if (!device.connected){
             device.connected = true;
             [self->devicesTableViewController reloadDevice:device];
         }        
-        return;
+        return true;
     }
 
     Device *newDevice = [[Device alloc] init];
-    newDevice.name = peripheral.name;
+    newDevice.name = deviceName;
     newDevice.hwId = peripheral.identifier.UUIDString;
     [self->devicesTableViewController addDevice:newDevice];
+    return true;
 }
 
 
@@ -84,16 +104,25 @@
             NSDictionary *tmpObject = [changedSwitches objectAtIndex:i];
             NSString *name = [tmpObject objectForKey:@"propertyName"];
             NSString *value = [tmpObject objectForKey:@"value"];
-            [PropertiesDao saveProperty:name forDevice:device withValue:value];
+            DeviceProperty *deviceProperty = [PropertiesDao saveProperty:name forDevice:device withValue:value];
             [message appendString:[NSString stringWithFormat:@" %@ Has changed to %@\n",name,value]];
+            DevicePropertyDescriptor *descriptor = [[DevicePropertyDescriptor alloc]initWithProperty:deviceProperty AndDeviceName:device.name];
+            device.lastPropertyChange = descriptor;
+            device.lastPropertyMessage = message;
+            [self->devicesTableViewController reloadDevice:device];
             
         }
         
-        UILocalNotification *notification = [[UILocalNotification alloc] init];
-        notification.alertTitle = @"Switch Changed";
-        notification.alertBody = message;
-        notification.soundName = @"default";
-        [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
+        if ([[UIApplication sharedApplication] applicationState] == UIApplicationStateActive) {
+            [TSMessage showNotificationInViewController:[TSMessage defaultViewController] title:@"Switch Changed" subtitle:message type:TSMessageNotificationTypeMessage duration:2];
+        }
+        else{
+            UILocalNotification *notification = [[UILocalNotification alloc] init];
+            notification.alertTitle = @"Switch Changed";
+            notification.alertBody = message;
+            notification.soundName = @"default";
+            [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
+        }
     }
 }
 

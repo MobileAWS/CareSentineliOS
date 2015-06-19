@@ -11,6 +11,8 @@
 #import "APAppServices.h"
 #import "UIResources.h"
 #import "MBProgressHUD.h"
+#import "TSMessage.h"
+#import "InputAlertViewDelegate.h"
 
 @interface AppDelegate ()
 
@@ -25,11 +27,21 @@
     dialog = nil;    
 }
 
++(void)showInputWith:(NSString *)alert title:(NSString *)title defaultText:(NSString *)text delegate:(id)delegate {
+    UIAlertView *inputDialog = [[UIAlertView alloc]initWithTitle:title message:alert delegate:delegate cancelButtonTitle:@"Ignore" otherButtonTitles:@"Add", nil];
+    
+    inputDialog.alertViewStyle = UIAlertViewStylePlainTextInput;
+    [inputDialog textFieldAtIndex:0].text = text;
+    [inputDialog show];
+    inputDialog = nil;
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [UIResources initResources];
     // Override point for customization after application launch.
     [[APAppServices alloc] init];
-
+    [TSMessage addCustomDesignFromFileWithName:@"TSLoonMessageDesign.json"];
+    
     /** Set the tab bar default appereance */
     [[UITabBar appearance] setTintColor:[UIColor whiteColor]];
     
