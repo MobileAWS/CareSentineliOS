@@ -16,6 +16,7 @@ hw_id varchar(255) NOT NULL,
 site_id integer NOT NULL,
 customer_id integer,
 user_id integer,
+ignored BOOL,
 created_at INTEGER
 );
 

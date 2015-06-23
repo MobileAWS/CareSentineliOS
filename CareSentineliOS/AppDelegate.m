@@ -14,12 +14,13 @@
 #import "TSMessage.h"
 #import "InputAlertViewDelegate.h"
 
-@interface AppDelegate ()
-
+@interface AppDelegate (){
+}
 @end
 
 @implementation AppDelegate
 
+static void (^currentAlertInvocation) (void);
 
 +(void)showAlert:(NSString *)alert withTitle:(NSString *)title{
     UIAlertView *dialog = [[UIAlertView alloc] initWithTitle:title message:alert delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
@@ -29,11 +30,24 @@
 
 +(void)showInputWith:(NSString *)alert title:(NSString *)title defaultText:(NSString *)text delegate:(id)delegate {
     UIAlertView *inputDialog = [[UIAlertView alloc]initWithTitle:title message:alert delegate:delegate cancelButtonTitle:@"Ignore" otherButtonTitles:@"Add", nil];
-    
     inputDialog.alertViewStyle = UIAlertViewStylePlainTextInput;
     [inputDialog textFieldAtIndex:0].text = text;
     [inputDialog show];
     inputDialog = nil;
+}
+
++(void)showConfirmWith:(NSString *)alert title:(NSString *)title target:(id)target callback:(void (^)(void))callback{
+    UIAlertView *confirmDialog = [[UIAlertView alloc]initWithTitle:title message:alert delegate:[UIApplication sharedApplication].delegate cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
+    currentAlertInvocation =  callback;
+    [confirmDialog show];
+    confirmDialog = nil;
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if(alertView.cancelButtonIndex != buttonIndex){
+        currentAlertInvocation();
+    }
+    currentAlertInvocation = nil;
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -79,14 +93,15 @@
 }
 
 - (void) logout{
-    self.currentCustomer = nil;
-    self.currentSite = nil;
-    self.currentUser = nil;
-    UIViewController *mainViewController = [self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
-    AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
-    [appDelegate.window.rootViewController dismissViewControllerAnimated:false completion:^{
-        appDelegate.window.rootViewController = mainViewController;
-        [appDelegate.window makeKeyAndVisible];
+    [AppDelegate showConfirmWith:@"Are you sure you want to logout?" title:@"Confirm Logout" target:nil callback:^{
+        self.currentCustomer = nil;
+        self.currentSite = nil;
+        self.currentUser = nil;
+        UIViewController *mainViewController = [self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
+        [self.window.rootViewController dismissViewControllerAnimated:false completion:^{
+            self.window.rootViewController = mainViewController;
+            [self.window makeKeyAndVisible];
+        }];
     }];
 }
 

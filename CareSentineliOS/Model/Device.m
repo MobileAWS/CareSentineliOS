@@ -24,6 +24,7 @@
              @"hw_id":@"hwId",
              @"site_id":@"siteId",
              @"customer_id":@"customerId",
+             @"ignored":@"ignored",
              @"user_id":@"userId",
              @"created_at":@"createdAt"
              };
@@ -31,6 +32,13 @@
 
 +(NSString *)getTableName{
     return @"devices";
+}
+
+-(BOOL)isIgnored{
+        if(self.ignored == 0)
+            return NO;
+        else
+            return YES;
 }
 
 -(NSArray *)getChangedSwitch:(uint16_t)value{

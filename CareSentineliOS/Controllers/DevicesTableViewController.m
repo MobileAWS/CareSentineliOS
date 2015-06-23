@@ -193,4 +193,12 @@
 
 }
 
+-(void)tableView:(UITableView *)tableView didHighlightRowAtIndexPath:(NSIndexPath *)indexPath{
+    [[self parentViewController]performSegueWithIdentifier:@"ShowSensorDrillDown" sender:[tableView cellForRowAtIndexPath:indexPath]];
+}
+
+-(Device *)getSelectedDevice{
+    NSInteger row = [targetTableView indexPathForSelectedRow].row;
+    return [application.devicesData objectAtIndex:row];
+}
 @end

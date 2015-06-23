@@ -9,11 +9,13 @@
 #import <Foundation/Foundation.h>
 #import "BaseModel.h"
 #import "DevicePropertyDescriptor.h"
+#import "APBLEDevice.h"
 
 @interface Device : NSObject <BaseModel>
     +(NSString *)getTableName;
     +(NSDictionary *)getPropertiesMapping;
     -(NSArray *)getChangedSwitch:(uint16_t)value;
+    -(BOOL)isIgnored;
     @property NSNumber *id;
     @property NSString *name;
     @property NSString *hwId;
@@ -21,6 +23,7 @@
     @property NSNumber *customerId;
     @property NSNumber *userId;
     @property NSNumber *createdAt;
+    @property NSNumber *ignored;
     @property BOOL bedSensorActivated;
     @property BOOL chairSensorActivated;
     @property BOOL toiletSensorActivated;
@@ -28,5 +31,5 @@
     @property BOOL connected;
     @property DevicePropertyDescriptor *lastPropertyChange;
     @property NSString *lastPropertyMessage;
-
+    @property (weak) APBLEDevice *deviceDescriptor;
 @end

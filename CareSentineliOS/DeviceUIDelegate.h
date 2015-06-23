@@ -14,5 +14,5 @@
 -(void)device:(CBPeripheral *)peripheral SensorChanged:(uint16_t)value;
 -(void)disconnectDevice:(CBPeripheral *)peripheral;
 -(Device *)deviceForUDID:(NSString *)udid;
--(void)deviceConnected:(CBPeripheral *)peripheral;
+-(void)deviceConnected:(CBPeripheral *)peripheral phsyicalDevice:(APBLEDevice *)physDev;
 @end

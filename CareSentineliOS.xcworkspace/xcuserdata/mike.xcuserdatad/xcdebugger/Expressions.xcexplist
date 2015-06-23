@@ -3,6 +3,9 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "+[KeyChainManager getPasswordForAccount:]:KeyChainManager.m">
+      </ContextState>
+      <ContextState
          contextName = "-[DevicesTableViewController dismissAlert:]:DevicesTableViewController.m">
          <PersistentStrings>
             <PersistentString
@@ -21,6 +24,14 @@
          <PersistentStrings>
             <PersistentString
                value = "peripheral.isConnected">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[DevicesViewController prepareForSegue:sender:]:DevicesViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "[destination viewControllers]">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

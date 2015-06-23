@@ -396,7 +396,7 @@ static BOOL s_processing_restart = NO;
     APLog(@"CONNECTION COMPLETE: '%@'", registeredDevice.peripheral.name);   // ######################
     
     [registeredDevice checkProximity];      // -- Get initial RSSI value.
-    [self->_uiDelegate deviceConnected:registeredDevice.peripheral];
+    [self->_uiDelegate deviceConnected:registeredDevice.peripheral phsyicalDevice:registeredDevice];
 }
 
 - (void)showAddControllerForPendingNewDevice {

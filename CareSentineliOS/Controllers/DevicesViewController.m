@@ -13,6 +13,7 @@
 #import "UIResources.h"
 #import "PropertiesDao.h"
 #import "TSMessage.h"
+#import "DeviceDrillDownViewController.h"
 
 @interface DevicesViewController() <DeviceUIDelegate>{
     __weak DevicesTableViewController *devicesTableViewController;
@@ -39,7 +40,7 @@
     // Dispose of any resources that can be recreated.
 }
 - (IBAction)logoutButtonAction:(id)sender {
-    AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     [appDelegate logout];
 }
 
@@ -53,13 +54,19 @@
     if([segue.identifier isEqualToString:@"EmbedDevicesViewControllerSegue"]){
         self->devicesTableViewController = segue.destinationViewController;    
     }
+    
+    if ([segue.identifier isEqualToString:@"ShowSensorDrillDown"]) {
+        DeviceDrillDownViewController *destination = (DeviceDrillDownViewController *)[segue.destinationViewController viewControllers][0];
+        destination.device = [devicesTableViewController getSelectedDevice];
+    }
 }
 
 
 /** Devices UI delegate code */
--(void)deviceConnected:(CBPeripheral *)peripheral{
+-(void)deviceConnected:(CBPeripheral *)peripheral phsyicalDevice:(APBLEDevice *)physDev{
     Device *device = [self->devicesTableViewController deviceForPeripheral:peripheral.identifier.UUIDString];
     if (device != nil) {
+        device.deviceDescriptor = physDev;
         if (!device.connected){
             device.connected = true;
             [self->devicesTableViewController reloadDevice:device];
@@ -136,6 +143,11 @@
         return;
     }
 }
+
+
+-(IBAction)unwindFromDrillDown:(UIStoryboardSegue *)segue{
+}
+
 
 /** End - Devices UI delegate code */
 

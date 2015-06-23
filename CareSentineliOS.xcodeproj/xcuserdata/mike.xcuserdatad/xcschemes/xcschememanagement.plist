@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>CareSentineliOS copy.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>5</integer>
+		</dict>
 		<key>CareSentineliOS.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -18,6 +23,11 @@
 			<true/>
 		</dict>
 		<key>273ED3601AFC550700F4F82B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>27556A431B386444008A97FA</key>
 		<dict>
 			<key>primary</key>
 			<true/>

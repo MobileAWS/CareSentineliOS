@@ -15,6 +15,7 @@
 #import "AppDelegate.h"
 #import "UIResources.h"
 #import "MawsTextView.h"
+#import "KeyChainManager.h"
 
 @interface LoginViewController () <UITextFieldDelegate>{
     
@@ -33,9 +34,16 @@
     [super viewDidLoad];
     
     self->emailTextField.delegate = self;
+    [self->emailTextField setTintColor:[UIColor whiteColor]];
+     
     self->passwordTextField.delegate = self;
+    [self->passwordTextField setTintColor:[UIColor whiteColor]];
+    
     self->clientIdTextField.delegate = self;
+    [self->clientIdTextField setTintColor:[UIColor whiteColor]];
+    
     self->siteIdTextField.delegate = self;
+    [self->siteIdTextField setTintColor:[UIColor whiteColor]];
     
     //CGColorRef buttonColor = [[UIColor colorWithRed:0.24 green:0.7 blue:(0.62) alpha:1]CGColor];
     self->loginButton.layer.borderWidth = 1.0f;
@@ -46,11 +54,49 @@
     self->noCloudButton.layer.cornerRadius = 8.0f;
     self->noCloudButton.layer.borderColor = buttonBorderColor;
 
-
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *tmp = [defaults objectForKey:@"email"];
+    if (tmp != nil){
+        self->emailTextField.text = tmp;
+        tmp = [KeyChainManager getPasswordForAccount:@"maws-loon-password"];
+        if (tmp != nil){
+            self->passwordTextField.text = tmp;
+        }
+    }
+    
+    tmp = [defaults objectForKey:@"siteId"];
+    if (tmp != nil){
+        self->siteIdTextField.text = tmp;
+    }
+    
+    tmp = [defaults objectForKey:@"customerId"];
+    if (tmp != nil){
+        self->clientIdTextField.text = tmp;
+    }
+    
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
-    [self.view endEditing:YES];
+    if (textField == emailTextField) {
+        [passwordTextField becomeFirstResponder];
+        return NO;
+    }
+
+    if (textField == passwordTextField) {
+        [siteIdTextField becomeFirstResponder];
+        return NO;
+    }
+    
+    if (textField == siteIdTextField) {
+        [clientIdTextField becomeFirstResponder];
+        return NO;
+    }
+    
+    if (textField == clientIdTextField) {
+        [passwordTextField becomeFirstResponder];
+        [self.view endEditing:YES];
+    }
+    
     return NO;
 }
 
@@ -159,6 +205,11 @@
     application.currentSite = site;
     application.currentCustomer = customer;
     
+    NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:user.email forKey:@"email"];
+    [defaults setObject:site.siteId forKey:@"siteId"];
+    [defaults setObject:customer.customerId forKey:@"customerId"];
+    [KeyChainManager savePassword:passwordTextField.text forAccount:@"maws-loon-password"];
     return true;
 }
 
