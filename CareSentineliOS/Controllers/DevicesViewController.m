@@ -57,7 +57,7 @@
     
     if ([segue.identifier isEqualToString:@"ShowSensorDrillDown"]) {
         DeviceDrillDownViewController *destination = (DeviceDrillDownViewController *)[segue.destinationViewController viewControllers][0];
-        destination.device = [devicesTableViewController getSelectedDevice];
+        destination.device = sender;
     }
 }
 
@@ -100,11 +100,34 @@
     return true;
 }
 
+-(BOOL)deviceIgnored:(CBPeripheral *)peripheral{
+    Device *device = [self->devicesTableViewController deviceForPeripheral:peripheral.identifier.UUIDString];
+    if (device != nil) {
+        if (device.connected){
+            device.connected = false;
+        }
+
+        if ([device isIgnored]) {
+            return true;
+        }
+        device.ignored = [[NSNumber alloc] initWithInt:1];
+        [self->devicesTableViewController reloadDevice:device];
+        return true;
+    }
+    
+    Device *newDevice = [[Device alloc] init];
+    newDevice.name = peripheral.name;
+    newDevice.hwId = peripheral.identifier.UUIDString;
+    newDevice.ignored = [[NSNumber alloc] initWithInt:1];
+    [self->devicesTableViewController addDevice:newDevice];
+    return true;
+}
+
 
 -(void)device:(CBPeripheral *)peripheral SensorChanged:(uint16_t)value{
     Device * device = [self->devicesTableViewController deviceForPeripheral:peripheral.identifier.UUIDString];
     NSArray *changedSwitches = [device getChangedSwitch:value];
-    if (changedSwitches != nil){
+    if (changedSwitches != nil && [changedSwitches count] > 0){
         
         NSMutableString *message = [[NSMutableString alloc]init];
         for (int i = 0; i < changedSwitches.count; i++) {
@@ -144,6 +167,15 @@
     }
 }
 
+
+-(void)didUpdateDevice:(CBPeripheral *) peripheral{
+    Device *device = [self->devicesTableViewController deviceForPeripheral:peripheral.identifier.UUIDString];
+    if (device != nil) {
+        if (device.connected){
+            [self->devicesTableViewController reloadDevice:device];
+        }
+    }
+}
 
 -(IBAction)unwindFromDrillDown:(UIStoryboardSegue *)segue{
 }

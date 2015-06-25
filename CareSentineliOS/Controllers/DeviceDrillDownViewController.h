@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "Device.h"
 
-@interface DeviceDrillDownViewController : UIViewController
+@interface DeviceDrillDownViewController : UIViewController <UITableViewDelegate,UITableViewDataSource>
 @property Device *device;
 @end

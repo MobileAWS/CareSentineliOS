@@ -18,6 +18,7 @@
 @property (strong,nonatomic) User *currentUser;
 @property (strong,nonatomic) Customer *currentCustomer;
 @property (strong,nonatomic) NSMutableArray* devicesData;
+@property (strong,nonatomic) NSMutableArray* ignoredDevices;
 
 -(void)logout;
 +(void)showAlert:(NSString *)alert withTitle:(NSString *)title;

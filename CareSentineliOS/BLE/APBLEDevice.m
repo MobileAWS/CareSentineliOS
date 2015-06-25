@@ -83,7 +83,7 @@
         isConnected = peripheral.isConnected;
 #endif
     }
-#ifdef RC_PROXIMITY_CHECK
+//#ifdef RC_PROXIMITY_CHECK
     if (isConnected) {
         // -- Start checking the RSSI
         _deviceCheckTimer = [NSTimer scheduledTimerWithTimeInterval:kTimeIntervalProximityCheck target:self selector:@selector(checkProximity) userInfo:nil repeats:YES];
@@ -92,7 +92,7 @@
         [_deviceCheckTimer invalidate];
         _deviceCheckTimer = nil;
     }
-#endif
+//#endif
 }
 
 // ------------------------------------------------------------------------------
@@ -170,6 +170,7 @@
     return NO;
 }
 
+/*
 - (int)batteryPercent {
     if (self.connected AND self.batteryService) {
         if (!_batteryCharateristic) {
@@ -187,7 +188,7 @@
     }
     
     return -1;  // -- ERROR!
-}
+}*/
 
 - (void)rssiToPercent {
     NSInteger rssi = self.RSSI;
@@ -309,7 +310,7 @@
         celsiusVal    = (fahrenheitVal - 32) / 1.8;
     }
     
-    tempValue = [NSString stringWithFormat:@"%.0f F / %.1f C", fahrenheitVal, celsiusVal];
+    tempValue = [NSString stringWithFormat:@"%g F / %g C", fahrenheitVal, celsiusVal];
     
     return tempValue;
 }

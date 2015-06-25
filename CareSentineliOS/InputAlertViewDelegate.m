@@ -15,5 +15,10 @@
         UITextField * textField = [alertView textFieldAtIndex:0];
         [self.delegate input:textField.text AcceptedWithObject:self];
     }
+    
+    if (buttonIndex == alertView.cancelButtonIndex) {
+        [self.delegate declinedWithObject:self];
+    }
+
 }
 @end

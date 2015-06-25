@@ -10,4 +10,5 @@
 
 @protocol AlertInputAcceptedDelegate
 -(void)input:(NSString *)input AcceptedWithObject:(id)target;
+-(void)declinedWithObject:(id)target;
 @end

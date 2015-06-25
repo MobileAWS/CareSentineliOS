@@ -290,6 +290,15 @@ static BOOL s_processing_restart = NO;
     return matchedType;
 }
 
+-(void)declinedWithObject:(id)target{
+    [pendingInputDelegates removeObject:target];
+    NSDictionary *values = (NSDictionary *)((InputAlertViewDelegate *)target).targetObject;
+    CBPeripheral *peripheral = (CBPeripheral *)[values objectForKey:@"peripheral"];
+    [_pendingNewDevices removeObject:[values objectForKey:@"peripheral"]];
+    [self->_uiDelegate deviceIgnored:peripheral];
+
+}
+
 -(void) input:(NSString *)input AcceptedWithObject:(id)target{
 
     [pendingInputDelegates removeObject:target];
@@ -334,6 +343,11 @@ static BOOL s_processing_restart = NO;
     
     
     Device *device = [self->_uiDelegate deviceForUDID:peripheral.identifier.UUIDString];
+    
+    if ([device isIgnored]){
+        return;
+    }
+    
     if (device != nil){
         if (peripheral.state != CBPeripheralStateConnected AND peripheral.state != CBPeripheralStateConnecting) {
             [_discoveredPeripherals addObject:peripheral];
@@ -368,7 +382,7 @@ static BOOL s_processing_restart = NO;
     
     [_pendingNewDevices addObject:peripheral];
 
-    [AppDelegate showInputWith:@"Please provide a name for the new device" title:@"Device Discovered" defaultText:peripheral.name delegate:inputDelegate];
+    [AppDelegate showInputWith:@"Enter A Description (e.g Jacket Activator) & tap Use It. If the device is not yours tap Not Mine to ignore." title:@"New Monitor Device" defaultText:peripheral.name delegate:inputDelegate];
 
 }
 
@@ -721,7 +735,7 @@ static BOOL s_processing_restart = NO;
                 if ([[characteristic UUID] isEqual:[CBUUID UUIDWithString:kUUIDBatteryData]]) {
 ////                    NSLog(@"Discovered Battery Characteristic");
                     [peripheral readValueForCharacteristic:characteristic];
-////                    [peripheral setNotifyValue:YES forCharacteristic:characteristic];
+                    [peripheral setNotifyValue:YES forCharacteristic:characteristic];
                     if ([_delegate respondsToSelector:@selector(batteryStateAvailableForDevice:)])
                         [_delegate batteryStateAvailableForDevice:workingDevice];
                 } else if ([[characteristic UUID] isEqual:[CBUUID UUIDWithString:kUUIDThermoData]]) {
@@ -832,6 +846,15 @@ static BOOL s_processing_restart = NO;
     NSData *data = characteristic.value;
         
     // -- Serial Number
+    if ([[characteristic UUID] isEqual:[CBUUID UUIDWithString:kUUIDBatteryData]]) {
+        if (data.length > 0) {
+            workingDevice.batteryPercent = [APBLEInterface batteryPercentUsingCharacteristic:characteristic];
+            [self->_uiDelegate didUpdateDevice:peripheral];
+            NSLog(@"-----------------Battery updated!,%d",workingDevice.batteryPercent);
+        }
+        return;
+    }
+    
     if ([[characteristic UUID] isEqual:[CBUUID UUIDWithString:kUUIDSerialNumber]]) {
         if (data.length > 0) {
             workingDevice.serialNumber = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
@@ -974,8 +997,9 @@ static BOOL s_processing_restart = NO;
     
     if ([_delegate respondsToSelector:@selector(rssiUpdatedForDevice:)])
         [_delegate rssiUpdatedForDevice:workingDevice];
+    
+    [self->_uiDelegate didUpdateDevice: peripheral];
 }
-
 
 // --------------------------------------------------------------------------------
 #pragma mark - Private Methods

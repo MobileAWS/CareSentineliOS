@@ -16,6 +16,12 @@
     +(NSDictionary *)getPropertiesMapping;
     -(NSArray *)getChangedSwitch:(uint16_t)value;
     -(BOOL)isIgnored;
+    -(UIImage *)getImageForBattery;
+    -(UIImage *)getImageForSignal;
+    -(NSString *) getTemperature;
+    -(NSArray *) getCharacteristics;
+    -(void)switchCharacteristicStatus:(NSString *)name;
+    -(void)setupCharacteristics;
     @property NSNumber *id;
     @property NSString *name;
     @property NSString *hwId;
@@ -32,4 +38,5 @@
     @property DevicePropertyDescriptor *lastPropertyChange;
     @property NSString *lastPropertyMessage;
     @property (weak) APBLEDevice *deviceDescriptor;
+
 @end

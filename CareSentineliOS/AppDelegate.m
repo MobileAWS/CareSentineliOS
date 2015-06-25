@@ -29,7 +29,7 @@ static void (^currentAlertInvocation) (void);
 }
 
 +(void)showInputWith:(NSString *)alert title:(NSString *)title defaultText:(NSString *)text delegate:(id)delegate {
-    UIAlertView *inputDialog = [[UIAlertView alloc]initWithTitle:title message:alert delegate:delegate cancelButtonTitle:@"Ignore" otherButtonTitles:@"Add", nil];
+    UIAlertView *inputDialog = [[UIAlertView alloc]initWithTitle:title message:alert delegate:delegate cancelButtonTitle:@"Not Mine" otherButtonTitles:@"Use It", nil];
     inputDialog.alertViewStyle = UIAlertViewStylePlainTextInput;
     [inputDialog textFieldAtIndex:0].text = text;
     [inputDialog show];

@@ -9,9 +9,13 @@
 #import <Foundation/Foundation.h>
 #import "Device.h"
 #import "DeviceProperty.h"
+#import "DeviceEnabledProperty.h"
 
 @interface PropertiesDao : NSObject
 +(DeviceProperty *)saveProperty:(NSString *)name forDevice:(Device *)device withValue:(NSString *)value;
 +(NSMutableArray *)listPropertiesForUser:(NSNumber *) userId;
 +(void)dismistProperty:(NSNumber *)idValue;
++(NSMutableArray *)listPropertiesForDevice:(NSNumber *) deviceId;
++(NSMutableArray *)initPropertiesForDevice:(NSNumber *) deviceId;
++(void)saveDeviceEnabledProperty:(DeviceEnabledProperty *)property;
 @end

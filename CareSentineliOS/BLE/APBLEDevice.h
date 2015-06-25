@@ -153,7 +153,7 @@ enum {
 @property (strong, nonatomic) NSString         *hardwareRevision;
 @property (strong, nonatomic) NSString         *manufacturer;
 @property (assign, nonatomic) NSInteger         RSSI;
-@property (readonly)          int               batteryPercent;
+@property (nonatomic)          int               batteryPercent;
 @property (assign, nonatomic) int               signalPercent;
 @property (assign, nonatomic) BOOL              batteryLow;
 @property (assign, nonatomic) BOOL              triggered;

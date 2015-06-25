@@ -6,6 +6,71 @@
          contextName = "+[KeyChainManager getPasswordForAccount:]:KeyChainManager.m">
       </ContextState>
       <ContextState
+         contextName = "-[DevicesTableViewController getSelectedDevice]:DevicesTableViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "path.row">
+            </PersistentString>
+            <PersistentString
+               value = "path.section">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[DevicesTableViewController tableView:didHighlightRowAtIndexPath:]:DevicesTableViewController.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[Device setupCharacteristics]:Device.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self-&gt;characteristics">
+            </PersistentString>
+            <PersistentString
+               value = "self.id">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[DeviceDrillDownViewController tableView:cellForRowAtIndexPath:]:DeviceDrillDownViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "characteristic.enabled != 0">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[DevicesTableViewController addDevice:]:DevicesTableViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "[targetDevice isIgnored]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[Device switchCharacteristicStatus:]:Device.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "[NSNumber alloc] initWithInt: [tmpChar.enabled integerValue] == 1 ? 0 : 1];">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[Device getImageForSignal]:Device.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.deviceDescriptor.signalPercent">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[DevicesViewController prepareForSegue:sender:]:DevicesViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "[destination viewControllers]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "-[DevicesTableViewController dismissAlert:]:DevicesTableViewController.m">
          <PersistentStrings>
             <PersistentString
@@ -28,10 +93,19 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "-[DevicesViewController prepareForSegue:sender:]:DevicesViewController.m">
+         contextName = "-[DevicesTableViewController viewDidLoad]:DevicesTableViewController.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[DevicesViewController deviceIgnored:]:DevicesViewController.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[APBLEInterface peripheral:didReadRSSI:error:]:APBLEInterface.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[Device getCharacteristics]:Device.m">
          <PersistentStrings>
             <PersistentString
-               value = "[destination viewControllers]">
+               value = "self-&gt;characteristics">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
