@@ -858,6 +858,7 @@ static BOOL s_processing_restart = NO;
     if ([[characteristic UUID] isEqual:[CBUUID UUIDWithString:kUUIDSerialNumber]]) {
         if (data.length > 0) {
             workingDevice.serialNumber = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
+            [self->_uiDelegate didUpdateHwIdForDevice:peripheral];
 ////            APLog(@"--- S/N VALUE ---> %@", workingDevice.serialNumber);
         }
 

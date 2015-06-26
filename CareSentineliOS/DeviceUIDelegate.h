@@ -17,4 +17,5 @@
 -(Device *)deviceForUDID:(NSString *)udid;
 -(void)deviceConnected:(CBPeripheral *)peripheral phsyicalDevice:(APBLEDevice *)physDev;
 -(void)didUpdateDevice:(CBPeripheral *) device;
+-(void)didUpdateHwIdForDevice:(CBPeripheral *)device;
 @end

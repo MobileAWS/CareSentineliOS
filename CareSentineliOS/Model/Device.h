@@ -12,6 +12,7 @@
 #import "APBLEDevice.h"
 
 @interface Device : NSObject <BaseModel>
+
     +(NSString *)getTableName;
     +(NSDictionary *)getPropertiesMapping;
     -(NSArray *)getChangedSwitch:(uint16_t)value;
@@ -22,21 +23,31 @@
     -(NSArray *) getCharacteristics;
     -(void)switchCharacteristicStatus:(NSString *)name;
     -(void)setupCharacteristics;
+
+    /* Datbase properties */
     @property NSNumber *id;
     @property NSString *name;
     @property NSString *hwId;
+    @property NSString *hwName;
+    @property NSString *uuid;
     @property NSNumber *siteId;
     @property NSNumber *customerId;
     @property NSNumber *userId;
     @property NSNumber *createdAt;
     @property NSNumber *ignored;
+
+    /* Control & Runtime properties */
     @property BOOL bedSensorActivated;
     @property BOOL chairSensorActivated;
     @property BOOL toiletSensorActivated;
     @property BOOL incontinenceSensorActivated;
+    @property BOOL callSensorActivated;
+    @property BOOL portalSensorActivated;
     @property BOOL connected;
     @property DevicePropertyDescriptor *lastPropertyChange;
     @property NSString *lastPropertyMessage;
     @property (weak) APBLEDevice *deviceDescriptor;
+
+
 
 @end

@@ -6,6 +6,9 @@
          contextName = "+[KeyChainManager getPasswordForAccount:]:KeyChainManager.m">
       </ContextState>
       <ContextState
+         contextName = "-[DevicesTableViewController tableView:didHighlightRowAtIndexPath:]:DevicesTableViewController.m">
+      </ContextState>
+      <ContextState
          contextName = "-[DevicesTableViewController getSelectedDevice]:DevicesTableViewController.m">
          <PersistentStrings>
             <PersistentString
@@ -15,9 +18,6 @@
                value = "path.section">
             </PersistentString>
          </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "-[DevicesTableViewController tableView:didHighlightRowAtIndexPath:]:DevicesTableViewController.m">
       </ContextState>
       <ContextState
          contextName = "-[Device setupCharacteristics]:Device.m">
@@ -47,18 +47,18 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "-[Device switchCharacteristicStatus:]:Device.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "[NSNumber alloc] initWithInt: [tmpChar.enabled integerValue] == 1 ? 0 : 1];">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
          contextName = "-[Device getImageForSignal]:Device.m">
          <PersistentStrings>
             <PersistentString
                value = "self.deviceDescriptor.signalPercent">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[Device switchCharacteristicStatus:]:Device.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "[NSNumber alloc] initWithInt: [tmpChar.enabled integerValue] == 1 ? 0 : 1];">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -85,6 +85,14 @@
          contextName = "-[NotificationsTableViewController tableView:numberOfRowsInSection:]:NotificationsTableViewController.m">
       </ContextState>
       <ContextState
+         contextName = "-[Device getChangedSwitch:]:Device.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "value &amp; 1024">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "-[APBLEInterface centralManager:didDiscoverPeripheral:advertisementData:RSSI:]:APBLEInterface.m">
          <PersistentStrings>
             <PersistentString
@@ -97,6 +105,9 @@
       </ContextState>
       <ContextState
          contextName = "-[DevicesViewController deviceIgnored:]:DevicesViewController.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[DevicesViewController device:SensorChanged:]:DevicesViewController.m">
       </ContextState>
       <ContextState
          contextName = "-[APBLEInterface peripheral:didReadRSSI:error:]:APBLEInterface.m">

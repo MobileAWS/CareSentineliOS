@@ -14,6 +14,8 @@
 #import "PropertiesDao.h"
 #import "TSMessage.h"
 #import "DeviceDrillDownViewController.h"
+#import "MainTabsControllerViewController.h"
+#import "DatabaseManager.h"
 
 @interface DevicesViewController() <DeviceUIDelegate>{
     __weak DevicesTableViewController *devicesTableViewController;
@@ -95,7 +97,8 @@
 
     Device *newDevice = [[Device alloc] init];
     newDevice.name = deviceName;
-    newDevice.hwId = peripheral.identifier.UUIDString;
+    newDevice.uuid = peripheral.identifier.UUIDString;
+    newDevice.hwName = peripheral.name;
     [self->devicesTableViewController addDevice:newDevice];
     return true;
 }
@@ -117,7 +120,8 @@
     
     Device *newDevice = [[Device alloc] init];
     newDevice.name = peripheral.name;
-    newDevice.hwId = peripheral.identifier.UUIDString;
+    newDevice.hwName = peripheral.name;
+    newDevice.uuid = peripheral.identifier.UUIDString;
     newDevice.ignored = [[NSNumber alloc] initWithInt:1];
     [self->devicesTableViewController addDevice:newDevice];
     return true;
@@ -142,6 +146,7 @@
             [self->devicesTableViewController reloadDevice:device];
             
         }
+     
         
         if ([[UIApplication sharedApplication] applicationState] == UIApplicationStateActive) {
             [TSMessage showNotificationInViewController:[TSMessage defaultViewController] title:@"Switch Changed" subtitle:message type:TSMessageNotificationTypeMessage duration:2];
@@ -152,7 +157,19 @@
             notification.alertBody = message;
             notification.soundName = @"default";
             [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
+            
+            UIApplication *app = [UIApplication sharedApplication];
+            NSInteger value = app.applicationIconBadgeNumber + changedSwitches.count;
+            app.applicationIconBadgeNumber = value;
+            [self updateNotificationsTab: value];
         }
+    }
+}
+
+-(void)updateNotificationsTab:(NSInteger)count{
+    MainTabsControllerViewController *tabController= (MainTabsControllerViewController *)[AppDelegate findSuperConstroller:self with:[MainTabsControllerViewController class]];
+    if (tabController != nil){
+        [tabController.tabBar.items[1] setBadgeValue:[NSString stringWithFormat:@"%ld",(long)count]];
     }
 }
 
@@ -177,6 +194,14 @@
     }
 }
 
+-(void)didUpdateHwIdForDevice:(CBPeripheral *)peripheral{
+    Device *device = [self->devicesTableViewController deviceForPeripheral:peripheral.identifier.UUIDString];
+    if (device != nil) {
+        device.hwId = device.deviceDescriptor.serialNumber;
+        [[DatabaseManager getSharedIntance] save:device];
+    }
+
+}
 -(IBAction)unwindFromDrillDown:(UIStoryboardSegue *)segue{
 }
 

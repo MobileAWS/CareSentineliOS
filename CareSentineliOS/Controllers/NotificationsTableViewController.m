@@ -11,6 +11,7 @@
 #import "PropertiesDao.h"
 #import "DevicePropertyDescriptor.h"
 #import "UIResources.h"
+#import "MainTabsControllerViewController.h"
 
 @interface NotificationsTableViewController (){
     NSMutableArray *notificationsData;
@@ -53,6 +54,12 @@
     notificationsData = [PropertiesDao listPropertiesForUser:self->application.currentUser.id];
     if (reloadTable) {
         [self->notificationsTable reloadData];
+    }
+    
+    [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+    MainTabsControllerViewController *tabController= (MainTabsControllerViewController *)[AppDelegate findSuperConstroller:self with:[MainTabsControllerViewController class]];
+    if (tabController != nil){
+        [tabController.tabBar.items[1] setBadgeValue:nil];
     }
 }
 

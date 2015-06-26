@@ -26,6 +26,8 @@
              @"id":@"id",
              @"name":@"name",
              @"hw_id":@"hwId",
+             @"hw_name":@"hwName",             
+             @"uuid":@"uuid",
              @"site_id":@"siteId",
              @"customer_id":@"customerId",
              @"ignored":@"ignored",
@@ -122,6 +124,41 @@
             [switchChanges addObject:@{propertyName:INCONTINENCE_SENSOR_PROPERTY_NAME,valueString:on}];
         }
     }
+    
+    
+     /* Call Sensor */
+    valueEnabled = [self getCharacteristicEnabled:CALL_SENSOR_PROPERTY_NAME];
+    if (self.callSensorActivated && (value & APSensorValuesCallLow)){
+        self.callSensorActivated = false;
+        if (valueEnabled == TRUE){
+            [switchChanges addObject:@{propertyName:CALL_SENSOR_PROPERTY_NAME,valueString:off}];
+        }
+    }
+    
+    if (!self.callSensorActivated && (value & APSensorValuesCallHigh)){
+        self.callSensorActivated = true;
+        if (valueEnabled == TRUE){
+            [switchChanges addObject:@{propertyName:CALL_SENSOR_PROPERTY_NAME,valueString:on}];
+        }
+    }
+    
+    
+    /* Portal Sensor */
+    valueEnabled = [self getCharacteristicEnabled:PORTAL_SENSOR_PROPERTY_NAME];
+    if (self.portalSensorActivated && (value & APSensorValuesPortalLow)){
+        self.portalSensorActivated = false;
+        if (valueEnabled == TRUE){
+            [switchChanges addObject:@{propertyName:PORTAL_SENSOR_PROPERTY_NAME,valueString:off}];
+        }
+    }
+    
+    if (!self.portalSensorActivated && (value & APSensorValuesPortalHigh)){
+        self.portalSensorActivated = true;
+        if (valueEnabled == TRUE){
+            [switchChanges addObject:@{propertyName:PORTAL_SENSOR_PROPERTY_NAME,valueString:on}];
+        }
+    }
+
     
     /** Only return changes if the device has been already initialized */
     if (!self->initialized) {

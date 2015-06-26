@@ -12,7 +12,9 @@ customer_id varchar(255) UNIQUE NOT NULL
 CREATE TABLE devices(
 id INTEGER PRIMARY KEY,
 name varchar(255) NOT NULL,
-hw_id varchar(255) NOT NULL,
+hw_id varchar(255),
+hw_name varchar(255) NOT NULL,
+uuid varchar(255) NOT NULL,
 site_id integer NOT NULL,
 customer_id integer,
 user_id integer,
@@ -66,3 +68,5 @@ INSERT INTO properties(name,units) VALUES("Bed Sensor",NULL);
 INSERT INTO properties(name,units) VALUES("Chair Sensor",NULL);
 INSERT INTO properties(name,units) VALUES("Toilet Sensor",NULL);
 INSERT INTO properties(name,units) VALUES("Incontinence Sensor",NULL);
+INSERT INTO properties(name,units) VALUES("Call Sensor",NULL);
+INSERT INTO properties(name,units) VALUES("Portal Sensor",NULL);

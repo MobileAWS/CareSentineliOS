@@ -13,4 +13,6 @@
     NSString * const CHAIR_SENSOR_PROPERTY_NAME = @"Chair Sensor";
     NSString * const TOILET_SENSOR_PROPERTY_NAME = @"Toilet Sensor";
     NSString * const INCONTINENCE_SENSOR_PROPERTY_NAME = @"Incontinence Sensor";
+    NSString * const CALL_SENSOR_PROPERTY_NAME = @"Call Sensor";
+    NSString * const PORTAL_SENSOR_PROPERTY_NAME = @"Portal Sensor";
 @end

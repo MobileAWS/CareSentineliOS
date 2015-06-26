@@ -219,7 +219,7 @@
 -(BOOL)containsDevice:(NSString *)deviceUUID{
     for(int i = 0; i < [application.devicesData count]; i++){
         Device *currentDevice = (Device *)[application.devicesData objectAtIndex:i];
-        if([currentDevice.hwId isEqualToString:deviceUUID]) {
+        if([currentDevice.uuid isEqualToString:deviceUUID]) {
             return YES;
         }
     }    
@@ -229,14 +229,14 @@
 -(Device *)deviceForPeripheral:(NSString *)deviceUUID{
     for(int i = 0; i < [application.devicesData count]; i++){
         Device *currentDevice = (Device *)[application.devicesData objectAtIndex:i];
-        if([currentDevice.hwId isEqualToString:deviceUUID]) {
+        if([currentDevice.uuid isEqualToString:deviceUUID]) {
             return currentDevice;
         }
     }
     
     for(int i = 0; i < [application.ignoredDevices count]; i++){
         Device *currentDevice = (Device *)[application.ignoredDevices objectAtIndex:i];
-        if([currentDevice.hwId isEqualToString:deviceUUID]) {
+        if([currentDevice.uuid isEqualToString:deviceUUID]) {
             return currentDevice;
         }
     }

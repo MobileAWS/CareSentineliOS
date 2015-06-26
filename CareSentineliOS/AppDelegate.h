@@ -25,5 +25,7 @@
 +(void)showInputWith:(NSString *)alert title:(NSString *)title defaultText:(NSString *)text delegate:(id)delegate;
 +(void)showLoadingMask;
 +(void)hideLoadingMask;
++(UIView *)findSuperView:(UIView *) target with:(Class)clazz;
++(UIViewController *)findSuperConstroller:(UIViewController *) target with:(Class)clazz;
 @end
 

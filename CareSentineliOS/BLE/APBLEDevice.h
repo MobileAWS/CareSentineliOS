@@ -37,13 +37,13 @@ enum {
     APSensorValuesChairLow     = 2,
     APSensorValuesToiletLow    = (2 << 2),
     APSensorValuesDampnessLow  = (2 << 1),
-    APSensorValuesCallLow      = (2 << 3),
-    APSensorValuesPortalLow    = (2 << 4),
+    APSensorValuesCallLow      = (2 << 9),
+    APSensorValuesPortalLow    = (2 << 8),
     APSensorValuesBedHigh      = (2 << 3),
     APSensorValuesChairHigh    = (2 << 4),
     APSensorValuesToiletHigh   = (2 << 6),
     APSesnorValuesDampnessHigh = (2 << 5),
-    APSensorValuesCallHigh     = (2 << 9),
+    APSensorValuesCallHigh     = (2 << 7),
     APSensorValuesPortalHigh   = (2 << 10)
 } typedef APSensorValues;
 
