@@ -66,12 +66,18 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DrillDownCaracteristicsReusableIdentifier" forIndexPath:indexPath];
     NSArray *characteristics = [self.device getCharacteristics];
     DeviceEnabledProperty *characteristic = [characteristics objectAtIndex:indexPath.row];
+    BOOL isOn = [self.device isOnForSwitch:characteristic.name];
+
     
     UILabel *tmpLabel = (UILabel *)[cell viewWithTag:1000];
     tmpLabel.text = characteristic.name;
+    if (!isOn) {
+        tmpLabel.textColor = [UIColor redColor];
+    }
     
     UISwitch *tmpSwitch = (UISwitch *)[cell viewWithTag:2000];
     tmpSwitch.on = [characteristic isEnabled];
+    
     
     [tmpSwitch addTarget:self action:@selector(switchChanged:)forControlEvents:UIControlEventValueChanged];
     return cell;

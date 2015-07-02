@@ -34,6 +34,7 @@
     [self.navigationController.navigationBar setTitleTextAttributes: @{NSForegroundColorAttributeName: [UIColor whiteColor]}];
     self->bleInterface = [[APBLEInterface alloc] init];
     self->bleInterface.uiDelegate = self;
+    ((AppDelegate *)[UIApplication sharedApplication].delegate).bleInterface = self->bleInterface;
     // Do any additional setup after loading the view.
 }
 

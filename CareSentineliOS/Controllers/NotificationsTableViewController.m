@@ -15,6 +15,7 @@
 
 @interface NotificationsTableViewController (){
     NSMutableArray *notificationsData;
+    NSMutableArray *sectionIndexes;
     __weak IBOutlet UITableView *notificationsTable;
     __weak AppDelegate *application;
 }
@@ -52,6 +53,15 @@
 
 - (void)reloadWithTable:(BOOL)reloadTable{
     notificationsData = [PropertiesDao listPropertiesForUser:self->application.currentUser.id];
+    sectionIndexes = [[NSMutableArray alloc]init];
+    NSNumber *lastId = 0;
+    for (int i = 0; i < notificationsData.count; i++) {
+        NSNumber *currentId = ((DevicePropertyDescriptor *)notificationsData[i]).deviceId;
+        if (![lastId isEqualToNumber:currentId]) {
+            [sectionIndexes addObject:[[NSNumber alloc] initWithInt:i]];
+            lastId = currentId;
+        }
+    }
     if (reloadTable) {
         [self->notificationsTable reloadData];
     }
@@ -106,7 +116,8 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NotificationsCellIdentifier" forIndexPath:indexPath];
-    DevicePropertyDescriptor *descriptor = [notificationsData objectAtIndex:(indexPath.section + indexPath.row)];
+    NSNumber *section = [sectionIndexes objectAtIndex:indexPath.section];
+    DevicePropertyDescriptor *descriptor = [notificationsData objectAtIndex:(section.intValue + indexPath.row)];
 
     /** Set Property Name */
     UILabel *tmpLabel = (UILabel *)[cell viewWithTag:1000];

@@ -41,6 +41,12 @@
 
 }
 
++(NSMutableArray *)listNotificationsForDevice:(NSNumber *) deviceId{
+    DatabaseManager *manager = [DatabaseManager getSharedIntance];
+    return [manager listWithModel:[DevicePropertyDescriptor class] forQuery:[NSString stringWithFormat:@"SELECT %@ FROM devices,properties,devices_properties_values WHERE devices.id = device_id AND property_id = properties.id AND devices.id = %@ ORDER BY devices.id, devices_properties_values.created_at DESC",[[[DevicePropertyDescriptor getPropertiesMapping] allKeys] componentsJoinedByString:@","],deviceId]];
+    
+}
+
 +(NSMutableArray *)listPropertiesForDevice:(NSNumber *) deviceId{
     DatabaseManager *manager = [DatabaseManager getSharedIntance];
     return [manager listWithModel:[DeviceEnabledProperty class] forQuery:[NSString stringWithFormat:@"SELECT %@ FROM devices,properties,devices_enabled_properties WHERE devices.id = device_id AND property_id = properties.id AND devices.id = %@ ORDER BY devices.id, devices_enabled_properties.id ",[[[DeviceEnabledProperty getPropertiesMapping] allKeys] componentsJoinedByString:@","],deviceId]];
@@ -64,6 +70,12 @@
 +(void)saveDeviceEnabledProperty:(DeviceEnabledProperty *)property{
     DatabaseManager *manager = [DatabaseManager getSharedIntance];
     [manager save:property];
+}
+
++(void)removeValuesForDevices:(NSArray *)devicesId{
+    DatabaseManager *manager = [DatabaseManager getSharedIntance];
+    [manager delete:[NSString stringWithFormat:@"DELETE FROM devices_properties_values where device_id IN (%@)",[devicesId componentsJoinedByString:@","]]];
+    
 }
 
 

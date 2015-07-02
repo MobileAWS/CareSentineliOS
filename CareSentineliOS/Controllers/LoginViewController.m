@@ -16,6 +16,7 @@
 #import "UIResources.h"
 #import "MawsTextView.h"
 #import "KeyChainManager.h"
+#import "LNNetworkManager.h"
 
 @interface LoginViewController () <UITextFieldDelegate>{
     
@@ -105,31 +106,39 @@
     // Dispose of any resources that can be recreated.
 }
 
--(BOOL)doLogin{
+- (IBAction)loginNoCloud:(id)sender {
+    [self doLogin:false];
+}
+
+- (IBAction)loginCloud:(id)sender {
+    [self doLogin:true];
+}
+
+-(void)doLogin:(BOOL)cloudCheck{
     
     NSString *tmpValue = self->emailTextField.text;
     if(tmpValue == nil || [tmpValue isEqualToString:@""]){
         [AppDelegate showAlert:@"The Email Field Is Required" withTitle:@"Invalid Data"];
-        return false;
+        return;
     }
     
     
     tmpValue = self->passwordTextField.text;
     if(tmpValue == nil || [tmpValue isEqualToString:@""]){
         [AppDelegate showAlert:@"The Password Field Is Required" withTitle:@"Invalid Data"];
-        return false;
+        return;
     }
     
     tmpValue = self->siteIdTextField.text;
     if(tmpValue == nil || [tmpValue isEqualToString:@""]){
         [AppDelegate showAlert:@"The Site Id Field Is Required" withTitle:@"Invalid Data"];
-        return false;
+        return;
     }
     
     tmpValue = self->clientIdTextField.text;
     if(tmpValue == nil || [tmpValue isEqualToString:@""]){
         [AppDelegate showAlert:@"The Customer Id Field Is Required" withTitle:@"Invalid Data"];
-        return false;
+        return;
     }
     
     DatabaseManager *dbManager = [DatabaseManager getSharedIntance];
@@ -139,18 +148,35 @@
     if (user == nil) {
         [AppDelegate showAlert:@"This user does not exists" withTitle:@"Invalid Data"];
         [dbManager close];
-        return false;
+        return;
     }
     
     if(![user.password isEqualToString:[User getEncryptedPasswordFor:self->passwordTextField.text]]){
         [AppDelegate showAlert:@"Invalid Password Provided" withTitle:@"Invalid Data"];
         [dbManager close];
-        return false;
+        return;
 
     }
     
     [dbManager close];
     
+    if (cloudCheck) {
+        [LNNetworkManager loginWithServer:self->emailTextField.text withPassword:self->passwordTextField.text forSite:self->siteIdTextField.text andCustomer:self->clientIdTextField.text onSucess:^(void){
+            [self doLocalLogin:user];
+        } onFailure:^(NSError *error) {
+            [AppDelegate showAlert:@"Could not login with the server, please check your internet connection." withTitle:@"Login Error"];
+            NSLog(@"%@",error);
+        }];
+    }
+    else{
+        [self doLocalLogin:user];
+    }
+
+    return;
+}
+
+-(void)doLocalLogin:(User *)user{
+    DatabaseManager *dbManager = [DatabaseManager getSharedIntance];
     Site *site = (Site *)[dbManager findWithCondition:[NSString stringWithFormat:@"site_id = '%@'",self->siteIdTextField.text] forModel:[Site class]];
 
    
@@ -210,16 +236,9 @@
     [defaults setObject:site.siteId forKey:@"siteId"];
     [defaults setObject:customer.customerId forKey:@"customerId"];
     [KeyChainManager savePassword:passwordTextField.text forAccount:@"maws-loon-password"];
-    return true;
+    [self performSegueWithIdentifier:@"MainTabsSegueIdentifier" sender:self->loginButton];
 }
 
--(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender{
-    if (sender == self->loginButton){
-        return [self doLogin];
-    }
-    
-    return true;
-}
 
 /*
 #pragma mark - Navigation

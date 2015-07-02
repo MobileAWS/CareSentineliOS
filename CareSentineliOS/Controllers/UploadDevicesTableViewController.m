@@ -27,6 +27,7 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     application = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    self->_selectedDevices = [[NSMutableArray alloc] init];
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -60,6 +61,12 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UploadDevicesCellReusableIdentifier" forIndexPath:indexPath];
     Device *device = [application.devicesData objectAtIndex:indexPath.row];
     cell.textLabel.text = device.name;
+    if ([self->_selectedDevices containsObject:device]) {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    }
+    else{
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
     return cell;
 }
 
@@ -107,4 +114,20 @@
 }
 */
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSInteger row = indexPath.row;
+    Device *device = [application.devicesData objectAtIndex:row];
+    if (![self->_selectedDevices containsObject:device]) {
+        [self->_selectedDevices addObject:device];
+    }else{
+        [self->_selectedDevices removeObject:device];
+    }
+    [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation: UITableViewRowAnimationNone];
+    if (self->_selectedDevices.count > 0) {
+        [self.actionButtonsDelegate enableActionButtons];
+    }
+    else{
+        [self.actionButtonsDelegate disableActionButtons];
+    }
+}
 @end

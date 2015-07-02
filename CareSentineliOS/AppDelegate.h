@@ -10,6 +10,7 @@
 #import "Site.h"
 #import "User.h"
 #import "Customer.h"
+#import "APBLEInterface.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate,UIAlertViewDelegate>
 
@@ -19,6 +20,7 @@
 @property (strong,nonatomic) Customer *currentCustomer;
 @property (strong,nonatomic) NSMutableArray* devicesData;
 @property (strong,nonatomic) NSMutableArray* ignoredDevices;
+@property (weak,nonatomic) APBLEInterface *bleInterface;
 
 -(void)logout;
 +(void)showAlert:(NSString *)alert withTitle:(NSString *)title;

@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "1A9A81E1DE7B8E6D276F667D"
+               BlueprintIdentifier = "C2641BAEC4C26A4B8A76BED1"
                BuildableName = "libPods-CareSentineliOS.a"
                BlueprintName = "Pods-CareSentineliOS"
                ReferencedContainer = "container:Pods.xcodeproj">

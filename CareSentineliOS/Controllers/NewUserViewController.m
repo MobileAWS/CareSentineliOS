@@ -12,6 +12,7 @@
 #import "User.h"
 #import "DatabaseManager.h"
 #import "UIResources.h"
+#import "LNNetworkManager.h"
 
 @interface NewUserViewController() <UITextFieldDelegate>{
     
@@ -124,15 +125,23 @@
         return;
     }
     
+    
+    [LNNetworkManager signupWith:self->emailTextField.text withPassword:self->passwordTextField.text andConfirmPassword:self->confirmPassword.text onSucess:^(void){
+        [self userLocalSignup];
+    } onFailure:^(NSError *error) {
+        [AppDelegate showAlert:@"User cannot be created. Check your internet connection and try again." withTitle:@"Error Creating User"];
+    }];
+    
+}
+
+-(void)userLocalSignup{
+    DatabaseManager *databaseManager = [DatabaseManager getSharedIntance];
     User *tmpUser = [[User alloc] init];
     tmpUser.email = self->emailTextField.text;
     tmpUser.password = [User getEncryptedPasswordFor:self->passwordTextField.text];
     tmpUser.createdAt = [[NSNumber alloc] initWithInt:[[NSDate date] timeIntervalSince1970]];
     [databaseManager save:tmpUser];
-    
-    
     [self dismissViewControllerAnimated:true completion:nil];
-
 }
 
 - (IBAction)cancelDialogAction:(id)sender {

@@ -50,4 +50,11 @@
     _dismissedAtDate = [notificationsFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:[dismissedAt doubleValue]]];
 }
 
+- (NSDictionary *)getRequestData{
+    return @{
+             @"key":self.propertyName,
+             @"value":self.value,
+             @"dismissTime":self.dismissedAt == nil ? @"" : self.dismissedAt
+             };
+}
 @end

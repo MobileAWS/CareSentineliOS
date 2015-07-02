@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LNServerActionButtonDelegate.h"
 
-@interface UploadViewController : UIViewController
+@interface UploadViewController : UIViewController <LNServerActionButtonDelegate>
 
 @end

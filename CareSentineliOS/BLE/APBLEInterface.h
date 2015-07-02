@@ -50,6 +50,7 @@ enum {
 
 - (BOOL)devicesWithlowBatteryLevel;
 - (BOOL)devicesOutOfRange;
+- (void)disconnectAll;
 + (int)batteryPercentUsingCharacteristic:(CBCharacteristic *)characteristic;
 + (float)temperatureForDevice:(APBLEDevice *)device UsingCharacteristic:(CBCharacteristic *)characteristic;
 @end

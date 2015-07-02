@@ -35,8 +35,8 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     DatabaseManager *manager = [DatabaseManager getSharedIntance];
-    application.devicesData = [manager listWithModel:[Device class] condition:@" ignored = 0 OR ignored IS NULL"];
-    application.ignoredDevices = [manager listWithModel:[Device class] condition:@" ignored = 1"];
+    application.devicesData = [manager listWithModel:[Device class] condition:[NSString stringWithFormat:@" user_id = %@ AND (ignored = 0 OR ignored IS NULL) ORDER BY id",application.currentUser.id]];
+    application.ignoredDevices = [manager listWithModel:[Device class] condition:[NSString stringWithFormat:@" user_id = %@ AND ignored = 1 ORDER BY id",application.currentUser.id]];
     
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 

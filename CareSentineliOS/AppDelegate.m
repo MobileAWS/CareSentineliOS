@@ -13,6 +13,8 @@
 #import "MBProgressHUD.h"
 #import "TSMessage.h"
 #import "InputAlertViewDelegate.h"
+#import "MAWSNetworkManager.h"
+#import "LNNetworkManager.h"
 
 @interface AppDelegate (){
 }
@@ -65,8 +67,7 @@ static void (^currentAlertInvocation) (void);
     
     UIUserNotificationType types = UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert;
     UIUserNotificationSettings *userNotifcationSettings = [UIUserNotificationSettings settingsForTypes:types categories:nil];
-    [[UIApplication sharedApplication] registerUserNotificationSettings:userNotifcationSettings];
-    
+    [[UIApplication sharedApplication] registerUserNotificationSettings:userNotifcationSettings];        
     return YES;
 }
 
@@ -123,9 +124,17 @@ static void (^currentAlertInvocation) (void);
 
 - (void) logout{
     [AppDelegate showConfirmWith:@"Are you sure you want to logout?" title:@"Confirm Logout" target:nil callback:^{
+        
         self.currentCustomer = nil;
         self.currentSite = nil;
         self.currentUser = nil;
+        self.devicesData = nil;
+        self.ignoredDevices = nil;
+        [self.bleInterface disconnectAll];
+        self.bleInterface = nil;
+        [LNNetworkManager clear];
+        
+        
         UIViewController *mainViewController = [self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
         [self.window.rootViewController dismissViewControllerAnimated:false completion:^{
             self.window.rootViewController = mainViewController;

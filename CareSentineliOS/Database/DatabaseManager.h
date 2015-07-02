@@ -20,5 +20,6 @@
 -(void)insert:(NSString *)insertQuery;
 -(void)update:(NSString *)updateQuery;
 -(void)close;
+-(void)delete:(NSString *)deleteQuery;
 @property BOOL keepConnection;
 @end

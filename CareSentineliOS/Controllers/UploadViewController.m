@@ -9,8 +9,15 @@
 #import "UploadViewController.h"
 #import "AppDelegate.h"
 #import "UIResources.h"
+#import "LNNetworkManager.h"
+#import "UploadDevicesTableViewController.h"
+#import "PropertiesDao.h"
 
-@interface UploadViewController ()
+@interface UploadViewController (){
+    __weak AppDelegate *application;
+    __weak UploadDevicesTableViewController *uploadDevicesTableViewController;
+    __weak IBOutlet UIButton *sendButton;
+}
 
 @end
 
@@ -22,6 +29,14 @@
     self.navigationController.navigationBar.translucent = NO;
     self.navigationController.navigationBar.tintColor = [[UIColor alloc] initWithRed:1 green:1 blue: 1 alpha:1];
     [self.navigationController.navigationBar setTitleTextAttributes: @{NSForegroundColorAttributeName: [UIColor whiteColor]}];
+    self->application = (AppDelegate *)[UIApplication sharedApplication].delegate;
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if ([segue.identifier isEqualToString:@"EmbedUploadDevicesTableViewController"]) {
+        self->uploadDevicesTableViewController = segue.destinationViewController;
+        self->uploadDevicesTableViewController.actionButtonsDelegate = self;
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -30,19 +45,38 @@
 }
 
 - (IBAction)logoutButtonAction:(id)sender {
-    AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     [appDelegate logout];
 }
 
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (IBAction)sendDataAction:(id)sender {
+    NSArray *devices = uploadDevicesTableViewController.selectedDevices;
+    if (devices.count <= 0) {
+        return;
+    }
+    [AppDelegate showLoadingMask];
+    [LNNetworkManager uploadData:devices onSucess:^(NSMutableArray *sucessDevices){
+        if (sucessDevices.count > 0) {
+            [PropertiesDao removeValuesForDevices:sucessDevices];
+            [AppDelegate hideLoadingMask];
+            [AppDelegate showAlert:@"Data Uploaded Successfully" withTitle:@"Data Upload"];
+        }
+        else{
+            [AppDelegate hideLoadingMask];
+            [AppDelegate showAlert:@"No data to upload was found" withTitle:@"Data Upload"];
+        }
+    } onFailure:^(NSError *error) {
+        [AppDelegate hideLoadingMask];
+        [AppDelegate showAlert:@"Upload Failed, please check your internet connection." withTitle:@"Error"];
+    }];
 }
-*/
+
+-(void)enableActionButtons{
+    [self->sendButton setEnabled:true];
+}
+
+-(void)disableActionButtons{
+    [self->sendButton setEnabled:false];
+}
 
 @end

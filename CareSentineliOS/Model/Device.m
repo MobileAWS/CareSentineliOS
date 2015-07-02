@@ -264,4 +264,42 @@
 -(void)setupCharacteristics{
     self->characteristics = [PropertiesDao initPropertiesForDevice:self.id];
 }
+
+-(BOOL)isOnForSwitch:(NSString *)name{
+    
+    if ([name isEqualToString:BED_SENSOR_PROPERTY_NAME]) {
+        return self.bedSensorActivated;
+    }
+
+    if ([name isEqualToString:CHAIR_SENSOR_PROPERTY_NAME]) {
+        return self.chairSensorActivated;
+    }
+
+    if ([name isEqualToString:TOILET_SENSOR_PROPERTY_NAME]) {
+        return self.toiletSensorActivated;
+    }
+
+    if ([name isEqualToString:INCONTINENCE_SENSOR_PROPERTY_NAME]) {
+        return self.incontinenceSensorActivated;
+    }
+
+    if ([name isEqualToString:CALL_SENSOR_PROPERTY_NAME]) {
+        return self.callSensorActivated;
+    }
+
+    if ([name isEqualToString:PORTAL_SENSOR_PROPERTY_NAME]) {
+        return self.portalSensorActivated;
+    }
+    
+    
+    return false;
+}
+
+- (NSDictionary *)getRequestData{
+    return @{@"hw_id": self.hwId,
+             @"hw_name": self.hwName,
+             @"name":self.name
+    };
+}
+
 @end

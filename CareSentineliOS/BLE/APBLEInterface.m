@@ -101,6 +101,12 @@ static BOOL s_processing_restart = NO;
     APLogDealloc;
 }
 
+- (void)disconnectAll{
+    for(int i = 0; i < self.activeDevices.count; i++){
+        [self->_centralManager cancelPeripheralConnection:self->_activeDevices[i]];
+    }
+}
+
 - (void)scanForDevicesExpired:(NSTimer *)timer{
     [self.centralManager stopScan];
     [timer invalidate];

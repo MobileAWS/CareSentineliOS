@@ -23,6 +23,8 @@
     -(NSArray *) getCharacteristics;
     -(void)switchCharacteristicStatus:(NSString *)name;
     -(void)setupCharacteristics;
+    -(BOOL)isOnForSwitch:(NSString *)name;
+    - (NSDictionary *)getRequestData;
 
     /* Datbase properties */
     @property NSNumber *id;
