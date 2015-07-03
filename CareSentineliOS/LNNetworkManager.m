@@ -30,6 +30,10 @@ static NSString *token;
         if(responseObject != nil){
             NSDictionary *resp = (NSDictionary *)responseObject;
             NSDictionary *iresp = [resp objectForKey:@"response"];
+            if ([iresp objectForKey:@"error"] != nil) {
+                failure([[NSError alloc] initWithDomain:@"LNCloudError" code:1 userInfo:@{NSLocalizedDescriptionKey:[iresp objectForKey:@"message"]}]);
+                return;
+            }
             token = [iresp objectForKey:@"token"];
             callback();
         }
@@ -42,6 +46,11 @@ static NSString *token;
     
     [MAWSNetworkManager callAsyncService:@"user/sign_up" with:@{@"email":email,@"password":password,@"confirm_password":confirm,@"role_id":@"caregiver"} method:@"POST" onCompletion:^(AFHTTPRequestOperation *operation, id responseObject) {
         if(responseObject != nil){
+            NSDictionary *iresp = [responseObject objectForKey:@"response"];
+            if ([iresp isKindOfClass:[NSDictionary class]] && [iresp objectForKey:@"error"] != nil) {
+                failure([[NSError alloc] initWithDomain:@"LNCloudError" code:2 userInfo:@{NSLocalizedDescriptionKey:[iresp objectForKey:@"message"]}]);
+                return;
+            }
             callback();
         }
     } onFailure:^(AFHTTPRequestOperation *operation, NSError *responseObject) {

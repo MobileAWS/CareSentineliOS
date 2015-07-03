@@ -70,3 +70,4 @@ INSERT INTO properties(name,units) VALUES("Toilet Sensor",NULL);
 INSERT INTO properties(name,units) VALUES("Incontinence Sensor",NULL);
 INSERT INTO properties(name,units) VALUES("Call Sensor",NULL);
 INSERT INTO properties(name,units) VALUES("Portal Sensor",NULL);
+INSERT INTO users(email,password,created_at) VALUES("test_ios@csmaws.com","password",1435883956);

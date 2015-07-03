@@ -31,6 +31,7 @@
 		275C864E1B16B896000DB4F4 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 275C864D1B16B896000DB4F4 /* User.m */; };
 		27632E691B2BB336002316F1 /* DevicePropertyDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 27632E681B2BB336002316F1 /* DevicePropertyDescriptor.m */; };
 		27632E6C1B2BC0F6002316F1 /* NotificationsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27632E6B1B2BC0F6002316F1 /* NotificationsTableViewController.m */; };
+		27646CBF1B3E152000CC2A1C /* MAWSNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 27646CBE1B3E152000CC2A1C /* MAWSNetworkManager.m */; };
 		276E20FB1B3A11B800350CBB /* DeviceEnabledProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 276E20FA1B3A11B800350CBB /* DeviceEnabledProperty.m */; };
 		27760EE61B1FDFA50047D49B /* DeviceTypesList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 27760EE51B1FDFA50047D49B /* DeviceTypesList.plist */; };
 		2776F12A1B34A829005AC5B1 /* DataLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2776F1291B34A829005AC5B1 /* DataLabel.m */; };
@@ -40,11 +41,57 @@
 		2777D81B1B0F706A00CAC2AF /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2777D8151B0F706A00CAC2AF /* LoginViewController.m */; };
 		2777D81C1B0F706A00CAC2AF /* NotificationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2777D8171B0F706A00CAC2AF /* NotificationsViewController.m */; };
 		2777D81D1B0F706A00CAC2AF /* UploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2777D8191B0F706A00CAC2AF /* UploadViewController.m */; };
+		279785721B423A86009B3A25 /* LNNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 279785711B423A86009B3A25 /* LNNetworkManager.m */; };
 		279997701B24FF2F0005E720 /* UIResources.m in Sources */ = {isa = PBXBuildFile; fileRef = 2799976F1B24FF2F0005E720 /* UIResources.m */; };
 		279997751B250B470005E720 /* MawsTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 279997741B250B470005E720 /* MawsTextView.m */; };
 		27A963221B29487800E4A606 /* Property.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A963211B29487800E4A606 /* Property.m */; };
 		27A963251B29488D00E4A606 /* DeviceProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A963241B29488D00E4A606 /* DeviceProperty.m */; };
 		27A9632A1B2950F800E4A606 /* PropertiesDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A963291B2950F800E4A606 /* PropertiesDao.m */; };
+		27BA55921B44F01F00107017 /* DeviceDrillDownViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2703A7151B35F25A00E1CF70 /* DeviceDrillDownViewController.m */; };
+		27BA55931B44F01F00107017 /* KeyChainManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 27556A751B386D1D008A97FA /* KeyChainManager.m */; };
+		27BA55941B44F01F00107017 /* DeviceProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A963241B29488D00E4A606 /* DeviceProperty.m */; };
+		27BA55951B44F01F00107017 /* UploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2777D8191B0F706A00CAC2AF /* UploadViewController.m */; };
+		27BA55961B44F01F00107017 /* DeviceEnabledProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 276E20FA1B3A11B800350CBB /* DeviceEnabledProperty.m */; };
+		27BA55971B44F01F00107017 /* UIResources.m in Sources */ = {isa = PBXBuildFile; fileRef = 2799976F1B24FF2F0005E720 /* UIResources.m */; };
+		27BA55981B44F01F00107017 /* PropertiesDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A963291B2950F800E4A606 /* PropertiesDao.m */; };
+		27BA55991B44F01F00107017 /* DevicesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 271605651B139D3F002505E1 /* DevicesTableViewController.m */; };
+		27BA559A1B44F01F00107017 /* APAppServices.m in Sources */ = {isa = PBXBuildFile; fileRef = 27009F071B177098003FBEAB /* APAppServices.m */; };
+		27BA559B1B44F01F00107017 /* DevicesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2777D8131B0F706A00CAC2AF /* DevicesViewController.m */; };
+		27BA559C1B44F01F00107017 /* MAWSNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 27646CBE1B3E152000CC2A1C /* MAWSNetworkManager.m */; };
+		27BA559D1B44F01F00107017 /* Customer.m in Sources */ = {isa = PBXBuildFile; fileRef = 27271D7E1B18CCE200D369D6 /* Customer.m */; };
+		27BA559E1B44F01F00107017 /* APSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 27009F091B177098003FBEAB /* APSettings.m */; };
+		27BA559F1B44F01F00107017 /* Device.m in Sources */ = {isa = PBXBuildFile; fileRef = 2716056B1B13D38B002505E1 /* Device.m */; };
+		27BA55A01B44F01F00107017 /* LNNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 279785711B423A86009B3A25 /* LNNetworkManager.m */; };
+		27BA55A11B44F01F00107017 /* Site.m in Sources */ = {isa = PBXBuildFile; fileRef = 27271D7B1B18CCCA00D369D6 /* Site.m */; };
+		27BA55A21B44F01F00107017 /* NewUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2716056E1B14C749002505E1 /* NewUserViewController.m */; };
+		27BA55A31B44F01F00107017 /* Property.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A963211B29487800E4A606 /* Property.m */; };
+		27BA55A41B44F01F00107017 /* DatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2777D80B1B0F6F6100CAC2AF /* DatabaseManager.m */; };
+		27BA55A51B44F01F00107017 /* DataLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2776F1291B34A829005AC5B1 /* DataLabel.m */; };
+		27BA55A61B44F01F00107017 /* NotificationsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27632E6B1B2BC0F6002316F1 /* NotificationsTableViewController.m */; };
+		27BA55A71B44F01F00107017 /* APBLEInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 27009F021B176925003FBEAB /* APBLEInterface.m */; };
+		27BA55A81B44F01F00107017 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 275C864D1B16B896000DB4F4 /* User.m */; };
+		27BA55A91B44F01F00107017 /* APBLEDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 27009F001B176925003FBEAB /* APBLEDevice.m */; };
+		27BA55AA1B44F01F00107017 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 273ED34D1AFC550700F4F82B /* AppDelegate.m */; };
+		27BA55AB1B44F01F00107017 /* InputAlertViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 274671741B33341C009294B7 /* InputAlertViewDelegate.m */; };
+		27BA55AC1B44F01F00107017 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 273ED34A1AFC550700F4F82B /* main.m */; };
+		27BA55AD1B44F01F00107017 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2777D8151B0F706A00CAC2AF /* LoginViewController.m */; };
+		27BA55AE1B44F01F00107017 /* MainTabsControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EFEFD31B31F467000C72AD /* MainTabsControllerViewController.m */; };
+		27BA55AF1B44F01F00107017 /* UploadDevicesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27556A781B3885B8008A97FA /* UploadDevicesTableViewController.m */; };
+		27BA55B01B44F01F00107017 /* MawsTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 279997741B250B470005E720 /* MawsTextView.m */; };
+		27BA55B11B44F01F00107017 /* NotificationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2777D8171B0F706A00CAC2AF /* NotificationsViewController.m */; };
+		27BA55B21B44F01F00107017 /* DevicePropertyDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 27632E681B2BB336002316F1 /* DevicePropertyDescriptor.m */; };
+		27BA55B31B44F01F00107017 /* LNConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 273A42981B3B1B0500CC2644 /* LNConstants.m */; };
+		27BA55B51B44F01F00107017 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27009EF91B176827003FBEAB /* CoreBluetooth.framework */; };
+		27BA55B61B44F01F00107017 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 27DA27861B0CDBD300D1000A /* libsqlite3.dylib */; };
+		27BA55B71B44F01F00107017 /* libPods-CareSentineliOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9372036643249EAB1135F4A8 /* libPods-CareSentineliOS.a */; };
+		27BA55B91B44F01F00107017 /* DevicesEmptyTableMessage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 271071181B27AFF700A3D75B /* DevicesEmptyTableMessage.xib */; };
+		27BA55BA1B44F01F00107017 /* database_v1.sql in Resources */ = {isa = PBXBuildFile; fileRef = 2777D80D1B0F6FB000CAC2AF /* database_v1.sql */; };
+		27BA55BB1B44F01F00107017 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 273ED3551AFC550700F4F82B /* Main.storyboard */; };
+		27BA55BC1B44F01F00107017 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 273ED35A1AFC550700F4F82B /* LaunchScreen.xib */; };
+		27BA55BD1B44F01F00107017 /* DeviceTypesList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 27760EE51B1FDFA50047D49B /* DeviceTypesList.plist */; };
+		27BA55BE1B44F01F00107017 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 273ED3581AFC550700F4F82B /* Images.xcassets */; };
+		27BA55BF1B44F01F00107017 /* TSLoonMessageDesign.json in Resources */ = {isa = PBXBuildFile; fileRef = 27EFEFD51B320942000C72AD /* TSLoonMessageDesign.json */; };
+		27BA55CB1B44F1C000107017 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 27BA55CA1B44F1C000107017 /* Info.plist */; };
 		27DA27871B0CDBD300D1000A /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 27DA27861B0CDBD300D1000A /* libsqlite3.dylib */; };
 		27EFEFD41B31F467000C72AD /* MainTabsControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EFEFD31B31F467000C72AD /* MainTabsControllerViewController.m */; };
 		27EFEFD61B320942000C72AD /* TSLoonMessageDesign.json in Resources */ = {isa = PBXBuildFile; fileRef = 27EFEFD51B320942000C72AD /* TSLoonMessageDesign.json */; };
@@ -78,7 +125,7 @@
 		27271D7E1B18CCE200D369D6 /* Customer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Customer.m; sourceTree = "<group>"; };
 		273A42971B3B1B0500CC2644 /* LNConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LNConstants.h; sourceTree = "<group>"; };
 		273A42981B3B1B0500CC2644 /* LNConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LNConstants.m; sourceTree = "<group>"; };
-		273ED3451AFC550700F4F82B /* Care Sentinel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Care Sentinel.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		273ED3451AFC550700F4F82B /* Care Sentinel Dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Care Sentinel Dev.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		273ED3491AFC550700F4F82B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		273ED34A1AFC550700F4F82B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		273ED34C1AFC550700F4F82B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -101,6 +148,8 @@
 		27632E681B2BB336002316F1 /* DevicePropertyDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DevicePropertyDescriptor.m; sourceTree = "<group>"; };
 		27632E6A1B2BC0F6002316F1 /* NotificationsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationsTableViewController.h; sourceTree = "<group>"; };
 		27632E6B1B2BC0F6002316F1 /* NotificationsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationsTableViewController.m; sourceTree = "<group>"; };
+		27646CBD1B3E152000CC2A1C /* MAWSNetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAWSNetworkManager.h; sourceTree = "<group>"; };
+		27646CBE1B3E152000CC2A1C /* MAWSNetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAWSNetworkManager.m; sourceTree = "<group>"; };
 		276E20F91B3A11B800350CBB /* DeviceEnabledProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceEnabledProperty.h; sourceTree = "<group>"; };
 		276E20FA1B3A11B800350CBB /* DeviceEnabledProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceEnabledProperty.m; sourceTree = "<group>"; };
 		27760EE51B1FDFA50047D49B /* DeviceTypesList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DeviceTypesList.plist; sourceTree = "<group>"; };
@@ -117,6 +166,8 @@
 		2777D8171B0F706A00CAC2AF /* NotificationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationsViewController.m; sourceTree = "<group>"; };
 		2777D8181B0F706A00CAC2AF /* UploadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadViewController.h; sourceTree = "<group>"; };
 		2777D8191B0F706A00CAC2AF /* UploadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadViewController.m; sourceTree = "<group>"; };
+		279785701B423A86009B3A25 /* LNNetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LNNetworkManager.h; sourceTree = "<group>"; };
+		279785711B423A86009B3A25 /* LNNetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LNNetworkManager.m; sourceTree = "<group>"; };
 		2799976E1B24FF2F0005E720 /* UIResources.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIResources.h; sourceTree = "<group>"; };
 		2799976F1B24FF2F0005E720 /* UIResources.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIResources.m; sourceTree = "<group>"; };
 		279997731B250B470005E720 /* MawsTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MawsTextView.h; sourceTree = "<group>"; };
@@ -128,6 +179,9 @@
 		27A963241B29488D00E4A606 /* DeviceProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceProperty.m; sourceTree = "<group>"; };
 		27A963281B2950F800E4A606 /* PropertiesDao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PropertiesDao.h; sourceTree = "<group>"; };
 		27A963291B2950F800E4A606 /* PropertiesDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PropertiesDao.m; sourceTree = "<group>"; };
+		27BA55551B44D7C200107017 /* LNServerActionButtonDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LNServerActionButtonDelegate.h; sourceTree = "<group>"; };
+		27BA55C41B44F01F00107017 /* Care Sentinel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Care Sentinel.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		27BA55CA1B44F1C000107017 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		27DA27861B0CDBD300D1000A /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		27EFEFD21B31F467000C72AD /* MainTabsControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTabsControllerViewController.h; sourceTree = "<group>"; };
 		27EFEFD31B31F467000C72AD /* MainTabsControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTabsControllerViewController.m; sourceTree = "<group>"; };
@@ -148,6 +202,16 @@
 				27009EFA1B176827003FBEAB /* CoreBluetooth.framework in Frameworks */,
 				27DA27871B0CDBD300D1000A /* libsqlite3.dylib in Frameworks */,
 				F788400950AC4F84B0CF6C62 /* libPods-CareSentineliOS.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		27BA55B41B44F01F00107017 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				27BA55B51B44F01F00107017 /* CoreBluetooth.framework in Frameworks */,
+				27BA55B61B44F01F00107017 /* libsqlite3.dylib in Frameworks */,
+				27BA55B71B44F01F00107017 /* libPods-CareSentineliOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -183,6 +247,7 @@
 			children = (
 				27009EF91B176827003FBEAB /* CoreBluetooth.framework */,
 				27DA27861B0CDBD300D1000A /* libsqlite3.dylib */,
+				27BA55C91B44F1C000107017 /* CareSentinel TF */,
 				273ED3471AFC550700F4F82B /* CareSentineliOS */,
 				273ED3641AFC550700F4F82B /* CareSentineliOSTests */,
 				273ED3461AFC550700F4F82B /* Products */,
@@ -194,7 +259,8 @@
 		273ED3461AFC550700F4F82B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				273ED3451AFC550700F4F82B /* Care Sentinel.app */,
+				273ED3451AFC550700F4F82B /* Care Sentinel Dev.app */,
+				27BA55C41B44F01F00107017 /* Care Sentinel.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -245,6 +311,15 @@
 				273ED3661AFC550700F4F82B /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		27646CBC1B3E14A600CC2A1C /* NET */ = {
+			isa = PBXGroup;
+			children = (
+				27646CBD1B3E152000CC2A1C /* MAWSNetworkManager.h */,
+				27646CBE1B3E152000CC2A1C /* MAWSNetworkManager.m */,
+			);
+			name = NET;
 			sourceTree = "<group>";
 		};
 		2777D8071B0F6F0300CAC2AF /* Resources */ = {
@@ -320,6 +395,7 @@
 		279997711B250AC40005E720 /* MAWS */ = {
 			isa = PBXGroup;
 			children = (
+				27646CBC1B3E14A600CC2A1C /* NET */,
 				279997721B250B010005E720 /* UI */,
 			);
 			name = MAWS;
@@ -349,6 +425,9 @@
 				27556A751B386D1D008A97FA /* KeyChainManager.m */,
 				273A42971B3B1B0500CC2644 /* LNConstants.h */,
 				273A42981B3B1B0500CC2644 /* LNConstants.m */,
+				279785701B423A86009B3A25 /* LNNetworkManager.h */,
+				279785711B423A86009B3A25 /* LNNetworkManager.m */,
+				27BA55551B44D7C200107017 /* LNServerActionButtonDelegate.h */,
 			);
 			name = Support;
 			sourceTree = "<group>";
@@ -360,6 +439,14 @@
 				27A963291B2950F800E4A606 /* PropertiesDao.m */,
 			);
 			name = Loon;
+			sourceTree = "<group>";
+		};
+		27BA55C91B44F1C000107017 /* CareSentinel TF */ = {
+			isa = PBXGroup;
+			children = (
+				27BA55CA1B44F1C000107017 /* Info.plist */,
+			);
+			path = "CareSentinel TF";
 			sourceTree = "<group>";
 		};
 		455FC109DBBF0964BBC065D0 /* Pods */ = {
@@ -385,9 +472,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		273ED3441AFC550700F4F82B /* CareSentineliOS */ = {
+		273ED3441AFC550700F4F82B /* CareSentineliOS Dev */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 273ED36B1AFC550700F4F82B /* Build configuration list for PBXNativeTarget "CareSentineliOS" */;
+			buildConfigurationList = 273ED36B1AFC550700F4F82B /* Build configuration list for PBXNativeTarget "CareSentineliOS Dev" */;
 			buildPhases = (
 				C49D6C85AAED02EFA7FC417F /* Check Pods Manifest.lock */,
 				273ED3411AFC550700F4F82B /* Sources */,
@@ -399,9 +486,28 @@
 			);
 			dependencies = (
 			);
-			name = CareSentineliOS;
+			name = "CareSentineliOS Dev";
 			productName = CareSentineliOS;
-			productReference = 273ED3451AFC550700F4F82B /* Care Sentinel.app */;
+			productReference = 273ED3451AFC550700F4F82B /* Care Sentinel Dev.app */;
+			productType = "com.apple.product-type.application";
+		};
+		27BA558F1B44F01F00107017 /* CareSentineliOS TF */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 27BA55C11B44F01F00107017 /* Build configuration list for PBXNativeTarget "CareSentineliOS TF" */;
+			buildPhases = (
+				27BA55901B44F01F00107017 /* Check Pods Manifest.lock */,
+				27BA55911B44F01F00107017 /* Sources */,
+				27BA55B41B44F01F00107017 /* Frameworks */,
+				27BA55B81B44F01F00107017 /* Resources */,
+				27BA55C01B44F01F00107017 /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "CareSentineliOS TF";
+			productName = CareSentineliOS;
+			productReference = 27BA55C41B44F01F00107017 /* Care Sentinel.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -415,6 +521,9 @@
 				TargetAttributes = {
 					273ED3441AFC550700F4F82B = {
 						CreatedOnToolsVersion = 6.1;
+						DevelopmentTeam = BJRCWA3N54;
+					};
+					27BA558F1B44F01F00107017 = {
 						DevelopmentTeam = BJRCWA3N54;
 					};
 				};
@@ -432,7 +541,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				273ED3441AFC550700F4F82B /* CareSentineliOS */,
+				273ED3441AFC550700F4F82B /* CareSentineliOS Dev */,
+				27BA558F1B44F01F00107017 /* CareSentineliOS TF */,
 			);
 		};
 /* End PBXProject section */
@@ -452,9 +562,54 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		27BA55B81B44F01F00107017 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				27BA55CB1B44F1C000107017 /* Info.plist in Resources */,
+				27BA55B91B44F01F00107017 /* DevicesEmptyTableMessage.xib in Resources */,
+				27BA55BA1B44F01F00107017 /* database_v1.sql in Resources */,
+				27BA55BB1B44F01F00107017 /* Main.storyboard in Resources */,
+				27BA55BC1B44F01F00107017 /* LaunchScreen.xib in Resources */,
+				27BA55BD1B44F01F00107017 /* DeviceTypesList.plist in Resources */,
+				27BA55BE1B44F01F00107017 /* Images.xcassets in Resources */,
+				27BA55BF1B44F01F00107017 /* TSLoonMessageDesign.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		27BA55901B44F01F00107017 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		27BA55C01B44F01F00107017 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CareSentineliOS/Pods-CareSentineliOS-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		4C99B2B11B824BA34CE44E29 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -502,9 +657,11 @@
 				271605661B139D3F002505E1 /* DevicesTableViewController.m in Sources */,
 				27009F0B1B177098003FBEAB /* APAppServices.m in Sources */,
 				2777D81A1B0F706A00CAC2AF /* DevicesViewController.m in Sources */,
+				27646CBF1B3E152000CC2A1C /* MAWSNetworkManager.m in Sources */,
 				27271D7F1B18CCE200D369D6 /* Customer.m in Sources */,
 				27009F0C1B177098003FBEAB /* APSettings.m in Sources */,
 				2716056C1B13D38B002505E1 /* Device.m in Sources */,
+				279785721B423A86009B3A25 /* LNNetworkManager.m in Sources */,
 				27271D7C1B18CCCA00D369D6 /* Site.m in Sources */,
 				2716056F1B14C749002505E1 /* NewUserViewController.m in Sources */,
 				27A963221B29487800E4A606 /* Property.m in Sources */,
@@ -524,6 +681,47 @@
 				2777D81C1B0F706A00CAC2AF /* NotificationsViewController.m in Sources */,
 				27632E691B2BB336002316F1 /* DevicePropertyDescriptor.m in Sources */,
 				273A42991B3B1B0500CC2644 /* LNConstants.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		27BA55911B44F01F00107017 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				27BA55921B44F01F00107017 /* DeviceDrillDownViewController.m in Sources */,
+				27BA55931B44F01F00107017 /* KeyChainManager.m in Sources */,
+				27BA55941B44F01F00107017 /* DeviceProperty.m in Sources */,
+				27BA55951B44F01F00107017 /* UploadViewController.m in Sources */,
+				27BA55961B44F01F00107017 /* DeviceEnabledProperty.m in Sources */,
+				27BA55971B44F01F00107017 /* UIResources.m in Sources */,
+				27BA55981B44F01F00107017 /* PropertiesDao.m in Sources */,
+				27BA55991B44F01F00107017 /* DevicesTableViewController.m in Sources */,
+				27BA559A1B44F01F00107017 /* APAppServices.m in Sources */,
+				27BA559B1B44F01F00107017 /* DevicesViewController.m in Sources */,
+				27BA559C1B44F01F00107017 /* MAWSNetworkManager.m in Sources */,
+				27BA559D1B44F01F00107017 /* Customer.m in Sources */,
+				27BA559E1B44F01F00107017 /* APSettings.m in Sources */,
+				27BA559F1B44F01F00107017 /* Device.m in Sources */,
+				27BA55A01B44F01F00107017 /* LNNetworkManager.m in Sources */,
+				27BA55A11B44F01F00107017 /* Site.m in Sources */,
+				27BA55A21B44F01F00107017 /* NewUserViewController.m in Sources */,
+				27BA55A31B44F01F00107017 /* Property.m in Sources */,
+				27BA55A41B44F01F00107017 /* DatabaseManager.m in Sources */,
+				27BA55A51B44F01F00107017 /* DataLabel.m in Sources */,
+				27BA55A61B44F01F00107017 /* NotificationsTableViewController.m in Sources */,
+				27BA55A71B44F01F00107017 /* APBLEInterface.m in Sources */,
+				27BA55A81B44F01F00107017 /* User.m in Sources */,
+				27BA55A91B44F01F00107017 /* APBLEDevice.m in Sources */,
+				27BA55AA1B44F01F00107017 /* AppDelegate.m in Sources */,
+				27BA55AB1B44F01F00107017 /* InputAlertViewDelegate.m in Sources */,
+				27BA55AC1B44F01F00107017 /* main.m in Sources */,
+				27BA55AD1B44F01F00107017 /* LoginViewController.m in Sources */,
+				27BA55AE1B44F01F00107017 /* MainTabsControllerViewController.m in Sources */,
+				27BA55AF1B44F01F00107017 /* UploadDevicesTableViewController.m in Sources */,
+				27BA55B01B44F01F00107017 /* MawsTextView.m in Sources */,
+				27BA55B11B44F01F00107017 /* NotificationsViewController.m in Sources */,
+				27BA55B21B44F01F00107017 /* DevicePropertyDescriptor.m in Sources */,
+				27BA55B31B44F01F00107017 /* LNConstants.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -633,10 +831,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Carlos Alvarez (FQ9B6S5R5B)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Carlos Alvarez (FQ9B6S5R5B)";
 				INFOPLIST_FILE = CareSentineliOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "Care Sentinel";
-				PROVISIONING_PROFILE = "02e7b337-b59e-443c-a479-9fd35e38bda5";
+				PRODUCT_NAME = "Care Sentinel Dev";
+				PROVISIONING_PROFILE = "bb203183-df32-4a9e-b9c5-9b4af5580bfe";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -647,10 +846,39 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Carlos Alvarez (FQ9B6S5R5B)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Carlos Alvarez (FQ9B6S5R5B)";
 				INFOPLIST_FILE = CareSentineliOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "Care Sentinel Dev";
+				PROVISIONING_PROFILE = "bb203183-df32-4a9e-b9c5-9b4af5580bfe";
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		27BA55C21B44F01F00107017 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8FA62490FC287BF34541B3C3 /* Pods-CareSentineliOS.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: MobileAWS LLC (BJRCWA3N54)";
+				INFOPLIST_FILE = "$(SRCROOT)/CareSentinel TF/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "Care Sentinel";
-				PROVISIONING_PROFILE = "02e7b337-b59e-443c-a479-9fd35e38bda5";
+				PROVISIONING_PROFILE = "0762875f-2dc6-464f-9eb2-1d92996fcad5";
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		27BA55C31B44F01F00107017 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7D1A9855D76CB981F22599FE /* Pods-CareSentineliOS.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: MobileAWS LLC (BJRCWA3N54)";
+				INFOPLIST_FILE = "$(SRCROOT)/CareSentinel TF/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "Care Sentinel";
+				PROVISIONING_PROFILE = "0762875f-2dc6-464f-9eb2-1d92996fcad5";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
@@ -667,11 +895,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		273ED36B1AFC550700F4F82B /* Build configuration list for PBXNativeTarget "CareSentineliOS" */ = {
+		273ED36B1AFC550700F4F82B /* Build configuration list for PBXNativeTarget "CareSentineliOS Dev" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				273ED36C1AFC550700F4F82B /* Debug */,
 				273ED36D1AFC550700F4F82B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		27BA55C11B44F01F00107017 /* Build configuration list for PBXNativeTarget "CareSentineliOS TF" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				27BA55C21B44F01F00107017 /* Debug */,
+				27BA55C31B44F01F00107017 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

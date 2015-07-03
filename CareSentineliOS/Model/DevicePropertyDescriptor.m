@@ -54,7 +54,8 @@
     return @{
              @"key":self.propertyName,
              @"value":self.value,
-             @"dismissTime":self.dismissedAt == nil ? @"" : self.dismissedAt
+             @"dismiss_time":self.dismissedAt == nil ? @"" : self.dismissedAt,
+             @"created_at":self.createdAt
              };
 }
 @end

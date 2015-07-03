@@ -4,15 +4,17 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>CareSentineliOS copy.xcscheme</key>
+		<key>CareSentineliOS Dev.xcscheme</key>
 		<dict>
+			<key>orderHint</key>
+			<integer>6</integer>
+		</dict>
+		<key>CareSentineliOS TF.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<true/>
 			<key>orderHint</key>
 			<integer>5</integer>
-		</dict>
-		<key>CareSentineliOS.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>0</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
@@ -28,6 +30,16 @@
 			<true/>
 		</dict>
 		<key>27556A431B386444008A97FA</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>27BA55581B44E89A00107017</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>27BA558F1B44F01F00107017</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -17,6 +17,7 @@ static NSString *baseUrl;
 +(NSString *)getBaseUrl{
     if (baseUrl == nil) {
         baseUrl = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"BaseServicesURL"];
+        NSLog(@"%@",baseUrl);
     }
     
     return baseUrl;

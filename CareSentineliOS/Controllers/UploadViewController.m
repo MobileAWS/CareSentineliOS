@@ -54,7 +54,7 @@
     if (devices.count <= 0) {
         return;
     }
-    [AppDelegate showLoadingMask];
+    [AppDelegate showLoadingMaskWith:@"Uploading Data"];
     [LNNetworkManager uploadData:devices onSucess:^(NSMutableArray *sucessDevices){
         if (sucessDevices.count > 0) {
             [PropertiesDao removeValuesForDevices:sucessDevices];

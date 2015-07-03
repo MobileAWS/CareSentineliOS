@@ -125,11 +125,13 @@
         return;
     }
     
-    
+    [AppDelegate showLoadingMaskWith:@"Creating User"];
     [LNNetworkManager signupWith:self->emailTextField.text withPassword:self->passwordTextField.text andConfirmPassword:self->confirmPassword.text onSucess:^(void){
+        [AppDelegate hideLoadingMask];        
         [self userLocalSignup];
     } onFailure:^(NSError *error) {
-        [AppDelegate showAlert:@"User cannot be created. Check your internet connection and try again." withTitle:@"Error Creating User"];
+        [AppDelegate hideLoadingMask];
+        [AppDelegate showAlert:error.localizedDescription withTitle:@"Error Creating User"];
     }];
     
 }

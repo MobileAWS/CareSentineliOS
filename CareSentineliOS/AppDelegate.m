@@ -130,7 +130,7 @@ static void (^currentAlertInvocation) (void);
         self.currentUser = nil;
         self.devicesData = nil;
         self.ignoredDevices = nil;
-        [self.bleInterface disconnectAll];
+        //[self.bleInterface disconnectAll];
         self.bleInterface = nil;
         [LNNetworkManager clear];
         
@@ -150,6 +150,12 @@ static void (^currentAlertInvocation) (void);
 +(void)showLoadingMask{
     [MBProgressHUD showHUDAddedTo:[[UIApplication sharedApplication] keyWindow] animated:YES];
 }
+
++(void)showLoadingMaskWith:(NSString *)text{
+    MBProgressHUD *progress = [MBProgressHUD showHUDAddedTo:[[UIApplication sharedApplication] keyWindow] animated:YES];
+    progress.labelText = text;
+}
+
 
 +(void)hideLoadingMask{
     [MBProgressHUD hideHUDForView:[[UIApplication sharedApplication] keyWindow] animated:YES];

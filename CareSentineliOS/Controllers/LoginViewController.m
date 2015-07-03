@@ -141,42 +141,59 @@
         return;
     }
     
+    if (cloudCheck) {
+        [AppDelegate showLoadingMaskWith:@"Logging In"];
+        [LNNetworkManager loginWithServer:self->emailTextField.text withPassword:self->passwordTextField.text forSite:self->siteIdTextField.text andCustomer:self->clientIdTextField.text onSucess:^(void){
+            [AppDelegate hideLoadingMask];
+            [self doLocalLogin:true];
+        } onFailure:^(NSError *error) {
+            [AppDelegate hideLoadingMask];
+            [AppDelegate showAlert:error.localizedDescription withTitle:@"Login Error"];
+            NSLog(@"%@",error);
+        }];
+    }
+    else{
+        [self doLocalLogin:false];
+    }
+
+    return;
+}
+
+-(void)doLocalLogin:(BOOL)cloudChecked{
+    
     DatabaseManager *dbManager = [DatabaseManager getSharedIntance];
     dbManager.keepConnection = true;
     User *user = (User *)[dbManager findWithCondition:[NSString stringWithFormat:@"email = '%@'",self->emailTextField.text] forModel:[User class]];
     
     if (user == nil) {
-        [AppDelegate showAlert:@"This user does not exists" withTitle:@"Invalid Data"];
-        [dbManager close];
-        return;
+        if (!cloudChecked){
+            [AppDelegate showAlert:@"This user does not exists" withTitle:@"Invalid Data"];
+            [dbManager close];
+            return;
+        }
+        else{
+            /** If the user exists remotely, but not locally, we create it. This helps recovering
+              *  your username if you change devices, for example.
+              */
+            User *tmpUser = [[User alloc] init];
+            tmpUser.email = self->emailTextField.text;
+            tmpUser.password = [User getEncryptedPasswordFor:self->passwordTextField.text];
+            tmpUser.createdAt = [[NSNumber alloc] initWithInt:[[NSDate date] timeIntervalSince1970]];
+            [dbManager save:tmpUser];
+            user = tmpUser;
+            tmpUser = nil;
+        }
+        
     }
     
     if(![user.password isEqualToString:[User getEncryptedPasswordFor:self->passwordTextField.text]]){
         [AppDelegate showAlert:@"Invalid Password Provided" withTitle:@"Invalid Data"];
         [dbManager close];
         return;
-
+        
     }
     
-    [dbManager close];
-    
-    if (cloudCheck) {
-        [LNNetworkManager loginWithServer:self->emailTextField.text withPassword:self->passwordTextField.text forSite:self->siteIdTextField.text andCustomer:self->clientIdTextField.text onSucess:^(void){
-            [self doLocalLogin:user];
-        } onFailure:^(NSError *error) {
-            [AppDelegate showAlert:@"Could not login with the server, please check your internet connection." withTitle:@"Login Error"];
-            NSLog(@"%@",error);
-        }];
-    }
-    else{
-        [self doLocalLogin:user];
-    }
 
-    return;
-}
-
--(void)doLocalLogin:(User *)user{
-    DatabaseManager *dbManager = [DatabaseManager getSharedIntance];
     Site *site = (Site *)[dbManager findWithCondition:[NSString stringWithFormat:@"site_id = '%@'",self->siteIdTextField.text] forModel:[Site class]];
 
    
