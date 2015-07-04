@@ -244,32 +244,17 @@
     return nil;
 }
 
-- (IBAction)dismissAlert:(id)sender {
+- (IBAction)dismissAlert:(id)sender {        
+    CGPoint point = [((UITapGestureRecognizer *)sender) locationInView:self.tableView];
+    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:point];
+    Device *device = (Device *)application.devicesData[indexPath.row];
     
-    UIView *superView = [((UITapGestureRecognizer *)sender).view superview];
-    UIView *foundSuperView = nil;
-    
-    while (nil != superView && nil == foundSuperView) {
-        if ([superView isKindOfClass:[UITableViewCell class]]) {
-            foundSuperView = superView;
-        } else {
-            superView = superView.superview;
-        }
-    }
-    
-    if (superView != nil){
-        UITableViewCell *cell = (UITableViewCell *)superView;
-        NSIndexPath *indexPath = [self->targetTableView indexPathForCell:cell];
-        Device *device = (Device *)application.devicesData[indexPath.row];
-        
-        [PropertiesDao dismistProperty: device.lastPropertyChange.id];
-        device.lastPropertyMessage = nil;
-        device.lastPropertyChange = nil;
+    [PropertiesDao dismistProperty: device.lastPropertyChange.id];
+    device.lastPropertyMessage = nil;
+    device.lastPropertyChange = nil;
 
-        [self->targetTableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:indexPath.row inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
-    }
+    [self->targetTableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:indexPath.row inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
     
-
 }
 
 -(void)tableView:(UITableView *)tableView didHighlightRowAtIndexPath:(NSIndexPath *)indexPath{

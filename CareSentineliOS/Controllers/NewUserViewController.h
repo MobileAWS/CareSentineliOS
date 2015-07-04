@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LNDialogCompleteDelegate.h"
 
 @interface NewUserViewController : UIViewController
-
+    @property (nonatomic,weak) id<LNDialogCompleteDelegate> dialogCompleteDelegate;
 @end

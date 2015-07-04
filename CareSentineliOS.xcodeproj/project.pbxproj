@@ -183,6 +183,7 @@
 		27BA55C41B44F01F00107017 /* Care Sentinel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Care Sentinel.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		27BA55CA1B44F1C000107017 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		27DA27861B0CDBD300D1000A /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		27EB02371B474EDC0061F20E /* LNDialogCompleteDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LNDialogCompleteDelegate.h; sourceTree = "<group>"; };
 		27EFEFD21B31F467000C72AD /* MainTabsControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTabsControllerViewController.h; sourceTree = "<group>"; };
 		27EFEFD31B31F467000C72AD /* MainTabsControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTabsControllerViewController.m; sourceTree = "<group>"; };
 		27EFEFD51B320942000C72AD /* TSLoonMessageDesign.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TSLoonMessageDesign.json; sourceTree = "<group>"; };
@@ -428,6 +429,7 @@
 				279785701B423A86009B3A25 /* LNNetworkManager.h */,
 				279785711B423A86009B3A25 /* LNNetworkManager.m */,
 				27BA55551B44D7C200107017 /* LNServerActionButtonDelegate.h */,
+				27EB02371B474EDC0061F20E /* LNDialogCompleteDelegate.h */,
 			);
 			name = Support;
 			sourceTree = "<group>";

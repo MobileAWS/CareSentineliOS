@@ -832,7 +832,7 @@
                                                     <constraint firstItem="pQy-dO-Aqt" firstAttribute="top" secondItem="T9Q-V7-j0r" secondAttribute="bottom" constant="21" id="hF4-CF-gAX"/>
                                                 </constraints>
                                             </view>
-                                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New User?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MNG-Iz-zlk">
+                                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New User" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MNG-Iz-zlk">
                                                 <rect key="frame" x="16" y="504" width="111" height="21"/>
                                                 <gestureRecognizers/>
                                                 <constraints>
@@ -846,7 +846,7 @@
                                                     <outletCollection property="gestureRecognizers" destination="HeM-UG-eVU" appends="YES" id="xGr-kS-oL5"/>
                                                 </connections>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Forgot Password?" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vaP-Kb-shh">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Forgot Password" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vaP-Kb-shh">
                                                 <rect key="frame" x="429" y="504" width="155" height="21"/>
                                                 <gestureRecognizers/>
                                                 <constraints>
@@ -915,7 +915,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x3U-5Z-Af3" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="HeM-UG-eVU">
                     <connections>
-                        <segue destination="kbQ-X8-0CR" kind="presentation" id="nQK-9p-YoV"/>
+                        <segue destination="kbQ-X8-0CR" kind="presentation" identifier="ShowNewUserDialogSegue" id="nQK-9p-YoV"/>
                     </connections>
                 </tapGestureRecognizer>
                 <tapGestureRecognizer id="Gtt-2g-psv"/>

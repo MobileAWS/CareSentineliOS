@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "MawsTextView.h"
+#import "LNDialogCompleteDelegate.h"
 
-@interface LoginViewController : UIViewController
+@interface LoginViewController : UIViewController <LNDialogCompleteDelegate>
+
 
 @end

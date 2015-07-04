@@ -17,6 +17,7 @@
 #import "MawsTextView.h"
 #import "KeyChainManager.h"
 #import "LNNetworkManager.h"
+#import "NewUserViewController.h"
 
 @interface LoginViewController () <UITextFieldDelegate>{
     
@@ -255,6 +256,27 @@
     [KeyChainManager savePassword:passwordTextField.text forAccount:@"maws-loon-password"];
     [self performSegueWithIdentifier:@"MainTabsSegueIdentifier" sender:self->loginButton];
 }
+
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if([segue.identifier isEqualToString:@"ShowNewUserDialogSegue"]){
+        ((NewUserViewController *)segue.destinationViewController).dialogCompleteDelegate = self;
+    }
+}
+
+-(void)completedDialogWith:(id)targetData{
+    if (targetData == nil){
+        return;
+    }
+    User *targetUser = (User *)targetData;
+    self->emailTextField.text = targetUser.email;
+    self->passwordTextField.text = targetUser.password;
+    self->siteIdTextField.text = @"";
+    self->clientIdTextField.text = @"";
+    
+}
+
+
 
 
 /*

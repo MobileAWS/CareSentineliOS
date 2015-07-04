@@ -55,10 +55,10 @@
     notificationsData = [PropertiesDao listPropertiesForUser:self->application.currentUser.id];
     sectionIndexes = [[NSMutableArray alloc]init];
     NSNumber *lastId = 0;
-    for (int i = 0; i < notificationsData.count; i++) {
+    for (NSUInteger i = 0; i < notificationsData.count; i++) {
         NSNumber *currentId = ((DevicePropertyDescriptor *)notificationsData[i]).deviceId;
         if (![lastId isEqualToNumber:currentId]) {
-            [sectionIndexes addObject:[[NSNumber alloc] initWithInt:i]];
+            [sectionIndexes addObject:[NSIndexPath indexPathForItem:i inSection:[currentId integerValue]]];
             lastId = currentId;
         }
     }
@@ -82,15 +82,18 @@
 #pragma mark - Table view data source
 
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    Device *device = (Device *)[self->application.devicesData objectAtIndex:section];
-    return device.name;
+    NSIndexPath *index = [self->sectionIndexes objectAtIndex:section];
+    for (int i = 0; i < application.devicesData.count; i++) {
+        Device *tmpDevice = (Device *)application.devicesData[i];
+        if ([tmpDevice.id integerValue] == index.section) {
+            return tmpDevice.name;
+        }
+    }
+    return @"";
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    if (notificationsData != nil && notificationsData.count > 0) {
-        return [self->application.devicesData count];
-    }
-    return 0;
+    return sectionIndexes.count;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
@@ -99,7 +102,15 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (notificationsData != nil && notificationsData.count > 0) {
-        Device * device = (Device *)[application.devicesData objectAtIndex:section];
+        Device * device = nil;
+        NSIndexPath *index = [self->sectionIndexes objectAtIndex:section];
+        for (int i = 0; i < application.devicesData.count; i++) {
+            device = (Device *)application.devicesData[i];
+            if ([device.id integerValue] == index.section) {
+                break;
+            }
+        }
+        
         int count = 0;
         for(int i = 0; i < notificationsData.count; i++){
             NSNumber *deviceId = ((DevicePropertyDescriptor *)[notificationsData objectAtIndex:i]).deviceId;
@@ -116,8 +127,8 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NotificationsCellIdentifier" forIndexPath:indexPath];
-    NSNumber *section = [sectionIndexes objectAtIndex:indexPath.section];
-    DevicePropertyDescriptor *descriptor = [notificationsData objectAtIndex:(section.intValue + indexPath.row)];
+    NSIndexPath *section = [sectionIndexes objectAtIndex:indexPath.section];
+    DevicePropertyDescriptor *descriptor = [notificationsData objectAtIndex:(section.item + indexPath.row)];
 
     /** Set Property Name */
     UILabel *tmpLabel = (UILabel *)[cell viewWithTag:1000];

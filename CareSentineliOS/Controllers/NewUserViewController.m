@@ -143,6 +143,7 @@
     tmpUser.password = [User getEncryptedPasswordFor:self->passwordTextField.text];
     tmpUser.createdAt = [[NSNumber alloc] initWithInt:[[NSDate date] timeIntervalSince1970]];
     [databaseManager save:tmpUser];
+    [self.dialogCompleteDelegate completedDialogWith:tmpUser];
     [self dismissViewControllerAnimated:true completion:nil];
 }
 
