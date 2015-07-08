@@ -39,7 +39,7 @@
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     [self reloadWithTable:true];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reload)name:UIApplicationWillEnterForegroundNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reload)name:UIApplicationWillEnterForegroundNotification object:nil];    
 }
 
 -(void)viewWillDisappear:(BOOL)animated{

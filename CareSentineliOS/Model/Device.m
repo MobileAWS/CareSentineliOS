@@ -297,8 +297,8 @@
 
 - (NSDictionary *)getRequestData{
     return @{@"hw_id": self.hwId,
-             @"hw_name": self.hwName,
-             @"name":self.name
+             @"name": self.hwName,
+             @"device_name":self.name
     };
 }
 

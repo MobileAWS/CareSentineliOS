@@ -16,6 +16,7 @@
 #import "DeviceDrillDownViewController.h"
 #import "MainTabsControllerViewController.h"
 #import "DatabaseManager.h"
+#include <AudioToolbox/AudioToolbox.h>
 
 @interface DevicesViewController() <DeviceUIDelegate>{
     __weak DevicesTableViewController *devicesTableViewController;
@@ -151,6 +152,7 @@
         
         if ([[UIApplication sharedApplication] applicationState] == UIApplicationStateActive) {
             [TSMessage showNotificationInViewController:[TSMessage defaultViewController] title:@"Switch Changed" subtitle:message type:TSMessageNotificationTypeMessage duration:2];
+            AudioServicesPlaySystemSound(1002);
         }
         else{
             UILocalNotification *notification = [[UILocalNotification alloc] init];
