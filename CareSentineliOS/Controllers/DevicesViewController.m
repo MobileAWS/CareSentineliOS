@@ -166,6 +166,11 @@
             app.applicationIconBadgeNumber = value;
             [self updateNotificationsTab: value];
         }
+        
+        AppDelegate *application = (AppDelegate *)[UIApplication sharedApplication].delegate;
+        if (application.switchChangedDelegate != nil){
+            [application.switchChangedDelegate switchChangedForDevice:device];
+        }
     }
 }
 

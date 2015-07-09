@@ -15,6 +15,7 @@ extern CGColorRef buttonBorderColor;
 extern CGColorRef baseBackgroundColorRef;
 extern UIColor *selectionBackgroundColorRef;
 extern UIColor *baseBackgroundColor;
+extern UIColor *greenBaseColor;
 extern UIImage *noBatteryImage;
 extern UIImage *noSignalImage;
 extern UIImage *batteryImage;

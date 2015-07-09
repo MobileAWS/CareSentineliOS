@@ -11,6 +11,7 @@
 #import "User.h"
 #import "Customer.h"
 #import "APBLEInterface.h"
+#import "LNSwitchChangedDelegate.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate,UIAlertViewDelegate>
 
@@ -21,6 +22,7 @@
 @property (strong,nonatomic) NSMutableArray* devicesData;
 @property (strong,nonatomic) NSMutableArray* ignoredDevices;
 @property (weak,nonatomic) APBLEInterface *bleInterface;
+@property (weak) id<LNSwitchChangedDelegate> switchChangedDelegate;
 
 -(void)logout;
 +(void)showAlert:(NSString *)alert withTitle:(NSString *)title;

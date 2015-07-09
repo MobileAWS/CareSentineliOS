@@ -130,7 +130,7 @@ static void (^currentAlertInvocation) (void);
         self.currentUser = nil;
         self.devicesData = nil;
         self.ignoredDevices = nil;
-        //[self.bleInterface disconnectAll];
+        self.switchChangedDelegate = nil;
         self.bleInterface = nil;
         [LNNetworkManager clear];
         

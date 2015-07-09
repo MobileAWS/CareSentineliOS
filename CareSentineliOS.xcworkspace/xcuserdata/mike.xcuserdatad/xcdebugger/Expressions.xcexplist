@@ -74,9 +74,6 @@
          contextName = "-[DevicesTableViewController dismissAlert:]:DevicesTableViewController.m">
          <PersistentStrings>
             <PersistentString
-               value = "application.devicesData">
-            </PersistentString>
-            <PersistentString
                value = "((DataLabel *)((UITapGestureRecognizer *)sender).view).text">
             </PersistentString>
          </PersistentStrings>

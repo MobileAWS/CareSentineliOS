@@ -15,14 +15,16 @@
     CGColorRef baseBackgroundColorRef =nil;
     UIColor *selectionBackgroundColorRef = nil;
     UIColor *baseBackgroundColor =nil;
+    UIColor *greenBaseColor =nil;
     UIImage *noBatteryImage = nil;
     UIImage *noSignalImage = nil;
     UIImage *batteryImage = nil;
     UIImage *signalImage = nil;
     NSDateFormatter *notificationsFormatter;
 
-   
+
 +(void)initResources{
+        greenBaseColor = [UIColor colorWithRed:0.4 green:0.8 blue:(0.2) alpha:1];
         buttonBorderColor = [[UIColor colorWithRed:0.415 green:0.9 blue:(0.81) alpha:1]CGColor];
         baseBackgroundColor = [UIColor colorWithRed:0.21 green:0.35 blue:(0.32) alpha:1];
         selectionBackgroundColorRef = [UIColor colorWithRed:0.9 green:1 blue:0.9 alpha:1];
