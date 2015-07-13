@@ -10,8 +10,8 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Devices Found" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8oG-db-Gdv">
-                    <rect key="frame" x="218" y="289" width="162.5" height="21.5"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Device Found" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8oG-db-Gdv">
+                    <rect key="frame" x="223" y="289" width="152.5" height="21.5"/>
                     <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="18"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -21,7 +21,7 @@
                         <constraint firstAttribute="height" constant="128" id="CNV-V0-B79"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To Add Devices, Tap &quot;Scan&quot; On The Top Bar." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ffl-1B-k1s">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To Add A Device, Tap &quot;Scan&quot; On The Top Bar." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ffl-1B-k1s">
                     <rect key="frame" x="165" y="311" width="277" height="46.5"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="46.5" id="ate-4r-PQp"/>

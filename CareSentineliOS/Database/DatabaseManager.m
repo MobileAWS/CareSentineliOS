@@ -42,6 +42,17 @@ static DatabaseManager *sharedInstance = nil;
                 /** Read the initialization script file */
                 NSString *scriptsPath = [[NSBundle mainBundle] pathForResource:@"database_v1" ofType:@"sql"];
                 NSString *sqlInit = [NSString stringWithContentsOfFile:scriptsPath encoding:NSUTF8StringEncoding error:NULL];
+                
+                NSNumber *insertTestData = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"UseTestData"];
+                NSLog(@"Should use test data? %@",insertTestData);
+                if (insertTestData != nil && insertTestData.intValue == 1) {
+                    NSString *testDataPath = [[NSBundle mainBundle] pathForResource:@"test_data" ofType:@"sql"];
+                    NSString *testData = [NSString stringWithContentsOfFile:testDataPath encoding:NSUTF8StringEncoding error:NULL];
+                    sqlInit = [sqlInit stringByAppendingString:testData];
+                    testDataPath = nil;
+                    testData = nil;                    
+                }
+                
                 sqlite3_stmt *statement;
                 /** Open the database */
                 int result = -1;

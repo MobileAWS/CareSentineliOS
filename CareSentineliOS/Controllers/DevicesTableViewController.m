@@ -14,6 +14,7 @@
 #import "AppDelegate.h"
 #import "DataLabel.h"
 #import "PropertiesDao.h"
+#import "DevicesDao.h"
 
 @interface DevicesTableViewController (){
     __weak IBOutlet UITableView *targetTableView;
@@ -178,10 +179,17 @@
 
 -(Device *)getDeviceForIndex:(NSIndexPath *)index{
     if (index.section == 0){
-        return application.devicesData[index.row];
+        if (application.devicesData.count > index.row) {
+            return application.devicesData[index.row];
+        }
+        return nil;
     }
     
-    return application.ignoredDevices[index.row];
+    if (application.ignoredDevices.count > index.row) {
+        return application.ignoredDevices[index.row];
+    }
+    
+    return nil;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -262,6 +270,28 @@
     if (device != nil && ![device isIgnored] && device.connected == TRUE){
         [[self parentViewController]performSegueWithIdentifier:@"ShowSensorDrillDown" sender:device];
     }
+}
+
+-(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
+    Device *device = [self getDeviceForIndex:indexPath];
+    if(device != nil){
+        return !device.connected;
+    }
+    return NO;
+}
+
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    [AppDelegate showConfirmWith:@"This device and all it's associated data and notifications will be deleted. This action cannot be undone. Are you sure you want to delete this device?" title:@"Delete Device" target:nil callback:^{
+        Device *device = [self getDeviceForIndex:indexPath];
+        [DevicesDao deleteDeviceData:device];
+        if (indexPath.section == 0){
+            [application.devicesData removeObject:device];
+        }
+        else{
+            [application.ignoredDevices removeObject:device];
+        }
+        [self->targetTableView reloadData];
+    }];
 }
 
 @end

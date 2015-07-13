@@ -45,9 +45,13 @@
 		279785721B423A86009B3A25 /* LNNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 279785711B423A86009B3A25 /* LNNetworkManager.m */; };
 		279997701B24FF2F0005E720 /* UIResources.m in Sources */ = {isa = PBXBuildFile; fileRef = 2799976F1B24FF2F0005E720 /* UIResources.m */; };
 		279997751B250B470005E720 /* MawsTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 279997741B250B470005E720 /* MawsTextView.m */; };
+		279DF2871B530CC500AC2F20 /* test_data.sql in Resources */ = {isa = PBXBuildFile; fileRef = 279DF2861B530CC500AC2F20 /* test_data.sql */; };
+		279DF28A1B53173C00AC2F20 /* DevicesDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 279DF2891B53173C00AC2F20 /* DevicesDao.m */; };
+		279DF28B1B53173C00AC2F20 /* DevicesDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 279DF2891B53173C00AC2F20 /* DevicesDao.m */; };
 		27A963221B29487800E4A606 /* Property.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A963211B29487800E4A606 /* Property.m */; };
 		27A963251B29488D00E4A606 /* DeviceProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A963241B29488D00E4A606 /* DeviceProperty.m */; };
 		27A9632A1B2950F800E4A606 /* PropertiesDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A963291B2950F800E4A606 /* PropertiesDao.m */; };
+		27AE80481B4ECFA000E0A862 /* DevicesStatusTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 275DF2BC1B4DDBFD00205670 /* DevicesStatusTableViewController.m */; };
 		27BA55921B44F01F00107017 /* DeviceDrillDownViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2703A7151B35F25A00E1CF70 /* DeviceDrillDownViewController.m */; };
 		27BA55931B44F01F00107017 /* KeyChainManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 27556A751B386D1D008A97FA /* KeyChainManager.m */; };
 		27BA55941B44F01F00107017 /* DeviceProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A963241B29488D00E4A606 /* DeviceProperty.m */; };
@@ -176,6 +180,9 @@
 		2799976F1B24FF2F0005E720 /* UIResources.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIResources.m; sourceTree = "<group>"; };
 		279997731B250B470005E720 /* MawsTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MawsTextView.h; sourceTree = "<group>"; };
 		279997741B250B470005E720 /* MawsTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MawsTextView.m; sourceTree = "<group>"; };
+		279DF2861B530CC500AC2F20 /* test_data.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test_data.sql; sourceTree = "<group>"; };
+		279DF2881B53173C00AC2F20 /* DevicesDao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DevicesDao.h; sourceTree = "<group>"; };
+		279DF2891B53173C00AC2F20 /* DevicesDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DevicesDao.m; sourceTree = "<group>"; };
 		279EF7F11B1E686F003FAB56 /* DeviceUIDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceUIDelegate.h; sourceTree = "<group>"; };
 		27A963201B29487800E4A606 /* Property.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Property.h; sourceTree = "<group>"; };
 		27A963211B29487800E4A606 /* Property.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Property.m; sourceTree = "<group>"; };
@@ -332,6 +339,7 @@
 			children = (
 				2777D80D1B0F6FB000CAC2AF /* database_v1.sql */,
 				27EFEFD51B320942000C72AD /* TSLoonMessageDesign.json */,
+				279DF2861B530CC500AC2F20 /* test_data.sql */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -446,6 +454,8 @@
 			children = (
 				27A963281B2950F800E4A606 /* PropertiesDao.h */,
 				27A963291B2950F800E4A606 /* PropertiesDao.m */,
+				279DF2881B53173C00AC2F20 /* DevicesDao.h */,
+				279DF2891B53173C00AC2F20 /* DevicesDao.m */,
 			);
 			name = Loon;
 			sourceTree = "<group>";
@@ -565,6 +575,7 @@
 				2777D80E1B0F6FB000CAC2AF /* database_v1.sql in Resources */,
 				273ED3571AFC550700F4F82B /* Main.storyboard in Resources */,
 				273ED35C1AFC550700F4F82B /* LaunchScreen.xib in Resources */,
+				279DF2871B530CC500AC2F20 /* test_data.sql in Resources */,
 				27760EE61B1FDFA50047D49B /* DeviceTypesList.plist in Resources */,
 				273ED3591AFC550700F4F82B /* Images.xcassets in Resources */,
 				27EFEFD61B320942000C72AD /* TSLoonMessageDesign.json in Resources */,
@@ -690,6 +701,7 @@
 				275DF2BD1B4DDBFD00205670 /* DevicesStatusTableViewController.m in Sources */,
 				2777D81C1B0F706A00CAC2AF /* NotificationsViewController.m in Sources */,
 				27632E691B2BB336002316F1 /* DevicePropertyDescriptor.m in Sources */,
+				279DF28A1B53173C00AC2F20 /* DevicesDao.m in Sources */,
 				273A42991B3B1B0500CC2644 /* LNConstants.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -698,6 +710,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27AE80481B4ECFA000E0A862 /* DevicesStatusTableViewController.m in Sources */,
 				27BA55921B44F01F00107017 /* DeviceDrillDownViewController.m in Sources */,
 				27BA55931B44F01F00107017 /* KeyChainManager.m in Sources */,
 				27BA55941B44F01F00107017 /* DeviceProperty.m in Sources */,
@@ -731,6 +744,7 @@
 				27BA55B01B44F01F00107017 /* MawsTextView.m in Sources */,
 				27BA55B11B44F01F00107017 /* NotificationsViewController.m in Sources */,
 				27BA55B21B44F01F00107017 /* DevicePropertyDescriptor.m in Sources */,
+				279DF28B1B53173C00AC2F20 /* DevicesDao.m in Sources */,
 				27BA55B31B44F01F00107017 /* LNConstants.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
