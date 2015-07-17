@@ -17,6 +17,8 @@
 
 +(void)uploadData:(NSArray *)devices onSucess:(void(^)(NSMutableArray *success))callback onFailure:(void(^)(NSError *error))failure;
 
++(void)resetPasswordFor:(NSString *)email onSucess:(void(^)(void))callback onFailure:(void(^)(NSError *error))failure;
+
 +(void)clear;
 
 +(BOOL)sessionValid;

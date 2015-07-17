@@ -388,7 +388,7 @@ static BOOL s_processing_restart = NO;
     
     [_pendingNewDevices addObject:peripheral];
 
-    [AppDelegate showInputWith:@"Enter A Description (e.g Jacket Activator) & tap Use It. If the device is not yours tap Not Mine to ignore." title:@"New Monitor Device" defaultText:peripheral.name delegate:inputDelegate];
+    [AppDelegate showInputWith:@"Enter A Description (e.g Jacket Activator) & tap Use It. If the device is not yours tap Not Mine to ignore." title:@"New Monitor Device" defaultText:peripheral.name delegate:inputDelegate cancelText:@"Not Mine" acceptText:@"Use It"];
 
 }
 

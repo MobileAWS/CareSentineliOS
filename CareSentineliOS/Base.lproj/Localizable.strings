@@ -1,0 +1,32 @@
+/* 
+  Localizable.strings
+  CareSentineliOS
+
+  Created by Mike on 7/14/15.
+  Copyright (c) 2015 MobileAWS. All rights reserved.
+*/
+/** Chair sensor statuses */
+"chair.sensor.on"="Chair Occupied";
+"chair.sensor.off"="Chair Empty";
+
+/** Bed sensor statuses */
+"bed.sensor.on"="Bed Occupied";
+"bed.sensor.off"="Bed Empty";
+
+/** Toilet sensor statuses */
+"toilet.sensor.on"="Toilet Occupied";
+"toilet.sensor.off"="Toilet Empty";
+
+/** Incontinence sensor statuses */
+"incontinence.sensor.on"="Incontinence Sensor Has changed to on";
+"incontinence.sensor.off"="Incontinence Sensor Has changed to off";
+
+
+/** Call sensor statuses */
+"call.sensor.on"="Call Sensor Has changed to on";
+"call.sensor.off"="Call Sensor Has changed to off";
+
+
+/** Portal sensor statuses */
+"portal.sensor.on"="Portal Sensor Has changed to on";
+"portal.sensor.off"="Portal Sensor Has changed to off";

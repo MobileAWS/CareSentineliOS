@@ -26,7 +26,7 @@
 
 -(void)logout;
 +(void)showAlert:(NSString *)alert withTitle:(NSString *)title;
-+(void)showInputWith:(NSString *)alert title:(NSString *)title defaultText:(NSString *)text delegate:(id)delegate;
++(void)showInputWith:(NSString *)alert title:(NSString *)title defaultText:(NSString *)text delegate:(id)delegate cancelText:(NSString *)cancelText acceptText:(NSString *)acceptText;
 +(void)showLoadingMask;
 +(void)showLoadingMaskWith:(NSString *)text;
 +(void)showConfirmWith:(NSString *)alert title:(NSString *)title target:(id)target callback:(void (^)(void))callback;

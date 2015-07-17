@@ -18,8 +18,10 @@
 #import "KeyChainManager.h"
 #import "LNNetworkManager.h"
 #import "NewUserViewController.h"
+#import "InputAlertViewDelegate.h"
+#import "AlertInputAcceptedDelegate.h"
 
-@interface LoginViewController () <UITextFieldDelegate>{
+@interface LoginViewController () <UITextFieldDelegate,AlertInputAcceptedDelegate>{
     
     __weak IBOutlet UITextField *emailTextField;
     __weak IBOutlet UITextField *passwordTextField;
@@ -27,6 +29,7 @@
     __weak IBOutlet UITextField *siteIdTextField;
     __weak IBOutlet UIButton *noCloudButton;
     __weak IBOutlet UIButton *loginButton;
+    InputAlertViewDelegate *forgotPasswordDelegate;
 }
 @end
 
@@ -114,6 +117,7 @@
 - (IBAction)loginCloud:(id)sender {
     [self doLogin:true];
 }
+
 
 -(void)doLogin:(BOOL)cloudCheck{
     
@@ -277,7 +281,29 @@
 }
 
 
+-(IBAction)forgotPassword:(id)sender{
+    NSString *email = self->emailTextField.text;
+    email = email == nil ? @"" : email;
+    self->forgotPasswordDelegate = [[InputAlertViewDelegate alloc] init];
+    self->forgotPasswordDelegate.delegate = self;
+    [AppDelegate showInputWith:@"Enter your email address:" title:NSLocalizedString(@"fuck.you", nil) defaultText:email delegate:self->forgotPasswordDelegate cancelText:@"Cancel" acceptText:@"Ok"];
+}
 
+-(void)input:(NSString *)input AcceptedWithObject:(id)target{
+    self->forgotPasswordDelegate = nil;
+    [AppDelegate showLoadingMaskWith:@"Sending Instructions"];
+    [LNNetworkManager resetPasswordFor:input onSucess:^{
+        [AppDelegate hideLoadingMask];
+        [AppDelegate showAlert:[NSString stringWithFormat:@"An email was sent to %@ with instructions to reset your password",input] withTitle:@"Reset Instructions Sent"];
+    } onFailure:^(NSError *error) {
+        [AppDelegate hideLoadingMask];
+        [AppDelegate showAlert:[NSString stringWithFormat:@"An error occurred: %@",error.description] withTitle:@"Reset Instructions Sent"];
+    }];
+}
+
+-(void)declinedWithObject:(id)target{
+    self->forgotPasswordDelegate = nil;
+}
 
 /*
 #pragma mark - Navigation

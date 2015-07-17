@@ -30,6 +30,10 @@
 		27556A791B3885B8008A97FA /* UploadDevicesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27556A781B3885B8008A97FA /* UploadDevicesTableViewController.m */; };
 		275C864E1B16B896000DB4F4 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 275C864D1B16B896000DB4F4 /* User.m */; };
 		275DF2BD1B4DDBFD00205670 /* DevicesStatusTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 275DF2BC1B4DDBFD00205670 /* DevicesStatusTableViewController.m */; };
+		276107611B587280000EF387 /* SupportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 276107601B587280000EF387 /* SupportViewController.m */; };
+		276107621B587280000EF387 /* SupportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 276107601B587280000EF387 /* SupportViewController.m */; };
+		2763246C1B557B44004FB7AF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2763246F1B557B44004FB7AF /* Localizable.strings */; };
+		2763246D1B557B44004FB7AF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2763246F1B557B44004FB7AF /* Localizable.strings */; };
 		27632E691B2BB336002316F1 /* DevicePropertyDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 27632E681B2BB336002316F1 /* DevicePropertyDescriptor.m */; };
 		27632E6C1B2BC0F6002316F1 /* NotificationsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27632E6B1B2BC0F6002316F1 /* NotificationsTableViewController.m */; };
 		27646CBF1B3E152000CC2A1C /* MAWSNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 27646CBE1B3E152000CC2A1C /* MAWSNetworkManager.m */; };
@@ -151,6 +155,9 @@
 		275C864D1B16B896000DB4F4 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		275DF2BB1B4DDBFD00205670 /* DevicesStatusTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DevicesStatusTableViewController.h; sourceTree = "<group>"; };
 		275DF2BC1B4DDBFD00205670 /* DevicesStatusTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DevicesStatusTableViewController.m; sourceTree = "<group>"; };
+		2761075F1B587280000EF387 /* SupportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SupportViewController.h; sourceTree = "<group>"; };
+		276107601B587280000EF387 /* SupportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SupportViewController.m; sourceTree = "<group>"; };
+		2763246E1B557B44004FB7AF /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		27632E671B2BB336002316F1 /* DevicePropertyDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DevicePropertyDescriptor.h; sourceTree = "<group>"; };
 		27632E681B2BB336002316F1 /* DevicePropertyDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DevicePropertyDescriptor.m; sourceTree = "<group>"; };
 		27632E6A1B2BC0F6002316F1 /* NotificationsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationsTableViewController.h; sourceTree = "<group>"; };
@@ -294,6 +301,7 @@
 				273ED3581AFC550700F4F82B /* Images.xcassets */,
 				273ED35A1AFC550700F4F82B /* LaunchScreen.xib */,
 				273ED3481AFC550700F4F82B /* Supporting Files */,
+				2763246F1B557B44004FB7AF /* Localizable.strings */,
 			);
 			path = CareSentineliOS;
 			sourceTree = "<group>";
@@ -403,6 +411,8 @@
 				27556A781B3885B8008A97FA /* UploadDevicesTableViewController.m */,
 				275DF2BB1B4DDBFD00205670 /* DevicesStatusTableViewController.h */,
 				275DF2BC1B4DDBFD00205670 /* DevicesStatusTableViewController.m */,
+				2761075F1B587280000EF387 /* SupportViewController.h */,
+				276107601B587280000EF387 /* SupportViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -575,6 +585,7 @@
 				2777D80E1B0F6FB000CAC2AF /* database_v1.sql in Resources */,
 				273ED3571AFC550700F4F82B /* Main.storyboard in Resources */,
 				273ED35C1AFC550700F4F82B /* LaunchScreen.xib in Resources */,
+				2763246C1B557B44004FB7AF /* Localizable.strings in Resources */,
 				279DF2871B530CC500AC2F20 /* test_data.sql in Resources */,
 				27760EE61B1FDFA50047D49B /* DeviceTypesList.plist in Resources */,
 				273ED3591AFC550700F4F82B /* Images.xcassets in Resources */,
@@ -590,6 +601,7 @@
 				27BA55B91B44F01F00107017 /* DevicesEmptyTableMessage.xib in Resources */,
 				27BA55BA1B44F01F00107017 /* database_v1.sql in Resources */,
 				27BA55BB1B44F01F00107017 /* Main.storyboard in Resources */,
+				2763246D1B557B44004FB7AF /* Localizable.strings in Resources */,
 				27BA55BC1B44F01F00107017 /* LaunchScreen.xib in Resources */,
 				27BA55BD1B44F01F00107017 /* DeviceTypesList.plist in Resources */,
 				27BA55BE1B44F01F00107017 /* Images.xcassets in Resources */,
@@ -690,6 +702,7 @@
 				27632E6C1B2BC0F6002316F1 /* NotificationsTableViewController.m in Sources */,
 				27009F051B176925003FBEAB /* APBLEInterface.m in Sources */,
 				275C864E1B16B896000DB4F4 /* User.m in Sources */,
+				276107611B587280000EF387 /* SupportViewController.m in Sources */,
 				27009F041B176925003FBEAB /* APBLEDevice.m in Sources */,
 				273ED34E1AFC550700F4F82B /* AppDelegate.m in Sources */,
 				274671751B33341C009294B7 /* InputAlertViewDelegate.m in Sources */,
@@ -733,6 +746,7 @@
 				27BA55A51B44F01F00107017 /* DataLabel.m in Sources */,
 				27BA55A61B44F01F00107017 /* NotificationsTableViewController.m in Sources */,
 				27BA55A71B44F01F00107017 /* APBLEInterface.m in Sources */,
+				276107621B587280000EF387 /* SupportViewController.m in Sources */,
 				27BA55A81B44F01F00107017 /* User.m in Sources */,
 				27BA55A91B44F01F00107017 /* APBLEDevice.m in Sources */,
 				27BA55AA1B44F01F00107017 /* AppDelegate.m in Sources */,
@@ -766,6 +780,14 @@
 				273ED35B1AFC550700F4F82B /* Base */,
 			);
 			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+		2763246F1B557B44004FB7AF /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2763246E1B557B44004FB7AF /* Base */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -805,7 +827,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -841,7 +863,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -859,7 +881,7 @@
 				INFOPLIST_FILE = CareSentineliOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "Care Sentinel Dev";
-				PROVISIONING_PROFILE = "bb203183-df32-4a9e-b9c5-9b4af5580bfe";
+				PROVISIONING_PROFILE = "a1b4bad4-80a9-4b9b-b467-04dbf41a5cec";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -874,7 +896,7 @@
 				INFOPLIST_FILE = CareSentineliOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "Care Sentinel Dev";
-				PROVISIONING_PROFILE = "bb203183-df32-4a9e-b9c5-9b4af5580bfe";
+				PROVISIONING_PROFILE = "a1b4bad4-80a9-4b9b-b467-04dbf41a5cec";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

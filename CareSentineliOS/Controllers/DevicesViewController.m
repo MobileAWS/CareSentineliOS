@@ -132,46 +132,53 @@
 
 -(void)device:(CBPeripheral *)peripheral SensorChanged:(uint16_t)value{
     Device * device = [self->devicesTableViewController deviceForPeripheral:peripheral.identifier.UUIDString];
+    BOOL wasInitialized = device.initialized;
     NSArray *changedSwitches = [device getChangedSwitch:value];
-    if (changedSwitches != nil && [changedSwitches count] > 0){
-        
-        NSMutableString *message = [[NSMutableString alloc]init];
-        for (int i = 0; i < changedSwitches.count; i++) {
-            NSDictionary *tmpObject = [changedSwitches objectAtIndex:i];
-            NSString *name = [tmpObject objectForKey:@"propertyName"];
-            NSString *value = [tmpObject objectForKey:@"value"];
-            DeviceProperty *deviceProperty = [PropertiesDao saveProperty:name forDevice:device withValue:value];
-            [message appendString:[NSString stringWithFormat:@" %@ Has changed to %@\n",name,value]];
-            DevicePropertyDescriptor *descriptor = [[DevicePropertyDescriptor alloc]initWithProperty:deviceProperty AndDeviceName:device.name];
-            device.lastPropertyChange = descriptor;
-            device.lastPropertyMessage = message;
-            [self->devicesTableViewController reloadDevice:device];
+    if (wasInitialized){
+        if (changedSwitches != nil && [changedSwitches count] > 0){
             
-        }
-     
-        
-        if ([[UIApplication sharedApplication] applicationState] == UIApplicationStateActive) {
-            [TSMessage showNotificationInViewController:[TSMessage defaultViewController] title:@"Switch Changed" subtitle:message type:TSMessageNotificationTypeMessage duration:2];
-            AudioServicesPlaySystemSound(1002);
-        }
-        else{
-            UILocalNotification *notification = [[UILocalNotification alloc] init];
-            notification.alertTitle = @"Switch Changed";
-            notification.alertBody = message;
-            notification.soundName = @"default";
-            [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
+            NSMutableString *message = [[NSMutableString alloc]init];
+            for (int i = 0; i < changedSwitches.count; i++) {
+                NSDictionary *tmpObject = [changedSwitches objectAtIndex:i];
+                NSString *name = [tmpObject objectForKey:@"propertyName"];
+                NSString *value = [tmpObject objectForKey:@"value"];
+                DeviceProperty *deviceProperty = [PropertiesDao saveProperty:name forDevice:device withValue:value];
+                
+                NSString *result = [NSString stringWithFormat:@"%@.%@",name,[value lowercaseString]];
+                [message appendString:NSLocalizedString(result, nil)];
+                DevicePropertyDescriptor *descriptor = [[DevicePropertyDescriptor alloc]initWithProperty:deviceProperty AndDeviceName:device.name];
+                device.lastPropertyChange = descriptor;
+                device.lastPropertyMessage = message;
+                [self->devicesTableViewController reloadDevice:device];
+                
+            }
+         
             
-            UIApplication *app = [UIApplication sharedApplication];
-            NSInteger value = app.applicationIconBadgeNumber + changedSwitches.count;
-            app.applicationIconBadgeNumber = value;
-            [self updateNotificationsTab: value];
+            if ([[UIApplication sharedApplication] applicationState] == UIApplicationStateActive) {
+                [TSMessage showNotificationInViewController:[TSMessage defaultViewController] title:@"Switch Changed" subtitle:message type:TSMessageNotificationTypeMessage duration:2];
+                AudioServicesPlaySystemSound(1002);
+            }
+            else{
+                UILocalNotification *notification = [[UILocalNotification alloc] init];
+                notification.alertTitle = @"Switch Changed";
+                notification.alertBody = message;
+                notification.soundName = @"default";
+                [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
+                
+                UIApplication *app = [UIApplication sharedApplication];
+                NSInteger value = app.applicationIconBadgeNumber + changedSwitches.count;
+                app.applicationIconBadgeNumber = value;
+                [self updateNotificationsTab: value];
+            }
         }
         
-        AppDelegate *application = (AppDelegate *)[UIApplication sharedApplication].delegate;
-        if (application.switchChangedDelegate != nil){
-            [application.switchChangedDelegate switchChangedForDevice:device];
-        }
     }
+    
+    AppDelegate *application = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    if (application.switchChangedDelegate != nil){
+        [application.switchChangedDelegate switchChangedForDevice:device];
+    }
+
 }
 
 -(void)updateNotificationsTab:(NSInteger)count{
@@ -187,6 +194,11 @@
         if (device.connected){
             device.connected = false;
             [self->devicesTableViewController reloadDevice:device];
+            
+            AppDelegate *application = (AppDelegate *)[UIApplication sharedApplication].delegate;
+            if (application.switchChangedDelegate != nil){
+                [application.switchChangedDelegate switchChangedForDevice:device];
+            }
         }
         return;
     }

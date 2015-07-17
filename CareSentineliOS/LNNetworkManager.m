@@ -110,4 +110,14 @@ static NSString *token;
         failure(responseObject);
     }];
 }
+
++(void)resetPasswordFor:(NSString *)email onSucess:(void(^)(void))callback onFailure:(void(^)(NSError *error))failure{
+    [MAWSNetworkManager callAsyncService:@"user/resetPassword" with:@{@"email":email} method:@"POST" onCompletion:^(AFHTTPRequestOperation *operation, id responseObject) {
+            callback();
+             
+    } onFailure:^(AFHTTPRequestOperation *operation, NSError *responseObject) {
+        failure(responseObject);
+    }];
+}
+
 @end

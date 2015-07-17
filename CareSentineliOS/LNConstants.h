@@ -15,4 +15,12 @@ extern NSString * const TOILET_SENSOR_PROPERTY_NAME;
 extern NSString * const INCONTINENCE_SENSOR_PROPERTY_NAME;
 extern NSString * const CALL_SENSOR_PROPERTY_NAME;
 extern NSString * const PORTAL_SENSOR_PROPERTY_NAME;
+
+
+extern NSString * const BED_SENSOR_PROPERTY_KEY;
+extern NSString * const CHAIR_SENSOR_PROPERTY_KEY;
+extern NSString * const TOILET_SENSOR_PROPERTY_KEY;
+extern NSString * const INCONTINENCE_SENSOR_PROPERTY_KEY;
+extern NSString * const CALL_SENSOR_PROPERTY_KEY;
+extern NSString * const PORTAL_SENSOR_PROPERTY_KEY;
 @end

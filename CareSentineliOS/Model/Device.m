@@ -13,7 +13,6 @@
 #import "PropertiesDao.h"
 
 @interface Device(){
-    BOOL initialized;
     NSArray *characteristics;
 }
 @end
@@ -63,14 +62,14 @@
     if (self.bedSensorActivated && (value & APSensorValuesBedLow)){
         self.bedSensorActivated = false;
         if (valueEnabled == TRUE){
-                [switchChanges addObject:@{propertyName:BED_SENSOR_PROPERTY_NAME,valueString:off}];
+                [switchChanges addObject:@{propertyName:BED_SENSOR_PROPERTY_KEY,valueString:off}];
         }
     }
     
     if (!self.bedSensorActivated && (value & APSensorValuesBedHigh)){
         self.bedSensorActivated = true;
         if (valueEnabled == TRUE){
-            [switchChanges addObject:@{propertyName:BED_SENSOR_PROPERTY_NAME,valueString:on}];
+            [switchChanges addObject:@{propertyName:BED_SENSOR_PROPERTY_KEY,valueString:on}];
         }
     }
     
@@ -81,7 +80,7 @@
     if (self.chairSensorActivated && (value & APSensorValuesChairLow)){
         self.chairSensorActivated = false;
         if (valueEnabled == TRUE){
-            [switchChanges addObject:@{propertyName:CHAIR_SENSOR_PROPERTY_NAME,valueString:off}];
+            [switchChanges addObject:@{propertyName:CHAIR_SENSOR_PROPERTY_KEY,valueString:off}];
         }
     }
 
@@ -89,7 +88,7 @@
     if (!self.chairSensorActivated && (value & APSensorValuesChairHigh)){
         self.chairSensorActivated = true;
         if (valueEnabled == TRUE){
-            [switchChanges addObject:@{propertyName:CHAIR_SENSOR_PROPERTY_NAME,valueString:on}];
+            [switchChanges addObject:@{propertyName:CHAIR_SENSOR_PROPERTY_KEY,valueString:on}];
         }
     }
     
@@ -98,14 +97,14 @@
     if (self.toiletSensorActivated && (value & APSensorValuesToiletLow)){
         self.toiletSensorActivated = false;
         if (valueEnabled == TRUE){
-            [switchChanges addObject:@{propertyName:TOILET_SENSOR_PROPERTY_NAME,valueString:off}];
+            [switchChanges addObject:@{propertyName:TOILET_SENSOR_PROPERTY_KEY,valueString:off}];
         }
     }
     
     if (!self.toiletSensorActivated && (value & APSensorValuesToiletHigh)){
         self.toiletSensorActivated = true;
         if (valueEnabled == TRUE){
-            [switchChanges addObject:@{propertyName:TOILET_SENSOR_PROPERTY_NAME,valueString:on}];
+            [switchChanges addObject:@{propertyName:TOILET_SENSOR_PROPERTY_KEY,valueString:on}];
         }
     }
 
@@ -114,14 +113,14 @@
     if (self.incontinenceSensorActivated && (value & APSensorValuesDampnessLow)){
         self.incontinenceSensorActivated = false;
         if (valueEnabled == TRUE){
-            [switchChanges addObject:@{propertyName:INCONTINENCE_SENSOR_PROPERTY_NAME,valueString:off}];
+            [switchChanges addObject:@{propertyName:INCONTINENCE_SENSOR_PROPERTY_KEY,valueString:off}];
         }
     }
     
     if (!self.incontinenceSensorActivated && (value & APSesnorValuesDampnessHigh)){
         self.incontinenceSensorActivated = true;
         if (valueEnabled == TRUE){
-            [switchChanges addObject:@{propertyName:INCONTINENCE_SENSOR_PROPERTY_NAME,valueString:on}];
+            [switchChanges addObject:@{propertyName:INCONTINENCE_SENSOR_PROPERTY_KEY,valueString:on}];
         }
     }
     
@@ -131,14 +130,14 @@
     if (self.callSensorActivated && (value & APSensorValuesCallLow)){
         self.callSensorActivated = false;
         if (valueEnabled == TRUE){
-            [switchChanges addObject:@{propertyName:CALL_SENSOR_PROPERTY_NAME,valueString:off}];
+            [switchChanges addObject:@{propertyName:CALL_SENSOR_PROPERTY_KEY,valueString:off}];
         }
     }
     
     if (!self.callSensorActivated && (value & APSensorValuesCallHigh)){
         self.callSensorActivated = true;
         if (valueEnabled == TRUE){
-            [switchChanges addObject:@{propertyName:CALL_SENSOR_PROPERTY_NAME,valueString:on}];
+            [switchChanges addObject:@{propertyName:CALL_SENSOR_PROPERTY_KEY,valueString:on}];
         }
     }
     
@@ -148,24 +147,21 @@
     if (self.portalSensorActivated && (value & APSensorValuesPortalLow)){
         self.portalSensorActivated = false;
         if (valueEnabled == TRUE){
-            [switchChanges addObject:@{propertyName:PORTAL_SENSOR_PROPERTY_NAME,valueString:off}];
+            [switchChanges addObject:@{propertyName:PORTAL_SENSOR_PROPERTY_KEY,valueString:off}];
         }
     }
     
     if (!self.portalSensorActivated && (value & APSensorValuesPortalHigh)){
         self.portalSensorActivated = true;
         if (valueEnabled == TRUE){
-            [switchChanges addObject:@{propertyName:PORTAL_SENSOR_PROPERTY_NAME,valueString:on}];
+            [switchChanges addObject:@{propertyName:PORTAL_SENSOR_PROPERTY_KEY,valueString:on}];
         }
     }
 
     
     /** Only return changes if the device has been already initialized */
-    if (!self->initialized) {
-        self->initialized = true;
-        [switchChanges removeAllObjects];
-        switchChanges = nil;
-        return nil;
+    if (!self.initialized) {
+        self->_initialized = true;
     }
     
     return switchChanges;

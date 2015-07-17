@@ -49,6 +49,7 @@
     @property DevicePropertyDescriptor *lastPropertyChange;
     @property NSString *lastPropertyMessage;
     @property (weak) APBLEDevice *deviceDescriptor;
+    @property (readonly) BOOL initialized;
 
 
 

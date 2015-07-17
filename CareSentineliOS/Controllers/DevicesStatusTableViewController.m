@@ -89,7 +89,7 @@
     NSArray *characteristics = [device getCharacteristics];
     DeviceEnabledProperty *property = (DeviceEnabledProperty *)characteristics[indexPath.row];
     cell.textLabel.text = property.name;
-    if ([device isOnForSwitch:property.name]){
+    if (device.connected && [device isOnForSwitch:property.name]){
         cell.textLabel.textColor = greenBaseColor;
     }else{
         cell.textLabel.textColor = [UIColor redColor];
