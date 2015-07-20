@@ -15,6 +15,7 @@
 #import "InputAlertViewDelegate.h"
 #import "MAWSNetworkManager.h"
 #import "LNNetworkManager.h"
+#import "LNConstants.h"
 
 @interface AppDelegate (){
 }
@@ -55,6 +56,7 @@ static void (^currentAlertInvocation) (void);
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [UIResources initResources];
+    [LNConstants initConstants];
     // Override point for customization after application launch.
     [[APAppServices alloc] init];
     [TSMessage addCustomDesignFromFileWithName:@"TSLoonMessageDesign.json"];

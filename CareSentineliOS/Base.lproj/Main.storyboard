@@ -3,7 +3,6 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--Drill Down Controller-->
@@ -716,9 +715,11 @@
                                         <rect key="frame" x="0.0" y="0.0" width="608" height="534.5"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="GKf-6v-vAv">
-                                                <rect key="frame" x="129" y="40" width="350" height="59"/>
+                                                <rect key="frame" x="174" y="40" width="260" height="59"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="350" id="exl-N9-gnR"/>
+                                                    <constraint firstAttribute="width" constant="260" id="exl-N9-gnR">
+                                                        <variation key="widthClass=regular" constant="320"/>
+                                                    </constraint>
                                                     <constraint firstAttribute="height" constant="59" id="lw9-sL-PkT"/>
                                                 </constraints>
                                             </imageView>
@@ -873,7 +874,6 @@
                                             <constraint firstAttribute="trailing" secondItem="vaP-Kb-shh" secondAttribute="trailing" constant="16" id="HE1-Ye-5gl"/>
                                             <constraint firstItem="ew0-md-rQI" firstAttribute="leading" secondItem="W4R-Mx-UU4" secondAttribute="leading" id="JUJ-Uq-68F"/>
                                             <constraint firstItem="BBO-gS-RCE" firstAttribute="top" secondItem="ew0-md-rQI" secondAttribute="bottom" constant="21" id="KF5-6C-Tai"/>
-                                            <constraint firstItem="GKf-6v-vAv" firstAttribute="width" secondItem="W4R-Mx-UU4" secondAttribute="width" multiplier="0.8" priority="750" id="RJq-jP-MNs"/>
                                             <constraint firstItem="MNG-Iz-zlk" firstAttribute="leading" secondItem="W4R-Mx-UU4" secondAttribute="leading" constant="16" id="SdL-Uf-KAO"/>
                                             <constraint firstItem="vaP-Kb-shh" firstAttribute="top" secondItem="svu-mb-3eb" secondAttribute="bottom" constant="57" id="ZKO-J7-ty6"/>
                                             <constraint firstItem="BBO-gS-RCE" firstAttribute="leading" secondItem="W4R-Mx-UU4" secondAttribute="leading" constant="16" id="qXY-Cn-nh4"/>
@@ -1198,6 +1198,7 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
+                                            <action selector="logoutAction:" destination="9my-5B-HRR" eventType="touchUpInside" id="4JB-n1-YRQ"/>
                                             <action selector="logoutButtonAction:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="e9V-a1-Pdz"/>
                                         </connections>
                                     </button>
@@ -1321,9 +1322,11 @@
                                         <rect key="frame" x="0.0" y="0.0" width="608" height="573"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="aU0-A6-10S">
-                                                <rect key="frame" x="129" y="40" width="350" height="59"/>
+                                                <rect key="frame" x="174" y="40" width="260" height="59"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="350" id="CS5-xd-AfR"/>
+                                                    <constraint firstAttribute="width" constant="260" id="CS5-xd-AfR">
+                                                        <variation key="widthClass=regular" constant="320"/>
+                                                    </constraint>
                                                     <constraint firstAttribute="height" constant="59" id="HGA-El-Os1"/>
                                                 </constraints>
                                             </imageView>
@@ -1446,7 +1449,6 @@
                                         <constraints>
                                             <constraint firstItem="G7a-FC-Yhq" firstAttribute="leading" secondItem="7Sl-be-IZn" secondAttribute="leading" id="81A-eO-yuz"/>
                                             <constraint firstItem="G7a-FC-Yhq" firstAttribute="top" secondItem="aU0-A6-10S" secondAttribute="bottom" constant="65" id="8mY-xy-bFA"/>
-                                            <constraint firstItem="aU0-A6-10S" firstAttribute="width" secondItem="7Sl-be-IZn" secondAttribute="width" multiplier="0.8" priority="750" id="C89-Do-Scx"/>
                                             <constraint firstItem="3Zp-CX-0HT" firstAttribute="top" secondItem="G7a-FC-Yhq" secondAttribute="bottom" constant="21" id="WAM-1H-FbQ"/>
                                             <constraint firstAttribute="trailing" secondItem="3Zp-CX-0HT" secondAttribute="trailing" constant="16" id="YXu-3J-QzH"/>
                                             <constraint firstItem="3Vv-aN-0jd" firstAttribute="top" secondItem="G7a-FC-Yhq" secondAttribute="bottom" constant="21" id="dyn-FU-ngM"/>

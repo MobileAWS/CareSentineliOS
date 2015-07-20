@@ -142,7 +142,8 @@
                 NSDictionary *tmpObject = [changedSwitches objectAtIndex:i];
                 NSString *name = [tmpObject objectForKey:@"propertyName"];
                 NSString *value = [tmpObject objectForKey:@"value"];
-                DeviceProperty *deviceProperty = [PropertiesDao saveProperty:name forDevice:device withValue:value];
+                NSString *baseName = [tmpObject objectForKey:@"baseName"];
+                DeviceProperty *deviceProperty = [PropertiesDao saveProperty:baseName forDevice:device withValue:value];
                 
                 NSString *result = [NSString stringWithFormat:@"%@.%@",name,[value lowercaseString]];
                 [message appendString:NSLocalizedString(result, nil)];
@@ -228,14 +229,5 @@
 
 /** End - Devices UI delegate code */
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

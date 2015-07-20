@@ -18,15 +18,15 @@
 "toilet.sensor.off"="Toilet Empty";
 
 /** Incontinence sensor statuses */
-"incontinence.sensor.on"="Incontinence Sensor Has changed to on";
+"incontinence.sensor.on"="Incontinence Sensor Alert";
 "incontinence.sensor.off"="Incontinence Sensor Has changed to off";
 
 
 /** Call sensor statuses */
-"call.sensor.on"="Call Sensor Has changed to on";
+"call.sensor.on"="Call Button Service Requested";
 "call.sensor.off"="Call Sensor Has changed to off";
 
 
 /** Portal sensor statuses */
-"portal.sensor.on"="Portal Sensor Has changed to on";
+"portal.sensor.on"="Doorway Motion Detected";
 "portal.sensor.off"="Portal Sensor Has changed to off";

@@ -23,4 +23,10 @@ extern NSString * const TOILET_SENSOR_PROPERTY_KEY;
 extern NSString * const INCONTINENCE_SENSOR_PROPERTY_KEY;
 extern NSString * const CALL_SENSOR_PROPERTY_KEY;
 extern NSString * const PORTAL_SENSOR_PROPERTY_KEY;
+
+extern NSArray * ON_ENABLED_SENSORS;
+extern NSArray * OFF_ENABLED_SENSORS;
+
++(void)initConstants;
+
 @end

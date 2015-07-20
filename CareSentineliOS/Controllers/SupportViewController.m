@@ -8,6 +8,7 @@
 
 #import "SupportViewController.h"
 #import "UIResources.h"
+#import "AppDelegate.h"
 
 @interface SupportViewController ()
 
@@ -27,6 +28,10 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+- (IBAction)logoutAction:(id)sender {
+    AppDelegate *delegeate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [delegeate logout];
 }
 
 /*
