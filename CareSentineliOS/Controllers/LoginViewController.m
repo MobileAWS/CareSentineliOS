@@ -63,10 +63,6 @@
     NSString *tmp = [defaults objectForKey:@"email"];
     if (tmp != nil){
         self->emailTextField.text = tmp;
-        tmp = [KeyChainManager getPasswordForAccount:@"maws-loon-password"];
-        if (tmp != nil){
-            self->passwordTextField.text = tmp;
-        }
     }
     
     tmp = [defaults objectForKey:@"siteId"];
@@ -257,7 +253,6 @@
     [defaults setObject:user.email forKey:@"email"];
     [defaults setObject:site.siteId forKey:@"siteId"];
     [defaults setObject:customer.customerId forKey:@"customerId"];
-    [KeyChainManager savePassword:passwordTextField.text forAccount:@"maws-loon-password"];
     [self performSegueWithIdentifier:@"MainTabsSegueIdentifier" sender:self->loginButton];
 }
 
@@ -274,7 +269,7 @@
     }
     User *targetUser = (User *)targetData;
     self->emailTextField.text = targetUser.email;
-    self->passwordTextField.text = targetUser.password;
+    self->passwordTextField.text = @"";
     self->siteIdTextField.text = @"";
     self->clientIdTextField.text = @"";
     
@@ -286,7 +281,7 @@
     email = email == nil ? @"" : email;
     self->forgotPasswordDelegate = [[InputAlertViewDelegate alloc] init];
     self->forgotPasswordDelegate.delegate = self;
-    [AppDelegate showInputWith:@"Enter your email address:" title:NSLocalizedString(@"fuck.you", nil) defaultText:email delegate:self->forgotPasswordDelegate cancelText:@"Cancel" acceptText:@"Ok"];
+    [AppDelegate showInputWith:@"Enter your email address:" title:NSLocalizedString(@"Change your password", nil) defaultText:email delegate:self->forgotPasswordDelegate cancelText:@"Cancel" acceptText:@"Ok"];
 }
 
 -(void)input:(NSString *)input AcceptedWithObject:(id)target{
