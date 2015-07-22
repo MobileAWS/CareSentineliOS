@@ -943,7 +943,7 @@
                                 <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JWZ-cv-RIs">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="467"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="465"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_team" translatesAutoresizingMaskIntoConstraints="NO" id="5cf-aB-gro">
                                                 <rect key="frame" x="20" y="21" width="32" height="32"/>
@@ -959,16 +959,6 @@
                                                     <constraint firstAttribute="width" constant="95.5" id="TF4-9u-Djn"/>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="17" id="ant-Cj-VFL"/>
                                                     <constraint firstAttribute="height" constant="17" id="mWp-qa-S5a"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="14"/>
-                                                <color key="textColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1-855-282-0004" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wAS-TS-bYp">
-                                                <rect key="frame" x="66" y="92" width="114.5" height="17"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="17" id="FVc-aT-rj5"/>
-                                                    <constraint firstAttribute="width" constant="114.5" id="kbH-Yg-Rcu"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="14"/>
                                                 <color key="textColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -1003,32 +993,6 @@
                                                     <constraint firstAttribute="height" constant="32" id="xNR-j0-r4Q"/>
                                                 </constraints>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="info@shopcaresentinel.com" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yam-Ui-u97">
-                                                <rect key="frame" x="66" y="146" width="193.5" height="17"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="193.5" id="TdN-NG-tzX"/>
-                                                    <constraint firstAttribute="height" constant="17" id="W1B-ZQ-FUU"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="14"/>
-                                                <color key="textColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="http://shopcaresentinel.com/resources" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lXc-oe-6Nu">
-                                                <rect key="frame" x="66" y="186" width="220" height="34"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="34" id="Ty4-K7-Iap">
-                                                        <variation key="heightClass=compact" constant="17"/>
-                                                        <variation key="widthClass=regular" constant="17"/>
-                                                    </constraint>
-                                                    <constraint firstAttribute="width" constant="220" id="ueE-2u-h9H">
-                                                        <variation key="heightClass=compact" constant="490"/>
-                                                        <variation key="widthClass=regular" constant="490"/>
-                                                    </constraint>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="14"/>
-                                                <color key="textColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_web_site" translatesAutoresizingMaskIntoConstraints="NO" id="sPq-Oi-RCG">
                                                 <rect key="frame" x="20" y="186" width="32" height="32"/>
                                                 <constraints>
@@ -1037,7 +1001,7 @@
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="For replacement sensors and other medical devices" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RLU-UV-pbF">
-                                                <rect key="frame" x="66" y="223" width="241.5" height="38"/>
+                                                <rect key="frame" x="66" y="228" width="241.5" height="38"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="38" id="5az-6T-uCZ">
                                                         <variation key="heightClass=compact" constant="17"/>
@@ -1052,31 +1016,15 @@
                                                 <color key="textColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="http://shopcaresentinel.com/product-category/build-your-own-sensor-system/" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DSa-9J-5w9">
-                                                <rect key="frame" x="66" y="269" width="220" height="52"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="52" id="Pxv-rK-pTa">
-                                                        <variation key="heightClass=compact" constant="34"/>
-                                                        <variation key="widthClass=regular" constant="17"/>
-                                                    </constraint>
-                                                    <constraint firstAttribute="width" constant="220" id="n3g-9y-tF9">
-                                                        <variation key="heightClass=compact" constant="490"/>
-                                                        <variation key="widthClass=regular" constant="560"/>
-                                                    </constraint>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="14"/>
-                                                <color key="textColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_web_site" translatesAutoresizingMaskIntoConstraints="NO" id="g5d-oT-81f">
-                                                <rect key="frame" x="20" y="269" width="32" height="32"/>
+                                                <rect key="frame" x="20" y="289" width="32" height="32"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="32" id="MI7-eG-Cmh"/>
                                                     <constraint firstAttribute="width" constant="32" id="ooX-hc-2hM"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="For replacement sensors and other medical devices" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Tn-9z-4mL">
-                                                <rect key="frame" x="66" y="329" width="241.5" height="38"/>
+                                                <rect key="frame" x="66" y="347" width="241.5" height="38"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="241.5" id="7ug-fJ-4Ho">
                                                         <variation key="heightClass=compact" constant="490"/>
@@ -1098,52 +1046,112 @@
                                                     <constraint firstAttribute="width" constant="32" id="gz8-5I-DlX"/>
                                                 </constraints>
                                             </imageView>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="info@shopcaresentinel.com" translatesAutoresizingMaskIntoConstraints="NO" id="5g8-l1-wYX">
+                                                <rect key="frame" x="62" y="133" width="240" height="30"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="tintColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="860-2E-tg6"/>
+                                                    <constraint firstAttribute="width" constant="240" id="U7n-gZ-kvv"/>
+                                                </constraints>
+                                                <color key="textColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                                            </textView>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="http://shopcaresentinel.com/resources" translatesAutoresizingMaskIntoConstraints="NO" id="xgK-Be-FD5">
+                                                <rect key="frame" x="62" y="177" width="240" height="50"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="tintColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="ST8-dV-UsB">
+                                                        <variation key="heightClass=compact" constant="30"/>
+                                                        <variation key="widthClass=regular" constant="30"/>
+                                                    </constraint>
+                                                    <constraint firstAttribute="width" constant="240" id="Vuw-BI-WNw">
+                                                        <variation key="heightClass=compact" constant="490"/>
+                                                        <variation key="widthClass=regular" constant="490"/>
+                                                    </constraint>
+                                                </constraints>
+                                                <color key="textColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                                            </textView>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="1-855-282-0004" translatesAutoresizingMaskIntoConstraints="NO" id="3ce-BU-MPr">
+                                                <rect key="frame" x="62" y="88" width="135" height="30"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="tintColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="135" id="Dpa-FZ-5at"/>
+                                                    <constraint firstAttribute="height" constant="30" id="WaY-AO-AM9"/>
+                                                </constraints>
+                                                <color key="textColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                <dataDetectorType key="dataDetectorTypes" phoneNumber="YES"/>
+                                            </textView>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="http://shopcaresentinel.com/product-category/build-your-own-sensor-system/" translatesAutoresizingMaskIntoConstraints="NO" id="rDe-MC-VHd">
+                                                <rect key="frame" x="62" y="278" width="240" height="67"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="tintColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="67" id="uGu-GR-Peu">
+                                                        <variation key="heightClass=compact" constant="52"/>
+                                                        <variation key="widthClass=regular" constant="30"/>
+                                                    </constraint>
+                                                    <constraint firstAttribute="width" constant="240" id="vn2-1k-6iw">
+                                                        <variation key="heightClass=compact" constant="490"/>
+                                                        <variation key="widthClass=regular" constant="600"/>
+                                                    </constraint>
+                                                </constraints>
+                                                <color key="textColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                                            </textView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
+                                            <constraint firstItem="rDe-MC-VHd" firstAttribute="leading" secondItem="g5d-oT-81f" secondAttribute="trailing" constant="10" id="0dM-Ya-2gw"/>
                                             <constraint firstItem="jEL-Z8-YQm" firstAttribute="leading" secondItem="5cf-aB-gro" secondAttribute="trailing" constant="14" id="1GT-Qg-SEx"/>
                                             <constraint firstItem="j0M-7N-TAN" firstAttribute="top" secondItem="jEL-Z8-YQm" secondAttribute="bottom" constant="3" id="21G-0t-Mjk"/>
+                                            <constraint firstItem="3ce-BU-MPr" firstAttribute="top" secondItem="j0M-7N-TAN" secondAttribute="bottom" constant="11" id="4hR-41-1XB"/>
+                                            <constraint firstItem="9Tn-9z-4mL" firstAttribute="top" secondItem="rDe-MC-VHd" secondAttribute="bottom" constant="2" id="Bmr-yO-e57"/>
                                             <constraint firstItem="RDg-Z3-5ee" firstAttribute="top" secondItem="JWZ-cv-RIs" secondAttribute="top" constant="20" id="L03-1s-ga2"/>
                                             <constraint firstItem="sPq-Oi-RCG" firstAttribute="leading" secondItem="JWZ-cv-RIs" secondAttribute="leading" constant="20" id="Lx4-8U-LQ8"/>
-                                            <constraint firstItem="DSa-9J-5w9" firstAttribute="leading" secondItem="g5d-oT-81f" secondAttribute="trailing" constant="14" id="PRF-m6-utn"/>
-                                            <constraint firstItem="lXc-oe-6Nu" firstAttribute="top" secondItem="Yam-Ui-u97" secondAttribute="bottom" constant="23" id="QlA-fe-soJ"/>
-                                            <constraint firstItem="Yam-Ui-u97" firstAttribute="leading" secondItem="5Iz-2e-CUI" secondAttribute="trailing" constant="14" id="T4s-8r-Pp0"/>
+                                            <constraint firstItem="rDe-MC-VHd" firstAttribute="top" secondItem="RLU-UV-pbF" secondAttribute="bottom" constant="12" id="P0h-x8-SPY"/>
                                             <constraint firstItem="Dq5-W9-V99" firstAttribute="leading" secondItem="JWZ-cv-RIs" secondAttribute="leading" constant="20" id="VWd-Cc-Tj4"/>
-                                            <constraint firstItem="Yam-Ui-u97" firstAttribute="top" secondItem="wAS-TS-bYp" secondAttribute="bottom" constant="37" id="W72-xa-ghR"/>
-                                            <constraint firstItem="g5d-oT-81f" firstAttribute="top" secondItem="sPq-Oi-RCG" secondAttribute="bottom" constant="51" id="WEu-xa-uUW">
-                                                <variation key="heightClass=compact" constant="21"/>
-                                                <variation key="widthClass=regular" constant="21"/>
+                                            <constraint firstItem="g5d-oT-81f" firstAttribute="top" secondItem="sPq-Oi-RCG" secondAttribute="bottom" constant="71" id="WEu-xa-uUW">
+                                                <variation key="heightClass=compact" constant="28"/>
+                                                <variation key="widthClass=regular" constant="28"/>
                                             </constraint>
                                             <constraint firstItem="Dq5-W9-V99" firstAttribute="top" secondItem="5cf-aB-gro" secondAttribute="bottom" constant="39" id="WT2-s8-8u1"/>
+                                            <constraint firstItem="5g8-l1-wYX" firstAttribute="top" secondItem="3ce-BU-MPr" secondAttribute="bottom" constant="15" id="Xuy-fj-BdE"/>
                                             <constraint firstItem="5cf-aB-gro" firstAttribute="top" secondItem="JWZ-cv-RIs" secondAttribute="top" constant="21" id="Yfa-kI-dTd"/>
-                                            <constraint firstItem="DSa-9J-5w9" firstAttribute="top" secondItem="RLU-UV-pbF" secondAttribute="bottom" constant="8" id="ac9-Cq-Zo2">
-                                                <variation key="heightClass=compact" constant="21"/>
-                                                <variation key="widthClass=regular" constant="16"/>
-                                            </constraint>
-                                            <constraint firstAttribute="bottom" secondItem="9Tn-9z-4mL" secondAttribute="bottom" constant="100" id="c4n-Ud-F6c"/>
-                                            <constraint firstItem="lXc-oe-6Nu" firstAttribute="leading" secondItem="sPq-Oi-RCG" secondAttribute="trailing" constant="14" id="dsX-JB-dey"/>
+                                            <constraint firstItem="xgK-Be-FD5" firstAttribute="leading" secondItem="g5d-oT-81f" secondAttribute="trailing" constant="10" id="b3O-ws-dRp"/>
+                                            <constraint firstAttribute="bottom" secondItem="9Tn-9z-4mL" secondAttribute="bottom" constant="80" id="c4n-Ud-F6c"/>
                                             <constraint firstItem="5Iz-2e-CUI" firstAttribute="leading" secondItem="JWZ-cv-RIs" secondAttribute="leading" constant="20" id="eKT-Op-9P9"/>
                                             <constraint firstItem="RLU-UV-pbF" firstAttribute="leading" secondItem="JWZ-cv-RIs" secondAttribute="leading" constant="66" id="g66-Xn-K62"/>
                                             <constraint firstItem="sPq-Oi-RCG" firstAttribute="top" secondItem="5Iz-2e-CUI" secondAttribute="bottom" constant="15" id="glR-Eb-wKr"/>
-                                            <constraint firstItem="wAS-TS-bYp" firstAttribute="top" secondItem="j0M-7N-TAN" secondAttribute="bottom" constant="15" id="gvw-Dy-qdn"/>
-                                            <constraint firstItem="lXc-oe-6Nu" firstAttribute="leading" secondItem="sPq-Oi-RCG" secondAttribute="trailing" constant="14" id="hTA-6y-KWC"/>
                                             <constraint firstItem="j0M-7N-TAN" firstAttribute="leading" secondItem="JWZ-cv-RIs" secondAttribute="leading" constant="66" id="kAV-6W-g7c"/>
+                                            <constraint firstItem="5g8-l1-wYX" firstAttribute="leading" secondItem="5Iz-2e-CUI" secondAttribute="trailing" constant="10" id="kWw-U5-EGf"/>
                                             <constraint firstItem="RDg-Z3-5ee" firstAttribute="leading" secondItem="5cf-aB-gro" secondAttribute="trailing" constant="14" id="ldI-sc-JUQ"/>
                                             <constraint firstItem="jEL-Z8-YQm" firstAttribute="top" secondItem="RDg-Z3-5ee" secondAttribute="bottom" constant="3" id="meL-W8-m5S"/>
                                             <constraint firstItem="5Iz-2e-CUI" firstAttribute="top" secondItem="Dq5-W9-V99" secondAttribute="bottom" constant="15" id="nKi-ig-gFI"/>
-                                            <constraint firstItem="RLU-UV-pbF" firstAttribute="top" secondItem="lXc-oe-6Nu" secondAttribute="bottom" constant="3" id="nNl-7d-Fe6"/>
                                             <constraint firstItem="5cf-aB-gro" firstAttribute="leading" secondItem="JWZ-cv-RIs" secondAttribute="leading" constant="20" id="q3J-Aq-6IA"/>
-                                            <constraint firstItem="wAS-TS-bYp" firstAttribute="leading" secondItem="Dq5-W9-V99" secondAttribute="trailing" constant="14" id="wkO-qF-RYW"/>
-                                            <constraint firstItem="9Tn-9z-4mL" firstAttribute="top" secondItem="DSa-9J-5w9" secondAttribute="bottom" constant="8" id="xER-dI-xwe"/>
+                                            <constraint firstItem="3ce-BU-MPr" firstAttribute="leading" secondItem="Dq5-W9-V99" secondAttribute="trailing" constant="10" id="t3b-zl-Av8"/>
+                                            <constraint firstItem="xgK-Be-FD5" firstAttribute="top" secondItem="5g8-l1-wYX" secondAttribute="bottom" constant="14" id="xVw-U2-fQS"/>
                                             <constraint firstItem="9Tn-9z-4mL" firstAttribute="leading" secondItem="JWZ-cv-RIs" secondAttribute="leading" constant="66" id="yzS-Lb-zCM"/>
                                             <constraint firstItem="g5d-oT-81f" firstAttribute="leading" secondItem="JWZ-cv-RIs" secondAttribute="leading" constant="20" id="z4R-cC-smg"/>
+                                            <constraint firstItem="RLU-UV-pbF" firstAttribute="top" secondItem="xgK-Be-FD5" secondAttribute="bottom" constant="1" id="zDe-gd-42u"/>
                                         </constraints>
                                     </view>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="JWZ-cv-RIs" secondAttribute="trailing" id="4m8-TC-WId"/>
                                     <constraint firstItem="JWZ-cv-RIs" firstAttribute="top" secondItem="ngC-wu-RIW" secondAttribute="top" id="Mhi-Pv-2bn"/>
-                                    <constraint firstAttribute="bottom" secondItem="JWZ-cv-RIs" secondAttribute="bottom" id="Pyv-Xr-eBa"/>
+                                    <constraint firstAttribute="bottom" secondItem="JWZ-cv-RIs" secondAttribute="bottom" constant="20" id="Pyv-Xr-eBa"/>
                                     <constraint firstItem="JWZ-cv-RIs" firstAttribute="leading" secondItem="ngC-wu-RIW" secondAttribute="leading" id="fdo-SK-D9k"/>
                                 </constraints>
                             </scrollView>
@@ -1649,7 +1657,7 @@
         <image name="notifications" width="25" height="25"/>
         <image name="sensor-2" width="25" height="25"/>
         <image name="support" width="25" height="25"/>
-        <image name="upload" width="32" height="32"/>
+        <image name="upload" width="34" height="34"/>
         <image name="wifi2" width="32" height="32"/>
         <image name="wifi3" width="32" height="32"/>
     </resources>

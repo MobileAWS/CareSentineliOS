@@ -252,23 +252,31 @@
     return nil;
 }
 
+-(void)dismissAlertForDevice:(Device *)device andRow:(NSInteger)row{
+    [PropertiesDao dismistProperty: device.lastPropertyChange.id];
+    device.lastPropertyMessage = nil;
+    device.lastPropertyChange = nil;
+    
+    [self->targetTableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:row inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+}
+
 - (IBAction)dismissAlert:(id)sender {        
     CGPoint point = [((UITapGestureRecognizer *)sender) locationInView:self.tableView];
     NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:point];
     Device *device = (Device *)application.devicesData[indexPath.row];
-    
-    [PropertiesDao dismistProperty: device.lastPropertyChange.id];
-    device.lastPropertyMessage = nil;
-    device.lastPropertyChange = nil;
-
-    [self->targetTableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:indexPath.row inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
-    
+    [self dismissAlertForDevice:device andRow:indexPath.row];
 }
 
 -(void)tableView:(UITableView *)tableView didHighlightRowAtIndexPath:(NSIndexPath *)indexPath{
     Device *device = [self getDeviceForIndex:indexPath];
-    if (device != nil && ![device isIgnored] && device.connected == TRUE){
-        [[self parentViewController]performSegueWithIdentifier:@"ShowSensorDrillDown" sender:device];
+    if (device != nil && ![device isIgnored]){
+        if (device.lastPropertyChange != nil && device.lastPropertyMessage != nil) {
+            [self dismissAlertForDevice:device andRow:indexPath.row];
+            return;
+        }        
+        if (device.connected == TRUE) {
+            [[self parentViewController]performSegueWithIdentifier:@"ShowSensorDrillDown" sender:device];
+        }
     }
 }
 
