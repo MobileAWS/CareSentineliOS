@@ -119,7 +119,11 @@ static DatabaseManager *sharedInstance = nil;
             [valuesArray addObject:@"NULL"];
         }
         else{
-            [valuesArray addObject:[NSString stringWithFormat:@"\"%@\"", tempValue]];
+            if ([tempValue isKindOfClass:[NSString class]]){
+                [valuesArray addObject:[NSString stringWithFormat:@"'%@'", [DatabaseManager encodeString: tempValue]]];
+            }else{
+                [valuesArray addObject:[NSString stringWithFormat:@"'%@'", tempValue]];
+            }
         }
     }
     
@@ -341,4 +345,11 @@ static DatabaseManager *sharedInstance = nil;
     sqlite3_close(self->database);
     self->database = nil;
 }
+
+/** Utility methods */
++(NSString *)encodeString:(NSString *)target{
+    NSString *result = [target stringByReplacingOccurrencesOfString:@"'" withString:@"''"];
+    return result;
+}
+
 @end

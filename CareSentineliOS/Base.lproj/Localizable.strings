@@ -30,3 +30,15 @@
 /** Portal sensor statuses */
 "portal.sensor.on"="Doorway Motion Detected";
 "portal.sensor.off"="Portal Sensor Has changed to off";
+
+/** Alert Messages */
+"sensor.new.found"="Enter A Description (e.g Bed Room) & tap Use It. If the device is not yours tap Not Mine to ignore.";
+
+
+"demo.mode.activated"="Demo mode has been activated. Scan would always generate a new device. Taping on a device would generate a notification for that device, if the device is disconnected.";
+
+"demo.mode.activated.title"="Demo Mode Activated";
+
+"device.disconnect.confirm"="If you disconnect from this device, you won't be able to receive any more notifications from it until you reconnect, Are you sure you want to disconnect from this device?";
+
+"device.disconnect.confirm.title"="Disconnect From Device";

@@ -23,6 +23,7 @@
 @property (strong,nonatomic) NSMutableArray* ignoredDevices;
 @property (weak,nonatomic) APBLEInterface *bleInterface;
 @property (weak) id<LNSwitchChangedDelegate> switchChangedDelegate;
+@property BOOL demoMode;
 
 -(void)logout;
 +(void)showAlert:(NSString *)alert withTitle:(NSString *)title;

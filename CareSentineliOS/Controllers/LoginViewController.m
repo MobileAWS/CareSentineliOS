@@ -84,6 +84,10 @@
     }
 
     if (textField == passwordTextField) {
+        if (siteIdTextField.text != nil && clientIdTextField.text != nil) {
+            [self.view endEditing:YES];
+            return NO;
+        }
         [siteIdTextField becomeFirstResponder];
         return NO;
     }
@@ -164,7 +168,8 @@
     
     DatabaseManager *dbManager = [DatabaseManager getSharedIntance];
     dbManager.keepConnection = true;
-    User *user = (User *)[dbManager findWithCondition:[NSString stringWithFormat:@"email = '%@'",self->emailTextField.text] forModel:[User class]];
+    NSString *usernameValue = [DatabaseManager encodeString:self->emailTextField.text];
+    User *user = (User *)[dbManager findWithCondition:[NSString stringWithFormat:@"email = '%@'",usernameValue] forModel:[User class]];
     
     if (user == nil) {
         if (!cloudChecked){
@@ -188,14 +193,18 @@
     }
     
     if(![user.password isEqualToString:[User getEncryptedPasswordFor:self->passwordTextField.text]]){
-        [AppDelegate showAlert:@"Invalid Password Provided" withTitle:@"Invalid Data"];
-        [dbManager close];
-        return;
-        
+        if (!cloudChecked) {
+            [AppDelegate showAlert:@"Invalid Password Provided" withTitle:@"Invalid Data"];
+            [dbManager close];
+            return;
+        }
+        user.password = self->passwordTextField.text;
+        [dbManager save:user];
     }
     
 
-    Site *site = (Site *)[dbManager findWithCondition:[NSString stringWithFormat:@"site_id = '%@'",self->siteIdTextField.text] forModel:[Site class]];
+    NSString *siteValue = [DatabaseManager encodeString:self->siteIdTextField.text];
+    Site *site = (Site *)[dbManager findWithCondition:[NSString stringWithFormat:@"site_id = '%@'",siteValue] forModel:[Site class]];
 
    
     BOOL createRelationship = false;
@@ -219,7 +228,8 @@
     }
         
     
-    Customer *customer = (Customer *)[dbManager findWithCondition:[NSString stringWithFormat:@"customer_id = '%@'",self->clientIdTextField.text] forModel:[Customer class]];
+    NSString *customerValue = [DatabaseManager encodeString:self->clientIdTextField.text];
+    Customer *customer = (Customer *)[dbManager findWithCondition:[NSString stringWithFormat:@"customer_id = '%@'",customerValue] forModel:[Customer class]];
 
     
     createRelationship = false;

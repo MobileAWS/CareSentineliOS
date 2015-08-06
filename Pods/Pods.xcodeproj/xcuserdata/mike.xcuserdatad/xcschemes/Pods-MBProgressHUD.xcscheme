@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "9B20598EEA5958475E2526ED"
-               BuildableName = "libPods-CareSentineliOS-AFNetworking.a"
-               BlueprintName = "Pods-CareSentineliOS-AFNetworking"
+               BlueprintIdentifier = "6E424D284E252C73992B7563"
+               BuildableName = "libPods-MBProgressHUD.a"
+               BlueprintName = "Pods-MBProgressHUD"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

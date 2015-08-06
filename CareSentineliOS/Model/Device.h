@@ -46,6 +46,7 @@
     @property BOOL callSensorActivated;
     @property BOOL portalSensorActivated;
     @property BOOL connected;
+    @property BOOL manuallyDisconnected;
     @property DevicePropertyDescriptor *lastPropertyChange;
     @property NSString *lastPropertyMessage;
     @property (weak) APBLEDevice *deviceDescriptor;

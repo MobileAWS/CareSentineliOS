@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C2641BAEC4C26A4B8A76BED1"
-               BuildableName = "libPods-CareSentineliOS.a"
-               BlueprintName = "Pods-CareSentineliOS"
+               BlueprintIdentifier = "981189FE86A92496B16888F7"
+               BuildableName = "libPods-TSMessages.a"
+               BlueprintName = "Pods-TSMessages"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

@@ -11,4 +11,5 @@
 
 @interface DeviceDrillDownViewController : UIViewController <UITableViewDelegate,UITableViewDataSource>
 @property Device *device;
+@property BOOL disconnect;
 @end

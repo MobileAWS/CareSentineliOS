@@ -51,6 +51,8 @@ enum {
 - (BOOL)devicesWithlowBatteryLevel;
 - (BOOL)devicesOutOfRange;
 - (void)disconnectAll;
+- (void)disconnectPeripheralForDevice:(Device *)device;
+- (void)reconnectDeviceForUUDID:(NSString *)identifier;
 + (int)batteryPercentUsingCharacteristic:(CBCharacteristic *)characteristic;
 + (float)temperatureForDevice:(APBLEDevice *)device UsingCharacteristic:(CBCharacteristic *)characteristic;
 @end

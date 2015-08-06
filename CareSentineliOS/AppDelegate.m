@@ -55,6 +55,8 @@ static void (^currentAlertInvocation) (void);
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+
+    self.demoMode = false;
     [UIResources initResources];
     [LNConstants initConstants];
     // Override point for customization after application launch.

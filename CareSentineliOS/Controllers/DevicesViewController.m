@@ -17,10 +17,14 @@
 #import "MainTabsControllerViewController.h"
 #import "DatabaseManager.h"
 #include <AudioToolbox/AudioToolbox.h>
+#import "InputAlertViewDelegate.h"
+#import "LNConstants.h"
 
 @interface DevicesViewController() <DeviceUIDelegate>{
     __weak DevicesTableViewController *devicesTableViewController;
     APBLEInterface *bleInterface;
+    __weak AppDelegate *application;
+    InputAlertViewDelegate *currentDelegate;
 }
 
 @end
@@ -28,6 +32,7 @@
 @implementation DevicesViewController
 
 - (void)viewDidLoad {
+    self->application = ((AppDelegate *)[UIApplication sharedApplication].delegate);
     [super viewDidLoad];
     self.navigationController.navigationBar.barTintColor = baseBackgroundColor;
     self.navigationController.navigationBar.translucent = NO;
@@ -48,10 +53,19 @@
     [appDelegate logout];
 }
 
+- (IBAction)demoModeActivate:(id)sender {
+    application.demoMode = true;
+    [AppDelegate showAlert: NSLocalizedString(@"demo.mode.activated",nil) withTitle:NSLocalizedString(@"demo.mode.activated.title",nil)];
+}
 
 -(IBAction)scanButtonAction:(id)sender{
-    [AppDelegate showLoadingMask];
-    [self->bleInterface scanForDevices];
+    if (application.demoMode) {
+        [self simulateDeviceConnected];
+    }
+    else{
+        [AppDelegate showLoadingMask];
+        [self->bleInterface scanForDevices];
+    }
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
@@ -65,6 +79,9 @@
     }
 }
 
+- (void)reconnectDeviceForUUDID:(NSString *)identifier{
+    [bleInterface reconnectDeviceForUUDID:identifier];
+}
 
 /** Devices UI delegate code */
 -(void)deviceConnected:(CBPeripheral *)peripheral phsyicalDevice:(APBLEDevice *)physDev{
@@ -87,16 +104,14 @@
 
 
 -(BOOL)deviceDiscovered:(CBPeripheral *)peripheral withName:(NSString *)deviceName{
-    
     Device *device = [self->devicesTableViewController deviceForPeripheral:peripheral.identifier.UUIDString];
     if (device != nil) {
         if (!device.connected){
             device.connected = true;
             [self->devicesTableViewController reloadDevice:device];
-        }        
+        }
         return true;
     }
-
     Device *newDevice = [[Device alloc] init];
     newDevice.name = deviceName;
     newDevice.uuid = peripheral.identifier.UUIDString;
@@ -175,7 +190,6 @@
         
     }
     
-    AppDelegate *application = (AppDelegate *)[UIApplication sharedApplication].delegate;
     if (application.switchChangedDelegate != nil){
         [application.switchChangedDelegate switchChangedForDevice:device];
     }
@@ -191,12 +205,15 @@
 
 -(void)disconnectDevice:(CBPeripheral *)peripheral{
     Device *device = [self->devicesTableViewController deviceForPeripheral:peripheral.identifier.UUIDString];
+    [self disconnectWithDevice:device];
+}
+
+-(void)disconnectWithDevice:(Device *)device{
     if (device != nil) {
         if (device.connected){
             device.connected = false;
             [self->devicesTableViewController reloadDevice:device];
             
-            AppDelegate *application = (AppDelegate *)[UIApplication sharedApplication].delegate;
             if (application.switchChangedDelegate != nil){
                 [application.switchChangedDelegate switchChangedForDevice:device];
             }
@@ -204,6 +221,7 @@
         return;
     }
 }
+
 
 
 -(void)didUpdateDevice:(CBPeripheral *) peripheral{
@@ -223,11 +241,113 @@
     }
 
 }
+
 -(IBAction)unwindFromDrillDown:(UIStoryboardSegue *)segue{
+    DeviceDrillDownViewController *drillDown =  (DeviceDrillDownViewController *)segue.sourceViewController;
+    NSLog(@"segue %d",drillDown.disconnect);
+    if(drillDown.disconnect == YES){
+        [self->bleInterface disconnectPeripheralForDevice:drillDown.device];
+    }
 }
 
 
 /** End - Devices UI delegate code */
 
+/** Demo Mode Methods */
 
+-(void) input:(NSString *)input AcceptedWithObject:(id)target{
+    /** Demo mode code */
+    Device *newDevice = [[Device alloc] init];
+    newDevice.name = input;
+    newDevice.hwId = [NSString stringWithFormat:@"%@ - %X",input, arc4random_uniform(10000000)];
+    newDevice.uuid = [NSString stringWithFormat:@"%@-%X-%X",@"68753A44-4D6F-1226",arc4random_uniform(10000000),arc4random_uniform(10000000)];
+    newDevice.hwName = input;
+    [self->devicesTableViewController addDevice:newDevice];
+
+}
+
+-(void)declinedWithObject:(id)target{
+}
+
+- (void)simulateDeviceConnected{
+    
+    InputAlertViewDelegate *inputDelegate = [[InputAlertViewDelegate alloc]init];
+    inputDelegate.delegate = self;
+    inputDelegate.targetObject = @"FAKE_DEVICE_ADDED";
+    self->currentDelegate = inputDelegate;
+    [AppDelegate showInputWith:NSLocalizedString(@"sensor.new.found", nil) title:@"New Monitor Device" defaultText:@"Test Sensor" delegate:inputDelegate cancelText:@"Not Mine" acceptText:@"Use It"];
+    
+}
+
+- (void)simulateAlertForDevice:(Device *)device{
+
+    NSString *valueString = @"value";
+    NSString *propertyName = @"propertyName";
+    NSString *baseName = @"baseName";
+    NSString *on = @"On";
+    NSString *off = @"Off";
+
+    int val = arc4random_uniform(6);
+    NSMutableArray *changedSwitches = [[NSMutableArray alloc] init];
+
+
+    if (val % 6 == 0) {
+        [changedSwitches addObject:@{baseName:CALL_SENSOR_PROPERTY_NAME,propertyName:CALL_SENSOR_PROPERTY_KEY,valueString:on}];
+    }else if(val % 5 == 0){
+        [changedSwitches addObject:@{baseName:BED_SENSOR_PROPERTY_NAME,propertyName:BED_SENSOR_PROPERTY_KEY,valueString:off}];
+    }else if(val % 4 == 0){
+        [changedSwitches addObject:@{baseName:CHAIR_SENSOR_PROPERTY_NAME,propertyName:CHAIR_SENSOR_PROPERTY_KEY,valueString:on}];
+    }else if(val % 3 == 0){
+        [changedSwitches addObject:@{baseName:INCONTINENCE_SENSOR_PROPERTY_NAME,propertyName:INCONTINENCE_SENSOR_PROPERTY_KEY,valueString:on}];
+    }else if(val % 2 == 0){
+        [changedSwitches addObject:@{baseName:TOILET_SENSOR_PROPERTY_NAME,propertyName:TOILET_SENSOR_PROPERTY_KEY,valueString:on}];
+    }else{
+        [changedSwitches addObject:@{baseName:TOILET_SENSOR_PROPERTY_NAME,propertyName:BED_SENSOR_PROPERTY_KEY,valueString:on}];
+    }
+    
+
+    if (changedSwitches != nil && [changedSwitches count] > 0){
+        
+        NSMutableString *message = [[NSMutableString alloc]init];
+        for (int i = 0; i < changedSwitches.count; i++) {
+            NSDictionary *tmpObject = [changedSwitches objectAtIndex:i];
+            NSString *name = [tmpObject objectForKey:@"propertyName"];
+            NSString *value = [tmpObject objectForKey:@"value"];
+            NSString *baseName = [tmpObject objectForKey:@"baseName"];
+            DeviceProperty *deviceProperty = [PropertiesDao saveProperty:baseName forDevice:device withValue:value];
+            
+            NSString *result = [NSString stringWithFormat:@"%@.%@",name,[value lowercaseString]];
+            [message appendString:NSLocalizedString(result, nil)];
+            DevicePropertyDescriptor *descriptor = [[DevicePropertyDescriptor alloc]initWithProperty:deviceProperty AndDeviceName:device.name];
+            device.lastPropertyChange = descriptor;
+            device.lastPropertyMessage = message;
+            [self->devicesTableViewController reloadDevice:device];
+            
+        }
+        
+        
+        if ([[UIApplication sharedApplication] applicationState] == UIApplicationStateActive) {
+            [TSMessage showNotificationInViewController:[TSMessage defaultViewController] title:@"Switch Changed" subtitle:message type:TSMessageNotificationTypeMessage duration:2];
+            AudioServicesPlaySystemSound(1002);
+        }
+        else{
+            UILocalNotification *notification = [[UILocalNotification alloc] init];
+            notification.alertTitle = @"Switch Changed";
+            notification.alertBody = message;
+            notification.soundName = @"default";
+            [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
+            
+            UIApplication *app = [UIApplication sharedApplication];
+            NSInteger value = app.applicationIconBadgeNumber + changedSwitches.count;
+            app.applicationIconBadgeNumber = value;
+            [self updateNotificationsTab: value];
+        }
+    }
+    
+    if (application.switchChangedDelegate != nil){
+        [application.switchChangedDelegate switchChangedForDevice:device];
+    }
+    
+
+}
 @end

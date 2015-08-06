@@ -4,65 +4,55 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Pods-CareSentineliOS-AFNetworking.xcscheme</key>
+		<key>Pods-AFNetworking.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>1</integer>
 		</dict>
-		<key>Pods-CareSentineliOS-HexColors.xcscheme</key>
+		<key>Pods-HexColors.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>2</integer>
 		</dict>
-		<key>Pods-CareSentineliOS-MBProgressHUD.xcscheme</key>
+		<key>Pods-MBProgressHUD.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>3</integer>
 		</dict>
-		<key>Pods-CareSentineliOS-TSMessages.xcscheme</key>
+		<key>Pods-TSMessages.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>4</integer>
 		</dict>
-		<key>Pods-CareSentineliOS.xcscheme</key>
+		<key>Pods.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>0</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>3D90203DEA7329F8D1723DB1</key>
+		<key>1FA6FE63859AB68DB5CD2D66</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7977FBF4D7D8B45751754578</key>
+		<key>6E424D284E252C73992B7563</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>95744C15CECB353ABD59DDC7</key>
+		<key>981189FE86A92496B16888F7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9B20598EEA5958475E2526ED</key>
+		<key>BD7D6AF4F9AC63C7337B6B65</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C2641BAEC4C26A4B8A76BED1</key>
+		<key>C0B5B405607E6C1F31A57CFE</key>
 		<dict>
 			<key>primary</key>
 			<true/>

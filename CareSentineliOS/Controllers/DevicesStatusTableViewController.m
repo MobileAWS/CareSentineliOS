@@ -32,6 +32,7 @@
 }
 
 -(void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
     if(application.switchChangedDelegate == self){
         application.switchChangedDelegate = nil;
     }
@@ -48,6 +49,7 @@
 }
 
 -(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
     application.switchChangedDelegate = self;
     [self->targetTable reloadData];
 }

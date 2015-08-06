@@ -15,6 +15,7 @@
 #import "DataLabel.h"
 #import "PropertiesDao.h"
 #import "DevicesDao.h"
+#import "DevicesViewController.h"
 
 @interface DevicesTableViewController (){
     __weak IBOutlet UITableView *targetTableView;
@@ -133,14 +134,24 @@
             [tmpImageView setImage:[device getImageForSignal]];
             tmpImageView.tintColor = baseBackgroundColor;
             
+            UIButton *tmpButton = (UIButton *)[cell viewWithTag:5000];
+            [tmpButton setHidden:true];
         }else{
             UIImageView *tmpImageView = (UIImageView *)[cell viewWithTag:2000];
+            [tmpImageView setHidden:true];
             [tmpImageView setImage:noBatteryImage];
             tmpImageView.tintColor = [UIColor redColor];
             
             tmpImageView = (UIImageView *)[cell viewWithTag:3000];
+            [tmpImageView setHidden:true];
             [tmpImageView setImage:noSignalImage];
             tmpImageView.tintColor = [UIColor redColor];
+            
+            UIButton *tmpButton = (UIButton *)[cell viewWithTag:5000];
+            [tmpButton setHidden:false];
+            tmpButton.layer.borderWidth = 1.0f;
+            tmpButton.layer.cornerRadius = 8.0f;
+
         }
 
         if (device.lastPropertyMessage != nil) {
@@ -169,9 +180,10 @@
         
         DataLabel *alertLabel = (DataLabel *)[cell viewWithTag:4000];
         [alertLabel setHidden:true];
+        
+        UIButton *tmpButton = (UIButton *)[cell viewWithTag:5000];
+        [tmpButton setHidden:true];
     }
-    
-    //bgView.backgroundColor = selectionBackgroundColorRef;
     
     cell.selectedBackgroundView = bgView;
     return cell;
@@ -266,6 +278,14 @@
     Device *device = (Device *)application.devicesData[indexPath.row];
     [self dismissAlertForDevice:device andRow:indexPath.row];
 }
+- (IBAction)connectDeviceAction:(id)sender {
+    CGPoint point = [sender convertPoint:CGPointZero toView:self.tableView];
+    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:point];
+    Device *device = (Device *)application.devicesData[indexPath.row];
+    DevicesViewController *superController = (DevicesViewController *)[AppDelegate findSuperConstroller:self with:DevicesViewController.class];
+    device.manuallyDisconnected = false;
+    [superController reconnectDeviceForUUDID:device.uuid];
+}
 
 -(void)tableView:(UITableView *)tableView didHighlightRowAtIndexPath:(NSIndexPath *)indexPath{
     Device *device = [self getDeviceForIndex:indexPath];
@@ -273,7 +293,13 @@
         if (device.lastPropertyChange != nil && device.lastPropertyMessage != nil) {
             [self dismissAlertForDevice:device andRow:indexPath.row];
             return;
-        }        
+        }
+        
+        if (self->application.demoMode){
+            DevicesViewController *superController = (DevicesViewController *)[AppDelegate findSuperConstroller:self with:DevicesViewController.class];
+            [superController simulateAlertForDevice:device];
+        }
+        
         if (device.connected == TRUE) {
             [[self parentViewController]performSegueWithIdentifier:@"ShowSensorDrillDown" sender:device];
         }

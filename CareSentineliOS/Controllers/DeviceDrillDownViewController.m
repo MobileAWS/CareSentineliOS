@@ -9,6 +9,8 @@
 #import "DeviceDrillDownViewController.h"
 #import "UIResources.h"
 #import "DeviceEnabledProperty.h"
+#import "AppDelegate.h"
+#import "HexColor.h"
 
 @interface DeviceDrillDownViewController (){
 
@@ -18,6 +20,7 @@
     __weak IBOutlet UIImageView *batteryImage;
     __weak IBOutlet UILabel *temperatureLabel;
     __weak IBOutlet UITableView *characteristicsTable;
+    __weak IBOutlet UIButton *disconnectButton;
 }
 @end
 
@@ -25,6 +28,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.disconnect = NO;
     self.navigationController.navigationBar.barTintColor = baseBackgroundColor;
     self.navigationController.navigationBar.translucent = NO;
     self.navigationController.navigationBar.tintColor = [[UIColor alloc] initWithRed:1 green:1 blue: 1 alpha:1];
@@ -39,6 +43,11 @@
     self.title = self.device.name;
     self->characteristicsTable.delegate = self;
     self->characteristicsTable.dataSource = self;
+    
+    self->disconnectButton.layer.borderWidth = 1.0f;
+    self->disconnectButton.layer.cornerRadius = 8.0f;
+    self->disconnectButton.layer.borderColor = [[UIColor colorWithHexString:@"#cc0000"] CGColor];
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -103,5 +112,17 @@
         DeviceEnabledProperty *characteristic = [[self.device getCharacteristics] objectAtIndex:indexPath.row];
         [self.device switchCharacteristicStatus:characteristic.name];
     }
+}
+
+
+-(IBAction)disconnectDeviceAction:(id)sender{
+    [AppDelegate showConfirmWith:NSLocalizedString(@"device.disconnect.confirm",nil) title:NSLocalizedString(@"device.disconnect.confirm.title",nil) target:nil callback:^{
+            self.disconnect = YES;
+            [self performSegueWithIdentifier:@"UnwindFromDrillDown" sender:self];
+        }];
+
+}
+
+-(IBAction)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
 }
 @end

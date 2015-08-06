@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AlertInputAcceptedDelegate.h"
+#import "Device.h"
 
-@interface DevicesViewController : UIViewController
-
+@interface DevicesViewController : UIViewController <AlertInputAcceptedDelegate>
+- (void)simulateAlertForDevice:(Device *)device;
+- (void)reconnectDeviceForUUDID:(NSString *)identifier;
 @end

@@ -14,6 +14,7 @@
 		27009F0C1B177098003FBEAB /* APSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 27009F091B177098003FBEAB /* APSettings.m */; };
 		2703A7161B35F25A00E1CF70 /* DeviceDrillDownViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2703A7151B35F25A00E1CF70 /* DeviceDrillDownViewController.m */; };
 		271071191B27AFF700A3D75B /* DevicesEmptyTableMessage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 271071181B27AFF700A3D75B /* DevicesEmptyTableMessage.xib */; };
+		2712DF0F1B6FFC7D005E06DF /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2712DF0E1B6FFC7D005E06DF /* libPods.a */; };
 		271605661B139D3F002505E1 /* DevicesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 271605651B139D3F002505E1 /* DevicesTableViewController.m */; };
 		2716056C1B13D38B002505E1 /* Device.m in Sources */ = {isa = PBXBuildFile; fileRef = 2716056B1B13D38B002505E1 /* Device.m */; };
 		2716056F1B14C749002505E1 /* NewUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2716056E1B14C749002505E1 /* NewUserViewController.m */; };
@@ -92,7 +93,6 @@
 		27BA55B31B44F01F00107017 /* LNConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 273A42981B3B1B0500CC2644 /* LNConstants.m */; };
 		27BA55B51B44F01F00107017 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27009EF91B176827003FBEAB /* CoreBluetooth.framework */; };
 		27BA55B61B44F01F00107017 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 27DA27861B0CDBD300D1000A /* libsqlite3.dylib */; };
-		27BA55B71B44F01F00107017 /* libPods-CareSentineliOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9372036643249EAB1135F4A8 /* libPods-CareSentineliOS.a */; };
 		27BA55B91B44F01F00107017 /* DevicesEmptyTableMessage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 271071181B27AFF700A3D75B /* DevicesEmptyTableMessage.xib */; };
 		27BA55BA1B44F01F00107017 /* database_v1.sql in Resources */ = {isa = PBXBuildFile; fileRef = 2777D80D1B0F6FB000CAC2AF /* database_v1.sql */; };
 		27BA55BB1B44F01F00107017 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 273ED3551AFC550700F4F82B /* Main.storyboard */; };
@@ -104,7 +104,7 @@
 		27DA27871B0CDBD300D1000A /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 27DA27861B0CDBD300D1000A /* libsqlite3.dylib */; };
 		27EFEFD41B31F467000C72AD /* MainTabsControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EFEFD31B31F467000C72AD /* MainTabsControllerViewController.m */; };
 		27EFEFD61B320942000C72AD /* TSLoonMessageDesign.json in Resources */ = {isa = PBXBuildFile; fileRef = 27EFEFD51B320942000C72AD /* TSLoonMessageDesign.json */; };
-		F788400950AC4F84B0CF6C62 /* libPods-CareSentineliOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9372036643249EAB1135F4A8 /* libPods-CareSentineliOS.a */; };
+		B38A7E8FDC271523F6B6AB19 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C14B51759A9EFD5849A7D979 /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -120,7 +120,9 @@
 		27009F0A1B177098003FBEAB /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		2703A7141B35F25A00E1CF70 /* DeviceDrillDownViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceDrillDownViewController.h; sourceTree = "<group>"; };
 		2703A7151B35F25A00E1CF70 /* DeviceDrillDownViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceDrillDownViewController.m; sourceTree = "<group>"; };
+		2707D8441B6FFAD600296196 /* libPods-CareSentineliOS Dev.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-CareSentineliOS Dev.a"; path = "Pods/../build/Release-iphoneos/libPods-CareSentineliOS Dev.a"; sourceTree = "<group>"; };
 		271071181B27AFF700A3D75B /* DevicesEmptyTableMessage.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DevicesEmptyTableMessage.xib; sourceTree = "<group>"; };
+		2712DF0E1B6FFC7D005E06DF /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/../build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
 		271605641B139D3F002505E1 /* DevicesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DevicesTableViewController.h; sourceTree = "<group>"; };
 		271605651B139D3F002505E1 /* DevicesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DevicesTableViewController.m; sourceTree = "<group>"; };
 		271605671B13CA77002505E1 /* BaseModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseModel.h; sourceTree = "<group>"; };
@@ -205,12 +207,21 @@
 		27EFEFD21B31F467000C72AD /* MainTabsControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTabsControllerViewController.h; sourceTree = "<group>"; };
 		27EFEFD31B31F467000C72AD /* MainTabsControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTabsControllerViewController.m; sourceTree = "<group>"; };
 		27EFEFD51B320942000C72AD /* TSLoonMessageDesign.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TSLoonMessageDesign.json; sourceTree = "<group>"; };
+		48140249292BCE421FCA57E9 /* libPods-CareSentineliOS Dev.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CareSentineliOS Dev.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D1A9855D76CB981F22599FE /* Pods-CareSentineliOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CareSentineliOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-CareSentineliOS/Pods-CareSentineliOS.release.xcconfig"; sourceTree = "<group>"; };
+		8529B2B4C98E91FFD2DC06B5 /* Pods-CareSentineliOS TF.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CareSentineliOS TF.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CareSentineliOS TF/Pods-CareSentineliOS TF.debug.xcconfig"; sourceTree = "<group>"; };
 		8A4E709D17CC3B47DF3994EF /* libPods-CareSentineliOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CareSentineliOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FA62490FC287BF34541B3C3 /* Pods-CareSentineliOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CareSentineliOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CareSentineliOS/Pods-CareSentineliOS.debug.xcconfig"; sourceTree = "<group>"; };
 		902724B903F3E88DBCB0930D /* Pods-CareSentineliOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CareSentineliOSTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CareSentineliOSTests/Pods-CareSentineliOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		9372036643249EAB1135F4A8 /* libPods-CareSentineliOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CareSentineliOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A0222AABBC014D5EA76D3736 /* Pods-CareSentineliOS TF.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CareSentineliOS TF.release.xcconfig"; path = "Pods/Target Support Files/Pods-CareSentineliOS TF/Pods-CareSentineliOS TF.release.xcconfig"; sourceTree = "<group>"; };
 		A6D93102412D921FCA45C187 /* Pods-CareSentineliOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CareSentineliOSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CareSentineliOSTests/Pods-CareSentineliOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		B9B097C228DA79DAEB8289A8 /* Pods-CareSentineliOS Dev.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CareSentineliOS Dev.release.xcconfig"; path = "Pods/Target Support Files/Pods-CareSentineliOS Dev/Pods-CareSentineliOS Dev.release.xcconfig"; sourceTree = "<group>"; };
+		C14B51759A9EFD5849A7D979 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		C222A06D1D5607C4F5F18AD2 /* Pods-CareSentineliOS Dev.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CareSentineliOS Dev.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CareSentineliOS Dev/Pods-CareSentineliOS Dev.debug.xcconfig"; sourceTree = "<group>"; };
+		D73545C16A46E1F4B969E3CD /* libPods-CareSentineliOS TF.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CareSentineliOS TF.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E86C96807CFDF0C46D1C4C9E /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		E9051D77506529F39336AB4A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -220,7 +231,7 @@
 			files = (
 				27009EFA1B176827003FBEAB /* CoreBluetooth.framework in Frameworks */,
 				27DA27871B0CDBD300D1000A /* libsqlite3.dylib in Frameworks */,
-				F788400950AC4F84B0CF6C62 /* libPods-CareSentineliOS.a in Frameworks */,
+				B38A7E8FDC271523F6B6AB19 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -228,9 +239,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2712DF0F1B6FFC7D005E06DF /* libPods.a in Frameworks */,
 				27BA55B51B44F01F00107017 /* CoreBluetooth.framework in Frameworks */,
 				27BA55B61B44F01F00107017 /* libsqlite3.dylib in Frameworks */,
-				27BA55B71B44F01F00107017 /* libPods-CareSentineliOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -485,6 +496,12 @@
 				7D1A9855D76CB981F22599FE /* Pods-CareSentineliOS.release.xcconfig */,
 				902724B903F3E88DBCB0930D /* Pods-CareSentineliOSTests.debug.xcconfig */,
 				A6D93102412D921FCA45C187 /* Pods-CareSentineliOSTests.release.xcconfig */,
+				B9B097C228DA79DAEB8289A8 /* Pods-CareSentineliOS Dev.release.xcconfig */,
+				C222A06D1D5607C4F5F18AD2 /* Pods-CareSentineliOS Dev.debug.xcconfig */,
+				A0222AABBC014D5EA76D3736 /* Pods-CareSentineliOS TF.release.xcconfig */,
+				8529B2B4C98E91FFD2DC06B5 /* Pods-CareSentineliOS TF.debug.xcconfig */,
+				E86C96807CFDF0C46D1C4C9E /* Pods.release.xcconfig */,
+				E9051D77506529F39336AB4A /* Pods.debug.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -492,8 +509,13 @@
 		D53920E0DED320158244476F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2712DF0E1B6FFC7D005E06DF /* libPods.a */,
+				2707D8441B6FFAD600296196 /* libPods-CareSentineliOS Dev.a */,
 				9372036643249EAB1135F4A8 /* libPods-CareSentineliOS.a */,
 				8A4E709D17CC3B47DF3994EF /* libPods-CareSentineliOSTests.a */,
+				48140249292BCE421FCA57E9 /* libPods-CareSentineliOS Dev.a */,
+				D73545C16A46E1F4B969E3CD /* libPods-CareSentineliOS TF.a */,
+				C14B51759A9EFD5849A7D979 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -639,7 +661,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CareSentineliOS/Pods-CareSentineliOS-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		4C99B2B11B824BA34CE44E29 /* Copy Pods Resources */ = {
@@ -654,7 +676,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CareSentineliOS/Pods-CareSentineliOS-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C49D6C85AAED02EFA7FC417F /* Check Pods Manifest.lock */ = {
@@ -793,7 +815,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		273ED3691AFC550700F4F82B /* Debug */ = {
+		2707D8411B6FFA2400296196 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -811,16 +833,10 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -828,9 +844,43 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Debug;
+		};
+		2707D8421B6FFA2400296196 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E9051D77506529F39336AB4A /* Pods.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Carlos Alvarez (FQ9B6S5R5B)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Carlos Alvarez (FQ9B6S5R5B)";
+				INFOPLIST_FILE = CareSentineliOS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Release-iphoneos",
+				);
+				PRODUCT_NAME = "Care Sentinel Dev";
+				PROVISIONING_PROFILE = "a1b4bad4-80a9-4b9b-b467-04dbf41a5cec";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		2707D8431B6FFA2400296196 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E9051D77506529F39336AB4A /* Pods.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: MobileAWS LLC (BJRCWA3N54)";
+				INFOPLIST_FILE = "$(SRCROOT)/CareSentinel TF/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				PRODUCT_NAME = "Care Sentinel";
+				PROVISIONING_PROFILE = "0762875f-2dc6-464f-9eb2-1d92996fcad5";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -871,58 +921,34 @@
 			};
 			name = Release;
 		};
-		273ED36C1AFC550700F4F82B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8FA62490FC287BF34541B3C3 /* Pods-CareSentineliOS.debug.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Carlos Alvarez (FQ9B6S5R5B)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Carlos Alvarez (FQ9B6S5R5B)";
-				INFOPLIST_FILE = CareSentineliOS/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "Care Sentinel Dev";
-				PROVISIONING_PROFILE = "a1b4bad4-80a9-4b9b-b467-04dbf41a5cec";
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
 		273ED36D1AFC550700F4F82B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7D1A9855D76CB981F22599FE /* Pods-CareSentineliOS.release.xcconfig */;
+			baseConfigurationReference = E86C96807CFDF0C46D1C4C9E /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Carlos Alvarez (FQ9B6S5R5B)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Carlos Alvarez (FQ9B6S5R5B)";
 				INFOPLIST_FILE = CareSentineliOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Release-iphoneos",
+				);
 				PRODUCT_NAME = "Care Sentinel Dev";
 				PROVISIONING_PROFILE = "a1b4bad4-80a9-4b9b-b467-04dbf41a5cec";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
-		27BA55C21B44F01F00107017 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8FA62490FC287BF34541B3C3 /* Pods-CareSentineliOS.debug.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: MobileAWS LLC (BJRCWA3N54)";
-				INFOPLIST_FILE = "$(SRCROOT)/CareSentinel TF/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "Care Sentinel";
-				PROVISIONING_PROFILE = "0762875f-2dc6-464f-9eb2-1d92996fcad5";
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
 		27BA55C31B44F01F00107017 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7D1A9855D76CB981F22599FE /* Pods-CareSentineliOS.release.xcconfig */;
+			baseConfigurationReference = E86C96807CFDF0C46D1C4C9E /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: MobileAWS LLC (BJRCWA3N54)";
 				INFOPLIST_FILE = "$(SRCROOT)/CareSentinel TF/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "Care Sentinel";
 				PROVISIONING_PROFILE = "0762875f-2dc6-464f-9eb2-1d92996fcad5";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -935,8 +961,8 @@
 		273ED3401AFC550700F4F82B /* Build configuration list for PBXProject "CareSentineliOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				273ED3691AFC550700F4F82B /* Debug */,
 				273ED36A1AFC550700F4F82B /* Release */,
+				2707D8411B6FFA2400296196 /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -944,8 +970,8 @@
 		273ED36B1AFC550700F4F82B /* Build configuration list for PBXNativeTarget "CareSentineliOS Dev" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				273ED36C1AFC550700F4F82B /* Debug */,
 				273ED36D1AFC550700F4F82B /* Release */,
+				2707D8421B6FFA2400296196 /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -953,8 +979,8 @@
 		27BA55C11B44F01F00107017 /* Build configuration list for PBXNativeTarget "CareSentineliOS TF" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				27BA55C21B44F01F00107017 /* Debug */,
 				27BA55C31B44F01F00107017 /* Release */,
+				2707D8431B6FFA2400296196 /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

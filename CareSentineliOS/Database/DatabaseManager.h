@@ -11,6 +11,7 @@
 
 @interface DatabaseManager : NSObject
 +(DatabaseManager *)getSharedIntance;
++(NSString *)encodeString:(NSString *)target;
 -(id<BaseModel>)save:(id<BaseModel>)data;
 -(id)findById:(NSNumber *)targetId;
 -(id)findWithCondition:(NSString *)condition forModel:(Class)targetClass;

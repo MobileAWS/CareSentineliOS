@@ -2,4 +2,4 @@
 #import <UIKit/UIKit.h>
 #endif
 
-#import "Pods-CareSentineliOS-environment.h"
+#import "Pods-environment.h"

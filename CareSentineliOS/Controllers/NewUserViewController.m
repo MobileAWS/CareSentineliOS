@@ -118,7 +118,8 @@
 
     DatabaseManager *databaseManager = [DatabaseManager getSharedIntance];
     
-    id user = [databaseManager findWithCondition:[NSString stringWithFormat:@"email = '%@'",self->emailTextField.text ]forModel:[User class]];
+    NSString *usernameValue = [DatabaseManager encodeString:self->emailTextField.text];
+    id user = [databaseManager findWithCondition:[NSString stringWithFormat:@"email = '%@'",usernameValue ]forModel:[User class]];
     
     if (user != nil){
         [AppDelegate showAlert:@"The supplied email already exists" withTitle:@"Invalid Data"];
