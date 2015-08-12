@@ -381,6 +381,13 @@
                                                 <action selector="connectDeviceAction:" destination="t6o-O7-Zei" eventType="touchUpInside" id="nff-K9-JIG"/>
                                             </connections>
                                         </button>
+                                        <activityIndicatorView hidden="YES" opaque="NO" tag="6000" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Ysv-oU-qj7">
+                                            <rect key="frame" x="532" y="12" width="20" height="20"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="20" id="3oI-Vl-DlL"/>
+                                                <constraint firstAttribute="width" constant="20" id="FLY-cG-4rr"/>
+                                            </constraints>
+                                        </activityIndicatorView>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
@@ -390,9 +397,11 @@
                                         <constraint firstAttribute="trailingMargin" secondItem="FcD-s4-4AC" secondAttribute="trailing" constant="8" id="IiN-hX-am2"/>
                                         <constraint firstItem="clu-Id-u2A" firstAttribute="top" secondItem="dlb-Fm-cxB" secondAttribute="top" id="Lre-fy-fTK"/>
                                         <constraint firstItem="tkX-rq-Zca" firstAttribute="top" secondItem="I5e-sl-2z0" secondAttribute="topMargin" constant="3.5" id="X19-wo-fG4"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="Ysv-oU-qj7" secondAttribute="trailing" constant="40" id="dyc-E6-x06"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="Qi1-g7-nVf" secondAttribute="trailing" constant="8" id="h3A-Ab-Pv7"/>
                                         <constraint firstItem="dlb-Fm-cxB" firstAttribute="leading" secondItem="clu-Id-u2A" secondAttribute="trailing" constant="8" id="hqS-Pc-g9o"/>
                                         <constraint firstItem="tkX-rq-Zca" firstAttribute="centerY" secondItem="dlb-Fm-cxB" secondAttribute="centerY" id="kkU-td-W5v"/>
+                                        <constraint firstItem="Ysv-oU-qj7" firstAttribute="top" secondItem="I5e-sl-2z0" secondAttribute="topMargin" constant="4" id="oKQ-mz-IfN"/>
                                         <constraint firstItem="tkX-rq-Zca" firstAttribute="leading" secondItem="I5e-sl-2z0" secondAttribute="leadingMargin" id="tO6-gH-9J6"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="Qi1-g7-nVf" secondAttribute="bottom" id="w3l-6m-0NL"/>
                                     </constraints>

@@ -37,8 +37,8 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     DatabaseManager *manager = [DatabaseManager getSharedIntance];
-    application.devicesData = [manager listWithModel:[Device class] condition:[NSString stringWithFormat:@" user_id = %@ AND (ignored = 0 OR ignored IS NULL) ORDER BY id",application.currentUser.id]];
-    application.ignoredDevices = [manager listWithModel:[Device class] condition:[NSString stringWithFormat:@" user_id = %@ AND ignored = 1 ORDER BY id",application.currentUser.id]];
+    application.devicesData = [manager listWithModel:[Device class] condition:[NSString stringWithFormat:@" user_id = %@ AND site_id = %@ AND customer_id = %@  AND (ignored = 0 OR ignored IS NULL) ORDER BY id",application.currentUser.id,application.currentSite.id, application.currentCustomer.id]];
+    application.ignoredDevices = [manager listWithModel:[Device class] condition:[NSString stringWithFormat:@" user_id = %@ AND site_id = %@ AND customer_id = %@  AND ignored = 1 ORDER BY id",application.currentUser.id,application.currentSite.id, application.currentCustomer.id]];
     
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 
@@ -123,35 +123,65 @@
     UIImageView *bgView = [[UIImageView alloc]initWithFrame:cell.frame];
     
     if (![device isIgnored]) {
-        if (device.connected) {
+
+        BOOL connecting = false;
+        if (device.connecting) {
             UIImageView *tmpImageView = (UIImageView *)[cell viewWithTag:2000];
-            [tmpImageView setHidden:false];
-            [tmpImageView setImage:[device getImageForBattery]];
-            tmpImageView.tintColor = baseBackgroundColor;
+            [tmpImageView setHidden:true];
             
             tmpImageView = (UIImageView *)[cell viewWithTag:3000];
-            [tmpImageView setHidden:false];
-            [tmpImageView setImage:[device getImageForSignal]];
-            tmpImageView.tintColor = baseBackgroundColor;
+            [tmpImageView setHidden:true];
             
             UIButton *tmpButton = (UIButton *)[cell viewWithTag:5000];
             [tmpButton setHidden:true];
-        }else{
-            UIImageView *tmpImageView = (UIImageView *)[cell viewWithTag:2000];
-            [tmpImageView setHidden:true];
-            [tmpImageView setImage:noBatteryImage];
-            tmpImageView.tintColor = [UIColor redColor];
             
-            tmpImageView = (UIImageView *)[cell viewWithTag:3000];
-            [tmpImageView setHidden:true];
-            [tmpImageView setImage:noSignalImage];
-            tmpImageView.tintColor = [UIColor redColor];
+            UIActivityIndicatorView *tmpView = (UIActivityIndicatorView *)[cell viewWithTag:6000];
+            if (!tmpView.isAnimating){
+                [tmpView startAnimating];
+            }
+            [tmpView setHidden:false];
+            connecting = true;
+        }
+        
+    
+        if (!connecting){
             
-            UIButton *tmpButton = (UIButton *)[cell viewWithTag:5000];
-            [tmpButton setHidden:false];
-            tmpButton.layer.borderWidth = 1.0f;
-            tmpButton.layer.cornerRadius = 8.0f;
+            UIActivityIndicatorView *tmpView = (UIActivityIndicatorView *)[cell viewWithTag:6000];
+            if (tmpView.isAnimating){
+                [tmpView stopAnimating];
+            }
+            [tmpView setHidden:true];
 
+            if (device.connected) {
+                UIImageView *tmpImageView = (UIImageView *)[cell viewWithTag:2000];
+                [tmpImageView setHidden:false];
+                [tmpImageView setImage:[device getImageForBattery]];
+                tmpImageView.tintColor = baseBackgroundColor;
+                
+                tmpImageView = (UIImageView *)[cell viewWithTag:3000];
+                [tmpImageView setHidden:false];
+                [tmpImageView setImage:[device getImageForSignal]];
+                tmpImageView.tintColor = baseBackgroundColor;
+                
+                UIButton *tmpButton = (UIButton *)[cell viewWithTag:5000];
+                [tmpButton setHidden:true];
+            }else{
+                UIImageView *tmpImageView = (UIImageView *)[cell viewWithTag:2000];
+                [tmpImageView setHidden:true];
+                [tmpImageView setImage:noBatteryImage];
+                tmpImageView.tintColor = [UIColor redColor];
+                
+                tmpImageView = (UIImageView *)[cell viewWithTag:3000];
+                [tmpImageView setHidden:true];
+                [tmpImageView setImage:noSignalImage];
+                tmpImageView.tintColor = [UIColor redColor];
+                
+                UIButton *tmpButton = (UIButton *)[cell viewWithTag:5000];
+                [tmpButton setHidden:false];
+                tmpButton.layer.borderWidth = 1.0f;
+                tmpButton.layer.cornerRadius = 8.0f;
+
+            }
         }
 
         if (device.lastPropertyMessage != nil) {
@@ -236,6 +266,9 @@
     [self->targetTableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
 }
 
+-(void)reloadDevices{
+    [self->targetTableView reloadData];
+}
 -(BOOL)containsDevice:(NSString *)deviceUUID{
     for(int i = 0; i < [application.devicesData count]; i++){
         Device *currentDevice = (Device *)[application.devicesData objectAtIndex:i];
@@ -290,6 +323,7 @@
 -(void)tableView:(UITableView *)tableView didHighlightRowAtIndexPath:(NSIndexPath *)indexPath{
     Device *device = [self getDeviceForIndex:indexPath];
     if (device != nil && ![device isIgnored]){
+        
         if (device.lastPropertyChange != nil && device.lastPropertyMessage != nil) {
             [self dismissAlertForDevice:device andRow:indexPath.row];
             return;
@@ -300,6 +334,10 @@
             [superController simulateAlertForDevice:device];
         }
         
+        if (device.connecting){
+            return;
+        }
+
         if (device.connected == TRUE) {
             [[self parentViewController]performSegueWithIdentifier:@"ShowSensorDrillDown" sender:device];
         }

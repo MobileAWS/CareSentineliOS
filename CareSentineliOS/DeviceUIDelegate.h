@@ -18,4 +18,6 @@
 -(void)deviceConnected:(CBPeripheral *)peripheral phsyicalDevice:(APBLEDevice *)physDev;
 -(void)didUpdateDevice:(CBPeripheral *) device;
 -(void)didUpdateHwIdForDevice:(CBPeripheral *)device;
+-(void)setDevice:(CBPeripheral *)device connectingStatus:(BOOL) status;
+-(void)reloadDevices;
 @end

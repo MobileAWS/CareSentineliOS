@@ -48,6 +48,10 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (void)reloadDevices{
+    [self->devicesTableViewController reloadDevices];
+}
 - (IBAction)logoutButtonAction:(id)sender {
     AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     [appDelegate logout];
@@ -77,6 +81,13 @@
         DeviceDrillDownViewController *destination = (DeviceDrillDownViewController *)[segue.destinationViewController viewControllers][0];
         destination.device = sender;
     }
+}
+
+-(void)setDevice:(CBPeripheral *)peripheral connectingStatus:(BOOL) status{
+    Device *device = [self->devicesTableViewController deviceForPeripheral:peripheral.identifier.UUIDString];
+    device.connecting = status;
+    [self->devicesTableViewController reloadDevice:device];
+    
 }
 
 - (void)reconnectDeviceForUUDID:(NSString *)identifier{

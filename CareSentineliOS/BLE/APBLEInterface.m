@@ -13,15 +13,17 @@
 #import "APAppServices.h"
 #import "AppDelegate.h"
 #import "InputAlertViewDelegate.h"
+#import "ConnectingDeviceDescriptor.h"
 
 @interface APBLEInterface (){
     NSMutableArray *pendingInputDelegates;
 }
 @property (strong, nonatomic) CBCentralManager             *centralManager;
-@property (strong, nonatomic) CBPeripheral                 *connectingPheriperal;
+@property (strong, nonatomic) NSObject                     *connectingDevicesLock;
 @property (strong, nonatomic) NSMutableArray               *discoveredPeripherals;
 @property (strong, nonatomic) NSMutableArray               *pendingNewDevices;
 @property (strong, nonatomic) NSMutableArray               *manuallyDisconnectedDevices;
+@property (strong, nonatomic) NSMutableArray               *connectingDevicesDescriptions;
 @property (strong, nonatomic) NSArray                      *deviceTypesArray;
 @property (strong, nonatomic) NSArray                      *servicesArray;
 @property (assign, nonatomic) NSInteger                     lastRssi;
@@ -32,7 +34,6 @@
 @property (strong, nonatomic) NSTimer                      *retryTimer;
 @property (strong, nonatomic) NSTimer                      *watchConnectionStatusTimer;
 @property (strong, nonatomic) NSTimer                      *deviceScanTimer;
-@property (strong, nonatomic) NSTimer                      *deviceConnectTimer;
 @property (strong, nonatomic) NSTimer                      *manualDisconnectTimer;
 @property (assign, nonatomic) BOOL                          havePebble;          // #### Probably only need this BOOL for debugging.
 @end
@@ -49,7 +50,7 @@ static BOOL s_processing_restart = NO;
 // ------------------------------------------------------------------------------
 - (id)init {
     self = [super init];
-    if (self) { 
+    if (self) {
         if ([APAppServices osVersion] >= 7.0f) {
             _centralManager      = [[CBCentralManager alloc] initWithDelegate:self queue:nil options:@{ CBCentralManagerOptionRestoreIdentifierKey:kNameApp,
                                                                                                         CBCentralManagerOptionShowPowerAlertKey:[NSNumber numberWithBool:YES]}];
@@ -82,6 +83,8 @@ static BOOL s_processing_restart = NO;
         _pendingNewDevices       = [[NSMutableArray alloc] init];
         self.manuallyDisconnectedDevices = [[NSMutableArray alloc] init];
         pendingInputDelegates = [[NSMutableArray alloc]init];
+        self.connectingDevicesLock = [[NSObject alloc] init];
+        self.connectingDevicesDescriptions = [[NSMutableArray alloc]init];
         
         _retryTimer              = nil;
     }
@@ -112,12 +115,44 @@ static BOOL s_processing_restart = NO;
     }
 }
 
+- (void)forceDisconnectAllPeripherals{
+    CBPeripheral *tmpPeripheral;
+    AppDelegate *application = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    for (int d = 0; d < application.devicesData.count; d++) {
+        Device *device = application.devicesData[d];
+        for(int i = 0; i < self.activeDevices.count; i++){
+            tmpPeripheral = ((APBLEDevice *)self.activeDevices[i]).peripheral;
+            if ([tmpPeripheral.identifier.UUIDString isEqualToString:device.uuid]) {
+                device.manuallyDisconnected = true;
+                // Look through services to find notifications.
+                if (tmpPeripheral.services) {
+                    for (CBService *service in tmpPeripheral.services) {
+                        if (service.characteristics) {
+                            for (CBCharacteristic *characteristic in service.characteristics) {
+                                // See if we have any notifications we're subscribed to...
+                                if (characteristic.isNotifying) {
+                                    [tmpPeripheral setNotifyValue:NO forCharacteristic:characteristic];
+                                }
+                            }
+                        }
+                    }
+                }
+                [self->_centralManager cancelPeripheralConnection:self->_activeDevices[i]];
+                device.connected = false;
+                device.deviceDescriptor = nil;
+                break;
+            } // if ([tmpPeripheral.identifier.UUIDString isEqualToString:device.uuid])
+        } // for(int i = 0; i < self.activeDevices.count; i++)
+    } // for (int d = 0; d < application.devicesData.count; d++) {
+    [self.activeDevices removeAllObjects];
+    [self.uiDelegate reloadDevices];
+} // (void)forceDisconnectAllPeripherals
+
+
 - (void)disconnectPeripheralForDevice:(Device *)device{
     CBPeripheral *tmpPeripheral;
-    NSLog(@"%@",device);
     for(int i = 0; i < self.activeDevices.count; i++){
         tmpPeripheral = ((APBLEDevice *)self.activeDevices[i]).peripheral;
-        NSLog(@"%@-----%@",tmpPeripheral.identifier.UUIDString,device.uuid);
         if ([tmpPeripheral.identifier.UUIDString isEqualToString:device.uuid]) {
             device.manuallyDisconnected = true;
             // -- Look through services to find notifications.
@@ -193,11 +228,21 @@ static BOOL s_processing_restart = NO;
     switch (central.state) {
         case CBCentralManagerStatePoweredOn:
             APLog(@"Central updated to state CBCentralManagerStatePoweredOn");
-            [AppDelegate showLoadingMask];
-            [self scanForDevices];
+            if ([UIApplication sharedApplication].applicationState == UIApplicationStateActive) {
+                [AppDelegate showLoadingMask];
+                [self scanForDevices];
+            }
+            else{
+                if ([UIApplication sharedApplication].applicationState == UIApplicationStateBackground){
+                    AppDelegate *application = (AppDelegate *)[UIApplication sharedApplication].delegate;
+                    for (int i = 0; i < application.devicesData.count; i++) {
+                        [self reconnectDeviceForUUDID:((Device *)application.devicesData[i]).uuid];
+                    }
+                }
+            }
             
             if ([APAppServices osVersion] < 7.0f) {
-                break;  // -- Get outta town!!!!
+                break;
             }
 
             // -- iOS7 Restoration Processing
@@ -267,6 +312,7 @@ static BOOL s_processing_restart = NO;
             
         case CBCentralManagerStatePoweredOff:
             APLog(@"Central updated to state CBCentralManagerStatePoweredOff");
+            [self forceDisconnectAllPeripherals];
             break;
             
         case CBCentralManagerStateResetting:
@@ -372,6 +418,17 @@ static BOOL s_processing_restart = NO;
 
 }
 
+-(void)connectWithPeripheral:(CBPeripheral *)peripheral andCentral:(CBCentralManager *)central{
+    [AppDelegate hideLoadingMask];
+    [self.uiDelegate setDevice:peripheral connectingStatus:true];
+    if (central == nil) {
+        [self.centralManager connectPeripheral:peripheral options:nil];
+    }
+    else{
+        [central connectPeripheral:peripheral options:nil];
+    }
+}
+
 -(void) input:(NSString *)input AcceptedWithObject:(id)target{
 
     [pendingInputDelegates removeObject:target];
@@ -393,12 +450,12 @@ static BOOL s_processing_restart = NO;
         }
         if ([APAppServices osVersion] >= 7.0f) {
             if (peripheral.state != CBPeripheralStateConnected AND peripheral.state != CBPeripheralStateConnecting) {
-                [central connectPeripheral:peripheral options:nil];
+                [self connectWithPeripheral:peripheral andCentral:central];
             }
         } else {
 #ifndef __IPHONE_7_0
             if (!peripheral.isConnected) {
-                [central connectPeripheral:peripheral options:nil];
+                [self connectWithPeripheral:peripheral andCentral:central];
             }
 #endif
         }
@@ -424,7 +481,7 @@ static BOOL s_processing_restart = NO;
     if (device != nil){
         if (peripheral.state != CBPeripheralStateConnected AND peripheral.state != CBPeripheralStateConnecting) {
             [_discoveredPeripherals addObject:peripheral];
-            [central connectPeripheral:peripheral options:nil];
+            [self connectWithPeripheral:peripheral andCentral:central];
         }
         return;
     }
@@ -459,30 +516,85 @@ static BOOL s_processing_restart = NO;
 
 }
 
--(void)deviceConnectExpired:(NSTimer *)timer{
-    if (self.connectingPheriperal != nil) {
-        [self.centralManager cancelPeripheralConnection: self.connectingPheriperal];
+-(void)addConnectingPeripheral:(CBPeripheral *)peripheral withTimer:(NSTimer *)timer{
+    ConnectingDeviceDescriptor *descriptor = [[ConnectingDeviceDescriptor alloc] init];
+    descriptor.device = peripheral;
+    descriptor.timer = timer;
+    @synchronized(self.connectingDevicesLock){
+        [self.connectingDevicesDescriptions addObject:descriptor];
     }
-    self.connectingPheriperal = nil;
-    [timer invalidate];
-    self.deviceConnectTimer = nil;
-    [AppDelegate hideLoadingMask];
+}
+
+-(BOOL)isPeripheralConnectingWithUUID:(NSUUID *)identifier{
+    bool found = false;
+    @synchronized(self.connectingDevicesLock){
+        for (ConnectingDeviceDescriptor *device in self.connectingDevicesDescriptions) {
+            if ([device.device.identifier isEqual:identifier]) {
+                found = true;
+                break;
+            }
+        }
+    }
+    return found;
+}
+
+-(void)removeConnectingDeviceForUUID:(NSString *)uuid{
+    @synchronized(self.connectingDevicesLock){
+        ConnectingDeviceDescriptor *descriptor;
+        for (ConnectingDeviceDescriptor *device in self.connectingDevicesDescriptions) {
+            if ([device.device.identifier.UUIDString isEqualToString:uuid]) {
+                descriptor = device;
+                break;
+            }
+            
+        }
+        if (descriptor) {
+            [self.connectingDevicesDescriptions removeObject:descriptor];
+            if (descriptor.timer != nil && descriptor.timer.valid) {
+                [descriptor.timer invalidate];
+            }
+            descriptor.device = nil;
+            descriptor.timer = nil;
+        }
+    }
+
+}
+
+-(void)deviceConnectExpired:(NSTimer *)timer{
+    
+    CBPeripheral *connectingPeripheral = nil;
+    ConnectingDeviceDescriptor *descriptor;
+
+    @synchronized(self.connectingDevicesLock){
+        for (ConnectingDeviceDescriptor *device in self.connectingDevicesDescriptions) {
+            if (timer == device.timer) {
+                descriptor = device;
+                connectingPeripheral = device.device;
+                break;
+            }
+
+        }
+        [self.connectingDevicesDescriptions removeObject:descriptor];
+        [descriptor.timer invalidate];
+        descriptor.device = nil;
+        descriptor.timer = nil;
+    }
+    
+    if(connectingPeripheral){
+        [self.centralManager cancelPeripheralConnection: connectingPeripheral];
+        [self.uiDelegate setDevice:connectingPeripheral connectingStatus:false];
+    }
 }
 
 -(void)reconnectDeviceForUUDID:(NSString *)identifier{
-    if (self.connectingPheriperal != nil){
-        return;
-    }
     NSUUID *uudid = [[NSUUID new] initWithUUIDString:identifier];
-    if(uudid != nil){
-        NSArray *peripherals = [self.centralManager retrievePeripheralsWithIdentifiers:@[uudid]];
-        if (peripherals.count > 0) {
-            self.deviceConnectTimer = [NSTimer scheduledTimerWithTimeInterval:20 target:self selector: @selector(deviceConnectExpired:) userInfo:nil repeats:false];
-            self.connectingPheriperal = peripherals[0];
-            [AppDelegate showLoadingMask];
-            [self.centralManager connectPeripheral:peripherals[0] options:nil];
-        }
-        
+    if (uudid == nil){return;}
+    BOOL isConnecting = [self isPeripheralConnectingWithUUID:uudid];
+    if (isConnecting){return;}
+    NSArray *peripherals = [self.centralManager retrievePeripheralsWithIdentifiers:@[uudid]];
+    if (peripherals.count > 0) {
+        [self addConnectingPeripheral:peripherals[0] withTimer:[NSTimer scheduledTimerWithTimeInterval:20 target:self selector: @selector(deviceConnectExpired:) userInfo:nil repeats:false]];
+        [self connectWithPeripheral:peripherals[0] andCentral:nil];
     }
 }
 
@@ -595,13 +707,7 @@ static BOOL s_processing_restart = NO;
 
 - (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral {
     [peripheral readRSSI];
-    
-    if (self.deviceConnectTimer != nil && self.deviceConnectTimer.valid) {
-        [self.deviceConnectTimer invalidate];
-    }
-    self.deviceConnectTimer  = nil;
-    self.connectingPheriperal = nil;
-    
+    [self removeConnectingDeviceForUUID:peripheral.identifier.UUIDString];
     APLog(@"connected peripheral %@",peripheral.name);
 
     APLog(@"didConnectPeripheral: %@, discovering services...", peripheral.name);        //
@@ -670,6 +776,7 @@ static BOOL s_processing_restart = NO;
     
     // -- Remove peripheral from discovered list.
     [self removeDiscoveredPeripheral:peripheral];
+    [AppDelegate hideLoadingMask];
 }
 
 - (APBLEDevice *)findIgnoredDeviceUsingPeripheral:(CBPeripheral *)peripheral {
@@ -777,6 +884,8 @@ static BOOL s_processing_restart = NO;
 - (void)centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error {
     NSLog(@"%@ Failed Connection for: '%@'", error.description, peripheral.name);
     
+    [self removeConnectingDeviceForUUID:peripheral.identifier.UUIDString];
+    [self.uiDelegate setDevice:peripheral connectingStatus:false];
     [self cancelPeripheralConnection:peripheral];
 }
 
@@ -884,14 +993,14 @@ static BOOL s_processing_restart = NO;
 }
 
 - (void)peripheral:(CBPeripheral *)peripheral didUpdateNotificationStateForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error {
+    [self.uiDelegate setDevice:peripheral connectingStatus:false];
     if (error) {
         APLogErrMsg(@"%@ for Characteristic %@", error, characteristic.UUID);
         return;
     }
 
     APLog(@"Now receiving notification for %@",characteristic.UUID);
-    [AppDelegate hideLoadingMask];
-
+    [self.uiDelegate setDevice:peripheral connectingStatus:false];
     
 }
 

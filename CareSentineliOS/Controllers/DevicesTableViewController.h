@@ -14,4 +14,5 @@
     -(BOOL)containsDevice:(NSString *)deviceUUID;
     -(Device *)deviceForPeripheral:(NSString *)deviceUUID;
     -(void)reloadDevice:(Device *)device;
+    -(void)reloadDevices;
 @end

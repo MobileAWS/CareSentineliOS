@@ -104,6 +104,8 @@
 		27DA27871B0CDBD300D1000A /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 27DA27861B0CDBD300D1000A /* libsqlite3.dylib */; };
 		27EFEFD41B31F467000C72AD /* MainTabsControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EFEFD31B31F467000C72AD /* MainTabsControllerViewController.m */; };
 		27EFEFD61B320942000C72AD /* TSLoonMessageDesign.json in Resources */ = {isa = PBXBuildFile; fileRef = 27EFEFD51B320942000C72AD /* TSLoonMessageDesign.json */; };
+		27FED7EA1B742795007BAD65 /* ConnectingDeviceDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FED7E91B742795007BAD65 /* ConnectingDeviceDescriptor.m */; };
+		27FED7EB1B742795007BAD65 /* ConnectingDeviceDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FED7E91B742795007BAD65 /* ConnectingDeviceDescriptor.m */; };
 		B38A7E8FDC271523F6B6AB19 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C14B51759A9EFD5849A7D979 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -207,6 +209,8 @@
 		27EFEFD21B31F467000C72AD /* MainTabsControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTabsControllerViewController.h; sourceTree = "<group>"; };
 		27EFEFD31B31F467000C72AD /* MainTabsControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTabsControllerViewController.m; sourceTree = "<group>"; };
 		27EFEFD51B320942000C72AD /* TSLoonMessageDesign.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TSLoonMessageDesign.json; sourceTree = "<group>"; };
+		27FED7E81B742795007BAD65 /* ConnectingDeviceDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectingDeviceDescriptor.h; sourceTree = "<group>"; };
+		27FED7E91B742795007BAD65 /* ConnectingDeviceDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectingDeviceDescriptor.m; sourceTree = "<group>"; };
 		48140249292BCE421FCA57E9 /* libPods-CareSentineliOS Dev.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CareSentineliOS Dev.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D1A9855D76CB981F22599FE /* Pods-CareSentineliOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CareSentineliOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-CareSentineliOS/Pods-CareSentineliOS.release.xcconfig"; sourceTree = "<group>"; };
 		8529B2B4C98E91FFD2DC06B5 /* Pods-CareSentineliOS TF.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CareSentineliOS TF.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CareSentineliOS TF/Pods-CareSentineliOS TF.debug.xcconfig"; sourceTree = "<group>"; };
@@ -393,6 +397,8 @@
 				27632E681B2BB336002316F1 /* DevicePropertyDescriptor.m */,
 				276E20F91B3A11B800350CBB /* DeviceEnabledProperty.h */,
 				276E20FA1B3A11B800350CBB /* DeviceEnabledProperty.m */,
+				27FED7E81B742795007BAD65 /* ConnectingDeviceDescriptor.h */,
+				27FED7E91B742795007BAD65 /* ConnectingDeviceDescriptor.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -731,6 +737,7 @@
 				273ED34B1AFC550700F4F82B /* main.m in Sources */,
 				2777D81B1B0F706A00CAC2AF /* LoginViewController.m in Sources */,
 				27EFEFD41B31F467000C72AD /* MainTabsControllerViewController.m in Sources */,
+				27FED7EA1B742795007BAD65 /* ConnectingDeviceDescriptor.m in Sources */,
 				27556A791B3885B8008A97FA /* UploadDevicesTableViewController.m in Sources */,
 				279997751B250B470005E720 /* MawsTextView.m in Sources */,
 				275DF2BD1B4DDBFD00205670 /* DevicesStatusTableViewController.m in Sources */,
@@ -775,6 +782,7 @@
 				27BA55AB1B44F01F00107017 /* InputAlertViewDelegate.m in Sources */,
 				27BA55AC1B44F01F00107017 /* main.m in Sources */,
 				27BA55AD1B44F01F00107017 /* LoginViewController.m in Sources */,
+				27FED7EB1B742795007BAD65 /* ConnectingDeviceDescriptor.m in Sources */,
 				27BA55AE1B44F01F00107017 /* MainTabsControllerViewController.m in Sources */,
 				27BA55AF1B44F01F00107017 /* UploadDevicesTableViewController.m in Sources */,
 				27BA55B01B44F01F00107017 /* MawsTextView.m in Sources */,
