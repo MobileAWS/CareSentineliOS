@@ -179,16 +179,16 @@
                 [self->devicesTableViewController reloadDevice:device];
                 
             }
-         
+            
             
             if ([[UIApplication sharedApplication] applicationState] == UIApplicationStateActive) {
-                [TSMessage showNotificationInViewController:[TSMessage defaultViewController] title:@"Switch Changed" subtitle:message type:TSMessageNotificationTypeMessage duration:2];
+                [TSMessage showNotificationInViewController:[TSMessage defaultViewController] title:@"Sensor Changed" subtitle:[NSString stringWithFormat:@"%@ on %@",message,device.name] type:TSMessageNotificationTypeMessage duration:2];
                 AudioServicesPlaySystemSound(1002);
             }
             else{
                 UILocalNotification *notification = [[UILocalNotification alloc] init];
-                notification.alertTitle = @"Switch Changed";
-                notification.alertBody = message;
+                notification.alertTitle = @"Sensor Changed";
+                notification.alertBody = [NSString stringWithFormat:@"%@ on %@",message,device.name];
                 notification.soundName = @"default";
                 [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
                 
@@ -256,6 +256,10 @@
 -(IBAction)unwindFromDrillDown:(UIStoryboardSegue *)segue{
     DeviceDrillDownViewController *drillDown =  (DeviceDrillDownViewController *)segue.sourceViewController;
     NSLog(@"segue %d",drillDown.disconnect);
+    if (drillDown.rename) {
+        [self->devicesTableViewController reloadDevice:drillDown.device];
+    }
+    
     if(drillDown.disconnect == YES){
         [self->bleInterface disconnectPeripheralForDevice:drillDown.device];
     }

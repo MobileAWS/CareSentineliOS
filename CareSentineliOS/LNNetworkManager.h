@@ -22,5 +22,8 @@
 +(void)clear;
 
 +(BOOL)sessionValid;
+
++(NSString *)getToken;
+
 @end
 

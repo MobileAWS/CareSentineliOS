@@ -11,9 +11,13 @@
 #import "DeviceEnabledProperty.h"
 #import "AppDelegate.h"
 #import "HexColor.h"
+#import "InputAlertViewDelegate.h"
+#import "AlertInputAcceptedDelegate.h"
+#import "DatabaseManager.h"
 
 @interface DeviceDrillDownViewController (){
 
+    __weak IBOutlet UILabel *titleLabel;
     __weak IBOutlet UILabel *serialTextField;
     __weak IBOutlet UILabel *versionsTextField;
     __weak IBOutlet UIImageView *signalImage;
@@ -21,10 +25,12 @@
     __weak IBOutlet UILabel *temperatureLabel;
     __weak IBOutlet UITableView *characteristicsTable;
     __weak IBOutlet UIButton *disconnectButton;
+    __weak IBOutlet UIButton *renameButton;
+    InputAlertViewDelegate *renameDelegate;
 }
 @end
 
-@implementation DeviceDrillDownViewController
+@implementation DeviceDrillDownViewController 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -40,6 +46,7 @@
     [self->signalImage setImage:[self.device getImageForSignal]];
     self->signalImage.tintColor = baseBackgroundColor;
     self->temperatureLabel.text = [self.device getTemperature];
+    self->titleLabel.text = [NSString stringWithFormat:NSLocalizedString(@"drilldown.titleLabel", nil),self.device.name];
     self.title = self.device.name;
     self->characteristicsTable.delegate = self;
     self->characteristicsTable.dataSource = self;
@@ -47,6 +54,11 @@
     self->disconnectButton.layer.borderWidth = 1.0f;
     self->disconnectButton.layer.cornerRadius = 8.0f;
     self->disconnectButton.layer.borderColor = [[UIColor colorWithHexString:@"#cc0000"] CGColor];
+    
+    self->renameButton.layer.borderWidth = 1.0f;
+    self->renameButton.layer.cornerRadius = 8.0f;
+    self->renameButton.layer.borderColor = [[UIColor colorWithHexString:@"#004400"] CGColor];
+
 
 }
 
@@ -121,6 +133,30 @@
             [self performSegueWithIdentifier:@"UnwindFromDrillDown" sender:self];
         }];
 
+}
+- (IBAction)remameDevice:(id)sender {
+    renameDelegate = [[InputAlertViewDelegate alloc]init];
+    renameDelegate.delegate = self;
+    renameDelegate.targetObject = sender;
+    [AppDelegate showInputWith:[NSString stringWithFormat:NSLocalizedString(@"sensor.rename.message", nil),self.device.name] title:[NSString stringWithFormat: NSLocalizedString(@"sensor.rename.title" ,nil),self.device.name] defaultText:self.device.name delegate:renameDelegate cancelText:NSLocalizedString(@"buttons.cancel", nil)  acceptText:NSLocalizedString(@"buttons.rename", nil)];
+}
+
+-(void)input:(NSString *)input AcceptedWithObject:(id)target{
+    if (target == renameDelegate) {
+        renameDelegate = nil;
+        self.device.name = input;
+        DatabaseManager *dbManager = [DatabaseManager getSharedIntance];
+        [dbManager save:self.device];
+        self.rename = true;
+        self.navigationItem.title = input;
+        self->titleLabel.text = [NSString stringWithFormat:NSLocalizedString(@"drilldown.titleLabel", nil),self.device.name];
+    }
+}
+
+-(void)declinedWithObject:(id)target{
+    if (target == self->renameButton) {
+        renameDelegate = nil;
+    }
 }
 
 -(IBAction)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{

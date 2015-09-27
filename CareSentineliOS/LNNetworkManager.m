@@ -120,4 +120,8 @@ static NSString *token;
     }];
 }
 
++(NSString *)getToken{
+    return token;
+}
+
 @end

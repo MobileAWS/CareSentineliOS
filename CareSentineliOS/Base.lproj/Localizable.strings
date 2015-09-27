@@ -42,3 +42,13 @@
 "device.disconnect.confirm"="If you disconnect from this device, you won't be able to receive any more notifications from it until you reconnect, Are you sure you want to disconnect from this device?";
 
 "device.disconnect.confirm.title"="Disconnect From Device";
+"sensor.rename.message"="Please enter a new name for '%@' sensor";
+"sensor.rename.title"="Renaming '%@'";
+
+/** Buttons **/
+"buttons.cancel" = "Cancel";
+"buttons.rename" = "Rename";
+
+
+/** Drill down **/
+"drilldown.titleLabel" = "Loon Medical - %@";

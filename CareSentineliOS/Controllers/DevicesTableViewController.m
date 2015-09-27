@@ -21,6 +21,7 @@
     __weak IBOutlet UITableView *targetTableView;
     __weak UIView *noRecordsView;
     __weak AppDelegate *application;
+    __weak IBOutlet NSLayoutConstraint *connectButtonX;
 }
 @end
 
@@ -123,6 +124,8 @@
     UIImageView *bgView = [[UIImageView alloc]initWithFrame:cell.frame];
     
     if (![device isIgnored]) {
+        UIButton *ignoredConnect = (UIButton *)[cell viewWithTag:8000];
+        [ignoredConnect setHidden: true];
 
         BOOL connecting = false;
         if (device.connecting) {
@@ -133,6 +136,9 @@
             [tmpImageView setHidden:true];
             
             UIButton *tmpButton = (UIButton *)[cell viewWithTag:5000];
+            [tmpButton setHidden:true];
+            
+            tmpButton = (UIButton *)[cell viewWithTag:7000];
             [tmpButton setHidden:true];
             
             UIActivityIndicatorView *tmpView = (UIActivityIndicatorView *)[cell viewWithTag:6000];
@@ -165,6 +171,10 @@
                 
                 UIButton *tmpButton = (UIButton *)[cell viewWithTag:5000];
                 [tmpButton setHidden:true];
+                
+                tmpButton = (UIButton *)[cell viewWithTag:7000];
+                [tmpButton setHidden:true];
+
             }else{
                 UIImageView *tmpImageView = (UIImageView *)[cell viewWithTag:2000];
                 [tmpImageView setHidden:true];
@@ -178,9 +188,14 @@
                 
                 UIButton *tmpButton = (UIButton *)[cell viewWithTag:5000];
                 [tmpButton setHidden:false];
-                tmpButton.layer.borderWidth = 1.0f;
+                //tmpButton.layer.borderWidth = 1.0f;
                 tmpButton.layer.cornerRadius = 8.0f;
-
+                
+                tmpButton = (UIButton *)[cell viewWithTag:7000];
+                [tmpButton setHidden:false];
+                
+                //tmpButton.layer.borderWidth = 1.0f;
+                tmpButton.layer.cornerRadius = 8.0f;
             }
         }
 
@@ -202,6 +217,10 @@
         }
     }
     else{
+        UIButton *ignoredConnect = (UIButton *)[cell viewWithTag:8000];
+        [ignoredConnect setHidden: false];
+        ignoredConnect.layer.cornerRadius = 8.0f;        
+        
         UIImageView *tmpImageView = (UIImageView *)[cell viewWithTag:2000];
         [tmpImageView setHidden:true];
         
@@ -211,7 +230,18 @@
         DataLabel *alertLabel = (DataLabel *)[cell viewWithTag:4000];
         [alertLabel setHidden:true];
         
+        UIButton *loadingButton = (UIButton *)[cell viewWithTag:6000];
+        [loadingButton setHidden:true];
+        
         UIButton *tmpButton = (UIButton *)[cell viewWithTag:5000];
+        [tmpButton setHidden:true];
+        tmpButton.layer.cornerRadius = 8.0f;
+        
+        tmpButton = (UIButton *)[cell viewWithTag:6000];
+        [tmpButton setHidden:true];
+
+        
+        tmpButton = (UIButton *)[cell viewWithTag:7000];
         [tmpButton setHidden:true];
     }
     
@@ -320,6 +350,23 @@
     [superController reconnectDeviceForUUDID:device.uuid];
 }
 
+- (IBAction)connectIgnoredDevice:(id)sender {
+    CGPoint point = [sender convertPoint:CGPointZero toView:self.tableView];
+    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:point];
+    Device *device = (Device *)application.ignoredDevices[indexPath.row];
+    [application.ignoredDevices removeObject:device];
+    device.ignored = false;
+    device.connected = false;
+    device.connecting = false;
+    device.manuallyDisconnected = false;
+    [application.devicesData addObject:device];
+    DatabaseManager *dbManager = [DatabaseManager getSharedIntance];
+    device = (Device *)[dbManager save:device];
+    DevicesViewController *superController = (DevicesViewController *)[AppDelegate findSuperConstroller:self with:DevicesViewController.class];
+    [self.tableView reloadData];
+    [superController reconnectDeviceForUUDID:device.uuid];
+}
+
 -(void)tableView:(UITableView *)tableView didHighlightRowAtIndexPath:(NSIndexPath *)indexPath{
     Device *device = [self getDeviceForIndex:indexPath];
     if (device != nil && ![device isIgnored]){
@@ -345,14 +392,34 @@
 }
 
 -(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
-    Device *device = [self getDeviceForIndex:indexPath];
+    /*Device *device = [self getDeviceForIndex:indexPath];
     if(device != nil){
         return !device.connected;
-    }
+    }*/
     return NO;
 }
 
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    /*[AppDelegate showConfirmWith:@"This device and all it's associated data and notifications will be deleted. This action cannot be undone. Are you sure you want to delete this device?" title:@"Delete Device" target:nil callback:^{
+        Device *device = [self getDeviceForIndex:indexPath];
+        [DevicesDao deleteDeviceData:device];
+        if (indexPath.section == 0){
+            [application.devicesData removeObject:device];
+        }
+        else{
+            [application.ignoredDevices removeObject:device];
+        }
+        [self->targetTableView reloadData];
+    }];*/
+}
+- (IBAction)connectButtonDragInside:(id)sender {
+    CGPoint point = [sender convertPoint:CGPointZero toView:self.tableView];
+    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:point];
+    [[self.tableView cellForRowAtIndexPath:indexPath] setEditing:true animated:true];
+}
+- (IBAction)deleteAction:(id)sender {
+    CGPoint point = [sender convertPoint:CGPointZero toView:self.tableView];
+    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:point];
     [AppDelegate showConfirmWith:@"This device and all it's associated data and notifications will be deleted. This action cannot be undone. Are you sure you want to delete this device?" title:@"Delete Device" target:nil callback:^{
         Device *device = [self getDeviceForIndex:indexPath];
         [DevicesDao deleteDeviceData:device];
