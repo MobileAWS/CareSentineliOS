@@ -54,5 +54,13 @@
 
 }
 
++(void)removePasswordForAccount:(NSString *)account{
+    NSMutableDictionary *query = [[NSMutableDictionary alloc] init];
+    [query setObject:(__bridge id)(kSecClassGenericPassword) forKey:(__bridge id)(kSecClass)];
+    [query setObject:account forKey:(__bridge id)(kSecAttrAccount)];
+    [query setObject:(__bridge id)kSecAttrAccessibleWhenUnlocked forKey:(__bridge id) kSecAttrAccessible];
+    [query setObject:(id)kCFBooleanTrue forKey:(__bridge id)kSecReturnData];
+    SecItemDelete((__bridge CFDictionaryRef)query);
+}
 @end
 

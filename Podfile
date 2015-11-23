@@ -5,4 +5,6 @@ pod 'MBProgressHUD', '~> 0.9.1'
 pod 'TSMessages'
 pod 'AFNetworking', '~> 2.0'
 pod 'HexColors'
+pod 'Fabric'
+pod 'Crashlytics'
 

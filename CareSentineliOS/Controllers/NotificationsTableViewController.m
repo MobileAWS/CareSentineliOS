@@ -52,7 +52,7 @@
 
 
 - (void)reloadWithTable:(BOOL)reloadTable{
-    notificationsData = [PropertiesDao listPropertiesForUser:self->application.currentUser.id];
+    notificationsData = [PropertiesDao listPropertiesForUser:self->application.currentUser.id siteId:self->application.currentSite.id clientId:self->application.currentCustomer.id];
     sectionIndexes = [[NSMutableArray alloc]init];
     NSNumber *lastId = 0;
     for (NSUInteger i = 0; i < notificationsData.count; i++) {
@@ -93,6 +93,9 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    if (!sectionIndexes) {
+        return 0;
+    }
     return sectionIndexes.count;
 }
 
@@ -101,6 +104,11 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
+    if (!sectionIndexes) {
+        return 0;
+    }
+    
     if (notificationsData != nil && notificationsData.count > 0) {
         Device * device = nil;
         NSIndexPath *index = [self->sectionIndexes objectAtIndex:section];

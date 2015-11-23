@@ -21,4 +21,8 @@
     }
 
 }
+
+-(BOOL)alertViewShouldEnableFirstOtherButton:(UIAlertView *)alertView{
+    return [alertView textFieldAtIndex:0].text.length > 0;
+}
 @end

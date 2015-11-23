@@ -7,6 +7,7 @@
 //
 
 #import "Property.h"
+#import "LNConstants.h"
 
 @implementation Property
 
@@ -21,6 +22,10 @@
 
 +(NSString *)getTableName{
     return @"properties";
+}
+
++(NSString *)getPropertyLabel:(NSString *)name{
+    return NSLocalizedString(PROPERTY_KEYS_MAPPING[name],nil);
 }
 
 @end

@@ -18,6 +18,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
      [TSMessage setDefaultViewController:self];
+    [self.tabBar setTintColor:[UIColor redColor]];
 }
 
 - (void)didReceiveMemoryWarning {

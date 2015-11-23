@@ -31,24 +31,24 @@
     [super viewDidLoad];
     
     self->emailTextField.delegate = self;
-    [self->emailTextField setTintColor:[UIColor whiteColor]];
+    [self->emailTextField setTintColor:baseBackgroundColorDarker];
     
     self->confirmEmail.delegate = self;
-    [self->confirmEmail setTintColor:[UIColor whiteColor]];
+    [self->confirmEmail setTintColor:baseBackgroundColorDarker];
     
     self->passwordTextField.delegate = self;
-    [self->passwordTextField setTintColor:[UIColor whiteColor]];
+    [self->passwordTextField setTintColor:baseBackgroundColorDarker];
     
     self->confirmPassword.delegate = self;
-    [self->confirmPassword setTintColor:[UIColor whiteColor]];
+    [self->confirmPassword setTintColor:baseBackgroundColorDarker];
     
     self->createButton.layer.borderWidth = 1.0f;
     self->createButton.layer.cornerRadius = 8.0f;
-    self->createButton.layer.borderColor = buttonBorderColor;
+    self->createButton.layer.borderColor = buttonBorderColorRef;
 
     self->cancelButton.layer.borderWidth = 1.0f;
     self->cancelButton.layer.cornerRadius = 8.0f;
-    self->cancelButton.layer.borderColor = buttonBorderColor;
+    self->cancelButton.layer.borderColor = buttonBorderColorRef;
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{

@@ -8,16 +8,33 @@
 
 #import "MawsTextView.h"
 #import "UIKIT/UIKit.h"
+#import "UIResources.h"
 
 @implementation MawsTextView
-
-- (void)drawRect:(CGRect)rect {
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextMoveToPoint(context, CGRectGetMinX(rect), CGRectGetMaxY(rect));
-    CGContextAddLineToPoint(context, CGRectGetMaxX(rect), CGRectGetMaxY(rect));
-    CGContextSetStrokeColorWithColor(context, [[UIColor whiteColor] CGColor] );
-    CGContextSetLineWidth(context, 2.0);
-    CGContextStrokePath(context);
+@synthesize iconImage = _iconImage;
+-(void)setIconImage:(UIImage *)iconImage{
+    self->_iconImage = iconImage;
+    UIView *view = [[UIView alloc] init];
+    view.backgroundColor = baseBackgroundColor;
+    UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:self.bounds byRoundingCorners:UIRectCornerBottomLeft | UIRectCornerTopLeft cornerRadii:CGSizeMake(5, 5)];
+    
+    CAShapeLayer *mask = [CAShapeLayer layer];
+    mask.path = path.CGPath;
+    view.layer.mask = mask;
+    UIImageView *left = [[UIImageView alloc] initWithImage:iconImage];
+    left.translatesAutoresizingMaskIntoConstraints = false;
+    [view addSubview:left];
+    NSDictionary *arrayViews = @{@"image":left};
+    [view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-5-[image]-5-|" options:0 metrics:nil views:arrayViews]];
+    [view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-5-[image]-5-|" options:0 metrics:nil views:arrayViews]];
+    self.leftViewMode = UITextFieldViewModeAlways;
+    self.leftView = view;
 }
+
+-(CGRect)leftViewRectForBounds:(CGRect)bounds{
+    CGRect rect = [super leftViewRectForBounds:bounds];
+    return CGRectMake(rect.origin.x, rect.origin.y, self.bounds.size.height, self.bounds.size.height);
+}
+
 
 @end

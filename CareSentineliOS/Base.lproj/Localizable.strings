@@ -33,7 +33,8 @@
 
 /** Alert Messages */
 "sensor.new.found"="Enter A Description (e.g Bed Room) & tap Use It. If the device is not yours tap Not Mine to ignore.";
-
+"sensor.new.sample"="E.g. Bedroom";
+"sensor.new.title"="New Sensor Found";
 
 "demo.mode.activated"="Demo mode has been activated. Scan would always generate a new device. Taping on a device would generate a notification for that device, if the device is disconnected.";
 
@@ -45,10 +46,26 @@
 "sensor.rename.message"="Please enter a new name for '%@' sensor";
 "sensor.rename.title"="Renaming '%@'";
 
+"sensor.change.title"="Alert";
+
+
+/** Notification messages */
+"sensor.notification.disconnected.title"="Alert";
+"sensor.notification.disconnected.message"="'%@' is out of range or turned off";
+
 /** Buttons **/
 "buttons.cancel" = "Cancel";
 "buttons.rename" = "Rename";
 
 
 /** Drill down **/
-"drilldown.titleLabel" = "Loon Medical - %@";
+"drilldown.titleLabel" = "%@";
+
+
+/** Devices display labels  */
+"bed.sensor" = "Bed Sensor";
+"chair.sensor" = "Chair Sensor";
+"toilet.sensor" = "Toilet Sensor";
+"incontinence.sensor" = "Incontinence Sensor";
+"call.sensor" = "Call Button";
+"portal.sensor" = "Portal Sensor";

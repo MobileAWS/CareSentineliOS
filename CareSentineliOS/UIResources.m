@@ -9,12 +9,15 @@
 #import "UIResources.h"
 #import <QuartzCore/QuartzCore.h>
 #import <UIKit/UIKit.h>
+#import "HexColor.h"
 
 @implementation UIResources
-    CGColorRef buttonBorderColor = nil;
+    UIColor *buttonBorderColor = nil;
+    CGColorRef buttonBorderColorRef;
     CGColorRef baseBackgroundColorRef =nil;
     UIColor *selectionBackgroundColorRef = nil;
     UIColor *baseBackgroundColor =nil;
+    UIColor *baseBackgroundColorDarker = nil;
     UIColor *greenBaseColor =nil;
     UIImage *noBatteryImage = nil;
     UIImage *noSignalImage = nil;
@@ -24,9 +27,12 @@
 
 
 +(void)initResources{
-        greenBaseColor = [UIColor colorWithRed:0.4 green:0.8 blue:(0.2) alpha:1];
-        buttonBorderColor = [[UIColor colorWithRed:0.415 green:0.9 blue:(0.81) alpha:1]CGColor];
-        baseBackgroundColor = [UIColor colorWithRed:0.21 green:0.35 blue:(0.32) alpha:1];
+        greenBaseColor = [UIColor colorWithHexString:@"#3783BF"];
+        buttonBorderColor = [UIColor colorWithHexString:@"#5FABDD"];
+        buttonBorderColorRef = [buttonBorderColor CGColor];
+        baseBackgroundColor = [UIColor colorWithHexString:@"#5FABDD"];
+        baseBackgroundColorDarker = [UIColor colorWithHexString:@"3783BF"];
+    
         selectionBackgroundColorRef = [UIColor colorWithRed:0.9 green:1 blue:0.9 alpha:1];
         baseBackgroundColorRef = [baseBackgroundColor CGColor];
         batteryImage = [UIImage imageNamed:@"battery4"];

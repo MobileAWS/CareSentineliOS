@@ -228,7 +228,7 @@ static BOOL s_processing_restart = NO;
     switch (central.state) {
         case CBCentralManagerStatePoweredOn:
             APLog(@"Central updated to state CBCentralManagerStatePoweredOn");
-            if ([UIApplication sharedApplication].applicationState == UIApplicationStateActive) {
+            if ([UIApplication sharedApplication].applicationState == UIApplicationStateActive || [UIApplication sharedApplication].applicationState == UIApplicationStateInactive) {
                 [AppDelegate showLoadingMask];
                 [self scanForDevices];
             }
@@ -512,7 +512,7 @@ static BOOL s_processing_restart = NO;
     
     [_pendingNewDevices addObject:peripheral];
 
-    [AppDelegate showInputWith:NSLocalizedString(@"sensor.new.found", nil) title:@"New Monitor Device" defaultText:peripheral.name delegate:inputDelegate cancelText:@"Not Mine" acceptText:@"Use It"];
+    [AppDelegate showInputWith:NSLocalizedString(@"sensor.new.found", nil) title:NSLocalizedString(@"sensor.new.title", nil) defaultText:NSLocalizedString(@"sensor.new.sample", nil) delegate:inputDelegate cancelText:@"Not Mine" acceptText:@"Use It"];
 
 }
 

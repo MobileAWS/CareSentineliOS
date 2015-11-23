@@ -162,12 +162,12 @@
                 UIImageView *tmpImageView = (UIImageView *)[cell viewWithTag:2000];
                 [tmpImageView setHidden:false];
                 [tmpImageView setImage:[device getImageForBattery]];
-                tmpImageView.tintColor = baseBackgroundColor;
+                tmpImageView.tintColor = baseBackgroundColorDarker;
                 
                 tmpImageView = (UIImageView *)[cell viewWithTag:3000];
                 [tmpImageView setHidden:false];
                 [tmpImageView setImage:[device getImageForSignal]];
-                tmpImageView.tintColor = baseBackgroundColor;
+                tmpImageView.tintColor = baseBackgroundColorDarker;
                 
                 UIButton *tmpButton = (UIButton *)[cell viewWithTag:5000];
                 [tmpButton setHidden:true];

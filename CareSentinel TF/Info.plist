@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>BaseServicesURL</key>
-	<string>http://caresentinel-maws.herokuapp.com/</string>
+	<string>http://caresentinel-maws-pdn.herokuapp.com/</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
@@ -21,7 +21,21 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1.0.31</string>
+	<string>1.0.40</string>
+	<key>Fabric</key>
+	<dict>
+		<key>APIKey</key>
+		<string>bd024b2e94a47f4d9f4bd5e56eb0d977abc010c1</string>
+		<key>Kits</key>
+		<array>
+			<dict>
+				<key>KitInfo</key>
+				<dict/>
+				<key>KitName</key>
+				<string>Crashlytics</string>
+			</dict>
+		</array>
+	</dict>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UIBackgroundModes</key>

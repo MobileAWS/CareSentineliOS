@@ -6,19 +6,36 @@
 	<dict>
 		<key>CareSentineliOS Dev.xcscheme</key>
 		<dict>
+			<key>isShown</key>
+			<true/>
 			<key>orderHint</key>
-			<integer>6</integer>
+			<integer>1</integer>
 		</dict>
 		<key>CareSentineliOS TF.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<true/>
 			<key>orderHint</key>
-			<integer>5</integer>
+			<integer>0</integer>
+		</dict>
+		<key>CareSentineliOS.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>27091E021BCD6F3A0092DDE1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>273AE9321BC4377900B6E741</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>273ED3441AFC550700F4F82B</key>
 		<dict>
 			<key>primary</key>

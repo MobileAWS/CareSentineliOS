@@ -14,6 +14,7 @@
 #import "InputAlertViewDelegate.h"
 #import "AlertInputAcceptedDelegate.h"
 #import "DatabaseManager.h"
+#import "Property.h"
 
 @interface DeviceDrillDownViewController (){
 
@@ -42,24 +43,17 @@
     self->serialTextField.text = self.device.deviceDescriptor.serialNumber;
     self->versionsTextField.text = [NSString stringWithFormat:@"%@/%@",self.device.deviceDescriptor.hardwareRevision, self.device.deviceDescriptor.firmwareRevision];
     [self->batteryImage setImage:[self.device getImageForBattery]];
-    self->batteryImage.tintColor = baseBackgroundColor;
+    self->batteryImage.tintColor = baseBackgroundColorDarker;
     [self->signalImage setImage:[self.device getImageForSignal]];
-    self->signalImage.tintColor = baseBackgroundColor;
+    self->signalImage.tintColor = baseBackgroundColorDarker;
     self->temperatureLabel.text = [self.device getTemperature];
     self->titleLabel.text = [NSString stringWithFormat:NSLocalizedString(@"drilldown.titleLabel", nil),self.device.name];
     self.title = self.device.name;
     self->characteristicsTable.delegate = self;
     self->characteristicsTable.dataSource = self;
     
-    self->disconnectButton.layer.borderWidth = 1.0f;
     self->disconnectButton.layer.cornerRadius = 8.0f;
-    self->disconnectButton.layer.borderColor = [[UIColor colorWithHexString:@"#cc0000"] CGColor];
-    
-    self->renameButton.layer.borderWidth = 1.0f;
     self->renameButton.layer.cornerRadius = 8.0f;
-    self->renameButton.layer.borderColor = [[UIColor colorWithHexString:@"#004400"] CGColor];
-
-
 }
 
 - (void)didReceiveMemoryWarning {
@@ -91,7 +85,7 @@
 
     
     UILabel *tmpLabel = (UILabel *)[cell viewWithTag:1000];
-    tmpLabel.text = characteristic.name;
+    tmpLabel.text = [Property getPropertyLabel:characteristic.name];
     if (!isOn) {
         tmpLabel.textColor = [UIColor redColor];
     }

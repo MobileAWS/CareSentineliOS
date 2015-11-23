@@ -13,4 +13,5 @@
     @property NSNumber *id;
     @property NSString *name;
     @property NSString *units;
++(NSString *)getPropertyLabel:(NSString *)name;
 @end

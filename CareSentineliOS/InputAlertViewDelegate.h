@@ -14,4 +14,5 @@
 @property NSString *textValue;
 @property id<AlertInputAcceptedDelegate> delegate;
 @property id targetObject;
+@property UIButton *okButton;
 @end

@@ -35,9 +35,9 @@
     return propertyValue;
 }
 
-+(NSMutableArray *)listPropertiesForUser:(NSNumber *) userId{
++(NSMutableArray *)listPropertiesForUser:(NSNumber *) userId siteId:(NSNumber *)site clientId:(NSNumber *)client{
     DatabaseManager *manager = [DatabaseManager getSharedIntance];
-    return [manager listWithModel:[DevicePropertyDescriptor class] forQuery:[NSString stringWithFormat:@"SELECT %@ FROM devices,properties,devices_properties_values WHERE devices.id = device_id AND property_id = properties.id AND devices.user_id = %@ ORDER BY devices.id, devices_properties_values.created_at DESC",[[[DevicePropertyDescriptor getPropertiesMapping] allKeys] componentsJoinedByString:@","],userId]];
+    return [manager listWithModel:[DevicePropertyDescriptor class] forQuery:[NSString stringWithFormat:@"SELECT %@ FROM devices,properties,devices_properties_values WHERE devices.id = device_id AND property_id = properties.id AND devices.user_id = %@ AND devices.site_id = %@ AND devices.customer_id = %@ ORDER BY devices.id, devices_properties_values.created_at DESC",[[[DevicePropertyDescriptor getPropertiesMapping] allKeys] componentsJoinedByString:@","],userId,site,client]];
 
 }
 

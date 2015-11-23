@@ -39,25 +39,25 @@
     [super viewDidLoad];
     
     self->emailTextField.delegate = self;
-    [self->emailTextField setTintColor:[UIColor whiteColor]];
+    [self->emailTextField setTintColor:baseBackgroundColor];
      
     self->passwordTextField.delegate = self;
-    [self->passwordTextField setTintColor:[UIColor whiteColor]];
+    [self->passwordTextField setTintColor:baseBackgroundColor];
     
     self->clientIdTextField.delegate = self;
-    [self->clientIdTextField setTintColor:[UIColor whiteColor]];
+    [self->clientIdTextField setTintColor:baseBackgroundColor];
     
     self->siteIdTextField.delegate = self;
-    [self->siteIdTextField setTintColor:[UIColor whiteColor]];
+    [self->siteIdTextField setTintColor:baseBackgroundColor];
     
     //CGColorRef buttonColor = [[UIColor colorWithRed:0.24 green:0.7 blue:(0.62) alpha:1]CGColor];
     self->loginButton.layer.borderWidth = 1.0f;
     self->loginButton.layer.cornerRadius = 8.0f;
-    self->loginButton.layer.borderColor = buttonBorderColor;
+    self->loginButton.layer.borderColor = buttonBorderColorRef;
     
     self->noCloudButton.layer.borderWidth = 1.0f;
     self->noCloudButton.layer.cornerRadius = 8.0f;
-    self->noCloudButton.layer.borderColor = buttonBorderColor;
+    self->noCloudButton.layer.borderColor = buttonBorderColorRef;
 
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *tmp = [defaults objectForKey:@"email"];
@@ -165,106 +165,10 @@
     return;
 }
 
--(void)doLocalLogin:(BOOL)cloudChecked{
-    
-    DatabaseManager *dbManager = [DatabaseManager getSharedIntance];
-    dbManager.keepConnection = true;
-    NSString *usernameValue = [DatabaseManager encodeString:self->emailTextField.text];
-    User *user = (User *)[dbManager findWithCondition:[NSString stringWithFormat:@"email = '%@'",usernameValue] forModel:[User class]];
-    
-    if (user == nil) {
-        if (!cloudChecked){
-            [AppDelegate showAlert:@"This user does not exists" withTitle:@"Invalid Data"];
-            [dbManager close];
-            return;
-        }
-        else{
-            /** If the user exists remotely, but not locally, we create it. This helps recovering
-              *  your username if you change devices, for example.
-              */
-            User *tmpUser = [[User alloc] init];
-            tmpUser.email = self->emailTextField.text;
-            tmpUser.password = [User getEncryptedPasswordFor:self->passwordTextField.text];
-            tmpUser.createdAt = [[NSNumber alloc] initWithInt:[[NSDate date] timeIntervalSince1970]];
-            [dbManager save:tmpUser];
-            user = tmpUser;
-            tmpUser = nil;
-        }
-        
+-(void)doLocalLogin:(BOOL)cloudChecked{    
+    if([AppDelegate doLocalLogin:cloudChecked withUser:self->emailTextField.text password:self->passwordTextField.text site:self->siteIdTextField.text customer:self->clientIdTextField.text]){
+       [self performSegueWithIdentifier:@"MainTabsSegueIdentifier" sender:self->loginButton];
     }
-    
-    if(![user.password isEqualToString:[User getEncryptedPasswordFor:self->passwordTextField.text]]){
-        if (!cloudChecked) {
-            [AppDelegate showAlert:@"Invalid Password Provided" withTitle:@"Invalid Data"];
-            [dbManager close];
-            return;
-        }
-        user.password = self->passwordTextField.text;
-        [dbManager save:user];
-    }
-    
-
-    NSString *siteValue = [DatabaseManager encodeString:self->siteIdTextField.text];
-    Site *site = (Site *)[dbManager findWithCondition:[NSString stringWithFormat:@"site_id = '%@'",siteValue] forModel:[Site class]];
-
-   
-    BOOL createRelationship = false;
-    
-    if (site != nil) {
-        /** Look for the user site relationship, if there's none, create it */
-        NSInteger count = [dbManager countWithQuery:[NSString stringWithFormat:@"FROM user_sites WHERE user_id = %@ AND site_id = %@",user.id,site.id ]];
-        if(count <= 0){
-            createRelationship = true;
-        }
-    }
-    else{
-        site = [[Site alloc] init];
-        site.siteId = self->siteIdTextField.text;
-        site = (Site *)[dbManager save:site];
-        createRelationship = true;
-    }
-    
-    if (createRelationship) {
-        [dbManager insert:[NSString stringWithFormat:@"INSERT INTO user_sites(user_id,site_id) values(%@,%@)",user.id,site.id]];
-    }
-        
-    
-    NSString *customerValue = [DatabaseManager encodeString:self->clientIdTextField.text];
-    Customer *customer = (Customer *)[dbManager findWithCondition:[NSString stringWithFormat:@"customer_id = '%@'",customerValue] forModel:[Customer class]];
-
-    
-    createRelationship = false;
-    
-    if (customer != nil) {
-        /** Look for the user customer relationship, if there's none, create it */
-        NSInteger count = [dbManager countWithQuery:[NSString stringWithFormat:@"FROM user_customers WHERE user_id = %@ AND customer_id = %@",user.id,customer.id ]];
-        if(count <= 0){
-            createRelationship = true;
-        }
-    }
-    else{
-        customer = [[Customer alloc] init];
-        customer.customerId = self->clientIdTextField.text;
-        customer = (Customer *)[dbManager save:customer];
-        createRelationship = true;
-    }
-    
-    if (createRelationship) {
-        [dbManager insert:[NSString stringWithFormat:@"INSERT INTO user_customers(user_id,customer_id) values(%@,%@)",user.id,customer.id]];
-    }
-    
-    [dbManager close];
-    
-    AppDelegate *application = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    application.currentUser = user;
-    application.currentSite = site;
-    application.currentCustomer = customer;
-    
-    NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:user.email forKey:@"email"];
-    [defaults setObject:site.siteId forKey:@"siteId"];
-    [defaults setObject:customer.customerId forKey:@"customerId"];
-    [self performSegueWithIdentifier:@"MainTabsSegueIdentifier" sender:self->loginButton];
 }
 
 

@@ -26,6 +26,7 @@ extern NSString * const PORTAL_SENSOR_PROPERTY_KEY;
 
 extern NSArray * ON_ENABLED_SENSORS;
 extern NSArray * OFF_ENABLED_SENSORS;
+extern NSDictionary *PROPERTY_KEYS_MAPPING;
 
 +(void)initConstants;
 

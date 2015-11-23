@@ -13,6 +13,56 @@
 		27009F0B1B177098003FBEAB /* APAppServices.m in Sources */ = {isa = PBXBuildFile; fileRef = 27009F071B177098003FBEAB /* APAppServices.m */; };
 		27009F0C1B177098003FBEAB /* APSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 27009F091B177098003FBEAB /* APSettings.m */; };
 		2703A7161B35F25A00E1CF70 /* DeviceDrillDownViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2703A7151B35F25A00E1CF70 /* DeviceDrillDownViewController.m */; };
+		27091E051BCD6F3A0092DDE1 /* DevicesStatusTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 275DF2BC1B4DDBFD00205670 /* DevicesStatusTableViewController.m */; };
+		27091E061BCD6F3A0092DDE1 /* DeviceDrillDownViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2703A7151B35F25A00E1CF70 /* DeviceDrillDownViewController.m */; };
+		27091E071BCD6F3A0092DDE1 /* KeyChainManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 27556A751B386D1D008A97FA /* KeyChainManager.m */; };
+		27091E081BCD6F3A0092DDE1 /* DeviceProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A963241B29488D00E4A606 /* DeviceProperty.m */; };
+		27091E091BCD6F3A0092DDE1 /* UploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2777D8191B0F706A00CAC2AF /* UploadViewController.m */; };
+		27091E0A1BCD6F3A0092DDE1 /* DeviceEnabledProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 276E20FA1B3A11B800350CBB /* DeviceEnabledProperty.m */; };
+		27091E0B1BCD6F3A0092DDE1 /* UIResources.m in Sources */ = {isa = PBXBuildFile; fileRef = 2799976F1B24FF2F0005E720 /* UIResources.m */; };
+		27091E0C1BCD6F3A0092DDE1 /* PropertiesDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A963291B2950F800E4A606 /* PropertiesDao.m */; };
+		27091E0D1BCD6F3A0092DDE1 /* DevicesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 271605651B139D3F002505E1 /* DevicesTableViewController.m */; };
+		27091E0E1BCD6F3A0092DDE1 /* APAppServices.m in Sources */ = {isa = PBXBuildFile; fileRef = 27009F071B177098003FBEAB /* APAppServices.m */; };
+		27091E0F1BCD6F3A0092DDE1 /* DevicesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2777D8131B0F706A00CAC2AF /* DevicesViewController.m */; };
+		27091E101BCD6F3A0092DDE1 /* MAWSNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 27646CBE1B3E152000CC2A1C /* MAWSNetworkManager.m */; };
+		27091E111BCD6F3A0092DDE1 /* Customer.m in Sources */ = {isa = PBXBuildFile; fileRef = 27271D7E1B18CCE200D369D6 /* Customer.m */; };
+		27091E121BCD6F3A0092DDE1 /* APSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 27009F091B177098003FBEAB /* APSettings.m */; };
+		27091E131BCD6F3A0092DDE1 /* Device.m in Sources */ = {isa = PBXBuildFile; fileRef = 2716056B1B13D38B002505E1 /* Device.m */; };
+		27091E141BCD6F3A0092DDE1 /* LNNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 279785711B423A86009B3A25 /* LNNetworkManager.m */; };
+		27091E151BCD6F3A0092DDE1 /* Site.m in Sources */ = {isa = PBXBuildFile; fileRef = 27271D7B1B18CCCA00D369D6 /* Site.m */; };
+		27091E161BCD6F3A0092DDE1 /* NewUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2716056E1B14C749002505E1 /* NewUserViewController.m */; };
+		27091E171BCD6F3A0092DDE1 /* Property.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A963211B29487800E4A606 /* Property.m */; };
+		27091E181BCD6F3A0092DDE1 /* DatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2777D80B1B0F6F6100CAC2AF /* DatabaseManager.m */; };
+		27091E191BCD6F3A0092DDE1 /* DataLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2776F1291B34A829005AC5B1 /* DataLabel.m */; };
+		27091E1A1BCD6F3A0092DDE1 /* NotificationsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27632E6B1B2BC0F6002316F1 /* NotificationsTableViewController.m */; };
+		27091E1B1BCD6F3A0092DDE1 /* APBLEInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 27009F021B176925003FBEAB /* APBLEInterface.m */; };
+		27091E1C1BCD6F3A0092DDE1 /* SupportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 276107601B587280000EF387 /* SupportViewController.m */; };
+		27091E1D1BCD6F3A0092DDE1 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 275C864D1B16B896000DB4F4 /* User.m */; };
+		27091E1E1BCD6F3A0092DDE1 /* APBLEDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 27009F001B176925003FBEAB /* APBLEDevice.m */; };
+		27091E1F1BCD6F3A0092DDE1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 273ED34D1AFC550700F4F82B /* AppDelegate.m */; };
+		27091E201BCD6F3A0092DDE1 /* InputAlertViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 274671741B33341C009294B7 /* InputAlertViewDelegate.m */; };
+		27091E211BCD6F3A0092DDE1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 273ED34A1AFC550700F4F82B /* main.m */; };
+		27091E221BCD6F3A0092DDE1 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2777D8151B0F706A00CAC2AF /* LoginViewController.m */; };
+		27091E231BCD6F3A0092DDE1 /* ConnectingDeviceDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FED7E91B742795007BAD65 /* ConnectingDeviceDescriptor.m */; };
+		27091E241BCD6F3A0092DDE1 /* MainTabsControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EFEFD31B31F467000C72AD /* MainTabsControllerViewController.m */; };
+		27091E251BCD6F3A0092DDE1 /* UploadDevicesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27556A781B3885B8008A97FA /* UploadDevicesTableViewController.m */; };
+		27091E261BCD6F3A0092DDE1 /* MawsTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 279997741B250B470005E720 /* MawsTextView.m */; };
+		27091E271BCD6F3A0092DDE1 /* NotificationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2777D8171B0F706A00CAC2AF /* NotificationsViewController.m */; };
+		27091E281BCD6F3A0092DDE1 /* DevicePropertyDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 27632E681B2BB336002316F1 /* DevicePropertyDescriptor.m */; };
+		27091E291BCD6F3A0092DDE1 /* DevicesDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 279DF2891B53173C00AC2F20 /* DevicesDao.m */; };
+		27091E2A1BCD6F3A0092DDE1 /* LNConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 273A42981B3B1B0500CC2644 /* LNConstants.m */; };
+		27091E2C1BCD6F3A0092DDE1 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2712DF0E1B6FFC7D005E06DF /* libPods.a */; };
+		27091E2D1BCD6F3A0092DDE1 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27009EF91B176827003FBEAB /* CoreBluetooth.framework */; };
+		27091E2E1BCD6F3A0092DDE1 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 27DA27861B0CDBD300D1000A /* libsqlite3.dylib */; };
+		27091E301BCD6F3A0092DDE1 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 27BA55CA1B44F1C000107017 /* Info.plist */; };
+		27091E311BCD6F3A0092DDE1 /* DevicesEmptyTableMessage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 271071181B27AFF700A3D75B /* DevicesEmptyTableMessage.xib */; };
+		27091E321BCD6F3A0092DDE1 /* database_v1.sql in Resources */ = {isa = PBXBuildFile; fileRef = 2777D80D1B0F6FB000CAC2AF /* database_v1.sql */; };
+		27091E331BCD6F3A0092DDE1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 273ED3551AFC550700F4F82B /* Main.storyboard */; };
+		27091E341BCD6F3A0092DDE1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2763246F1B557B44004FB7AF /* Localizable.strings */; };
+		27091E351BCD6F3A0092DDE1 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 273ED35A1AFC550700F4F82B /* LaunchScreen.xib */; };
+		27091E361BCD6F3A0092DDE1 /* DeviceTypesList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 27760EE51B1FDFA50047D49B /* DeviceTypesList.plist */; };
+		27091E371BCD6F3A0092DDE1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 273ED3581AFC550700F4F82B /* Images.xcassets */; };
+		27091E381BCD6F3A0092DDE1 /* TSLoonMessageDesign.json in Resources */ = {isa = PBXBuildFile; fileRef = 27EFEFD51B320942000C72AD /* TSLoonMessageDesign.json */; };
 		271071191B27AFF700A3D75B /* DevicesEmptyTableMessage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 271071181B27AFF700A3D75B /* DevicesEmptyTableMessage.xib */; };
 		2712DF0F1B6FFC7D005E06DF /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2712DF0E1B6FFC7D005E06DF /* libPods.a */; };
 		271605661B139D3F002505E1 /* DevicesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 271605651B139D3F002505E1 /* DevicesTableViewController.m */; };
@@ -123,6 +173,8 @@
 		2703A7141B35F25A00E1CF70 /* DeviceDrillDownViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceDrillDownViewController.h; sourceTree = "<group>"; };
 		2703A7151B35F25A00E1CF70 /* DeviceDrillDownViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceDrillDownViewController.m; sourceTree = "<group>"; };
 		2707D8441B6FFAD600296196 /* libPods-CareSentineliOS Dev.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-CareSentineliOS Dev.a"; path = "Pods/../build/Release-iphoneos/libPods-CareSentineliOS Dev.a"; sourceTree = "<group>"; };
+		27091E3D1BCD6F3A0092DDE1 /* caresentinel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = caresentinel.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		27091E3E1BCD6F3A0092DDE1 /* CareSentineliOS.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = CareSentineliOS.plist; path = /Users/mike/Development/MAWS/Customer/LoonMedical/CareSentineliOS/CareSentineliOS.plist; sourceTree = "<absolute>"; };
 		271071181B27AFF700A3D75B /* DevicesEmptyTableMessage.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DevicesEmptyTableMessage.xib; sourceTree = "<group>"; };
 		2712DF0E1B6FFC7D005E06DF /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/../build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
 		271605641B139D3F002505E1 /* DevicesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DevicesTableViewController.h; sourceTree = "<group>"; };
@@ -229,6 +281,16 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		27091E2B1BCD6F3A0092DDE1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				27091E2C1BCD6F3A0092DDE1 /* libPods.a in Frameworks */,
+				27091E2D1BCD6F3A0092DDE1 /* CoreBluetooth.framework in Frameworks */,
+				27091E2E1BCD6F3A0092DDE1 /* libsqlite3.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		273ED3421AFC550700F4F82B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -268,6 +330,14 @@
 			path = BLE;
 			sourceTree = "<group>";
 		};
+		27091E3F1BCD6FCF0092DDE1 /* CareSentinel */ = {
+			isa = PBXGroup;
+			children = (
+				27091E3E1BCD6F3A0092DDE1 /* CareSentineliOS.plist */,
+			);
+			name = CareSentinel;
+			sourceTree = "<group>";
+		};
 		271071171B27AEB900A3D75B /* XIB */ = {
 			isa = PBXGroup;
 			children = (
@@ -279,6 +349,7 @@
 		273ED33C1AFC550700F4F82B = {
 			isa = PBXGroup;
 			children = (
+				27091E3F1BCD6FCF0092DDE1 /* CareSentinel */,
 				27009EF91B176827003FBEAB /* CoreBluetooth.framework */,
 				27DA27861B0CDBD300D1000A /* libsqlite3.dylib */,
 				27BA55C91B44F1C000107017 /* CareSentinel TF */,
@@ -295,6 +366,7 @@
 			children = (
 				273ED3451AFC550700F4F82B /* Care Sentinel Dev.app */,
 				27BA55C41B44F01F00107017 /* Care Sentinel.app */,
+				27091E3D1BCD6F3A0092DDE1 /* caresentinel.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -529,6 +601,26 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		27091E021BCD6F3A0092DDE1 /* CareSentineliOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 27091E3A1BCD6F3A0092DDE1 /* Build configuration list for PBXNativeTarget "CareSentineliOS" */;
+			buildPhases = (
+				27091E031BCD6F3A0092DDE1 /* Check Pods Manifest.lock */,
+				27091E041BCD6F3A0092DDE1 /* Sources */,
+				27091E2B1BCD6F3A0092DDE1 /* Frameworks */,
+				27091E2F1BCD6F3A0092DDE1 /* Resources */,
+				27091E391BCD6F3A0092DDE1 /* Copy Pods Resources */,
+				27BBF7101BE01E1D001C73C9 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CareSentineliOS;
+			productName = CareSentineliOS;
+			productReference = 27091E3D1BCD6F3A0092DDE1 /* caresentinel.app */;
+			productType = "com.apple.product-type.application";
+		};
 		273ED3441AFC550700F4F82B /* CareSentineliOS Dev */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 273ED36B1AFC550700F4F82B /* Build configuration list for PBXNativeTarget "CareSentineliOS Dev" */;
@@ -538,6 +630,7 @@
 				273ED3421AFC550700F4F82B /* Frameworks */,
 				273ED3431AFC550700F4F82B /* Resources */,
 				4C99B2B11B824BA34CE44E29 /* Copy Pods Resources */,
+				27BBF70E1BE01DEF001C73C9 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -557,6 +650,7 @@
 				27BA55B41B44F01F00107017 /* Frameworks */,
 				27BA55B81B44F01F00107017 /* Resources */,
 				27BA55C01B44F01F00107017 /* Copy Pods Resources */,
+				27BBF70F1BE01E15001C73C9 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -576,6 +670,9 @@
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = MobileAWS;
 				TargetAttributes = {
+					27091E021BCD6F3A0092DDE1 = {
+						DevelopmentTeam = X4RVTUJ7H2;
+					};
 					273ED3441AFC550700F4F82B = {
 						CreatedOnToolsVersion = 6.1;
 						DevelopmentTeam = BJRCWA3N54;
@@ -600,11 +697,28 @@
 			targets = (
 				273ED3441AFC550700F4F82B /* CareSentineliOS Dev */,
 				27BA558F1B44F01F00107017 /* CareSentineliOS TF */,
+				27091E021BCD6F3A0092DDE1 /* CareSentineliOS */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		27091E2F1BCD6F3A0092DDE1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				27091E301BCD6F3A0092DDE1 /* Info.plist in Resources */,
+				27091E311BCD6F3A0092DDE1 /* DevicesEmptyTableMessage.xib in Resources */,
+				27091E321BCD6F3A0092DDE1 /* database_v1.sql in Resources */,
+				27091E331BCD6F3A0092DDE1 /* Main.storyboard in Resources */,
+				27091E341BCD6F3A0092DDE1 /* Localizable.strings in Resources */,
+				27091E351BCD6F3A0092DDE1 /* LaunchScreen.xib in Resources */,
+				27091E361BCD6F3A0092DDE1 /* DeviceTypesList.plist in Resources */,
+				27091E371BCD6F3A0092DDE1 /* Images.xcassets in Resources */,
+				27091E381BCD6F3A0092DDE1 /* TSLoonMessageDesign.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		273ED3431AFC550700F4F82B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -640,6 +754,36 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		27091E031BCD6F3A0092DDE1 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		27091E391BCD6F3A0092DDE1 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		27BA55901B44F01F00107017 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -669,6 +813,45 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		27BBF70E1BE01DEF001C73C9 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/Fabric.framework/run\" bd024b2e94a47f4d9f4bd5e56eb0d977abc010c1 d465487f754658fa94100b4c66882e6198953570467b7448f8d4565c66760075";
+		};
+		27BBF70F1BE01E15001C73C9 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/Fabric.framework/run\" bd024b2e94a47f4d9f4bd5e56eb0d977abc010c1 d465487f754658fa94100b4c66882e6198953570467b7448f8d4565c66760075";
+		};
+		27BBF7101BE01E1D001C73C9 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/Fabric.framework/run\" bd024b2e94a47f4d9f4bd5e56eb0d977abc010c1 d465487f754658fa94100b4c66882e6198953570467b7448f8d4565c66760075";
 		};
 		4C99B2B11B824BA34CE44E29 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -703,6 +886,51 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		27091E041BCD6F3A0092DDE1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				27091E051BCD6F3A0092DDE1 /* DevicesStatusTableViewController.m in Sources */,
+				27091E061BCD6F3A0092DDE1 /* DeviceDrillDownViewController.m in Sources */,
+				27091E071BCD6F3A0092DDE1 /* KeyChainManager.m in Sources */,
+				27091E081BCD6F3A0092DDE1 /* DeviceProperty.m in Sources */,
+				27091E091BCD6F3A0092DDE1 /* UploadViewController.m in Sources */,
+				27091E0A1BCD6F3A0092DDE1 /* DeviceEnabledProperty.m in Sources */,
+				27091E0B1BCD6F3A0092DDE1 /* UIResources.m in Sources */,
+				27091E0C1BCD6F3A0092DDE1 /* PropertiesDao.m in Sources */,
+				27091E0D1BCD6F3A0092DDE1 /* DevicesTableViewController.m in Sources */,
+				27091E0E1BCD6F3A0092DDE1 /* APAppServices.m in Sources */,
+				27091E0F1BCD6F3A0092DDE1 /* DevicesViewController.m in Sources */,
+				27091E101BCD6F3A0092DDE1 /* MAWSNetworkManager.m in Sources */,
+				27091E111BCD6F3A0092DDE1 /* Customer.m in Sources */,
+				27091E121BCD6F3A0092DDE1 /* APSettings.m in Sources */,
+				27091E131BCD6F3A0092DDE1 /* Device.m in Sources */,
+				27091E141BCD6F3A0092DDE1 /* LNNetworkManager.m in Sources */,
+				27091E151BCD6F3A0092DDE1 /* Site.m in Sources */,
+				27091E161BCD6F3A0092DDE1 /* NewUserViewController.m in Sources */,
+				27091E171BCD6F3A0092DDE1 /* Property.m in Sources */,
+				27091E181BCD6F3A0092DDE1 /* DatabaseManager.m in Sources */,
+				27091E191BCD6F3A0092DDE1 /* DataLabel.m in Sources */,
+				27091E1A1BCD6F3A0092DDE1 /* NotificationsTableViewController.m in Sources */,
+				27091E1B1BCD6F3A0092DDE1 /* APBLEInterface.m in Sources */,
+				27091E1C1BCD6F3A0092DDE1 /* SupportViewController.m in Sources */,
+				27091E1D1BCD6F3A0092DDE1 /* User.m in Sources */,
+				27091E1E1BCD6F3A0092DDE1 /* APBLEDevice.m in Sources */,
+				27091E1F1BCD6F3A0092DDE1 /* AppDelegate.m in Sources */,
+				27091E201BCD6F3A0092DDE1 /* InputAlertViewDelegate.m in Sources */,
+				27091E211BCD6F3A0092DDE1 /* main.m in Sources */,
+				27091E221BCD6F3A0092DDE1 /* LoginViewController.m in Sources */,
+				27091E231BCD6F3A0092DDE1 /* ConnectingDeviceDescriptor.m in Sources */,
+				27091E241BCD6F3A0092DDE1 /* MainTabsControllerViewController.m in Sources */,
+				27091E251BCD6F3A0092DDE1 /* UploadDevicesTableViewController.m in Sources */,
+				27091E261BCD6F3A0092DDE1 /* MawsTextView.m in Sources */,
+				27091E271BCD6F3A0092DDE1 /* NotificationsViewController.m in Sources */,
+				27091E281BCD6F3A0092DDE1 /* DevicePropertyDescriptor.m in Sources */,
+				27091E291BCD6F3A0092DDE1 /* DevicesDao.m in Sources */,
+				27091E2A1BCD6F3A0092DDE1 /* LNConstants.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		273ED3411AFC550700F4F82B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -893,6 +1121,36 @@
 			};
 			name = Debug;
 		};
+		27091E3B1BCD6F3A0092DDE1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E86C96807CFDF0C46D1C4C9E /* Pods.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Loon Medical Inc (X4RVTUJ7H2)";
+				INFOPLIST_FILE = CareSentineliOS.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				PRODUCT_NAME = caresentinel;
+				PROVISIONING_PROFILE = "dcc7c519-e91a-49aa-acaa-6f69af78dd0b";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		27091E3C1BCD6F3A0092DDE1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E9051D77506529F39336AB4A /* Pods.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Loon Medical Inc (X4RVTUJ7H2)";
+				INFOPLIST_FILE = CareSentineliOS.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				PRODUCT_NAME = caresentinel;
+				PROVISIONING_PROFILE = "dcc7c519-e91a-49aa-acaa-6f69af78dd0b";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
 		273ED36A1AFC550700F4F82B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -966,6 +1224,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		27091E3A1BCD6F3A0092DDE1 /* Build configuration list for PBXNativeTarget "CareSentineliOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				27091E3B1BCD6F3A0092DDE1 /* Release */,
+				27091E3C1BCD6F3A0092DDE1 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		273ED3401AFC550700F4F82B /* Build configuration list for PBXProject "CareSentineliOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

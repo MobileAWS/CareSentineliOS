@@ -144,14 +144,14 @@
     onEnabled = [ON_ENABLED_SENSORS containsObject:CALL_SENSOR_PROPERTY_NAME];
     offEnabled = [OFF_ENABLED_SENSORS containsObject:CALL_SENSOR_PROPERTY_NAME];
 
-    if (self.callSensorActivated && (value & APSensorValuesCallLow)){
+    if (self.callSensorActivated && (value & APSensorValuesCallHigh)){
         self.callSensorActivated = false;
         if (valueEnabled == TRUE && offEnabled == TRUE){
             [switchChanges addObject:@{baseName:CALL_SENSOR_PROPERTY_NAME,propertyName:CALL_SENSOR_PROPERTY_KEY,valueString:off}];
         }
     }
     
-    if (!self.callSensorActivated && (value & APSensorValuesCallHigh)){
+    if (!self.callSensorActivated && (value & APSensorValuesCallLow)){
         self.callSensorActivated = true;
         if (valueEnabled == TRUE && onEnabled == TRUE){
             [switchChanges addObject:@{baseName:CALL_SENSOR_PROPERTY_NAME,propertyName:CALL_SENSOR_PROPERTY_KEY,valueString:on}];

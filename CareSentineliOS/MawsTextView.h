@@ -10,5 +10,5 @@
 #import "UIKIT/UIKit.h"
 
 @interface MawsTextView : UITextField
-
+@property (nonatomic) UIImage *iconImage;
 @end

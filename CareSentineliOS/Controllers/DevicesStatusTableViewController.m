@@ -11,6 +11,7 @@
 #import "AppDelegate.h"
 #import "Device.h"
 #import "DeviceEnabledProperty.h"
+#import "Property.h"
 
 @interface DevicesStatusTableViewController (){
     __weak AppDelegate *application;
@@ -90,7 +91,7 @@
     Device *device = (Device *)self->application.devicesData[indexPath.section];
     NSArray *characteristics = [device getCharacteristics];
     DeviceEnabledProperty *property = (DeviceEnabledProperty *)characteristics[indexPath.row];
-    cell.textLabel.text = property.name;
+    cell.textLabel.text = [Property getPropertyLabel:property.name];
     if (device.connected && [device isOnForSwitch:property.name]){
         cell.textLabel.textColor = greenBaseColor;
     }else{

@@ -23,6 +23,7 @@
 @property (strong,nonatomic) NSMutableArray* ignoredDevices;
 @property (weak,nonatomic) APBLEInterface *bleInterface;
 @property (weak) id<LNSwitchChangedDelegate> switchChangedDelegate;
+@property BOOL automaticStart;
 @property BOOL demoMode;
 
 -(void)logout;
@@ -34,5 +35,6 @@
 +(void)hideLoadingMask;
 +(UIView *)findSuperView:(UIView *) target with:(Class)clazz;
 +(UIViewController *)findSuperConstroller:(UIViewController *) target with:(Class)clazz;
++(BOOL)doLocalLogin:(BOOL)cloudChecked withUser:(NSString *)username password:(NSString *)password site:(NSString *)siteId customer:(NSString *)customerId ;
 @end
 

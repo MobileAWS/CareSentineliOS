@@ -17,6 +17,17 @@
          contextName = "-[DevicesTableViewController viewDidLoad]:DevicesTableViewController.m">
       </ContextState>
       <ContextState
+         contextName = "__21-[AppDelegate logout]_block_invoke_2:AppDelegate.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "mainViewController">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[DevicesViewController device:SensorChanged:]:DevicesViewController.m">
+      </ContextState>
+      <ContextState
          contextName = "-[APBLEInterface centralManager:didDiscoverPeripheral:advertisementData:RSSI:]:APBLEInterface.m">
          <PersistentStrings>
             <PersistentString
@@ -25,19 +36,51 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "-[DevicesViewController device:SensorChanged:]:DevicesViewController.m">
-      </ContextState>
-      <ContextState
          contextName = "-[APBLEInterface peripheral:didReadRSSI:error:]:APBLEInterface.m">
       </ContextState>
       <ContextState
+         contextName = "+[AppDelegate showInputWith:title:defaultText:delegate:cancelText:acceptText:]:AppDelegate.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "inputField.text">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[LoginViewController viewDidLoad]:LoginViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self-&gt;loginButton.layer.borderColor">
+            </PersistentString>
+            <PersistentString
+               value = "buttonBorderColor">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "+[KeyChainManager getPasswordForAccount:]:KeyChainManager.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[Device getCharacteristics]:Device.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self-&gt;characteristics">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "-[DeviceDrillDownViewController tableView:cellForRowAtIndexPath:]:DeviceDrillDownViewController.m">
          <PersistentStrings>
             <PersistentString
                value = "characteristic.enabled != 0">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[APBLEInterface disconectPeripheralForDevice:]:APBLEInterface.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "tmpPeripheral.identifier.UUIDString">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -58,24 +101,22 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "-[Device getCharacteristics]:Device.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "self-&gt;characteristics">
-            </PersistentString>
-         </PersistentStrings>
+         contextName = "-[DevicesTableViewController tableView:didHighlightRowAtIndexPath:]:DevicesTableViewController.m">
       </ContextState>
       <ContextState
          contextName = "-[DevicesViewController deviceIgnored:]:DevicesViewController.m">
       </ContextState>
       <ContextState
-         contextName = "-[DevicesTableViewController tableView:didHighlightRowAtIndexPath:]:DevicesTableViewController.m">
-      </ContextState>
-      <ContextState
-         contextName = "-[APBLEInterface disconectPeripheralForDevice:]:APBLEInterface.m">
+         contextName = "-[MawsTextView leftViewRectForBounds:]:MawsTextView.m">
          <PersistentStrings>
             <PersistentString
-               value = "tmpPeripheral.identifier.UUIDString">
+               value = "self.layer.bounds">
+            </PersistentString>
+            <PersistentString
+               value = "self.layer">
+            </PersistentString>
+            <PersistentString
+               value = "self.text">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

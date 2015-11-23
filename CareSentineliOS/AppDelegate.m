@@ -16,6 +16,9 @@
 #import "MAWSNetworkManager.h"
 #import "LNNetworkManager.h"
 #import "LNConstants.h"
+#import "KeyChainManager.h"
+#import "Fabric/Fabric.h"
+#import "Crashlytics/Crashlytics.h"
 
 @interface AppDelegate (){
 }
@@ -35,7 +38,8 @@ static void (^currentAlertInvocation) (void);
 +(void)showInputWith:(NSString *)alert title:(NSString *)title defaultText:(NSString *)text delegate:(id)delegate cancelText:(NSString *)cancelText acceptText:(NSString *)acceptText{
     UIAlertView *inputDialog = [[UIAlertView alloc]initWithTitle:title message:alert delegate:delegate cancelButtonTitle:cancelText otherButtonTitles:acceptText, nil];
     inputDialog.alertViewStyle = UIAlertViewStylePlainTextInput;
-    [inputDialog textFieldAtIndex:0].text = text;
+    UITextField *inputField = [inputDialog textFieldAtIndex:0];
+    inputField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:text attributes:@{NSForegroundColorAttributeName: [UIColor blackColor]}];
     [inputDialog show];
     inputDialog = nil;
 }
@@ -56,6 +60,8 @@ static void (^currentAlertInvocation) (void);
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
+    [Fabric with:@[[Crashlytics class]]];
+    
     self.demoMode = false;
     [UIResources initResources];
     [LNConstants initConstants];
@@ -64,7 +70,12 @@ static void (^currentAlertInvocation) (void);
     [TSMessage addCustomDesignFromFileWithName:@"TSLoonMessageDesign.json"];
     
     /** Set the tab bar default appereance */
-    [[UITabBar appearance] setTintColor:[UIColor whiteColor]];
+    /**[[UITabBar appearance] setTintColor:[UIColor whiteColor]];**/
+    
+    [[UITabBarItem appearance] setTitleTextAttributes:@{ NSForegroundColorAttributeName : [UIColor whiteColor] }
+                                             forState:UIControlStateNormal];
+    [[UITabBarItem appearance] setTitleTextAttributes:@{ NSForegroundColorAttributeName : [UIColor blackColor] }
+                                             forState:UIControlStateSelected];
     
     /** Set the navitation bars default styles */
     [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setTitleTextAttributes:
@@ -72,7 +83,27 @@ static void (^currentAlertInvocation) (void);
     
     UIUserNotificationType types = UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert;
     UIUserNotificationSettings *userNotifcationSettings = [UIUserNotificationSettings settingsForTypes:types categories:nil];
-    [[UIApplication sharedApplication] registerUserNotificationSettings:userNotifcationSettings];        
+    [[UIApplication sharedApplication] registerUserNotificationSettings:userNotifcationSettings];
+    
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *email = [userDefaults stringForKey:@"email"];
+    NSString *siteId =[userDefaults stringForKey:@"siteId"];
+    NSString *customerId =[userDefaults stringForKey:@"customerId"];
+    NSString *password;
+    if (email != nil) {
+        password = [KeyChainManager getPasswordForAccount:email];
+    }
+    
+    self.automaticStart = email != nil && siteId != nil && customerId != nil && password != nil  && password != nil;
+    
+    self.automaticStart = self.automaticStart ? [AppDelegate doLocalLogin:false withUser:email password:password site:siteId customer:customerId] : false;
+    [self.window makeKeyAndVisible];
+    if (!self.automaticStart) {
+        [self.window.rootViewController presentViewController:[self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"] animated:true completion:nil];
+    }
+    else{
+        [self.window.rootViewController presentViewController:[self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"MainTabsViewController"] animated:true completion:nil];
+    }
     return YES;
 }
 
@@ -81,6 +112,7 @@ static void (^currentAlertInvocation) (void);
     UIView *foundSuperView = nil;
     
     while (nil != superView && nil == foundSuperView) {
+        NSLog(@"%@",superView);
         if ([superView isKindOfClass:clazz]) {
             foundSuperView = superView;
         } else {
@@ -127,9 +159,120 @@ static void (^currentAlertInvocation) (void);
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
++(BOOL)doLocalLogin:(BOOL)cloudChecked withUser:(NSString *)username password:(NSString *)password site:(NSString *)siteId customer:(NSString *)customerId {
+    
+    DatabaseManager *dbManager = [DatabaseManager getSharedIntance];
+    dbManager.keepConnection = true;
+    NSString *usernameValue = [DatabaseManager encodeString:username];
+    User *user = (User *)[dbManager findWithCondition:[NSString stringWithFormat:@"email = '%@'",usernameValue] forModel:[User class]];
+    
+    if (user == nil) {
+        if (!cloudChecked){
+            [AppDelegate showAlert:@"This user does not exists" withTitle:@"Invalid Data"];
+            [dbManager close];
+            return false;
+        }
+        else{
+            /** If the user exists remotely, but not locally, we create it. This helps recovering
+             *  your username if you change devices, for example.
+             */
+            User *tmpUser = [[User alloc] init];
+            tmpUser.email = username;
+            tmpUser.password = [User getEncryptedPasswordFor:password];
+            tmpUser.createdAt = [[NSNumber alloc] initWithInt:[[NSDate date] timeIntervalSince1970]];
+            [dbManager save:tmpUser];
+            user = tmpUser;
+            tmpUser = nil;
+        }
+        
+    }
+    
+    if(![user.password isEqualToString:[User getEncryptedPasswordFor:password]]){
+        if (!cloudChecked) {
+            [AppDelegate showAlert:@"Invalid Password Provided" withTitle:@"Invalid Data"];
+            [dbManager close];
+            return false;
+        }
+        user.password = password;
+        [dbManager save:user];
+    }
+    
+    
+    NSString *siteValue = [DatabaseManager encodeString:siteId];
+    Site *site = (Site *)[dbManager findWithCondition:[NSString stringWithFormat:@"site_id = '%@'",siteValue] forModel:[Site class]];
+    
+    
+    BOOL createRelationship = false;
+    
+    if (site != nil) {
+        /** Look for the user site relationship, if there's none, create it */
+        NSInteger count = [dbManager countWithQuery:[NSString stringWithFormat:@"FROM user_sites WHERE user_id = %@ AND site_id = %@",user.id,site.id ]];
+        if(count <= 0){
+            createRelationship = true;
+        }
+    }
+    else{
+        site = [[Site alloc] init];
+        site.siteId = siteId;
+        site = (Site *)[dbManager save:site];
+        createRelationship = true;
+    }
+    
+    if (createRelationship) {
+        [dbManager insert:[NSString stringWithFormat:@"INSERT INTO user_sites(user_id,site_id) values(%@,%@)",user.id,site.id]];
+    }
+    
+    
+    NSString *customerValue = [DatabaseManager encodeString:customerId];
+    Customer *customer = (Customer *)[dbManager findWithCondition:[NSString stringWithFormat:@"customer_id = '%@'",customerValue] forModel:[Customer class]];
+    
+    
+    createRelationship = false;
+    
+    if (customer != nil) {
+        /** Look for the user customer relationship, if there's none, create it */
+        NSInteger count = [dbManager countWithQuery:[NSString stringWithFormat:@"FROM user_customers WHERE user_id = %@ AND customer_id = %@",user.id,customer.id ]];
+        if(count <= 0){
+            createRelationship = true;
+        }
+    }
+    else{
+        customer = [[Customer alloc] init];
+        customer.customerId = customerId;
+        customer = (Customer *)[dbManager save:customer];
+        createRelationship = true;
+    }
+    
+    if (createRelationship) {
+        [dbManager insert:[NSString stringWithFormat:@"INSERT INTO user_customers(user_id,customer_id) values(%@,%@)",user.id,customer.id]];
+    }
+    
+    [dbManager close];
+    
+    AppDelegate *application = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    application.currentUser = user;
+    application.currentSite = site;
+    application.currentCustomer = customer;
+    
+    NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:user.email forKey:@"email"];
+    [defaults setObject:site.siteId forKey:@"siteId"];
+    [defaults setObject:customer.customerId forKey:@"customerId"];
+    [KeyChainManager savePassword:password forAccount:user.email];
+    
+    [CrashlyticsKit setUserIdentifier: [NSString stringWithFormat:@"%@,%@,%@",user.id, site.siteId,customer.customerId]];
+    [CrashlyticsKit setUserEmail: user.email];
+    [CrashlyticsKit setUserName: user.email];
+
+
+    return TRUE;
+}
+
+
 - (void) logout{
     [AppDelegate showConfirmWith:@"Are you sure you want to logout?" title:@"Confirm Logout" target:nil callback:^{
         
+        NSString *username = self.currentUser.email;
         self.currentCustomer = nil;
         self.currentSite = nil;
         self.currentUser = nil;
@@ -139,12 +282,13 @@ static void (^currentAlertInvocation) (void);
         self.bleInterface = nil;
         [LNNetworkManager clear];
         
-        
-        UIViewController *mainViewController = [self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
+        [KeyChainManager removePasswordForAccount:username];
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        UIViewController *mainViewController = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
         [self.window.rootViewController dismissViewControllerAnimated:false completion:^{
-            self.window.rootViewController = mainViewController;
-            [self.window makeKeyAndVisible];
+            [self.window.rootViewController presentViewController:mainViewController animated:true completion:false];
         }];
+
     }];
 }
 

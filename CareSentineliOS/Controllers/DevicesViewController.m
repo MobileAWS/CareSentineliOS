@@ -38,10 +38,20 @@
     self.navigationController.navigationBar.translucent = NO;
     self.navigationController.navigationBar.tintColor = [[UIColor alloc] initWithRed:1 green:1 blue: 1 alpha:1];
     [self.navigationController.navigationBar setTitleTextAttributes: @{NSForegroundColorAttributeName: [UIColor whiteColor]}];
-    self->bleInterface = [[APBLEInterface alloc] init];
-    self->bleInterface.uiDelegate = self;
-    ((AppDelegate *)[UIApplication sharedApplication].delegate).bleInterface = self->bleInterface;
-    // Do any additional setup after loading the view.
+    if (!self->application.automaticStart){
+        self->bleInterface = [[APBLEInterface alloc] init];
+        self->bleInterface.uiDelegate = self;
+        ((AppDelegate *)[UIApplication sharedApplication].delegate).bleInterface = self->bleInterface;
+    }
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    if (self->bleInterface == nil){
+        self->bleInterface = [[APBLEInterface alloc] init];
+        self->bleInterface.uiDelegate = self;
+        ((AppDelegate *)[UIApplication sharedApplication].delegate).bleInterface = self->bleInterface;
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -180,23 +190,7 @@
                 
             }
             
-            
-            if ([[UIApplication sharedApplication] applicationState] == UIApplicationStateActive) {
-                [TSMessage showNotificationInViewController:[TSMessage defaultViewController] title:@"Sensor Changed" subtitle:[NSString stringWithFormat:@"%@ on %@",message,device.name] type:TSMessageNotificationTypeMessage duration:2];
-                AudioServicesPlaySystemSound(1002);
-            }
-            else{
-                UILocalNotification *notification = [[UILocalNotification alloc] init];
-                notification.alertTitle = @"Sensor Changed";
-                notification.alertBody = [NSString stringWithFormat:@"%@ on %@",message,device.name];
-                notification.soundName = @"default";
-                [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
-                
-                UIApplication *app = [UIApplication sharedApplication];
-                NSInteger value = app.applicationIconBadgeNumber + changedSwitches.count;
-                app.applicationIconBadgeNumber = value;
-                [self updateNotificationsTab: value];
-            }
+            [self sendNotificationWithTitle:NSLocalizedString(@"sensor.change.title", nil) andMessage:[NSString stringWithFormat:@"%@ on %@",message,device.name]  useBadge:true withCount:changedSwitches.count];
         }
         
     }
@@ -228,6 +222,11 @@
             if (application.switchChangedDelegate != nil){
                 [application.switchChangedDelegate switchChangedForDevice:device];
             }
+            
+            if (!device.connecting && !device.manuallyDisconnected) {
+                [self sendNotificationWithTitle:NSLocalizedString(@"sensor.notification.disconnected.title", nil) andMessage:[NSString stringWithFormat:NSLocalizedString(@"sensor.notification.disconnected.message", nil),device.name]  useBadge:false withCount:0];
+            }
+
         }
         return;
     }
@@ -340,23 +339,7 @@
             
         }
         
-        
-        if ([[UIApplication sharedApplication] applicationState] == UIApplicationStateActive) {
-            [TSMessage showNotificationInViewController:[TSMessage defaultViewController] title:@"Switch Changed" subtitle:message type:TSMessageNotificationTypeMessage duration:2];
-            AudioServicesPlaySystemSound(1002);
-        }
-        else{
-            UILocalNotification *notification = [[UILocalNotification alloc] init];
-            notification.alertTitle = @"Switch Changed";
-            notification.alertBody = message;
-            notification.soundName = @"default";
-            [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
-            
-            UIApplication *app = [UIApplication sharedApplication];
-            NSInteger value = app.applicationIconBadgeNumber + changedSwitches.count;
-            app.applicationIconBadgeNumber = value;
-            [self updateNotificationsTab: value];
-        }
+        [self sendNotificationWithTitle:NSLocalizedString(@"sensor.change.title", nil) andMessage:[NSString stringWithFormat:@"%@ on %@",message,device.name]  useBadge:true withCount:changedSwitches.count];
     }
     
     if (application.switchChangedDelegate != nil){
@@ -365,4 +348,28 @@
     
 
 }
+
+-(void)sendNotificationWithTitle:(NSString *)title andMessage:(NSString *)message useBadge:(BOOL)useBadge withCount:(NSInteger)count{
+    if ([[UIApplication sharedApplication] applicationState] == UIApplicationStateActive) {
+        [TSMessage showNotificationInViewController:[TSMessage defaultViewController] title:title subtitle:message type:TSMessageNotificationTypeMessage duration:2];
+        AudioServicesPlaySystemSound(1002);
+    }
+    else{
+        UILocalNotification *notification = [[UILocalNotification alloc] init];
+        notification.alertTitle = title;
+        notification.alertBody = message;
+        notification.soundName = @"default";
+        [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
+        
+        if (useBadge) {
+            UIApplication *app = [UIApplication sharedApplication];
+            NSInteger value = app.applicationIconBadgeNumber + count;
+            app.applicationIconBadgeNumber = value;
+            [self updateNotificationsTab: value];
+
+        }
+    }
+
+}
+
 @end

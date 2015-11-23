@@ -11,10 +11,12 @@
 #import "UIKit/UIKit.h"
 
 @interface UIResources : NSObject
-extern CGColorRef buttonBorderColor;
+extern CGColorRef buttonBorderColorRef;
 extern CGColorRef baseBackgroundColorRef;
+extern UIColor *buttonBorderColor;
 extern UIColor *selectionBackgroundColorRef;
 extern UIColor *baseBackgroundColor;
+extern UIColor *baseBackgroundColorDarker;
 extern UIColor *greenBaseColor;
 extern UIImage *noBatteryImage;
 extern UIImage *noSignalImage;

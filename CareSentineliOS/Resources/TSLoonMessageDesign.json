@@ -8,14 +8,14 @@
 "buttonTitleShadowColor": "#67B759",
 "buttonTitleShadowOffsetX": 0,
 "buttonTitleShadowOffsetY": -1,
-"contentFontSize": 12,
+"contentFontSize": 14,
 "contentTextColor": "#FFFFFF",
 "imageName": "NotificationBackgroundSuccessIcon.png",
 "shadowColor": "#67B759",
 "shadowOffsetX": 0,
 "shadowOffsetY": -1,
 "textColor": "#FFFFFF",
-"titleFontSize": 14,
+"titleFontSize": 15,
 "backgroundColor": "#76CF67"
 },
 "message": {
@@ -27,15 +27,15 @@
 "buttonTitleShadowColor": "#AAAAAA",
 "buttonTitleShadowOffsetX": 0,
 "buttonTitleShadowOffsetY": 0,
-"contentFontSize": 12,
+"contentFontSize": 14,
 "contentTextColor": "#FFFFFF",
 "imageName": "",
 "shadowColor": "#AAAAAA",
 "shadowOffsetX": 0,
 "shadowOffsetY": 0,
 "textColor": "#FFFFFF",
-"titleFontSize": 14,
-"backgroundColor": "#365952"
+"titleFontSize": 15,
+"backgroundColor": "#2773AF"
 },
 "warning": {
 "backgroundImageName": "NotificationBackgroundWarning.png",
@@ -46,14 +46,14 @@
 "buttonTitleShadowColor": "#E5D87C",
 "buttonTitleShadowOffsetX": 0,
 "buttonTitleShadowOffsetY": 1,
-"contentFontSize": 12,
+"contentFontSize": 14,
 "contentTextColor": "#484638",
 "imageName": "NotificationBackgroundWarningIcon.png",
 "shadowColor": "#E5D87C",
 "shadowOffsetX": 0,
 "shadowOffsetY": 1,
 "textColor": "#484638",
-"titleFontSize": 14,
+"titleFontSize": 15,
 "backgroundColor": "#DAC43C"
 },
 "error": {
@@ -65,14 +65,14 @@
 "buttonTitleShadowColor": "#812929",
 "buttonTitleShadowOffsetX": 0,
 "buttonTitleShadowOffsetY": -1,
-"contentFontSize": 12,
+"contentFontSize": 14,
 "contentTextColor": "#FFFFFF",
 "imageName": "NotificationBackgroundErrorIcon.png",
 "shadowColor": "#812929",
 "shadowOffsetX": 0,
 "shadowOffsetY": -1,
 "textColor": "#FFFFFF",
-"titleFontSize": 14,
+"titleFontSize": 15,
 "backgroundColor": "#DD3B41"
 }
 }

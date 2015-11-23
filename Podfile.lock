@@ -20,6 +20,10 @@ PODS:
   - AFNetworking/UIKit (2.5.4):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - Crashlytics (3.3.4)
+  - Fabric (1.5.5):
+    - Fabric/Base (= 1.5.5)
+  - Fabric/Base (1.5.5)
   - HexColors (2.2.1)
   - MBProgressHUD (0.9.1)
   - TSMessages (0.9.12):
@@ -27,12 +31,16 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
+  - Crashlytics
+  - Fabric
   - HexColors
   - MBProgressHUD (~> 0.9.1)
   - TSMessages
 
 SPEC CHECKSUMS:
   AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
+  Crashlytics: 41c082440d2e14da444186fff65e79c0b4b35d4c
+  Fabric: 190bf1a6eb65f7500de1347d027d2e59a7e53db1
   HexColors: abfd172e329dab59888614ccba6f216cec59289d
   MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
   TSMessages: c8cc7b80f2a833af533872cd02010cac061532cc
