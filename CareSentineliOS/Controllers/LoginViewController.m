@@ -9,9 +9,6 @@
 #import "LoginViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "DatabaseManager.h"
-#import "User.h"
-#import "Site.h"
-#import "Customer.h"
 #import "AppDelegate.h"
 #import "UIResources.h"
 #import "MawsTextView.h"
@@ -111,9 +108,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)loginNoCloud:(id)sender {
-    [self doLogin:false];
-}
 
 - (IBAction)loginCloud:(id)sender {
     [self doLogin:true];
@@ -147,30 +141,21 @@
         return;
     }
     
-    if (cloudCheck) {
         [AppDelegate showLoadingMaskWith:@"Logging In"];
         [LNNetworkManager loginWithServer:self->emailTextField.text withPassword:self->passwordTextField.text forSite:self->siteIdTextField.text andCustomer:self->clientIdTextField.text onSucess:^(void){
             [AppDelegate hideLoadingMask];
-            [self doLocalLogin:true];
+            AppDelegate *application = (AppDelegate *)[UIApplication sharedApplication].delegate;
+            [application showUpload:@"fromLogin"];
+            
         } onFailure:^(NSError *error) {
             [AppDelegate hideLoadingMask];
             [AppDelegate showAlert:error.localizedDescription withTitle:@"Login Error"];
             NSLog(@"%@",error);
         }];
-    }
-    else{
-        [self doLocalLogin:false];
-    }
-
+    
+    
     return;
 }
-
--(void)doLocalLogin:(BOOL)cloudChecked{    
-    if([AppDelegate doLocalLogin:cloudChecked withUser:self->emailTextField.text password:self->passwordTextField.text site:self->siteIdTextField.text customer:self->clientIdTextField.text]){
-       [self performSegueWithIdentifier:@"MainTabsSegueIdentifier" sender:self->loginButton];
-    }
-}
-
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([segue.identifier isEqualToString:@"ShowNewUserDialogSegue"]){
@@ -182,14 +167,10 @@
     if (targetData == nil){
         return;
     }
-    User *targetUser = (User *)targetData;
-    self->emailTextField.text = targetUser.email;
     self->passwordTextField.text = @"";
     self->siteIdTextField.text = @"";
     self->clientIdTextField.text = @"";
-    
 }
-
 
 -(IBAction)forgotPassword:(id)sender{
     NSString *email = self->emailTextField.text;
@@ -225,4 +206,8 @@
 }
 */
 
+- (IBAction)goBackAction:(id)sender {
+    AppDelegate *application = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [application showUpload:@"backLogin"];
+}
 @end

@@ -11,6 +11,7 @@
 #import "Device.h"
 
 @interface DevicesViewController : UIViewController <AlertInputAcceptedDelegate>
+@property (weak, nonatomic) IBOutlet UIButton *logoutButton;
 - (void)simulateAlertForDevice:(Device *)device;
 - (void)reconnectDeviceForUUDID:(NSString *)identifier;
 @end

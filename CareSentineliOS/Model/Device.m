@@ -27,10 +27,7 @@
              @"hw_id":@"hwId",
              @"hw_name":@"hwName",             
              @"uuid":@"uuid",
-             @"site_id":@"siteId",
-             @"customer_id":@"customerId",
              @"ignored":@"ignored",
-             @"user_id":@"userId",
              @"created_at":@"createdAt"
              };
 }
