@@ -1,12 +1,4 @@
-INSERT INTO sites(site_id) VALUES('bedroom');
 
-INSERT INTO customers(customer_id) VALUES('7');
-
-INSERT INTO users(email,password,created_at) VALUES('jxmike@gmail.com','password',1436734401);
-
-INSERT INTO user_sites(site_id,user_id) VALUES(1,1);
-
-INSERT INTO user_customers(customer_id,user_id) VALUES(1,1);
 
 INSERT INTO DEVICES(name,hw_id,hw_name,uuid,site_id,customer_id,user_id,ignored,created_at) VALUES('Test Device X','123456789','Sensor Test XYZ','ABCA-9AAA',1,1,1,0,1436734401);
 

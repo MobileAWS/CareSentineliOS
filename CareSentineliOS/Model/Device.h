@@ -32,9 +32,6 @@
     @property NSString *hwId;
     @property NSString *hwName;
     @property NSString *uuid;
-    @property NSNumber *siteId;
-    @property NSNumber *customerId;
-    @property NSNumber *userId;
     @property NSNumber *createdAt;
     @property NSNumber *ignored;
 

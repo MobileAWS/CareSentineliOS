@@ -9,9 +9,6 @@
 #import "LoginViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "DatabaseManager.h"
-#import "User.h"
-#import "Site.h"
-#import "Customer.h"
 #import "AppDelegate.h"
 #import "UIResources.h"
 #import "MawsTextView.h"
@@ -111,15 +108,15 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)loginNoCloud:(id)sender {
-    [self doLogin:false];
-}
 
 - (IBAction)loginCloud:(id)sender {
     [self doLogin:true];
 }
 
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wundeclared-selector"
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
 -(void)doLogin:(BOOL)cloudCheck{
     
     NSString *tmpValue = self->emailTextField.text;
@@ -147,30 +144,33 @@
         return;
     }
     
-    if (cloudCheck) {
-        [AppDelegate showLoadingMaskWith:@"Logging In"];
-        [LNNetworkManager loginWithServer:self->emailTextField.text withPassword:self->passwordTextField.text forSite:self->siteIdTextField.text andCustomer:self->clientIdTextField.text onSucess:^(void){
+    [AppDelegate showLoadingMaskWith:@"Loging In"];
+    [LNNetworkManager loginWithServer:self->emailTextField.text withPassword:self->passwordTextField.text forSite:self->siteIdTextField.text andCustomer:self->clientIdTextField.text onSucess:^(void){
+        
+            NSUserDefaults *preferences = [NSUserDefaults standardUserDefaults];
+            [preferences setValue:self->emailTextField.text forKey:@"email"];
+            [preferences setValue:self->siteIdTextField.text forKey:@"siteId"];
+            [preferences setValue:self->clientIdTextField.text forKey:@"customerId"];
+            [preferences synchronize];
+        
             [AppDelegate hideLoadingMask];
-            [self doLocalLogin:true];
+            [self dismissViewControllerAnimated:true completion:nil];
+            if (self.callerController) {
+                SEL loginSucessfull = @selector(loginSucessfull);
+                if ([self.callerController respondsToSelector:loginSucessfull]) {
+                    [self.callerController performSelector:loginSucessfull];
+                }
+            }
         } onFailure:^(NSError *error) {
             [AppDelegate hideLoadingMask];
             [AppDelegate showAlert:error.localizedDescription withTitle:@"Login Error"];
             NSLog(@"%@",error);
         }];
-    }
-    else{
-        [self doLocalLogin:false];
-    }
-
+    
+    
     return;
 }
-
--(void)doLocalLogin:(BOOL)cloudChecked{    
-    if([AppDelegate doLocalLogin:cloudChecked withUser:self->emailTextField.text password:self->passwordTextField.text site:self->siteIdTextField.text customer:self->clientIdTextField.text]){
-       [self performSegueWithIdentifier:@"MainTabsSegueIdentifier" sender:self->loginButton];
-    }
-}
-
+#pragma clang diagnostic pop
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([segue.identifier isEqualToString:@"ShowNewUserDialogSegue"]){
@@ -182,14 +182,10 @@
     if (targetData == nil){
         return;
     }
-    User *targetUser = (User *)targetData;
-    self->emailTextField.text = targetUser.email;
     self->passwordTextField.text = @"";
     self->siteIdTextField.text = @"";
     self->clientIdTextField.text = @"";
-    
 }
-
 
 -(IBAction)forgotPassword:(id)sender{
     NSString *email = self->emailTextField.text;
@@ -225,4 +221,7 @@
 }
 */
 
+- (IBAction)goBackAction:(id)sender {
+    [self dismissViewControllerAnimated:true completion:nil];
+}
 @end

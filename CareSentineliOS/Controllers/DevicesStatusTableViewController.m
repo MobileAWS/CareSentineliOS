@@ -16,6 +16,7 @@
 @interface DevicesStatusTableViewController (){
     __weak AppDelegate *application;
     __weak IBOutlet UITableView *targetTable;
+    __weak IBOutlet NSLayoutConstraint *logoutButtonWidthConstraint;
 }
 
 @end
@@ -24,12 +25,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     self.navigationController.navigationBar.barTintColor = baseBackgroundColor;
     self.navigationController.navigationBar.translucent = NO;
     self.navigationController.navigationBar.tintColor = [[UIColor alloc] initWithRed:1 green:1 blue: 1 alpha:1];
     [self.navigationController.navigationBar setTitleTextAttributes: @{NSForegroundColorAttributeName: [UIColor whiteColor]}];
     self->application = (AppDelegate *)[UIApplication sharedApplication].delegate;
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [AppDelegate checkLogoutWithButton:_logoutButton withConstraint:logoutButtonWidthConstraint];
 }
 
 -(void)viewDidDisappear:(BOOL)animated{
@@ -57,7 +62,7 @@
 
 - (IBAction)logoutButtonAction:(id)sender {
     AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    [appDelegate logout];
+    [appDelegate logout:_logoutButton withConstraint:self->logoutButtonWidthConstraint];
 }
 
 - (void)didReceiveMemoryWarning {

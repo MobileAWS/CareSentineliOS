@@ -38,8 +38,8 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     DatabaseManager *manager = [DatabaseManager getSharedIntance];
-    application.devicesData = [manager listWithModel:[Device class] condition:[NSString stringWithFormat:@" user_id = %@ AND site_id = %@ AND customer_id = %@  AND (ignored = 0 OR ignored IS NULL) ORDER BY id",application.currentUser.id,application.currentSite.id, application.currentCustomer.id]];
-    application.ignoredDevices = [manager listWithModel:[Device class] condition:[NSString stringWithFormat:@" user_id = %@ AND site_id = %@ AND customer_id = %@  AND ignored = 1 ORDER BY id",application.currentUser.id,application.currentSite.id, application.currentCustomer.id]];
+    application.devicesData = [manager listWithModel:[Device class] condition:[NSString stringWithFormat:@"(ignored = 0 OR ignored IS NULL) ORDER BY id"]];
+    application.ignoredDevices = [manager listWithModel:[Device class] condition:[NSString stringWithFormat:@"(ignored = 1 ORDER BY id)"]];
     
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 
@@ -274,9 +274,6 @@
 
 -(void)addDevice:(Device *)targetDevice{
     if (targetDevice.id == nil) {
-        targetDevice.customerId = application.currentCustomer.id;
-        targetDevice.siteId = application.currentSite.id;
-        targetDevice.userId = application.currentUser.id;
         DatabaseManager *dbManager = [DatabaseManager getSharedIntance];
         targetDevice = (Device *)[dbManager save:targetDevice];
         [targetDevice setupCharacteristics];

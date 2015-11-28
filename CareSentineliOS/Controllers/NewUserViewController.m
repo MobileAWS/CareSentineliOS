@@ -9,7 +9,6 @@
 #import "NewUserViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "AppDelegate.h"
-#import "User.h"
 #import "DatabaseManager.h"
 #import "UIResources.h"
 #import "LNNetworkManager.h"
@@ -116,36 +115,18 @@
         return;
     }
 
-    DatabaseManager *databaseManager = [DatabaseManager getSharedIntance];
-    
-    NSString *usernameValue = [DatabaseManager encodeString:self->emailTextField.text];
-    id user = [databaseManager findWithCondition:[NSString stringWithFormat:@"email = '%@'",usernameValue ]forModel:[User class]];
-    
-    if (user != nil){
-        [AppDelegate showAlert:@"The supplied email already exists" withTitle:@"Invalid Data"];
-        return;
-    }
+   
     
     [AppDelegate showLoadingMaskWith:@"Creating User"];
     [LNNetworkManager signupWith:self->emailTextField.text withPassword:self->passwordTextField.text andConfirmPassword:self->confirmPassword.text onSucess:^(void){
-        [AppDelegate hideLoadingMask];        
-        [self userLocalSignup];
+        [AppDelegate hideLoadingMask];
+        [self dismissViewControllerAnimated:true completion:nil];
+        
     } onFailure:^(NSError *error) {
         [AppDelegate hideLoadingMask];
         [AppDelegate showAlert:error.localizedDescription withTitle:@"Error Creating User"];
     }];
     
-}
-
--(void)userLocalSignup{
-    DatabaseManager *databaseManager = [DatabaseManager getSharedIntance];
-    User *tmpUser = [[User alloc] init];
-    tmpUser.email = self->emailTextField.text;
-    tmpUser.password = [User getEncryptedPasswordFor:self->passwordTextField.text];
-    tmpUser.createdAt = [[NSNumber alloc] initWithInt:[[NSDate date] timeIntervalSince1970]];
-    [databaseManager save:tmpUser];
-    [self.dialogCompleteDelegate completedDialogWith:tmpUser];
-    [self dismissViewControllerAnimated:true completion:nil];
 }
 
 - (IBAction)cancelDialogAction:(id)sender {

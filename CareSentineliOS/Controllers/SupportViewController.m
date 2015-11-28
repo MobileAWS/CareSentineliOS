@@ -10,7 +10,9 @@
 #import "UIResources.h"
 #import "AppDelegate.h"
 
-@interface SupportViewController ()
+@interface SupportViewController (){
+__weak IBOutlet NSLayoutConstraint *logoutButtonWidthConstraint;
+}
 
 @end
 
@@ -25,13 +27,18 @@
 
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [AppDelegate checkLogoutWithButton:_logoutButton withConstraint:logoutButtonWidthConstraint];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 - (IBAction)logoutAction:(id)sender {
     AppDelegate *delegeate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    [delegeate logout];
+    [delegeate logout:_logoutButton withConstraint:self->logoutButtonWidthConstraint];
 }
 
 /*

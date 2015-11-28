@@ -25,6 +25,7 @@
     APBLEInterface *bleInterface;
     __weak AppDelegate *application;
     InputAlertViewDelegate *currentDelegate;
+    __weak IBOutlet NSLayoutConstraint *loginButtonWidthContraint;
 }
 
 @end
@@ -45,6 +46,12 @@
     }
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [AppDelegate checkLogoutWithButton:_logoutButton withConstraint:loginButtonWidthContraint];
+}
+
+
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     if (self->bleInterface == nil){
@@ -64,7 +71,7 @@
 }
 - (IBAction)logoutButtonAction:(id)sender {
     AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    [appDelegate logout];
+    [appDelegate logout:_logoutButton withConstraint:self->loginButtonWidthContraint];
 }
 
 - (IBAction)demoModeActivate:(id)sender {

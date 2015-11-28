@@ -16,6 +16,7 @@
 
 @interface NotificationsViewController (){
     __weak NotificationsTableViewController *notificationsTable;
+    __weak IBOutlet NSLayoutConstraint *logoutButtonWidthConstraint;
 }
 
 @end
@@ -30,7 +31,10 @@
     [self.navigationController.navigationBar setTitleTextAttributes: @{NSForegroundColorAttributeName: [UIColor whiteColor]}];
 }
 
-
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [AppDelegate checkLogoutWithButton:_logoutButton withConstraint:logoutButtonWidthConstraint];
+}
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([segue.identifier isEqualToString:@"EmbedNotificationsTableViewSegue"]){
@@ -45,7 +49,7 @@
 
 - (IBAction)logoutButtonAction:(id)sender {
     AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    [appDelegate logout];
+    [appDelegate logout:_logoutButton withConstraint:self->logoutButtonWidthConstraint];
 }
 
 

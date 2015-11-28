@@ -13,7 +13,7 @@
 
 @interface PropertiesDao : NSObject
 +(DeviceProperty *)saveProperty:(NSString *)name forDevice:(Device *)device withValue:(NSString *)value;
-+(NSMutableArray *)listPropertiesForUser:(NSNumber *) userId siteId:(NSNumber *)site clientId:(NSNumber *)client;
++(NSMutableArray *)listProperties;
 +(void)dismistProperty:(NSNumber *)idValue;
 +(NSMutableArray *)listPropertiesForDevice:(NSNumber *) deviceId;
 +(NSMutableArray *)initPropertiesForDevice:(NSNumber *) deviceId;

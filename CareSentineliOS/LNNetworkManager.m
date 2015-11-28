@@ -60,21 +60,9 @@ static NSString *token;
 }
 
 
-+(void)uploadData:(NSArray *)devices onSucess:(void(^)(NSMutableArray *success))callback onFailure:(void(^)(NSError *error))failure{
-    
-    if(token == nil){
-        AppDelegate *application = (AppDelegate *)[UIApplication sharedApplication].delegate;
-        [LNNetworkManager loginWithServer:application.currentUser.email withPassword:application.currentUser.password forSite:application.currentSite.siteId andCustomer:application.currentCustomer.customerId onSucess:^{
-            NSMutableArray *sucessDevices = [[NSMutableArray alloc] init];
-            [LNNetworkManager callUploadDevice:devices count:0 onSucess:callback onFailure:failure sucessDevices:sucessDevices];
-        } onFailure:^(NSError *error) {
-            failure(error);
-        }];
-    }
-    else{
-        NSMutableArray *sucessDevices = [[NSMutableArray alloc] init];
-        [LNNetworkManager callUploadDevice:devices count:0 onSucess:callback onFailure:failure sucessDevices:sucessDevices];
-    }
++(void)uploadData:(NSArray *)devices onSucess:(void(^)(NSMutableArray *success))callback onFailure:(void(^)(NSError *error))failure{    
+    NSMutableArray *sucessDevices = [[NSMutableArray alloc] init];
+    [LNNetworkManager callUploadDevice:devices count:0 onSucess:callback onFailure:failure sucessDevices:sucessDevices];
 }
 
 +(void)callUploadDevice:(NSArray *)devices count:(NSInteger)count onSucess:(void(^)(NSMutableArray *success))callback onFailure:(void(^)(NSError *error))failure sucessDevices:(NSMutableArray *)sucessDevices{
