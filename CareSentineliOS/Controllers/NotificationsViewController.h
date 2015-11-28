@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface NotificationsViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UIButton *logoutButton;
 
 @end

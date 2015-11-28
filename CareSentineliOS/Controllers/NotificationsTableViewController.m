@@ -52,7 +52,7 @@
 
 
 - (void)reloadWithTable:(BOOL)reloadTable{
-    notificationsData = [PropertiesDao listPropertiesForUser:self->application.currentUser.id siteId:self->application.currentSite.id clientId:self->application.currentCustomer.id];
+    notificationsData = [PropertiesDao listProperties];
     sectionIndexes = [[NSMutableArray alloc]init];
     NSNumber *lastId = 0;
     for (NSUInteger i = 0; i < notificationsData.count; i++) {

@@ -35,6 +35,10 @@ static NSString *token;
                 return;
             }
             token = [iresp objectForKey:@"token"];
+            NSUserDefaults *preferences = [NSUserDefaults standardUserDefaults];
+            NSString *currentLevelKey = @"token";
+            [preferences setObject:token forKey:currentLevelKey];
+            const BOOL didSave = [preferences synchronize];
             callback();
         }
     } onFailure:^(AFHTTPRequestOperation *operation, NSError *responseObject) {
@@ -61,15 +65,21 @@ static NSString *token;
 
 
 +(void)uploadData:(NSArray *)devices onSucess:(void(^)(NSMutableArray *success))callback onFailure:(void(^)(NSError *error))failure{
-    
+    NSUserDefaults *preferences = [NSUserDefaults standardUserDefaults];
+    NSString *currentLevelKey = @"token";
+    if ([preferences objectForKey:currentLevelKey] != nil)
+    {
+        NSString *tokenPreference = [[NSUserDefaults standardUserDefaults]
+                                    stringForKey:currentLevelKey];
+        if(![tokenPreference isEqualToString:@" "]){
+            token = tokenPreference;
+        }
+    }
     if(token == nil){
+        
         AppDelegate *application = (AppDelegate *)[UIApplication sharedApplication].delegate;
-        [LNNetworkManager loginWithServer:application.currentUser.email withPassword:application.currentUser.password forSite:application.currentSite.siteId andCustomer:application.currentCustomer.customerId onSucess:^{
-            NSMutableArray *sucessDevices = [[NSMutableArray alloc] init];
-            [LNNetworkManager callUploadDevice:devices count:0 onSucess:callback onFailure:failure sucessDevices:sucessDevices];
-        } onFailure:^(NSError *error) {
-            failure(error);
-        }];
+        [application showLogin];
+        
     }
     else{
         NSMutableArray *sucessDevices = [[NSMutableArray alloc] init];

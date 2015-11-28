@@ -12,5 +12,6 @@
 
 @interface LoginViewController : UIViewController <LNDialogCompleteDelegate>
 
+- (IBAction)goBackAction:(id)sender;
 
 @end

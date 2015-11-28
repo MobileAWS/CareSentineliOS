@@ -10,5 +10,6 @@
 #import "LNSwitchChangedDelegate.h"
 
 @interface DevicesStatusTableViewController : UITableViewController <LNSwitchChangedDelegate>
+@property (weak, nonatomic) IBOutlet UIButton *logoutButton;
 
 @end

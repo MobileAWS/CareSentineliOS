@@ -7,18 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Site.h"
-#import "User.h"
-#import "Customer.h"
 #import "APBLEInterface.h"
 #import "LNSwitchChangedDelegate.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate,UIAlertViewDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-@property (strong,nonatomic) Site *currentSite;
-@property (strong,nonatomic) User *currentUser;
-@property (strong,nonatomic) Customer *currentCustomer;
+@property (strong,nonatomic) UIStoryboard *storyboard;
 @property (strong,nonatomic) NSMutableArray* devicesData;
 @property (strong,nonatomic) NSMutableArray* ignoredDevices;
 @property (weak,nonatomic) APBLEInterface *bleInterface;
@@ -26,7 +21,11 @@
 @property BOOL automaticStart;
 @property BOOL demoMode;
 
+
+
 -(void)logout;
+-(void)showLogin;
+-(void)showUpload:(NSString *)text;
 +(void)showAlert:(NSString *)alert withTitle:(NSString *)title;
 +(void)showInputWith:(NSString *)alert title:(NSString *)title defaultText:(NSString *)text delegate:(id)delegate cancelText:(NSString *)cancelText acceptText:(NSString *)acceptText;
 +(void)showLoadingMask;
@@ -35,6 +34,6 @@
 +(void)hideLoadingMask;
 +(UIView *)findSuperView:(UIView *) target with:(Class)clazz;
 +(UIViewController *)findSuperConstroller:(UIViewController *) target with:(Class)clazz;
-+(BOOL)doLocalLogin:(BOOL)cloudChecked withUser:(NSString *)username password:(NSString *)password site:(NSString *)siteId customer:(NSString *)customerId ;
++(BOOL) isValidLoggin;
 @end
 
