@@ -151,22 +151,25 @@ static void (^currentAlertInvocation) (void);
 
 
 
-- (void) logout{
+-(void)logout:(UIButton *)sender withConstraint:(NSLayoutConstraint *)constraint{
     [AppDelegate showConfirmWith:@"Are you sure you want to logout?" title:@"Confirm Logout" target:nil callback:^{
         [LNNetworkManager clear];
-        [AppDelegate showAlert: NSLocalizedString(@"Logout",nil) withTitle:NSLocalizedString(@"the logout completed",@" ")];
         NSUserDefaults *preferences = [NSUserDefaults standardUserDefaults];
-        NSString *currentLevelKey = @"token";
-        [preferences setObject:@" " forKey:currentLevelKey];
+        [preferences removeObjectForKey:@"token"];
+        [AppDelegate checkLogoutWithButton:sender withConstraint:constraint];
     }];
 }
 
--(void) showLogin{
+-(void) showLogin:(UIViewController *)target{
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    UIViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
-    [self.window.rootViewController dismissViewControllerAnimated:false completion:^{
-        [self.window.rootViewController presentViewController:loginViewController animated:true completion:false];
-    }];
+    LoginViewController *loginViewController = (LoginViewController *)[storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
+    loginViewController.callerController = target;
+    UIViewController *tmpController = self.window.rootViewController;
+    while (tmpController.presentedViewController != nil) {
+        tmpController = tmpController.presentedViewController;
+    }
+    [tmpController presentViewController:loginViewController animated:true completion:nil];
+
 }
 -(void)showUpload:(NSString *)text {
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
@@ -196,17 +199,18 @@ static void (^currentAlertInvocation) (void);
     [MBProgressHUD hideHUDForView:[[UIApplication sharedApplication] keyWindow] animated:YES];
 }
 
-+(BOOL) isValidLoggin{
-    NSUserDefaults *preferences = [NSUserDefaults standardUserDefaults];
-    NSString *currentLevelKey = @"token";
-    if ([preferences objectForKey:currentLevelKey] != nil)
-    {
-        NSString *tokenPreference = [[NSUserDefaults standardUserDefaults]
-                                     stringForKey:currentLevelKey];
-        if(![tokenPreference isEqualToString:@" "]){
-            return YES;
++(void) checkLogoutWithButton:(UIButton *)button withConstraint:(NSLayoutConstraint *)constraint{
+    if ([LNNetworkManager sessionValid]) {
+        if (button.hidden) {
+            button.hidden = NO;
+            constraint.constant = 52;
         }
     }
-    return NO;
+    else{
+        if (!button.hidden) {
+            button.hidden = YES;
+            constraint.constant = 0;
+        }
+    }
 }
 @end

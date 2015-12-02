@@ -10,7 +10,9 @@
 #import "UIResources.h"
 #import "AppDelegate.h"
 
-@interface SupportViewController ()
+@interface SupportViewController (){
+__weak IBOutlet NSLayoutConstraint *logoutButtonWidthConstraint;
+}
 
 @end
 
@@ -18,16 +20,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    if([AppDelegate isValidLoggin]){
-        _logoutButton.hidden = NO;
-    }else {
-        _logoutButton.hidden = YES;
-    }
     self.navigationController.navigationBar.barTintColor = baseBackgroundColor;
     self.navigationController.navigationBar.translucent = NO;
     self.navigationController.navigationBar.tintColor = [[UIColor alloc] initWithRed:1 green:1 blue: 1 alpha:1];
     [self.navigationController.navigationBar setTitleTextAttributes: @{NSForegroundColorAttributeName: [UIColor whiteColor]}];
 
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [AppDelegate checkLogoutWithButton:_logoutButton withConstraint:logoutButtonWidthConstraint];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -36,7 +38,7 @@
 }
 - (IBAction)logoutAction:(id)sender {
     AppDelegate *delegeate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    [delegeate logout];
+    [delegeate logout:_logoutButton withConstraint:self->logoutButtonWidthConstraint];
 }
 
 /*

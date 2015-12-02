@@ -25,11 +25,9 @@
 		27091E0E1BCD6F3A0092DDE1 /* APAppServices.m in Sources */ = {isa = PBXBuildFile; fileRef = 27009F071B177098003FBEAB /* APAppServices.m */; };
 		27091E0F1BCD6F3A0092DDE1 /* DevicesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2777D8131B0F706A00CAC2AF /* DevicesViewController.m */; };
 		27091E101BCD6F3A0092DDE1 /* MAWSNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 27646CBE1B3E152000CC2A1C /* MAWSNetworkManager.m */; };
-		27091E111BCD6F3A0092DDE1 /* Customer.m in Sources */ = {isa = PBXBuildFile; fileRef = 27271D7E1B18CCE200D369D6 /* Customer.m */; };
 		27091E121BCD6F3A0092DDE1 /* APSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 27009F091B177098003FBEAB /* APSettings.m */; };
 		27091E131BCD6F3A0092DDE1 /* Device.m in Sources */ = {isa = PBXBuildFile; fileRef = 2716056B1B13D38B002505E1 /* Device.m */; };
 		27091E141BCD6F3A0092DDE1 /* LNNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 279785711B423A86009B3A25 /* LNNetworkManager.m */; };
-		27091E151BCD6F3A0092DDE1 /* Site.m in Sources */ = {isa = PBXBuildFile; fileRef = 27271D7B1B18CCCA00D369D6 /* Site.m */; };
 		27091E161BCD6F3A0092DDE1 /* NewUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2716056E1B14C749002505E1 /* NewUserViewController.m */; };
 		27091E171BCD6F3A0092DDE1 /* Property.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A963211B29487800E4A606 /* Property.m */; };
 		27091E181BCD6F3A0092DDE1 /* DatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2777D80B1B0F6F6100CAC2AF /* DatabaseManager.m */; };
@@ -37,7 +35,6 @@
 		27091E1A1BCD6F3A0092DDE1 /* NotificationsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27632E6B1B2BC0F6002316F1 /* NotificationsTableViewController.m */; };
 		27091E1B1BCD6F3A0092DDE1 /* APBLEInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 27009F021B176925003FBEAB /* APBLEInterface.m */; };
 		27091E1C1BCD6F3A0092DDE1 /* SupportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 276107601B587280000EF387 /* SupportViewController.m */; };
-		27091E1D1BCD6F3A0092DDE1 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 275C864D1B16B896000DB4F4 /* User.m */; };
 		27091E1E1BCD6F3A0092DDE1 /* APBLEDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 27009F001B176925003FBEAB /* APBLEDevice.m */; };
 		27091E1F1BCD6F3A0092DDE1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 273ED34D1AFC550700F4F82B /* AppDelegate.m */; };
 		27091E201BCD6F3A0092DDE1 /* InputAlertViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 274671741B33341C009294B7 /* InputAlertViewDelegate.m */; };
@@ -68,8 +65,6 @@
 		271605661B139D3F002505E1 /* DevicesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 271605651B139D3F002505E1 /* DevicesTableViewController.m */; };
 		2716056C1B13D38B002505E1 /* Device.m in Sources */ = {isa = PBXBuildFile; fileRef = 2716056B1B13D38B002505E1 /* Device.m */; };
 		2716056F1B14C749002505E1 /* NewUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2716056E1B14C749002505E1 /* NewUserViewController.m */; };
-		27271D7C1B18CCCA00D369D6 /* Site.m in Sources */ = {isa = PBXBuildFile; fileRef = 27271D7B1B18CCCA00D369D6 /* Site.m */; };
-		27271D7F1B18CCE200D369D6 /* Customer.m in Sources */ = {isa = PBXBuildFile; fileRef = 27271D7E1B18CCE200D369D6 /* Customer.m */; };
 		273A42991B3B1B0500CC2644 /* LNConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 273A42981B3B1B0500CC2644 /* LNConstants.m */; };
 		273ED34B1AFC550700F4F82B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 273ED34A1AFC550700F4F82B /* main.m */; };
 		273ED34E1AFC550700F4F82B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 273ED34D1AFC550700F4F82B /* AppDelegate.m */; };
@@ -79,7 +74,6 @@
 		274671751B33341C009294B7 /* InputAlertViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 274671741B33341C009294B7 /* InputAlertViewDelegate.m */; };
 		27556A761B386D1D008A97FA /* KeyChainManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 27556A751B386D1D008A97FA /* KeyChainManager.m */; };
 		27556A791B3885B8008A97FA /* UploadDevicesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27556A781B3885B8008A97FA /* UploadDevicesTableViewController.m */; };
-		275C864E1B16B896000DB4F4 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 275C864D1B16B896000DB4F4 /* User.m */; };
 		275DF2BD1B4DDBFD00205670 /* DevicesStatusTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 275DF2BC1B4DDBFD00205670 /* DevicesStatusTableViewController.m */; };
 		276107611B587280000EF387 /* SupportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 276107601B587280000EF387 /* SupportViewController.m */; };
 		276107621B587280000EF387 /* SupportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 276107601B587280000EF387 /* SupportViewController.m */; };
@@ -118,18 +112,15 @@
 		27BA559A1B44F01F00107017 /* APAppServices.m in Sources */ = {isa = PBXBuildFile; fileRef = 27009F071B177098003FBEAB /* APAppServices.m */; };
 		27BA559B1B44F01F00107017 /* DevicesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2777D8131B0F706A00CAC2AF /* DevicesViewController.m */; };
 		27BA559C1B44F01F00107017 /* MAWSNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 27646CBE1B3E152000CC2A1C /* MAWSNetworkManager.m */; };
-		27BA559D1B44F01F00107017 /* Customer.m in Sources */ = {isa = PBXBuildFile; fileRef = 27271D7E1B18CCE200D369D6 /* Customer.m */; };
 		27BA559E1B44F01F00107017 /* APSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 27009F091B177098003FBEAB /* APSettings.m */; };
 		27BA559F1B44F01F00107017 /* Device.m in Sources */ = {isa = PBXBuildFile; fileRef = 2716056B1B13D38B002505E1 /* Device.m */; };
 		27BA55A01B44F01F00107017 /* LNNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 279785711B423A86009B3A25 /* LNNetworkManager.m */; };
-		27BA55A11B44F01F00107017 /* Site.m in Sources */ = {isa = PBXBuildFile; fileRef = 27271D7B1B18CCCA00D369D6 /* Site.m */; };
 		27BA55A21B44F01F00107017 /* NewUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2716056E1B14C749002505E1 /* NewUserViewController.m */; };
 		27BA55A31B44F01F00107017 /* Property.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A963211B29487800E4A606 /* Property.m */; };
 		27BA55A41B44F01F00107017 /* DatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2777D80B1B0F6F6100CAC2AF /* DatabaseManager.m */; };
 		27BA55A51B44F01F00107017 /* DataLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2776F1291B34A829005AC5B1 /* DataLabel.m */; };
 		27BA55A61B44F01F00107017 /* NotificationsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27632E6B1B2BC0F6002316F1 /* NotificationsTableViewController.m */; };
 		27BA55A71B44F01F00107017 /* APBLEInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 27009F021B176925003FBEAB /* APBLEInterface.m */; };
-		27BA55A81B44F01F00107017 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 275C864D1B16B896000DB4F4 /* User.m */; };
 		27BA55A91B44F01F00107017 /* APBLEDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 27009F001B176925003FBEAB /* APBLEDevice.m */; };
 		27BA55AA1B44F01F00107017 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 273ED34D1AFC550700F4F82B /* AppDelegate.m */; };
 		27BA55AB1B44F01F00107017 /* InputAlertViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 274671741B33341C009294B7 /* InputAlertViewDelegate.m */; };
@@ -902,11 +893,9 @@
 				27091E0E1BCD6F3A0092DDE1 /* APAppServices.m in Sources */,
 				27091E0F1BCD6F3A0092DDE1 /* DevicesViewController.m in Sources */,
 				27091E101BCD6F3A0092DDE1 /* MAWSNetworkManager.m in Sources */,
-				27091E111BCD6F3A0092DDE1 /* Customer.m in Sources */,
 				27091E121BCD6F3A0092DDE1 /* APSettings.m in Sources */,
 				27091E131BCD6F3A0092DDE1 /* Device.m in Sources */,
 				27091E141BCD6F3A0092DDE1 /* LNNetworkManager.m in Sources */,
-				27091E151BCD6F3A0092DDE1 /* Site.m in Sources */,
 				27091E161BCD6F3A0092DDE1 /* NewUserViewController.m in Sources */,
 				27091E171BCD6F3A0092DDE1 /* Property.m in Sources */,
 				27091E181BCD6F3A0092DDE1 /* DatabaseManager.m in Sources */,
@@ -914,7 +903,6 @@
 				27091E1A1BCD6F3A0092DDE1 /* NotificationsTableViewController.m in Sources */,
 				27091E1B1BCD6F3A0092DDE1 /* APBLEInterface.m in Sources */,
 				27091E1C1BCD6F3A0092DDE1 /* SupportViewController.m in Sources */,
-				27091E1D1BCD6F3A0092DDE1 /* User.m in Sources */,
 				27091E1E1BCD6F3A0092DDE1 /* APBLEDevice.m in Sources */,
 				27091E1F1BCD6F3A0092DDE1 /* AppDelegate.m in Sources */,
 				27091E201BCD6F3A0092DDE1 /* InputAlertViewDelegate.m in Sources */,
@@ -946,18 +934,15 @@
 				27009F0B1B177098003FBEAB /* APAppServices.m in Sources */,
 				2777D81A1B0F706A00CAC2AF /* DevicesViewController.m in Sources */,
 				27646CBF1B3E152000CC2A1C /* MAWSNetworkManager.m in Sources */,
-				27271D7F1B18CCE200D369D6 /* Customer.m in Sources */,
 				27009F0C1B177098003FBEAB /* APSettings.m in Sources */,
 				2716056C1B13D38B002505E1 /* Device.m in Sources */,
 				279785721B423A86009B3A25 /* LNNetworkManager.m in Sources */,
-				27271D7C1B18CCCA00D369D6 /* Site.m in Sources */,
 				2716056F1B14C749002505E1 /* NewUserViewController.m in Sources */,
 				27A963221B29487800E4A606 /* Property.m in Sources */,
 				2777D80C1B0F6F6100CAC2AF /* DatabaseManager.m in Sources */,
 				2776F12A1B34A829005AC5B1 /* DataLabel.m in Sources */,
 				27632E6C1B2BC0F6002316F1 /* NotificationsTableViewController.m in Sources */,
 				27009F051B176925003FBEAB /* APBLEInterface.m in Sources */,
-				275C864E1B16B896000DB4F4 /* User.m in Sources */,
 				276107611B587280000EF387 /* SupportViewController.m in Sources */,
 				27009F041B176925003FBEAB /* APBLEDevice.m in Sources */,
 				273ED34E1AFC550700F4F82B /* AppDelegate.m in Sources */,
@@ -992,11 +977,9 @@
 				27BA559A1B44F01F00107017 /* APAppServices.m in Sources */,
 				27BA559B1B44F01F00107017 /* DevicesViewController.m in Sources */,
 				27BA559C1B44F01F00107017 /* MAWSNetworkManager.m in Sources */,
-				27BA559D1B44F01F00107017 /* Customer.m in Sources */,
 				27BA559E1B44F01F00107017 /* APSettings.m in Sources */,
 				27BA559F1B44F01F00107017 /* Device.m in Sources */,
 				27BA55A01B44F01F00107017 /* LNNetworkManager.m in Sources */,
-				27BA55A11B44F01F00107017 /* Site.m in Sources */,
 				27BA55A21B44F01F00107017 /* NewUserViewController.m in Sources */,
 				27BA55A31B44F01F00107017 /* Property.m in Sources */,
 				27BA55A41B44F01F00107017 /* DatabaseManager.m in Sources */,
@@ -1004,7 +987,6 @@
 				27BA55A61B44F01F00107017 /* NotificationsTableViewController.m in Sources */,
 				27BA55A71B44F01F00107017 /* APBLEInterface.m in Sources */,
 				276107621B587280000EF387 /* SupportViewController.m in Sources */,
-				27BA55A81B44F01F00107017 /* User.m in Sources */,
 				27BA55A91B44F01F00107017 /* APBLEDevice.m in Sources */,
 				27BA55AA1B44F01F00107017 /* AppDelegate.m in Sources */,
 				27BA55AB1B44F01F00107017 /* InputAlertViewDelegate.m in Sources */,
@@ -1092,8 +1074,8 @@
 			baseConfigurationReference = E9051D77506529F39336AB4A /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Carlos Alvarez (FQ9B6S5R5B)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Carlos Alvarez (FQ9B6S5R5B)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Carlos Alvarez (68N4HJ2A7M)";
 				INFOPLIST_FILE = CareSentineliOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -1101,7 +1083,7 @@
 					"$(PROJECT_DIR)/build/Release-iphoneos",
 				);
 				PRODUCT_NAME = "Care Sentinel Dev";
-				PROVISIONING_PROFILE = "a1b4bad4-80a9-4b9b-b467-04dbf41a5cec";
+				PROVISIONING_PROFILE = "3ba4eac5-8ecd-4867-93d9-24e50bad8c66";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1192,8 +1174,8 @@
 			baseConfigurationReference = E86C96807CFDF0C46D1C4C9E /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Carlos Alvarez (FQ9B6S5R5B)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Carlos Alvarez (FQ9B6S5R5B)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Carlos Alvarez (68N4HJ2A7M)";
 				INFOPLIST_FILE = CareSentineliOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -1201,7 +1183,7 @@
 					"$(PROJECT_DIR)/build/Release-iphoneos",
 				);
 				PRODUCT_NAME = "Care Sentinel Dev";
-				PROVISIONING_PROFILE = "a1b4bad4-80a9-4b9b-b467-04dbf41a5cec";
+				PROVISIONING_PROFILE = "3ba4eac5-8ecd-4867-93d9-24e50bad8c66";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

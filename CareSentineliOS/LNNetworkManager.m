@@ -35,10 +35,6 @@ static NSString *token;
                 return;
             }
             token = [iresp objectForKey:@"token"];
-            NSUserDefaults *preferences = [NSUserDefaults standardUserDefaults];
-            NSString *currentLevelKey = @"token";
-            [preferences setObject:token forKey:currentLevelKey];
-            const BOOL didSave = [preferences synchronize];
             callback();
         }
     } onFailure:^(AFHTTPRequestOperation *operation, NSError *responseObject) {
@@ -64,27 +60,9 @@ static NSString *token;
 }
 
 
-+(void)uploadData:(NSArray *)devices onSucess:(void(^)(NSMutableArray *success))callback onFailure:(void(^)(NSError *error))failure{
-    NSUserDefaults *preferences = [NSUserDefaults standardUserDefaults];
-    NSString *currentLevelKey = @"token";
-    if ([preferences objectForKey:currentLevelKey] != nil)
-    {
-        NSString *tokenPreference = [[NSUserDefaults standardUserDefaults]
-                                    stringForKey:currentLevelKey];
-        if(![tokenPreference isEqualToString:@" "]){
-            token = tokenPreference;
-        }
-    }
-    if(token == nil){
-        
-        AppDelegate *application = (AppDelegate *)[UIApplication sharedApplication].delegate;
-        [application showLogin];
-        
-    }
-    else{
-        NSMutableArray *sucessDevices = [[NSMutableArray alloc] init];
-        [LNNetworkManager callUploadDevice:devices count:0 onSucess:callback onFailure:failure sucessDevices:sucessDevices];
-    }
++(void)uploadData:(NSArray *)devices onSucess:(void(^)(NSMutableArray *success))callback onFailure:(void(^)(NSError *error))failure{    
+    NSMutableArray *sucessDevices = [[NSMutableArray alloc] init];
+    [LNNetworkManager callUploadDevice:devices count:0 onSucess:callback onFailure:failure sucessDevices:sucessDevices];
 }
 
 +(void)callUploadDevice:(NSArray *)devices count:(NSInteger)count onSucess:(void(^)(NSMutableArray *success))callback onFailure:(void(^)(NSError *error))failure sucessDevices:(NSMutableArray *)sucessDevices{

@@ -114,6 +114,9 @@
 }
 
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wundeclared-selector"
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
 -(void)doLogin:(BOOL)cloudCheck{
     
     NSString *tmpValue = self->emailTextField.text;
@@ -141,12 +144,23 @@
         return;
     }
     
-        [AppDelegate showLoadingMaskWith:@"Logging In"];
-        [LNNetworkManager loginWithServer:self->emailTextField.text withPassword:self->passwordTextField.text forSite:self->siteIdTextField.text andCustomer:self->clientIdTextField.text onSucess:^(void){
+    [AppDelegate showLoadingMaskWith:@"Loging In"];
+    [LNNetworkManager loginWithServer:self->emailTextField.text withPassword:self->passwordTextField.text forSite:self->siteIdTextField.text andCustomer:self->clientIdTextField.text onSucess:^(void){
+        
+            NSUserDefaults *preferences = [NSUserDefaults standardUserDefaults];
+            [preferences setValue:self->emailTextField.text forKey:@"email"];
+            [preferences setValue:self->siteIdTextField.text forKey:@"siteId"];
+            [preferences setValue:self->clientIdTextField.text forKey:@"customerId"];
+            [preferences synchronize];
+        
             [AppDelegate hideLoadingMask];
-            AppDelegate *application = (AppDelegate *)[UIApplication sharedApplication].delegate;
-            [application showUpload:@"fromLogin"];
-            
+            [self dismissViewControllerAnimated:true completion:nil];
+            if (self.callerController) {
+                SEL loginSucessfull = @selector(loginSucessfull);
+                if ([self.callerController respondsToSelector:loginSucessfull]) {
+                    [self.callerController performSelector:loginSucessfull];
+                }
+            }
         } onFailure:^(NSError *error) {
             [AppDelegate hideLoadingMask];
             [AppDelegate showAlert:error.localizedDescription withTitle:@"Login Error"];
@@ -156,6 +170,7 @@
     
     return;
 }
+#pragma clang diagnostic pop
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([segue.identifier isEqualToString:@"ShowNewUserDialogSegue"]){
@@ -207,7 +222,6 @@
 */
 
 - (IBAction)goBackAction:(id)sender {
-    AppDelegate *application = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    [application showUpload:@"backLogin"];
+    [self dismissViewControllerAnimated:true completion:nil];
 }
 @end

@@ -25,6 +25,7 @@
     APBLEInterface *bleInterface;
     __weak AppDelegate *application;
     InputAlertViewDelegate *currentDelegate;
+    __weak IBOutlet NSLayoutConstraint *loginButtonWidthContraint;
 }
 
 @end
@@ -34,11 +35,6 @@
 - (void)viewDidLoad {
     self->application = ((AppDelegate *)[UIApplication sharedApplication].delegate);
     [super viewDidLoad];
-    if([AppDelegate isValidLoggin]){
-        _logoutButton.hidden = NO;
-    }else {
-        _logoutButton.hidden = YES;
-    }
     self.navigationController.navigationBar.barTintColor = baseBackgroundColor;
     self.navigationController.navigationBar.translucent = NO;
     self.navigationController.navigationBar.tintColor = [[UIColor alloc] initWithRed:1 green:1 blue: 1 alpha:1];
@@ -49,6 +45,12 @@
         ((AppDelegate *)[UIApplication sharedApplication].delegate).bleInterface = self->bleInterface;
     }
 }
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [AppDelegate checkLogoutWithButton:_logoutButton withConstraint:loginButtonWidthContraint];
+}
+
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
@@ -69,7 +71,7 @@
 }
 - (IBAction)logoutButtonAction:(id)sender {
     AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    [appDelegate logout];
+    [appDelegate logout:_logoutButton withConstraint:self->loginButtonWidthContraint];
 }
 
 - (IBAction)demoModeActivate:(id)sender {
