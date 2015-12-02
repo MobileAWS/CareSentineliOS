@@ -12,6 +12,7 @@
 
 @interface LoginViewController : UIViewController <LNDialogCompleteDelegate>
 
+@property(weak,nonatomic) UIViewController *callerController;
 - (IBAction)goBackAction:(id)sender;
 
 @end

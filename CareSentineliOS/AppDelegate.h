@@ -13,7 +13,6 @@
 @interface AppDelegate : UIResponder <UIApplicationDelegate,UIAlertViewDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-@property (strong,nonatomic) UIStoryboard *storyboard;
 @property (strong,nonatomic) NSMutableArray* devicesData;
 @property (strong,nonatomic) NSMutableArray* ignoredDevices;
 @property (weak,nonatomic) APBLEInterface *bleInterface;
@@ -23,8 +22,8 @@
 
 
 
--(void)logout;
--(void)showLogin;
+-(void)logout:(UIButton *)sender withConstraint:(NSLayoutConstraint *)constraint;
+-(void) showLogin:(UIViewController *)target;
 -(void)showUpload:(NSString *)text;
 +(void)showAlert:(NSString *)alert withTitle:(NSString *)title;
 +(void)showInputWith:(NSString *)alert title:(NSString *)title defaultText:(NSString *)text delegate:(id)delegate cancelText:(NSString *)cancelText acceptText:(NSString *)acceptText;
@@ -34,6 +33,6 @@
 +(void)hideLoadingMask;
 +(UIView *)findSuperView:(UIView *) target with:(Class)clazz;
 +(UIViewController *)findSuperConstroller:(UIViewController *) target with:(Class)clazz;
-+(BOOL) isValidLoggin;
++(void) checkLogoutWithButton:(UIButton *)button withConstraint:(NSLayoutConstraint *)constraint;
 @end
 

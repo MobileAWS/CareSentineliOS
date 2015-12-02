@@ -17,6 +17,7 @@
     __weak AppDelegate *application;
     __weak UploadDevicesTableViewController *uploadDevicesTableViewController;
     __weak IBOutlet UIButton *sendButton;
+    __weak IBOutlet NSLayoutConstraint *logoutButtonWidthConstraint;
 }
 
 @end
@@ -25,16 +26,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    if([AppDelegate isValidLoggin]){
-        _logoutButton.hidden = NO;
-    }else {
-        _logoutButton.hidden = YES;
-    }
     self.navigationController.navigationBar.barTintColor = baseBackgroundColor;
     self.navigationController.navigationBar.translucent = NO;
     self.navigationController.navigationBar.tintColor = [[UIColor alloc] initWithRed:1 green:1 blue: 1 alpha:1];
     [self.navigationController.navigationBar setTitleTextAttributes: @{NSForegroundColorAttributeName: [UIColor whiteColor]}];
     self->application = (AppDelegate *)[UIApplication sharedApplication].delegate;
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [AppDelegate checkLogoutWithButton:_logoutButton withConstraint:logoutButtonWidthConstraint];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
@@ -51,15 +52,12 @@
 
 - (IBAction)logoutButtonAction:(id)sender {
     AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    [appDelegate logout];
+    [appDelegate logout:_logoutButton withConstraint:self->logoutButtonWidthConstraint];
 }
 
-- (IBAction)sendDataAction:(id)sender {
+-(void)uploadData{
     NSArray *devices = uploadDevicesTableViewController.selectedDevices;
-    if (devices.count <= 0) {
-        return;
-    }
-    //[AppDelegate showLoadingMaskWith:@"Uploading Data"];
+    [AppDelegate showLoadingMaskWith:@"Uploading Data"];
     [LNNetworkManager uploadData:devices onSucess:^(NSMutableArray *sucessDevices){
         if (sucessDevices.count > 0) {
             [PropertiesDao removeValuesForDevices:sucessDevices];
@@ -74,6 +72,26 @@
         [AppDelegate hideLoadingMask];
         [AppDelegate showAlert:@"Upload Failed, please check your internet connection." withTitle:@"Error"];
     }];
+
+}
+
+- (IBAction)sendDataAction:(id)sender {
+    NSArray *devices = uploadDevicesTableViewController.selectedDevices;
+    if (devices.count <= 0) {
+        return;
+    }
+    
+    if (![LNNetworkManager sessionValid]) {
+        [application showLogin:self];
+        return;
+    }
+    
+    [self uploadData];
+    
+}
+
+-(void)loginSucessfull{
+    [self uploadData];
 }
 
 -(void)enableActionButtons{

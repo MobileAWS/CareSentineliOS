@@ -119,7 +119,8 @@
     
     [AppDelegate showLoadingMaskWith:@"Creating User"];
     [LNNetworkManager signupWith:self->emailTextField.text withPassword:self->passwordTextField.text andConfirmPassword:self->confirmPassword.text onSucess:^(void){
-        [AppDelegate hideLoadingMask];        
+        [AppDelegate hideLoadingMask];
+        [self dismissViewControllerAnimated:true completion:nil];
         
     } onFailure:^(NSError *error) {
         [AppDelegate hideLoadingMask];
