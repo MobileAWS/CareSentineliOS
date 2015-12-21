@@ -32,11 +32,7 @@ enabled BOOL,
 delay INTEGER
 );
 
-CREATE TABLE contacts(
-id INTEGER PRIMARY KEY,
-name varchar(255),
-number varchar(255)
-);
+
 
 INSERT INTO properties(name,units) VALUES("Bed Sensor",NULL);
 INSERT INTO properties(name,units) VALUES("Chair Sensor",NULL);
@@ -44,3 +40,10 @@ INSERT INTO properties(name,units) VALUES("Toilet Sensor",NULL);
 INSERT INTO properties(name,units) VALUES("Incontinence Sensor",NULL);
 INSERT INTO properties(name,units) VALUES("Call Sensor",NULL);
 INSERT INTO properties(name,units) VALUES("Portal Sensor",NULL);
+
+
+CREATE TABLE contacts(
+id INTEGER PRIMARY KEY,
+name varchar(255),
+number varchar(255)
+);
