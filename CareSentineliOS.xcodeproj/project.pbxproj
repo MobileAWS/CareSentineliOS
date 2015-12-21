@@ -141,12 +141,22 @@
 		27BA55BD1B44F01F00107017 /* DeviceTypesList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 27760EE51B1FDFA50047D49B /* DeviceTypesList.plist */; };
 		27BA55BE1B44F01F00107017 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 273ED3581AFC550700F4F82B /* Images.xcassets */; };
 		27BA55BF1B44F01F00107017 /* TSLoonMessageDesign.json in Resources */ = {isa = PBXBuildFile; fileRef = 27EFEFD51B320942000C72AD /* TSLoonMessageDesign.json */; };
-		27BA55CB1B44F1C000107017 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 27BA55CA1B44F1C000107017 /* Info.plist */; };
 		27DA27871B0CDBD300D1000A /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 27DA27861B0CDBD300D1000A /* libsqlite3.dylib */; };
 		27EFEFD41B31F467000C72AD /* MainTabsControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EFEFD31B31F467000C72AD /* MainTabsControllerViewController.m */; };
 		27EFEFD61B320942000C72AD /* TSLoonMessageDesign.json in Resources */ = {isa = PBXBuildFile; fileRef = 27EFEFD51B320942000C72AD /* TSLoonMessageDesign.json */; };
 		27FED7EA1B742795007BAD65 /* ConnectingDeviceDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FED7E91B742795007BAD65 /* ConnectingDeviceDescriptor.m */; };
 		27FED7EB1B742795007BAD65 /* ConnectingDeviceDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FED7E91B742795007BAD65 /* ConnectingDeviceDescriptor.m */; };
+		95B604BE1C210CF30037361C /* SmsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B604BD1C210CF30037361C /* SmsViewController.m */; };
+		95B604C21C2116900037361C /* Contact.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B604C11C2116900037361C /* Contact.m */; };
+		95B604C61C2300C60037361C /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95B604C51C2300C60037361C /* AddressBookUI.framework */; };
+		95B604C91C233C870037361C /* SmsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B604BD1C210CF30037361C /* SmsViewController.m */; };
+		95B604CA1C2349A40037361C /* Contact.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B604C11C2116900037361C /* Contact.m */; };
+		95B7BE6A1C247FF700AD86AB /* ContactDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B7BE691C247FF700AD86AB /* ContactDao.m */; };
+		95B7BE6B1C247FF700AD86AB /* ContactDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B7BE691C247FF700AD86AB /* ContactDao.m */; };
+		95B7BE6C1C247FF700AD86AB /* ContactDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B7BE691C247FF700AD86AB /* ContactDao.m */; };
+		95B7BE6E1C248EC900AD86AB /* database_v2.sql in Resources */ = {isa = PBXBuildFile; fileRef = 95B7BE6D1C248EC900AD86AB /* database_v2.sql */; };
+		95B7BE6F1C248EC900AD86AB /* database_v2.sql in Resources */ = {isa = PBXBuildFile; fileRef = 95B7BE6D1C248EC900AD86AB /* database_v2.sql */; };
+		95B7BE701C248EC900AD86AB /* database_v2.sql in Resources */ = {isa = PBXBuildFile; fileRef = 95B7BE6D1C248EC900AD86AB /* database_v2.sql */; };
 		B38A7E8FDC271523F6B6AB19 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C14B51759A9EFD5849A7D979 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -175,10 +185,6 @@
 		2716056B1B13D38B002505E1 /* Device.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Device.m; sourceTree = "<group>"; };
 		2716056D1B14C749002505E1 /* NewUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewUserViewController.h; sourceTree = "<group>"; };
 		2716056E1B14C749002505E1 /* NewUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewUserViewController.m; sourceTree = "<group>"; };
-		27271D7A1B18CCCA00D369D6 /* Site.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Site.h; sourceTree = "<group>"; };
-		27271D7B1B18CCCA00D369D6 /* Site.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Site.m; sourceTree = "<group>"; };
-		27271D7D1B18CCE200D369D6 /* Customer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Customer.h; sourceTree = "<group>"; };
-		27271D7E1B18CCE200D369D6 /* Customer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Customer.m; sourceTree = "<group>"; };
 		273A42971B3B1B0500CC2644 /* LNConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LNConstants.h; sourceTree = "<group>"; };
 		273A42981B3B1B0500CC2644 /* LNConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LNConstants.m; sourceTree = "<group>"; };
 		273ED3451AFC550700F4F82B /* Care Sentinel Dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Care Sentinel Dev.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -198,8 +204,6 @@
 		27556A751B386D1D008A97FA /* KeyChainManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyChainManager.m; sourceTree = "<group>"; };
 		27556A771B3885B8008A97FA /* UploadDevicesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadDevicesTableViewController.h; sourceTree = "<group>"; };
 		27556A781B3885B8008A97FA /* UploadDevicesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadDevicesTableViewController.m; sourceTree = "<group>"; };
-		275C864C1B16B896000DB4F4 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
-		275C864D1B16B896000DB4F4 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		275DF2BB1B4DDBFD00205670 /* DevicesStatusTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DevicesStatusTableViewController.h; sourceTree = "<group>"; };
 		275DF2BC1B4DDBFD00205670 /* DevicesStatusTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DevicesStatusTableViewController.m; sourceTree = "<group>"; };
 		2761075F1B587280000EF387 /* SupportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SupportViewController.h; sourceTree = "<group>"; };
@@ -261,6 +265,15 @@
 		8FA62490FC287BF34541B3C3 /* Pods-CareSentineliOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CareSentineliOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CareSentineliOS/Pods-CareSentineliOS.debug.xcconfig"; sourceTree = "<group>"; };
 		902724B903F3E88DBCB0930D /* Pods-CareSentineliOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CareSentineliOSTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CareSentineliOSTests/Pods-CareSentineliOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		9372036643249EAB1135F4A8 /* libPods-CareSentineliOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CareSentineliOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		95B604BC1C210CF30037361C /* SmsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmsViewController.h; sourceTree = "<group>"; };
+		95B604BD1C210CF30037361C /* SmsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmsViewController.m; sourceTree = "<group>"; };
+		95B604BF1C21166C0037361C /* LNContactDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LNContactDelegate.h; sourceTree = "<group>"; };
+		95B604C01C2116900037361C /* Contact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Contact.h; sourceTree = "<group>"; };
+		95B604C11C2116900037361C /* Contact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Contact.m; sourceTree = "<group>"; };
+		95B604C51C2300C60037361C /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
+		95B7BE681C247FF700AD86AB /* ContactDao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactDao.h; sourceTree = "<group>"; };
+		95B7BE691C247FF700AD86AB /* ContactDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactDao.m; sourceTree = "<group>"; };
+		95B7BE6D1C248EC900AD86AB /* database_v2.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = database_v2.sql; sourceTree = "<group>"; };
 		A0222AABBC014D5EA76D3736 /* Pods-CareSentineliOS TF.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CareSentineliOS TF.release.xcconfig"; path = "Pods/Target Support Files/Pods-CareSentineliOS TF/Pods-CareSentineliOS TF.release.xcconfig"; sourceTree = "<group>"; };
 		A6D93102412D921FCA45C187 /* Pods-CareSentineliOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CareSentineliOSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CareSentineliOSTests/Pods-CareSentineliOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		B9B097C228DA79DAEB8289A8 /* Pods-CareSentineliOS Dev.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CareSentineliOS Dev.release.xcconfig"; path = "Pods/Target Support Files/Pods-CareSentineliOS Dev/Pods-CareSentineliOS Dev.release.xcconfig"; sourceTree = "<group>"; };
@@ -296,6 +309,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95B604C61C2300C60037361C /* AddressBookUI.framework in Frameworks */,
 				2712DF0F1B6FFC7D005E06DF /* libPods.a in Frameworks */,
 				27BA55B51B44F01F00107017 /* CoreBluetooth.framework in Frameworks */,
 				27BA55B61B44F01F00107017 /* libsqlite3.dylib in Frameworks */,
@@ -426,6 +440,7 @@
 				2777D80D1B0F6FB000CAC2AF /* database_v1.sql */,
 				27EFEFD51B320942000C72AD /* TSLoonMessageDesign.json */,
 				279DF2861B530CC500AC2F20 /* test_data.sql */,
+				95B7BE6D1C248EC900AD86AB /* database_v2.sql */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -446,12 +461,6 @@
 				271605671B13CA77002505E1 /* BaseModel.h */,
 				2716056A1B13D38B002505E1 /* Device.h */,
 				2716056B1B13D38B002505E1 /* Device.m */,
-				275C864C1B16B896000DB4F4 /* User.h */,
-				275C864D1B16B896000DB4F4 /* User.m */,
-				27271D7A1B18CCCA00D369D6 /* Site.h */,
-				27271D7B1B18CCCA00D369D6 /* Site.m */,
-				27271D7D1B18CCE200D369D6 /* Customer.h */,
-				27271D7E1B18CCE200D369D6 /* Customer.m */,
 				27A963201B29487800E4A606 /* Property.h */,
 				27A963211B29487800E4A606 /* Property.m */,
 				27A963231B29488D00E4A606 /* DeviceProperty.h */,
@@ -462,6 +471,8 @@
 				276E20FA1B3A11B800350CBB /* DeviceEnabledProperty.m */,
 				27FED7E81B742795007BAD65 /* ConnectingDeviceDescriptor.h */,
 				27FED7E91B742795007BAD65 /* ConnectingDeviceDescriptor.m */,
+				95B604C01C2116900037361C /* Contact.h */,
+				95B604C11C2116900037361C /* Contact.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -493,6 +504,8 @@
 				275DF2BC1B4DDBFD00205670 /* DevicesStatusTableViewController.m */,
 				2761075F1B587280000EF387 /* SupportViewController.h */,
 				276107601B587280000EF387 /* SupportViewController.m */,
+				95B604BC1C210CF30037361C /* SmsViewController.h */,
+				95B604BD1C210CF30037361C /* SmsViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -535,6 +548,7 @@
 				27BA55551B44D7C200107017 /* LNServerActionButtonDelegate.h */,
 				27EB02371B474EDC0061F20E /* LNDialogCompleteDelegate.h */,
 				277065811B4E1D2900F23695 /* LNSwitchChangedDelegate.h */,
+				95B604BF1C21166C0037361C /* LNContactDelegate.h */,
 			);
 			name = Support;
 			sourceTree = "<group>";
@@ -546,6 +560,8 @@
 				27A963291B2950F800E4A606 /* PropertiesDao.m */,
 				279DF2881B53173C00AC2F20 /* DevicesDao.h */,
 				279DF2891B53173C00AC2F20 /* DevicesDao.m */,
+				95B7BE681C247FF700AD86AB /* ContactDao.h */,
+				95B7BE691C247FF700AD86AB /* ContactDao.m */,
 			);
 			name = Loon;
 			sourceTree = "<group>";
@@ -578,6 +594,7 @@
 		D53920E0DED320158244476F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				95B604C51C2300C60037361C /* AddressBookUI.framework */,
 				2712DF0E1B6FFC7D005E06DF /* libPods.a */,
 				2707D8441B6FFAD600296196 /* libPods-CareSentineliOS Dev.a */,
 				9372036643249EAB1135F4A8 /* libPods-CareSentineliOS.a */,
@@ -622,6 +639,7 @@
 				273ED3431AFC550700F4F82B /* Resources */,
 				4C99B2B11B824BA34CE44E29 /* Copy Pods Resources */,
 				27BBF70E1BE01DEF001C73C9 /* ShellScript */,
+				417831EA1DCA305E992485E6 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -658,7 +676,7 @@
 		273ED33D1AFC550700F4F82B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0610;
+				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = MobileAWS;
 				TargetAttributes = {
 					27091E021BCD6F3A0092DDE1 = {
@@ -666,7 +684,7 @@
 					};
 					273ED3441AFC550700F4F82B = {
 						CreatedOnToolsVersion = 6.1;
-						DevelopmentTeam = BJRCWA3N54;
+						DevelopmentTeam = AF24YBSAMB;
 					};
 					27BA558F1B44F01F00107017 = {
 						DevelopmentTeam = BJRCWA3N54;
@@ -701,6 +719,7 @@
 				27091E301BCD6F3A0092DDE1 /* Info.plist in Resources */,
 				27091E311BCD6F3A0092DDE1 /* DevicesEmptyTableMessage.xib in Resources */,
 				27091E321BCD6F3A0092DDE1 /* database_v1.sql in Resources */,
+				95B7BE701C248EC900AD86AB /* database_v2.sql in Resources */,
 				27091E331BCD6F3A0092DDE1 /* Main.storyboard in Resources */,
 				27091E341BCD6F3A0092DDE1 /* Localizable.strings in Resources */,
 				27091E351BCD6F3A0092DDE1 /* LaunchScreen.xib in Resources */,
@@ -717,6 +736,7 @@
 				271071191B27AFF700A3D75B /* DevicesEmptyTableMessage.xib in Resources */,
 				2777D80E1B0F6FB000CAC2AF /* database_v1.sql in Resources */,
 				273ED3571AFC550700F4F82B /* Main.storyboard in Resources */,
+				95B7BE6E1C248EC900AD86AB /* database_v2.sql in Resources */,
 				273ED35C1AFC550700F4F82B /* LaunchScreen.xib in Resources */,
 				2763246C1B557B44004FB7AF /* Localizable.strings in Resources */,
 				279DF2871B530CC500AC2F20 /* test_data.sql in Resources */,
@@ -730,7 +750,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				27BA55CB1B44F1C000107017 /* Info.plist in Resources */,
 				27BA55B91B44F01F00107017 /* DevicesEmptyTableMessage.xib in Resources */,
 				27BA55BA1B44F01F00107017 /* database_v1.sql in Resources */,
 				27BA55BB1B44F01F00107017 /* Main.storyboard in Resources */,
@@ -739,6 +758,7 @@
 				27BA55BD1B44F01F00107017 /* DeviceTypesList.plist in Resources */,
 				27BA55BE1B44F01F00107017 /* Images.xcassets in Resources */,
 				27BA55BF1B44F01F00107017 /* TSLoonMessageDesign.json in Resources */,
+				95B7BE6F1C248EC900AD86AB /* database_v2.sql in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -844,6 +864,21 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Fabric/Fabric.framework/run\" bd024b2e94a47f4d9f4bd5e56eb0d977abc010c1 d465487f754658fa94100b4c66882e6198953570467b7448f8d4565c66760075";
 		};
+		417831EA1DCA305E992485E6 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		4C99B2B11B824BA34CE44E29 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -894,11 +929,14 @@
 				27091E0F1BCD6F3A0092DDE1 /* DevicesViewController.m in Sources */,
 				27091E101BCD6F3A0092DDE1 /* MAWSNetworkManager.m in Sources */,
 				27091E121BCD6F3A0092DDE1 /* APSettings.m in Sources */,
+				95B604BE1C210CF30037361C /* SmsViewController.m in Sources */,
 				27091E131BCD6F3A0092DDE1 /* Device.m in Sources */,
+				95B7BE6C1C247FF700AD86AB /* ContactDao.m in Sources */,
 				27091E141BCD6F3A0092DDE1 /* LNNetworkManager.m in Sources */,
 				27091E161BCD6F3A0092DDE1 /* NewUserViewController.m in Sources */,
 				27091E171BCD6F3A0092DDE1 /* Property.m in Sources */,
 				27091E181BCD6F3A0092DDE1 /* DatabaseManager.m in Sources */,
+				95B604C21C2116900037361C /* Contact.m in Sources */,
 				27091E191BCD6F3A0092DDE1 /* DataLabel.m in Sources */,
 				27091E1A1BCD6F3A0092DDE1 /* NotificationsTableViewController.m in Sources */,
 				27091E1B1BCD6F3A0092DDE1 /* APBLEInterface.m in Sources */,
@@ -923,6 +961,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95B604CA1C2349A40037361C /* Contact.m in Sources */,
+				95B604C91C233C870037361C /* SmsViewController.m in Sources */,
 				2703A7161B35F25A00E1CF70 /* DeviceDrillDownViewController.m in Sources */,
 				27556A761B386D1D008A97FA /* KeyChainManager.m in Sources */,
 				27A963251B29488D00E4A606 /* DeviceProperty.m in Sources */,
@@ -936,6 +976,7 @@
 				27646CBF1B3E152000CC2A1C /* MAWSNetworkManager.m in Sources */,
 				27009F0C1B177098003FBEAB /* APSettings.m in Sources */,
 				2716056C1B13D38B002505E1 /* Device.m in Sources */,
+				95B7BE6A1C247FF700AD86AB /* ContactDao.m in Sources */,
 				279785721B423A86009B3A25 /* LNNetworkManager.m in Sources */,
 				2716056F1B14C749002505E1 /* NewUserViewController.m in Sources */,
 				27A963221B29487800E4A606 /* Property.m in Sources */,
@@ -984,6 +1025,7 @@
 				27BA55A31B44F01F00107017 /* Property.m in Sources */,
 				27BA55A41B44F01F00107017 /* DatabaseManager.m in Sources */,
 				27BA55A51B44F01F00107017 /* DataLabel.m in Sources */,
+				95B7BE6B1C247FF700AD86AB /* ContactDao.m in Sources */,
 				27BA55A61B44F01F00107017 /* NotificationsTableViewController.m in Sources */,
 				27BA55A71B44F01F00107017 /* APBLEInterface.m in Sources */,
 				276107621B587280000EF387 /* SupportViewController.m in Sources */,
@@ -1054,6 +1096,7 @@
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -1063,6 +1106,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -1075,15 +1119,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Carlos Alvarez (68N4HJ2A7M)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = CareSentineliOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Release-iphoneos",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mobileaws.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "Care Sentinel Dev";
-				PROVISIONING_PROFILE = "3ba4eac5-8ecd-4867-93d9-24e50bad8c66";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1097,6 +1142,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/CareSentinel TF/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mobileaws.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "Care Sentinel";
 				PROVISIONING_PROFILE = "0762875f-2dc6-464f-9eb2-1d92996fcad5";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1112,6 +1158,7 @@
 				INFOPLIST_FILE = CareSentineliOS.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.loonmedical.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = caresentinel;
 				PROVISIONING_PROFILE = "dcc7c519-e91a-49aa-acaa-6f69af78dd0b";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1127,6 +1174,7 @@
 				INFOPLIST_FILE = CareSentineliOS.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.loonmedical.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = caresentinel;
 				PROVISIONING_PROFILE = "dcc7c519-e91a-49aa-acaa-6f69af78dd0b";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1175,15 +1223,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Carlos Alvarez (68N4HJ2A7M)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = CareSentineliOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Release-iphoneos",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mobileaws.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "Care Sentinel Dev";
-				PROVISIONING_PROFILE = "3ba4eac5-8ecd-4867-93d9-24e50bad8c66";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -1197,6 +1246,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/CareSentinel TF/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mobileaws.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "Care Sentinel";
 				PROVISIONING_PROFILE = "0762875f-2dc6-464f-9eb2-1d92996fcad5";
 				TARGETED_DEVICE_FAMILY = "1,2";
