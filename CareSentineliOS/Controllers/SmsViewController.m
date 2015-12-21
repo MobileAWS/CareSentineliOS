@@ -100,7 +100,7 @@
         [self.tableView reloadData];
         NSLog(@"get person");
     } else {
-        [AppDelegate showAlert:@"this user already exist." withTitle:@"Alert"];
+        [AppDelegate showAlert:@"This user already exist." withTitle:@"Alert"];
     }
     
 }
