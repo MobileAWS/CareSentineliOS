@@ -8,6 +8,8 @@
 
 #import "MainTabsControllerViewController.h"
 #import "TSMessage.h"
+#import "LNNetworkManager.h"
+#import "AppDelegate.h"
 
 @interface MainTabsControllerViewController ()
 
@@ -15,15 +17,31 @@
 
 @implementation MainTabsControllerViewController
 
+NSMutableArray *menuItemsOnline;
+NSArray *menuControllersOffline;
+NSMutableArray *mutableMenuControllesOffline;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-     [TSMessage setDefaultViewController:self];
-    [self.tabBar setTintColor:[UIColor redColor]];
+    [TSMessage setDefaultViewController:self];
+    if(menuItemsOnline == nil){
+        menuItemsOnline = [NSMutableArray arrayWithArray:[self customizableViewControllers]];
+        mutableMenuControllesOffline = [[NSMutableArray alloc]initWithArray:menuItemsOnline];
+        if([mutableMenuControllesOffline count] > 0){
+            [mutableMenuControllesOffline removeObjectAtIndex:2];//upload
+            [mutableMenuControllesOffline removeObjectAtIndex:4];//contacts
+        }
+    }
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)  viewDidAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self getOfflineMenu];
 }
 
 /*
@@ -36,4 +54,11 @@
 }
 */
 
+- (void) getOfflineMenu{
+    if([LNNetworkManager sessionValid]){
+        [self setViewControllers: menuItemsOnline];
+    }else{
+        [self setViewControllers:mutableMenuControllesOffline];
+    }
+}
 @end

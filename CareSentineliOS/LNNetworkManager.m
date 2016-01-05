@@ -34,7 +34,7 @@ static NSString *token;
                 failure([[NSError alloc] initWithDomain:@"LNCloudError" code:1 userInfo:@{NSLocalizedDescriptionKey:[iresp objectForKey:@"message"]}]);
                 return;
             }
-            token = [iresp objectForKey:@"token"];
+             token = [iresp objectForKey:@"token"];
             callback();
         }
     } onFailure:^(AFHTTPRequestOperation *operation, NSError *responseObject) {

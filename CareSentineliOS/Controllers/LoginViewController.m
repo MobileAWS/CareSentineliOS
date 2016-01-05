@@ -154,11 +154,12 @@
             [preferences synchronize];
         
             [AppDelegate hideLoadingMask];
+        
             [self dismissViewControllerAnimated:true completion:nil];
             if (self.callerController) {
-                SEL loginSucessfull = @selector(loginSucessfull);
-                if ([self.callerController respondsToSelector:loginSucessfull]) {
-                    [self.callerController performSelector:loginSucessfull];
+                SEL getOfflineMenu = @selector(getOfflineMenu);
+                if ([self.callerController respondsToSelector:getOfflineMenu]) {
+                    [self.callerController performSelector:getOfflineMenu];
                 }
             }
         } onFailure:^(NSError *error) {
