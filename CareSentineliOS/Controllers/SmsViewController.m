@@ -13,6 +13,7 @@
 #import "Contact.h"
 #import "ContactDao.h"
 #import "DatabaseManager.h"
+#import "LNNetworkManager.h"
 
 @interface SmsViewController ()
 
@@ -60,9 +61,14 @@
 
 - (IBAction)showDialogBoxOptions:(id)sender
 {
+    
+    if (![LNNetworkManager sessionValid]) {
+        [application showLogin:self];
+        return;
+    }else{
     UIAlertController *addContactDialogBox = [UIAlertController alertControllerWithTitle:@"Add SMS Contact" message:@"Select the option." preferredStyle:UIAlertControllerStyleAlert];
     [addContactDialogBox addAction:[UIAlertAction
-                      actionWithTitle:@"Select Exist Contact"
+                      actionWithTitle:@"Select Existing Contact"
                       style:UIAlertActionStyleDefault
                       handler:^(UIAlertAction * action)
                       {
@@ -83,6 +89,7 @@
                       handler:nil]];
 
     [self presentViewController:addContactDialogBox animated:YES completion:nil];
+    }
 
 }
 -(void) showAddContact
@@ -97,7 +104,7 @@
                                newContact.name = newName.text;
                                newContact.number = newNumber.text;
                                DatabaseManager *manager = [DatabaseManager getSharedIntance];
-                               Contact *contacto = (Contact*)[manager save:newContact];
+                               Contact *contact = (Contact*)[manager save:newContact];
                                tableData = [ContactDao getAllContactData];
                                [self.tableView reloadData];
                            }]];
@@ -276,6 +283,9 @@
         }
     }
     return NO;
+}
+-(void)loginSucessfull{
+    [self showDialogBoxOptions:0];
 }
 
 
