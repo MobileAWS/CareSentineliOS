@@ -160,7 +160,7 @@ static void (^currentAlertInvocation) (void);
             NSUserDefaults *preferences = [NSUserDefaults standardUserDefaults];
             [preferences removeObjectForKey:@"token"];
             [AppDelegate checkLogoutWithButton:sender withConstraint:0];
-            [mainController getOfflineMenu];
+            //[mainController getOfflineMenu];
             [mainController setSelectedIndex:0];
         }];
     }else {
@@ -209,14 +209,17 @@ static void (^currentAlertInvocation) (void);
 
 +(void) checkLogoutWithButton:(UIButton *)button withConstraint:(NSLayoutConstraint *)constraint{
     if ([LNNetworkManager sessionValid]) {
-        [button setTitle:[NSString stringWithFormat:@"Logout"] forState:UIControlStateNormal];
-         button.hidden = NO;
-         constraint.constant = 52;
+        if (button.hidden) {
+            button.hidden = NO;
+            constraint.constant = 52;
+            }
     }
     else{
-        [button setTitle:[NSString stringWithFormat:@"Login"] forState:UIControlStateNormal];
-        button.hidden = NO;
-        constraint.constant = 52;
+        if (!button.hidden) {
+            button.hidden = YES;
+            constraint.constant = 0;
+        }
+      
     }
 }
 +(Boolean) isLogin
