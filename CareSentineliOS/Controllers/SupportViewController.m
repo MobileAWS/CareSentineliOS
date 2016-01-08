@@ -57,14 +57,9 @@ UIButton *leftButton;
     [self.navigationController.navigationBar setTitleTextAttributes: @{NSForegroundColorAttributeName: [UIColor whiteColor]}];
 }
 -(void) barNavegationValidation{
-    if([LNNetworkManager sessionValid]){
+   
         self.navigationItem.leftBarButtonItem = self.navigationItem.backBarButtonItem;
         self.navigationController.navigationBar.topItem.title = @"Support";
-    }
-    else {
-        self.navigationItem.leftBarButtonItem = leftButton;
-        self.navigationController.navigationBar.topItem.title = @"";
-    }
-    [self setheader];
+        [self setheader];
 }
 @end

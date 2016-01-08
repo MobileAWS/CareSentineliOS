@@ -84,10 +84,9 @@
     if (![LNNetworkManager sessionValid]) {
         [application showLogin:self];
         return;
-    }
-    
-    [self uploadData];
-    
+    }else{
+        [self uploadData];
+     }
 }
 
 -(void)loginSucessfull{

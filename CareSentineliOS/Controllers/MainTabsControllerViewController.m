@@ -24,14 +24,6 @@ NSMutableArray *mutableMenuControllesOffline;
 - (void)viewDidLoad {
     [super viewDidLoad];
     [TSMessage setDefaultViewController:self];
-    if(menuItemsOnline == nil){
-        menuItemsOnline = [NSMutableArray arrayWithArray:[self customizableViewControllers]];
-        mutableMenuControllesOffline = [[NSMutableArray alloc]initWithArray:menuItemsOnline];
-        if([mutableMenuControllesOffline count] > 0){
-            [mutableMenuControllesOffline removeObjectAtIndex:2];//upload
-            [mutableMenuControllesOffline removeObjectAtIndex:4];//contacts
-        }
-    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -41,7 +33,6 @@ NSMutableArray *mutableMenuControllesOffline;
 
 - (void)  viewDidAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self getOfflineMenu];
 }
 
 /*
