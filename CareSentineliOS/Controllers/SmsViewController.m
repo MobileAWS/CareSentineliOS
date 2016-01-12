@@ -13,6 +13,7 @@
 #import "Contact.h"
 #import "ContactDao.h"
 #import "DatabaseManager.h"
+#import "LNNetworkManager.h"
 
 @interface SmsViewController ()
 
@@ -20,6 +21,8 @@
 
 @implementation SmsViewController {
     NSArray *tableData;
+    UITextField *newName;
+    UITextField *newNumber;
      __weak AppDelegate *application;
     //Contact newContact;
 }
@@ -56,10 +59,74 @@
 - (IBAction)showAdressBook:(id)sender {
 }
 
-- (IBAction)showPicker:(id)sender
+- (IBAction)showDialogBoxOptions:(id)sender
+{
+    
+    if (![LNNetworkManager sessionValid]) {
+        [application showLogin:self];
+        return;
+    }else{
+    UIAlertController *addContactDialogBox = [UIAlertController alertControllerWithTitle:@"Add SMS Contact" message:@"Select the option." preferredStyle:UIAlertControllerStyleAlert];
+    [addContactDialogBox addAction:[UIAlertAction
+                      actionWithTitle:@"Select Existing Contact"
+                      style:UIAlertActionStyleDefault
+                      handler:^(UIAlertAction * action)
+                      {
+                          [self showPicker];
+                      }]];
+    
+    [addContactDialogBox addAction:[UIAlertAction
+                      actionWithTitle:@"Add New Contact"
+                      style:UIAlertActionStyleDefault
+                      handler:^(UIAlertAction * action)
+                      {
+                          [self showAddContact];
+                      }]];
+    
+    [addContactDialogBox addAction:[UIAlertAction
+                      actionWithTitle:@"Cancel"
+                      style:UIAlertActionStyleDefault
+                      handler:nil]];
+
+    [self presentViewController:addContactDialogBox animated:YES completion:nil];
+    }
+
+}
+-(void) showAddContact
+{
+     UIAlertController *addContact = [UIAlertController alertControllerWithTitle:@"Add Contact" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+    [addContact addAction:[UIAlertAction
+                           actionWithTitle:@"Add Contact"
+                           style:UIAlertActionStyleDefault
+                           handler:^(UIAlertAction * action)
+                           {
+                               Contact* newContact = [Contact new];
+                               newContact.name = newName.text;
+                               newContact.number = newNumber.text;
+                               DatabaseManager *manager = [DatabaseManager getSharedIntance];
+                               Contact *contact = (Contact*)[manager save:newContact];
+                               tableData = [ContactDao getAllContactData];
+                               [self.tableView reloadData];
+                           }]];
+    [addContact addAction:[UIAlertAction
+                           actionWithTitle:@"Cancel"
+                           style:UIAlertActionStyleDefault
+                           handler:nil]];
+    
+    [addContact addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.placeholder = @"Name";
+        newName = textField;
+    }];
+    [addContact addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.placeholder = @"Number";
+        textField.keyboardType = UIKeyboardTypeNumberPad;
+        newNumber = textField;
+    }];
+    [self presentViewController:addContact animated:YES completion:nil];
+}
+- (void)showPicker
 {
     if([tableData count] < 5){
-    
     ABPeoplePickerNavigationController *picker =
     [[ABPeoplePickerNavigationController alloc] init];
     picker.peoplePickerDelegate = self;
@@ -96,7 +163,6 @@
         DatabaseManager *manager = [DatabaseManager getSharedIntance];
         Contact *contacto = (Contact*)[manager save:contactNew];
         tableData = [ContactDao getAllContactData];
-        //tableData = [tableData arrayByAddingObject:contactNew];
         [self.tableView reloadData];
         NSLog(@"get person");
     } else {
@@ -104,8 +170,6 @@
     }
     
 }
-
-
 
 
 - (BOOL)peoplePickerNavigationController:
@@ -174,6 +238,7 @@
     UILabel *numberLabel = (UILabel *)[cell viewWithTag:102];
     numberLabel.text = contact.number;
     UIButton *buttonDelete =(UIButton *)[cell viewWithTag:104];
+    buttonDelete.layer.cornerRadius =8.0f;
     
     [buttonDelete addTarget:self
                      action:@selector(removeContact:)
@@ -189,8 +254,6 @@
 
 - (void) removeContact:(id)sender
 {
-    
-   
     CGPoint point = [sender convertPoint:CGPointZero toView:self.tableView];
     NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:point];
     Contact *contactToDelete = [tableData objectAtIndex:indexPath.row];
@@ -200,6 +263,7 @@
      NSLog(@"delete contact %d",indexPath.row);
     //[self removeObjectFromArray:tableData :indexContact];
 }
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Navigation logic may go here. Create and push another view controller.
@@ -219,6 +283,9 @@
         }
     }
     return NO;
+}
+-(void)loginSucessfull{
+    [self showDialogBoxOptions:0];
 }
 
 
