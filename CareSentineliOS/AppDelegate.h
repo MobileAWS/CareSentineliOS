@@ -24,7 +24,6 @@
 
 -(void)logout:(UIButton *)sender withConstraint:(NSLayoutConstraint *)constraint;
 -(void) showLogin:(UIViewController *)target;
--(void)showUpload:(NSString *)text;
 +(void)showAlert:(NSString *)alert withTitle:(NSString *)title;
 +(void)showInputWith:(NSString *)alert title:(NSString *)title defaultText:(NSString *)text delegate:(id)delegate cancelText:(NSString *)cancelText acceptText:(NSString *)acceptText;
 +(void)showLoadingMask;
