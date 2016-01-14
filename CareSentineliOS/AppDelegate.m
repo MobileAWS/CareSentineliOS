@@ -20,7 +20,7 @@
 #import "Fabric/Fabric.h"
 #import "Crashlytics/Crashlytics.h"
 #import "LoginViewController.h"
-#import "UploadViewController.h"
+#import "MainTabsControllerViewController.h"
 
 @interface AppDelegate (){
     
@@ -28,7 +28,7 @@
 @end
 
 @implementation AppDelegate
-
+MainTabsControllerViewController *mainController;
 
 static void (^currentAlertInvocation) (void);
 
@@ -82,6 +82,7 @@ static void (^currentAlertInvocation) (void);
     [[UITabBarItem appearance] setTitleTextAttributes:@{ NSForegroundColorAttributeName : [UIColor blackColor] }
                                              forState:UIControlStateSelected];
     
+    
     /** Set the navitation bars default styles */
     [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setTitleTextAttributes:
      @{ NSForegroundColorAttributeName:[UIColor whiteColor],NSFontAttributeName:[UIFont fontWithName:@"Helvetica-Bold" size:15.0]}forState:UIControlStateNormal];
@@ -89,10 +90,10 @@ static void (^currentAlertInvocation) (void);
     UIUserNotificationType types = UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert;
     UIUserNotificationSettings *userNotifcationSettings = [UIUserNotificationSettings settingsForTypes:types categories:nil];
     [[UIApplication sharedApplication] registerUserNotificationSettings:userNotifcationSettings];
-    
     [self.window makeKeyAndVisible];
-    [self.window.rootViewController presentViewController:[self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"MainTabsViewController"] animated:true completion:nil];
-    
+    mainController = [self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"MainTabsViewController"];
+    [self.window.rootViewController presentViewController:mainController animated:true completion:nil];
+
     return YES;
 }
 
@@ -141,6 +142,7 @@ static void (^currentAlertInvocation) (void);
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
+    
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 }
 
@@ -152,12 +154,16 @@ static void (^currentAlertInvocation) (void);
 
 
 -(void)logout:(UIButton *)sender withConstraint:(NSLayoutConstraint *)constraint{
-    [AppDelegate showConfirmWith:@"Are you sure you want to logout?" title:@"Confirm Logout" target:nil callback:^{
-        [LNNetworkManager clear];
-        NSUserDefaults *preferences = [NSUserDefaults standardUserDefaults];
-        [preferences removeObjectForKey:@"token"];
-        [AppDelegate checkLogoutWithButton:sender withConstraint:constraint];
-    }];
+    if([LNNetworkManager sessionValid]){
+        [AppDelegate showConfirmWith:@"Are you sure you want to logout?" title:@"Confirm Logout" target:nil callback:^{
+            [LNNetworkManager clear];
+            NSUserDefaults *preferences = [NSUserDefaults standardUserDefaults];
+            [preferences removeObjectForKey:@"token"];
+            [AppDelegate checkLogoutWithButton:sender withConstraint:constraint];
+        }];
+    }else {
+        [self showLogin:self];
+    }
 }
 
 -(void) showLogin:(UIViewController *)target{
@@ -171,14 +177,7 @@ static void (^currentAlertInvocation) (void);
     [tmpController presentViewController:loginViewController animated:true completion:nil];
 
 }
--(void)showUpload:(NSString *)text {
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    UITabBarController *mainViewController = [storyboard instantiateViewControllerWithIdentifier:@"MainTabsViewController"];
-        [self.window.rootViewController dismissViewControllerAnimated:false completion:^{
-        [mainViewController setSelectedIndex:2];
-        [self.window.rootViewController presentViewController:mainViewController animated:true completion:false];
-    }];
-}
+
 
 
 -(void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings{
@@ -199,18 +198,23 @@ static void (^currentAlertInvocation) (void);
     [MBProgressHUD hideHUDForView:[[UIApplication sharedApplication] keyWindow] animated:YES];
 }
 
-+(void) checkLogoutWithButton:(UIButton *)button withConstraint:(NSLayoutConstraint *)constraint{
++(Boolean) checkLogoutWithButton:(UIButton *)button withConstraint:(NSLayoutConstraint *)constraint{
     if ([LNNetworkManager sessionValid]) {
         if (button.hidden) {
             button.hidden = NO;
-            constraint.constant = 52;
-        }
+            [button setTitle:[NSString stringWithFormat:@"Logout"] forState:UIControlStateNormal];
+            constraint.constant = 62;
+            }
+        return YES;
     }
     else{
         if (!button.hidden) {
             button.hidden = YES;
+            [button setTitle:[NSString stringWithFormat:@""] forState:UIControlStateNormal];
             constraint.constant = 0;
         }
+        return NO;
     }
 }
+
 @end

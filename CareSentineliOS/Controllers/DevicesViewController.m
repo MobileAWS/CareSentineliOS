@@ -19,6 +19,7 @@
 #include <AudioToolbox/AudioToolbox.h>
 #import "InputAlertViewDelegate.h"
 #import "LNConstants.h"
+#import "LNNetworkManager.h"
 
 @interface DevicesViewController() <DeviceUIDelegate>{
     __weak DevicesTableViewController *devicesTableViewController;
@@ -39,16 +40,19 @@
     self.navigationController.navigationBar.translucent = NO;
     self.navigationController.navigationBar.tintColor = [[UIColor alloc] initWithRed:1 green:1 blue: 1 alpha:1];
     [self.navigationController.navigationBar setTitleTextAttributes: @{NSForegroundColorAttributeName: [UIColor whiteColor]}];
+    [self.logoutButton setTintColor:[UIColor whiteColor]];
     if (!self->application.automaticStart){
         self->bleInterface = [[APBLEInterface alloc] init];
         self->bleInterface.uiDelegate = self;
         ((AppDelegate *)[UIApplication sharedApplication].delegate).bleInterface = self->bleInterface;
     }
-}
+    }
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [AppDelegate checkLogoutWithButton:_logoutButton withConstraint:loginButtonWidthContraint];
+    
+
 }
 
 
@@ -72,6 +76,8 @@
 - (IBAction)logoutButtonAction:(id)sender {
     AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     [appDelegate logout:_logoutButton withConstraint:self->loginButtonWidthContraint];
+    [AppDelegate checkLogoutWithButton:_logoutButton withConstraint:loginButtonWidthContraint];
+    
 }
 
 - (IBAction)demoModeActivate:(id)sender {

@@ -154,6 +154,7 @@
             [preferences synchronize];
         
             [AppDelegate hideLoadingMask];
+        
             [self dismissViewControllerAnimated:true completion:nil];
             if (self.callerController) {
                 SEL loginSucessfull = @selector(loginSucessfull);
