@@ -51,6 +51,7 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [AppDelegate checkLogoutWithButton:_logoutButton withConstraint:loginButtonWidthContraint];
+    
 
 }
 
@@ -75,6 +76,7 @@
 - (IBAction)logoutButtonAction:(id)sender {
     AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     [appDelegate logout:_logoutButton withConstraint:self->loginButtonWidthContraint];
+    [AppDelegate checkLogoutWithButton:_logoutButton withConstraint:loginButtonWidthContraint];
     
 }
 

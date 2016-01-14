@@ -32,6 +32,6 @@
 +(void)hideLoadingMask;
 +(UIView *)findSuperView:(UIView *) target with:(Class)clazz;
 +(UIViewController *)findSuperConstroller:(UIViewController *) target with:(Class)clazz;
-+(void) checkLogoutWithButton:(UIButton *)button withConstraint:(NSLayoutConstraint *)constraint;
++(Boolean) checkLogoutWithButton:(UIButton *)button withConstraint:(NSLayoutConstraint *)constraint;
 @end
 
