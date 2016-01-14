@@ -26,7 +26,7 @@
     APBLEInterface *bleInterface;
     __weak AppDelegate *application;
     InputAlertViewDelegate *currentDelegate;
-    __strong IBOutlet NSLayoutConstraint *loginButtonWidthContraint;
+    __weak IBOutlet NSLayoutConstraint *loginButtonWidthContraint;
 }
 
 @end

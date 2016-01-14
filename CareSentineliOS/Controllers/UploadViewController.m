@@ -17,7 +17,7 @@
     __weak AppDelegate *application;
     __weak UploadDevicesTableViewController *uploadDevicesTableViewController;
     __weak IBOutlet UIButton *sendButton;
-    __strong IBOutlet NSLayoutConstraint *logoutButtonWidthConstraint;
+    __weak IBOutlet NSLayoutConstraint *logoutButtonWidthConstraint;
 }
 
 @end
