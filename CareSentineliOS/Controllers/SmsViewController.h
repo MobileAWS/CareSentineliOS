@@ -11,5 +11,7 @@
 #import <AddressBookUI/AddressBookUI.h>
 
 @interface SmsViewController : UITableViewController
+@property (weak, nonatomic) IBOutlet UIButton *logoutButton;
+- (IBAction)logoutAction:(id)sender;
 - (Boolean) findContactExist:(NSArray*)contactList contact:(NSString*) newContactName;
 @end

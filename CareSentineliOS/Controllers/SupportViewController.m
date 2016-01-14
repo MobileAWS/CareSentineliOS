@@ -18,17 +18,27 @@ __weak IBOutlet NSLayoutConstraint *logoutButtonWidthConstraint;
 @end
 
 @implementation SupportViewController
-UIButton *leftButton;
+UIBarButtonItem *leftButton;
+UIBarButtonItem *backButton;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    leftButton= self.navigationItem.leftBarButtonItem;
-}
+    backButton = self.navigationItem.backBarButtonItem;
+    if(!leftButton){
+        leftButton = self.navigationItem.leftBarButtonItem;
+    }
+    NSMutableArray  *buttonArray = [[NSMutableArray alloc] init];
+    self.navigationItem.leftItemsSupplementBackButton = true;
+    [buttonArray addObject:leftButton];
+    [buttonArray addObject:backButton];
+    UINavigationItem *navigationItem = self.navigationItem;
+    [navigationItem setLeftBarButtonItems:buttonArray animated:YES];
+    }
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [AppDelegate checkLogoutWithButton:_logoutButton withConstraint:logoutButtonWidthConstraint];
-    [self  barNavegationValidation];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -57,9 +67,7 @@ UIButton *leftButton;
     [self.navigationController.navigationBar setTitleTextAttributes: @{NSForegroundColorAttributeName: [UIColor whiteColor]}];
 }
 -(void) barNavegationValidation{
-   
-        self.navigationItem.leftBarButtonItem = self.navigationItem.backBarButtonItem;
-        self.navigationController.navigationBar.topItem.title = @"Support";
+        self.navigationItem.leftBarButtonItem = self.navigationItem.backBarButtonItem;;
         [self setheader];
 }
 @end
