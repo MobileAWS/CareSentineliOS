@@ -24,21 +24,26 @@
     UITextField *newName;
     UITextField *newNumber;
      __weak AppDelegate *application;
-    //Contact newContact;
+    UIBarButtonItem *leftButton;
+    UIBarButtonItem *backButton;
+    IBOutlet NSLayoutConstraint *loginButtonWidthContraint;
 }
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [AppDelegate checkLogoutWithButton:_logoutButton withConstraint:loginButtonWidthContraint];
+}
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
     return self;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
    
-    self.navigationItem.title = @"SMS Contact";
+    //self.navigationItem.title = @"SMS Contact";
 
     tableData = [ContactDao getAllContactData];
 
@@ -48,6 +53,16 @@
     self.navigationController.navigationBar.tintColor = [[UIColor alloc] initWithRed:1 green:1 blue: 1 alpha:1];
     [self.navigationController.navigationBar setTitleTextAttributes: @{NSForegroundColorAttributeName: [UIColor whiteColor]}];
     self->application = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    backButton = self.navigationItem.backBarButtonItem;
+    if(!leftButton){
+        leftButton = self.navigationItem.leftBarButtonItem;
+    }
+    NSMutableArray  *buttonArray = [[NSMutableArray alloc] init];
+    self.navigationItem.leftItemsSupplementBackButton = true;
+    [buttonArray addObject:leftButton];
+    [buttonArray addObject:backButton];
+    UINavigationItem *navigationItem = self.navigationItem;
+    [navigationItem setLeftBarButtonItems:buttonArray animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -66,7 +81,7 @@
         [application showLogin:self];
         return;
     }else{
-    UIAlertController *addContactDialogBox = [UIAlertController alertControllerWithTitle:@"Add SMS Contact" message:@"Select the option." preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *addContactDialogBox = [UIAlertController alertControllerWithTitle:@"Add Contact" message:@"" preferredStyle:UIAlertControllerStyleAlert];
     [addContactDialogBox addAction:[UIAlertAction
                       actionWithTitle:@"Select Existing Contact"
                       style:UIAlertActionStyleDefault
@@ -225,7 +240,7 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     // Display recipe in the table cell
     Contact *contact = [tableData objectAtIndex:indexPath.row];
     NSInteger *index = indexPath.row;
@@ -289,4 +304,9 @@
 }
 
 
+- (IBAction)logoutAction:(id)sender {
+    AppDelegate *delegeate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [delegeate logout:_logoutButton withConstraint:self->loginButtonWidthContraint];
+
+}
 @end

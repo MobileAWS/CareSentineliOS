@@ -159,7 +159,7 @@ static void (^currentAlertInvocation) (void);
             [LNNetworkManager clear];
             NSUserDefaults *preferences = [NSUserDefaults standardUserDefaults];
             [preferences removeObjectForKey:@"token"];
-            [AppDelegate checkLogoutWithButton:sender withConstraint:0];
+            [AppDelegate checkLogoutWithButton:sender withConstraint:constraint];
         }];
     }else {
         [self showLogin:self];
@@ -198,19 +198,22 @@ static void (^currentAlertInvocation) (void);
     [MBProgressHUD hideHUDForView:[[UIApplication sharedApplication] keyWindow] animated:YES];
 }
 
-+(void) checkLogoutWithButton:(UIButton *)button withConstraint:(NSLayoutConstraint *)constraint{
++(Boolean) checkLogoutWithButton:(UIButton *)button withConstraint:(NSLayoutConstraint *)constraint{
     if ([LNNetworkManager sessionValid]) {
         if (button.hidden) {
             button.hidden = NO;
-            constraint.constant = 52;
+            [button setTitle:[NSString stringWithFormat:@"Logout"] forState:UIControlStateNormal];
+            constraint.constant = 62;
             }
+        return YES;
     }
     else{
         if (!button.hidden) {
             button.hidden = YES;
+            [button setTitle:[NSString stringWithFormat:@""] forState:UIControlStateNormal];
             constraint.constant = 0;
         }
-      
+        return NO;
     }
 }
 

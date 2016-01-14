@@ -17,7 +17,7 @@
     __weak AppDelegate *application;
     __weak UploadDevicesTableViewController *uploadDevicesTableViewController;
     __weak IBOutlet UIButton *sendButton;
-    __weak IBOutlet NSLayoutConstraint *logoutButtonWidthConstraint;
+    __strong IBOutlet NSLayoutConstraint *logoutButtonWidthConstraint;
 }
 
 @end
@@ -31,12 +31,14 @@
     self.navigationController.navigationBar.tintColor = [[UIColor alloc] initWithRed:1 green:1 blue: 1 alpha:1];
     [self.navigationController.navigationBar setTitleTextAttributes: @{NSForegroundColorAttributeName: [UIColor whiteColor]}];
     self->application = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [AppDelegate checkLogoutWithButton:_logoutButton withConstraint:logoutButtonWidthConstraint];
 }
+
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if ([segue.identifier isEqualToString:@"EmbedUploadDevicesTableViewController"]) {

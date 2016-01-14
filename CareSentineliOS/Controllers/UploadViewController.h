@@ -10,6 +10,6 @@
 #import "LNServerActionButtonDelegate.h"
 
 @interface UploadViewController : UIViewController <LNServerActionButtonDelegate>
-@property (weak, nonatomic) IBOutlet UIButton *logoutButton;
+@property (strong, nonatomic) IBOutlet UIButton *logoutButton;
 - (IBAction)sendDataAction:(id)sender;
 @end
