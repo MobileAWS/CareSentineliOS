@@ -23,22 +23,15 @@ UIBarButtonItem *backButton;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    backButton = self.navigationItem.backBarButtonItem;
-    if(!leftButton){
-        leftButton = self.navigationItem.leftBarButtonItem;
-    }
-    NSMutableArray  *buttonArray = [[NSMutableArray alloc] init];
-    self.navigationItem.leftItemsSupplementBackButton = true;
-    [buttonArray addObject:leftButton];
-    [buttonArray addObject:backButton];
-    UINavigationItem *navigationItem = self.navigationItem;
-    [navigationItem setLeftBarButtonItems:buttonArray animated:YES];
     }
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [AppDelegate checkLogoutWithButton:_logoutButton withConstraint:logoutButtonWidthConstraint];
     
+}
+- (IBAction)backAction:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
