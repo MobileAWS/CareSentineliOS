@@ -12,6 +12,7 @@
 
 @interface SmsViewController : UITableViewController
 @property (weak, nonatomic) IBOutlet UIButton *logoutButton;
+- (IBAction)backAction:(id)sender;
 - (IBAction)logoutAction:(id)sender;
 - (Boolean) findContactExist:(NSArray*)contactList contact:(NSString*) newContactName;
 @end

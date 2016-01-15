@@ -42,27 +42,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-   
-    //self.navigationItem.title = @"SMS Contact";
-
     tableData = [ContactDao getAllContactData];
-
-
     self.navigationController.navigationBar.barTintColor = baseBackgroundColor;
     self.navigationController.navigationBar.translucent = NO;
     self.navigationController.navigationBar.tintColor = [[UIColor alloc] initWithRed:1 green:1 blue: 1 alpha:1];
     [self.navigationController.navigationBar setTitleTextAttributes: @{NSForegroundColorAttributeName: [UIColor whiteColor]}];
     self->application = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    backButton = self.navigationItem.backBarButtonItem;
-    if(!leftButton){
-        leftButton = self.navigationItem.leftBarButtonItem;
-    }
-    NSMutableArray  *buttonArray = [[NSMutableArray alloc] init];
-    self.navigationItem.leftItemsSupplementBackButton = true;
-    [buttonArray addObject:leftButton];
-    [buttonArray addObject:backButton];
-    UINavigationItem *navigationItem = self.navigationItem;
-    [navigationItem setLeftBarButtonItems:buttonArray animated:YES];
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -303,6 +289,10 @@
     [self showDialogBoxOptions:0];
 }
 
+
+- (IBAction)backAction:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 - (IBAction)logoutAction:(id)sender {
     AppDelegate *delegeate = (AppDelegate *)[UIApplication sharedApplication].delegate;
