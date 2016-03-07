@@ -53,9 +53,9 @@
     
 }
 
-+(NSMutableArray *)initPropertiesForDevice:(NSNumber *) deviceId{
++(NSMutableArray *)initPropertiesForDevice:(NSNumber *) deviceId withType:(NSInteger)type{
     DatabaseManager *manager = [DatabaseManager getSharedIntance];
-    [manager insert:[NSString stringWithFormat:@"INSERT INTO devices_enabled_properties(device_id,property_id,enabled,delay) SELECT %@,p.id,1,0 FROM properties p",deviceId]];
+    [manager insert:[NSString stringWithFormat:@"INSERT INTO devices_enabled_properties(device_id,property_id,enabled,delay) SELECT %@,p.id,1,0 FROM properties p WHERE device_type = %ld",deviceId,(long)type]];
     return [PropertiesDao listPropertiesForDevice:deviceId];
 }
 

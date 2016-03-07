@@ -3,7 +3,7 @@ CREATE TABLE devices(
 id INTEGER PRIMARY KEY,
 name varchar(255) NOT NULL,
 hw_id varchar(255),
-hw_name varchar(255) NOT NULL,
+type INTEGER,
 uuid varchar(255) NOT NULL,
 ignored BOOL,
 created_at INTEGER
@@ -11,6 +11,7 @@ created_at INTEGER
 
 CREATE TABLE properties(
 id INTEGER PRIMARY KEY,
+device_type INTEGER,
 name varchar(255),
 units varchar(255)
 );
@@ -32,15 +33,13 @@ enabled BOOL,
 delay INTEGER
 );
 
-
-
-INSERT INTO properties(name,units) VALUES("Bed Sensor",NULL);
-INSERT INTO properties(name,units) VALUES("Chair Sensor",NULL);
-INSERT INTO properties(name,units) VALUES("Toilet Sensor",NULL);
-INSERT INTO properties(name,units) VALUES("Incontinence Sensor",NULL);
-INSERT INTO properties(name,units) VALUES("Call Sensor",NULL);
-INSERT INTO properties(name,units) VALUES("Portal Sensor",NULL);
-
+INSERT INTO properties(name,device_type,units) VALUES("Bed Sensor",0,NULL);
+INSERT INTO properties(name,device_type,units) VALUES("Chair Sensor",0,NULL);
+INSERT INTO properties(name,device_type,units) VALUES("Toilet Sensor",0,NULL);
+INSERT INTO properties(name,device_type,units) VALUES("Incontinence Sensor",0,NULL);
+INSERT INTO properties(name,device_type,units) VALUES("Call Sensor",0,NULL);
+INSERT INTO properties(name,device_type,units) VALUES("Portal Sensor",0,NULL);
+INSERT INTO properties(name,device_type,units) VALUES("Fall Button",1,NULL);
 
 CREATE TABLE contacts(
 id INTEGER PRIMARY KEY,

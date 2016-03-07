@@ -16,7 +16,7 @@
 +(NSMutableArray *)listProperties;
 +(void)dismistProperty:(NSNumber *)idValue;
 +(NSMutableArray *)listPropertiesForDevice:(NSNumber *) deviceId;
-+(NSMutableArray *)initPropertiesForDevice:(NSNumber *) deviceId;
++(NSMutableArray *)initPropertiesForDevice:(NSNumber *) deviceId withType:(NSInteger)type;
 +(NSMutableArray *)listNotificationsForDevice:(NSNumber *) deviceId;
 +(void)saveDeviceEnabledProperty:(DeviceEnabledProperty *)property;
 +(void)removeValuesForDevices:(NSArray *)devicesId;

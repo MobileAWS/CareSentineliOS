@@ -21,6 +21,9 @@
 "incontinence.sensor.on"="Incontinence Sensor Alert";
 "incontinence.sensor.off"="Incontinence Sensor Has changed to off";
 
+/** Fall Button Statuses */
+"fall.button.on"="Fall Button Alert";
+"fall.button.off"="Fall Button Has changed to off";
 
 /** Call sensor statuses */
 "call.sensor.on"="Call Button Service Requested";
@@ -69,3 +72,8 @@
 "incontinence.sensor" = "Incontinence Sensor";
 "call.sensor" = "Call Button";
 "portal.sensor" = "Portal Sensor";
+"fall.button" = "Fall Button";
+
+
+/** SMS Messages */
+"fall.button.sms" = "A CareCom alert occurred at %@, on device %@";

@@ -19,6 +19,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-NSHash.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-TSMessages.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -32,27 +37,32 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>0D5B8E5CA550BA05AD6CC37E</key>
+		<key>3F45A2922137BC4A04701F3E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>1B222D4D9878E3AB4CCF0ABA</key>
+		<key>56A3B2546208460B2275873E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>BCCF1C4B9E88808A8060DF69</key>
+		<key>9B793E29D9857BF46A8AB9D1</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>DA4FBA73CB30633648D75AEC</key>
+		<key>9F17BF942289AAB4667448AE</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>EA81FC8FBB9247B4E6603B67</key>
+		<key>A78C230BCF26F46620A7E2A8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A8D495D6B119DBE8DC94619E</key>
 		<dict>
 			<key>primary</key>
 			<true/>

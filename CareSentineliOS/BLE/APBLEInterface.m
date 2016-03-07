@@ -24,6 +24,7 @@
 @property (strong, nonatomic) NSMutableArray               *pendingNewDevices;
 @property (strong, nonatomic) NSMutableArray               *manuallyDisconnectedDevices;
 @property (strong, nonatomic) NSMutableArray               *connectingDevicesDescriptions;
+@property (strong, nonatomic) NSMutableArray               *disconnectedPeripherals;
 @property (strong, nonatomic) NSArray                      *deviceTypesArray;
 @property (strong, nonatomic) NSArray                      *servicesArray;
 @property (assign, nonatomic) NSInteger                     lastRssi;
@@ -74,6 +75,7 @@ static BOOL s_processing_restart = NO;
                                                              [CBUUID UUIDWithString:kUUIDBatteryService],
                                                              [CBUUID UUIDWithString:kUUIDDeviceInfoService],
                                                              [CBUUID UUIDWithString:kUUIDCareSentinelService],
+                                                             [CBUUID UUIDWithString:kUUIDCareComService],
                                                              nil];
         
         
@@ -81,6 +83,7 @@ static BOOL s_processing_restart = NO;
         //_inactiveDevices         = [[NSMutableArray alloc] initWithArray:_registeredArray];     // -- At load, all registered devices are inactive in the app.
         _discoveredPeripherals   = [[NSMutableArray alloc] init];
         _pendingNewDevices       = [[NSMutableArray alloc] init];
+        self->_disconnectedPeripherals = [[NSMutableArray alloc] init];
         self.manuallyDisconnectedDevices = [[NSMutableArray alloc] init];
         pendingInputDelegates = [[NSMutableArray alloc]init];
         self.connectingDevicesLock = [[NSObject alloc] init];
@@ -414,7 +417,7 @@ static BOOL s_processing_restart = NO;
     NSDictionary *values = (NSDictionary *)((InputAlertViewDelegate *)target).targetObject;
     CBPeripheral *peripheral = (CBPeripheral *)[values objectForKey:@"peripheral"];
     [_pendingNewDevices removeObject:[values objectForKey:@"peripheral"]];
-    [self->_uiDelegate deviceIgnored:peripheral];
+    [self->_uiDelegate deviceIgnored:peripheral withType:[self deviceType:peripheral.name]];
 
 }
 
@@ -437,7 +440,7 @@ static BOOL s_processing_restart = NO;
     CBCentralManager *central = (CBCentralManager *)[values objectForKey:@"central"];
     [_pendingNewDevices removeObject:[values objectForKey:@"peripheral"]];
     
-    [self->_uiDelegate deviceDiscovered:peripheral withName:input];
+    [self->_uiDelegate deviceDiscovered:peripheral withName:input andType:[self deviceType:peripheral.name]];
     
     if (![_discoveredPeripherals containsObject:peripheral]){
         [_discoveredPeripherals addObject:peripheral];
@@ -538,6 +541,24 @@ static BOOL s_processing_restart = NO;
     return found;
 }
 
+-(void)addToDisconnectedPeripherals:(CBPeripheral *)targetPeripheral{
+    [self removeFromDisconnectedPeripherals:targetPeripheral.identifier.UUIDString];
+    [self.disconnectedPeripherals addObject:targetPeripheral];
+}
+
+-(void)removeFromDisconnectedPeripherals:(NSString *)uuid{
+    CBPeripheral *foundPeripheral;
+    for (CBPeripheral *pheriperal in self.disconnectedPeripherals) {
+        if ([pheriperal.identifier.UUIDString isEqualToString:uuid]) {
+            foundPeripheral = pheriperal;
+            break;
+        }
+    }
+    if(foundPeripheral){
+        [self.disconnectedPeripherals removeObject: foundPeripheral];
+    }
+}
+
 -(void)removeConnectingDeviceForUUID:(NSString *)uuid{
     @synchronized(self.connectingDevicesLock){
         ConnectingDeviceDescriptor *descriptor;
@@ -556,6 +577,7 @@ static BOOL s_processing_restart = NO;
             descriptor.device = nil;
             descriptor.timer = nil;
         }
+        
     }
 
 }
@@ -707,7 +729,9 @@ static BOOL s_processing_restart = NO;
 
 - (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral {
     [peripheral readRSSI];
+    [self removeFromDisconnectedPeripherals:peripheral.identifier.UUIDString];
     [self removeConnectingDeviceForUUID:peripheral.identifier.UUIDString];
+    [self.uiDelegate setDevice:peripheral connectingStatus:true];
     APLog(@"connected peripheral %@",peripheral.name);
 
     APLog(@"didConnectPeripheral: %@, discovering services...", peripheral.name);        //
@@ -853,6 +877,8 @@ static BOOL s_processing_restart = NO;
 
     if (disconnectedDevice) {
         [central stopScan];
+        CBPeripheral *tempPeripheral = disconnectedDevice.peripheral;
+        [self addToDisconnectedPeripherals:tempPeripheral];
         
         disconnectedDevice.peripheral = nil;
         disconnectedDevice.triggered  = NO;
@@ -876,14 +902,14 @@ static BOOL s_processing_restart = NO;
                 return;
             }
         }
-
-        [self scanForDevices];
+        
+        [self.centralManager connectPeripheral:tempPeripheral options:nil];
     }
 }
 
 - (void)centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error {
     NSLog(@"%@ Failed Connection for: '%@'", error.description, peripheral.name);
-    
+    [self removeFromDisconnectedPeripherals:peripheral.identifier.UUIDString];
     [self removeConnectingDeviceForUUID:peripheral.identifier.UUIDString];
     [self.uiDelegate setDevice:peripheral connectingStatus:false];
     [self cancelPeripheralConnection:peripheral];
@@ -909,24 +935,38 @@ static BOOL s_processing_restart = NO;
         switch (workingDevice.type) {
             case APDeviceTypeCareSentinel:
                 if ([s.UUID isEqual:[CBUUID UUIDWithString:kUUIDThermoService]])  {
-////                    APLog(@"Found Thermo Service: service UUID = %@", s.UUID);
                     workingDevice.thermoService = s;
                     [peripheral discoverCharacteristics:characteristics forService:s];
                 } else if ([s.UUID isEqual:[CBUUID UUIDWithString:kUUIDBatteryService]])  {
-////                    APLog(@"Found Battery Status Service: service UUID = %@", s.UUID);
                     workingDevice.batteryService = s;
                     [peripheral discoverCharacteristics:characteristics forService:s];
                 } else if ([s.UUID isEqual:[CBUUID UUIDWithString:kUUIDCareSentinelService]])  {
-////                    APLog(@"Found Switch Service: service UUID = %@", s.UUID);
                     workingDevice.switchService = s;
                     [peripheral discoverCharacteristics:characteristics forService:s];
                 } else if ([s.UUID isEqual:[CBUUID UUIDWithString:kUUIDDeviceInfoService]])  {
-////                    APLog(@"Found Device Info Service: service UUID = %@", s.UUID);
                     [peripheral discoverCharacteristics:characteristics forService:s];
                 }
-                
                 break;
                 
+            case APDeviceTypeCareCom:
+                if([s.UUID isEqual:[CBUUID UUIDWithString:kUUIDCareComService]]){
+                    [peripheral discoverCharacteristics:characteristics forService:s];
+                    continue;
+                }
+                if ([s.UUID isEqual:[CBUUID UUIDWithString:kUUIDBatteryService]])  {
+                    [peripheral discoverCharacteristics:characteristics forService:s];
+                    continue;
+                }
+                if ([s.UUID isEqual:[CBUUID UUIDWithString:kUUIDThermoService]])  {
+                    [peripheral discoverCharacteristics:characteristics forService:s];
+                    continue;
+                }
+                
+                if ([s.UUID isEqual:[CBUUID UUIDWithString:kUUIDDeviceInfoService]])  {
+                    [peripheral discoverCharacteristics:characteristics forService:s];
+                    continue;
+                }
+                break;
             default:
                 APLogErrMsg(@"discovered service for unmapped device %@", [s UUID]);     // -- Should never get here.
                 break;
@@ -953,38 +993,53 @@ static BOOL s_processing_restart = NO;
         switch (workingDevice.type) {
             case APDeviceTypeCareSentinel:
                 if ([[characteristic UUID] isEqual:[CBUUID UUIDWithString:kUUIDBatteryData]]) {
-////                    NSLog(@"Discovered Battery Characteristic");
                     [peripheral readValueForCharacteristic:characteristic];
                     [peripheral setNotifyValue:YES forCharacteristic:characteristic];
                     if ([_delegate respondsToSelector:@selector(batteryStateAvailableForDevice:)])
                         [_delegate batteryStateAvailableForDevice:workingDevice];
                 } else if ([[characteristic UUID] isEqual:[CBUUID UUIDWithString:kUUIDThermoData]]) {
-////                    APLog(@"Discovered Thermometer Characteristic (%@) (%@)", [characteristic UUID], kUUIDThermoData);
-////                    [peripheral setNotifyValue:YES forCharacteristic:characteristic];
                     [peripheral readValueForCharacteristic:characteristic];
                 } else if ([[characteristic UUID] isEqual:[CBUUID UUIDWithString:kUUIDCareSentinelChar]]) {
-////                    APLog(@"Discovered Switch Characteristic");
                     [peripheral readValueForCharacteristic:characteristic];
                     [peripheral setNotifyValue:YES forCharacteristic:characteristic];
                 } else if ([[characteristic UUID] isEqual:[CBUUID UUIDWithString:kUUIDSerialNumber]]) {
-////                    APLog(@"Discovered Serial Number Characteristic");
                     [peripheral readValueForCharacteristic:characteristic];
                 } else if ([[characteristic UUID] isEqual:[CBUUID UUIDWithString:kUUIDModelNumber]]) {
-////                    APLog(@"Discovered Model Number Characteristic");
                     [peripheral readValueForCharacteristic:characteristic];
                 } else if ([[characteristic UUID] isEqual:[CBUUID UUIDWithString:kUUIDFirmwareRevision]]) {
-////                    APLog(@"Discovered Firmware Rev Characteristic");
                     [peripheral readValueForCharacteristic:characteristic];
                 } else if ([[characteristic UUID] isEqual:[CBUUID UUIDWithString:kUUIDHardwareRevision]]) {
-////                    APLog(@"Discovered Hardware Rev Characteristic");
                     [peripheral readValueForCharacteristic:characteristic];
                 } else if ([[characteristic UUID] isEqual:[CBUUID UUIDWithString:kUUIDManufacturer]]) {
                     [peripheral readValueForCharacteristic:characteristic];
                 }
-
-                
                 break;
+            case APDeviceTypeCareCom:
+                if ([[characteristic UUID] isEqual:[CBUUID UUIDWithString:kUUIDCareComChar]]) {
+                    [peripheral readValueForCharacteristic:characteristic];
+                    [peripheral setNotifyValue:YES forCharacteristic:characteristic];
+                    continue;
+                }
                 
+                if ([[characteristic UUID] isEqual:[CBUUID UUIDWithString:kUUIDBatteryData]]) {
+                    [peripheral readValueForCharacteristic:characteristic];
+                    [peripheral setNotifyValue:YES forCharacteristic:characteristic];
+                    if ([_delegate respondsToSelector:@selector(batteryStateAvailableForDevice:)]){
+                        [_delegate batteryStateAvailableForDevice:workingDevice];
+                    }
+                    continue;
+                }
+                if ([[characteristic UUID] isEqual:[CBUUID UUIDWithString:kUUIDThermoData]] ||
+                    [[characteristic UUID] isEqual:[CBUUID UUIDWithString:kUUIDSerialNumber]] ||
+                    [[characteristic UUID] isEqual:[CBUUID UUIDWithString:kUUIDModelNumber]] ||
+                    [[characteristic UUID] isEqual:[CBUUID UUIDWithString:kUUIDFirmwareRevision]] ||
+                    [[characteristic UUID] isEqual:[CBUUID UUIDWithString:kUUIDHardwareRevision]] ||
+                    [[characteristic UUID] isEqual:[CBUUID UUIDWithString:kUUIDManufacturer]]) {
+                    [peripheral readValueForCharacteristic:characteristic];
+                    continue;
+                }
+
+                break;
             default:
                 APLogErrMsg(@"Discovered unmapped characteristic %@", [characteristic UUID]);     // -- Should never get here.
                 break;
@@ -1064,8 +1119,6 @@ static BOOL s_processing_restart = NO;
     APBLEDevice *workingDevice = [self deviceForPeripheral:peripheral];
     
     NSData *data = characteristic.value;
-        
-    // -- Serial Number
     if ([[characteristic UUID] isEqual:[CBUUID UUIDWithString:kUUIDBatteryData]]) {
         if (data.length > 0) {
             workingDevice.batteryPercent = [APBLEInterface batteryPercentUsingCharacteristic:characteristic];
@@ -1079,106 +1132,53 @@ static BOOL s_processing_restart = NO;
         if (data.length > 0) {
             workingDevice.serialNumber = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
             [self->_uiDelegate didUpdateHwIdForDevice:peripheral];
-////            APLog(@"--- S/N VALUE ---> %@", workingDevice.serialNumber);
         }
-
         return;
     }
     
-    // -- Model
+    /** Model */
     if ([[characteristic UUID] isEqual:[CBUUID UUIDWithString:kUUIDModelNumber]]) {
         if (data.length > 0) {
             workingDevice.model = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
-////            APLog(@"--- MODEL VALUE ---> %@", workingDevice.model);
         }
-        
         return;
     }
     
-    // -- Firmware Rev
+    /** Firmware Revision */
     if ([[characteristic UUID] isEqual:[CBUUID UUIDWithString:kUUIDFirmwareRevision]]) {
         if (data.length > 0) {
             workingDevice.firmwareRevision = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
-////            APLog(@"--- FIRMWARE REV VALUE ---> %@", workingDevice.firmwareRevision);
         }
-        
         return;
     }
     
-    // -- Hardware Rev
+    /** Hardware Revision */
     if ([[characteristic UUID] isEqual:[CBUUID UUIDWithString:kUUIDHardwareRevision]]) {
         if (data.length > 0) {
             workingDevice.hardwareRevision = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
-////            APLog(@"--- HARDWARE REV VALUE ---> %@", workingDevice.hardwareRevision);
         }
-        
         return;
     }
     
-    // -- Manufacturer
+    /** Manufacturer */
     if ([[characteristic UUID] isEqual:[CBUUID UUIDWithString:kUUIDManufacturer]]) {
         if (data.length > 0) {
             workingDevice.manufacturer = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
         }
-        
         return;
     }
     
-    // -- Thermometer
+    /** Thermometer */
     if ([[characteristic UUID] isEqual:[CBUUID UUIDWithString:kUUIDThermoData]]) {
         [APBLEInterface temperatureValueForDevice:workingDevice fromData:data];
-        
         return;
     }
     
-    
-    if (s_processing_restart) {
-        NSLog(@"********######### 1 ##########***********");
-    }
-    
-    
-    // -- Switch Data
+    /** Switch Data For CareSentinel Device */
     if ([[characteristic UUID] isEqual:[CBUUID UUIDWithString:kUUIDCareSentinelChar]]) {
-        if (s_processing_restart) {
-            NSLog(@"********######### 2 ##########***********");
-        }
-        
         if (data.length == 2) {      // -- Trigger is subject to muting...
             uint16_t    value = 0;
             [data getBytes:&value length:sizeof (value)];
-            
-            if (s_processing_restart) {
-                NSLog(@"********######### 3 VALUE: %d ##########***********", value);
-            }
-            
-/******
-            if (!workingDevice.muteAll) {
-                APBLESensor *sensor = nil;
-                if (value & APSensorTriggerPad OR value & APSensorClearPad) {
-                    sensor = [workingDevice getSensorType:APSensorTypePad];
-                
-                    if (sensor AND !sensor.muteTrigger) {
-                        if (value & APSensorTriggerPad AND !sensor.triggered) {
-                            if (sensor.triggerDelay == 0) {
-                                // -- Triggered
-                                [_delegate triggeredSensor:sensor];
-                            } else {
-                                dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, sensor.triggerDelay * NSEC_PER_SEC);
-                                dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-                                    // -- Make sure the sensor is still tirggered afte the delay.
-                                    if (sensor.triggered) {
-                                        [_delegate triggeredSensor:sensor];
-                                    }
-                                });
-                            }
-                        } else if (value & APSensorClearPad AND sensor.triggered) {
-                            // -- Cleared
-                            [_delegate clearedSensor:sensor];
-                        }
-                    }
-                }
-            }
-            ******/
             [self.uiDelegate device:peripheral SensorChanged:value];
             
             if (value & APSensorTriggerBed OR value & APSensorClearBed) {
@@ -1195,10 +1195,20 @@ static BOOL s_processing_restart = NO;
                 [self processSensorType:APSensorTypeCall forSensor:workingDevice withValue:value];
             }
         }
-        
         return;
     }
+
     
+    /** Switch Data For CareCom Device */
+    if ([[characteristic UUID] isEqual:[CBUUID UUIDWithString:kUUIDCareComChar]]) {
+        if (data.length == 2) {
+            uint16_t    value = 0;
+            [data getBytes:&value length:sizeof (value)];
+            [self.uiDelegate device:peripheral SensorChanged:value];
+            NSLog(@"%hu",value);
+        }
+        return;
+    }
     s_processing_restart = NO;
 }
 

@@ -7,14 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+@import CoreLocation;
 #import "APBLEInterface.h"
 #import "LNSwitchChangedDelegate.h"
+#import "LNLocationManagerDelegate.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate,UIAlertViewDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong,nonatomic) NSMutableArray* devicesData;
 @property (strong,nonatomic) NSMutableArray* ignoredDevices;
+@property (strong,nonatomic) CLLocationManager *locationManager;
+@property (strong,nonatomic) LNLocationManagerDelegate *locationManagerDelegate;
 @property (weak,nonatomic) APBLEInterface *bleInterface;
 @property (weak) id<LNSwitchChangedDelegate> switchChangedDelegate;
 @property BOOL automaticStart;

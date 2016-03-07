@@ -21,6 +21,7 @@
     __weak IBOutlet UILabel *titleLabel;
     __weak IBOutlet UILabel *serialTextField;
     __weak IBOutlet UILabel *versionsTextField;
+    __weak IBOutlet UIImageView *deviceImage;
     __weak IBOutlet UIImageView *signalImage;
     __weak IBOutlet UIImageView *batteryImage;
     __weak IBOutlet UILabel *temperatureLabel;
@@ -40,6 +41,7 @@
     self.navigationController.navigationBar.translucent = NO;
     self.navigationController.navigationBar.tintColor = [[UIColor alloc] initWithRed:1 green:1 blue: 1 alpha:1];
     [self.navigationController.navigationBar setTitleTextAttributes: @{NSForegroundColorAttributeName: [UIColor whiteColor]}];
+    [self->deviceImage setImage: [UIImage imageNamed:deviceTypesImages[self.device.type.intValue - 1]]];
     self->serialTextField.text = self.device.deviceDescriptor.serialNumber;
     self->versionsTextField.text = [NSString stringWithFormat:@"%@/%@",self.device.deviceDescriptor.hardwareRevision, self.device.deviceDescriptor.firmwareRevision];
     [self->batteryImage setImage:[self.device getImageForBattery]];

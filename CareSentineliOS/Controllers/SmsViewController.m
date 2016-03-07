@@ -32,6 +32,7 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [AppDelegate checkLogoutWithButton:_logoutButton withConstraint:loginButtonWidthContraint];
+    [self->application.locationManager requestAlwaysAuthorization];    
 }
 
 - (id)initWithStyle:(UITableViewStyle)style

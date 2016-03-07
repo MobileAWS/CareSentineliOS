@@ -20,6 +20,7 @@
 #import "InputAlertViewDelegate.h"
 #import "LNConstants.h"
 #import "LNNetworkManager.h"
+#import "ContactDao.h"
 
 @interface DevicesViewController() <DeviceUIDelegate>{
     __weak DevicesTableViewController *devicesTableViewController;
@@ -137,7 +138,7 @@
 }
 
 
--(BOOL)deviceDiscovered:(CBPeripheral *)peripheral withName:(NSString *)deviceName{
+-(BOOL)deviceDiscovered:(CBPeripheral *)peripheral withName:(NSString *)deviceName andType:(NSInteger)type{
     Device *device = [self->devicesTableViewController deviceForPeripheral:peripheral.identifier.UUIDString];
     if (device != nil) {
         if (!device.connected){
@@ -148,13 +149,14 @@
     }
     Device *newDevice = [[Device alloc] init];
     newDevice.name = deviceName;
+    newDevice.type = [[NSNumber alloc] initWithInteger: type];
     newDevice.uuid = peripheral.identifier.UUIDString;
     newDevice.hwName = peripheral.name;
     [self->devicesTableViewController addDevice:newDevice];
     return true;
 }
 
--(BOOL)deviceIgnored:(CBPeripheral *)peripheral{
+-(BOOL)deviceIgnored:(CBPeripheral *)peripheral withType:(NSInteger)type{
     Device *device = [self->devicesTableViewController deviceForPeripheral:peripheral.identifier.UUIDString];
     if (device != nil) {
         if (device.connected){
@@ -170,6 +172,7 @@
     }
     
     Device *newDevice = [[Device alloc] init];
+    newDevice.type = [[NSNumber alloc] initWithInteger: type];
     newDevice.name = peripheral.name;
     newDevice.hwName = peripheral.name;
     newDevice.uuid = peripheral.identifier.UUIDString;
@@ -201,6 +204,14 @@
                 device.lastPropertyMessage = message;
                 [self->devicesTableViewController reloadDevice:device];
                 
+                if ([[APBLEDevice getSmsEnabledDevices] indexOfObject:device.type] != NSNotFound && [SMS_ENABLED_SENSORS indexOfObject:name]) {
+                    NSString *smsKey = [NSString stringWithFormat:@"%@.sms",name];
+                    NSDictionary *data = @{@"message":[NSString stringWithFormat:NSLocalizedString(smsKey, nil), device.name,[UIDevice currentDevice].name]};
+                    [application.locationManagerDelegate requestLocationWithData:data andCallBack:^(NSDictionary *data, CLLocation *location) {
+                        [self sendSmsNotification:data[@"message"] withLocation:location];
+                        NSLog(@"Calling sms sending");
+                    }];
+                }
             }
             
             [self sendNotificationWithTitle:NSLocalizedString(@"sensor.change.title", nil) andMessage:[NSString stringWithFormat:@"%@ on %@",message,device.name]  useBadge:true withCount:changedSwitches.count];
@@ -373,16 +384,31 @@
         notification.alertBody = message;
         notification.soundName = @"default";
         [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
-        
         if (useBadge) {
             UIApplication *app = [UIApplication sharedApplication];
             NSInteger value = app.applicationIconBadgeNumber + count;
             app.applicationIconBadgeNumber = value;
             [self updateNotificationsTab: value];
-
         }
     }
 
 }
 
+-(void)sendSmsNotification:message withLocation:(CLLocation *)location{
+    NSArray *contacts = [ContactDao getAllContactData];
+    
+    if (contacts.count <= 0){
+        return;
+    }
+    NSMutableArray *numbers = [[NSMutableArray alloc] init];
+    for (int i = 0; i < contacts.count; i++) {
+        [numbers addObject:((Contact *) contacts[i]).number];
+    }
+    [LNNetworkManager sendSms:message toNumbers:numbers withLocation:location onSucess:^{
+        NSLog(@"SMS Sent Successfully!");
+    } onFailure:^(NSError *error) {
+        NSLog(@"Could not send the SMS to %@!",numbers);
+    }];
+}
+     
 @end

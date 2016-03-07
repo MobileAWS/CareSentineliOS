@@ -144,7 +144,7 @@
         return;
     }
     
-    [AppDelegate showLoadingMaskWith:@"Loging In"];
+    [AppDelegate showLoadingMaskWith:@"Logging On"];
     [LNNetworkManager loginWithServer:self->emailTextField.text withPassword:self->passwordTextField.text forSite:self->siteIdTextField.text andCustomer:self->clientIdTextField.text onSucess:^(void){
         
             NSUserDefaults *preferences = [NSUserDefaults standardUserDefaults];

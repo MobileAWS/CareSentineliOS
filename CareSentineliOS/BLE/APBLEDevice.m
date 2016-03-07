@@ -18,6 +18,9 @@
 @end
 
 @implementation APBLEDevice
+
+static NSArray *smsEnabledDevices;
+
 // ------------------------------------------------------------------------------
 #pragma mark - Class Lifecycle
 // ------------------------------------------------------------------------------
@@ -603,6 +606,14 @@ NSLog(@"CREATING PROPERTY LIST ARRAY (for save): %@", devicesArray);
     
     return results;
 }
+
++ (NSArray *)getSmsEnabledDevices{
+    if (smsEnabledDevices == nil) {
+        smsEnabledDevices = @[[[NSNumber alloc] initWithInteger:APDeviceTypeCareCom]];
+    }
+    return smsEnabledDevices;
+}
+
 @end
 
 // ==============================================================================
@@ -706,7 +717,6 @@ static NSArray *s_sensorTypeLabels = nil;
 - (BOOL)manualClear {
     return __manualClear;
 }
-
 
 @end
 

@@ -5,7 +5,7 @@
 	<key>LSApplicationCategoryType</key>
 	<string></string>
 	<key>BaseServicesURL</key>
-	<string>https://caresentinel-maws.herokuapp.com/</string>
+	<string>http://mike.caresentinel.ngrok.io/</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
@@ -51,6 +51,7 @@
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
+		<string>location-services</string>
 	</array>
 	<key>UIStatusBarTintParameters</key>
 	<dict>
@@ -77,6 +78,8 @@
 	</array>
 	<key>UseTestData</key>
 	<true/>
+	<key>Environment</key>
+	<string>development</string>
 	<key>NSExceptionDomains</key>
 	<dict>
 		<key>https://caresentinel-maws.herokuapp.com/</key>
@@ -91,5 +94,7 @@
 			<true/>
 		</dict>
 	</dict>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Care Sentinel can send your location on fall button alerts. Do you want to enable location notifications?</string>
 </dict>
 </plist>

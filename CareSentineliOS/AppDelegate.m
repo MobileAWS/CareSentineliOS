@@ -67,6 +67,12 @@ static void (^currentAlertInvocation) (void);
 
     [Fabric with:@[[Crashlytics class]]];
     
+    /** Initialize location services and the app location delegate */
+    self.locationManager = [[CLLocationManager alloc] init];
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
+    self.locationManagerDelegate = [[LNLocationManagerDelegate alloc]init];
+    self.locationManager.delegate = self.locationManagerDelegate;
+    
     self.demoMode = false;
     [UIResources initResources];
     [LNConstants initConstants];

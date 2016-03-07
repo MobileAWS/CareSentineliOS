@@ -13,7 +13,8 @@
 // -- *** IMPORTANT *** MUST be kept in synch (same order and # of entries) with BLEDeviceTypesList PLIST
 enum {
     APDeviceTypeUnknown      = 0,
-    APDeviceTypeCareSentinel = 1
+    APDeviceTypeCareSentinel = 1,
+    APDeviceTypeCareCom = 2
 } typedef APDeviceType;
 
 enum {
@@ -32,6 +33,7 @@ enum {
     APSensorTypePortal   = 6
 } typedef APSensorType;     // -- These need to be sequential, starting with 0 as unknown.
 
+/** Sensor CS1 Bit Values */
 enum {
     APSensorValuesBedLow       = (2 >> 1),
     APSensorValuesChairLow     = 2,
@@ -46,6 +48,12 @@ enum {
     APSensorValuesCallHigh     = (2 << 7),
     APSensorValuesPortalHigh   = (2 << 10)
 } typedef APSensorValues;
+
+/** CareCom CS2 Bit Values */
+enum {
+    APCareComValuesFallLow    = (2 << 1),
+    APCareComValuesFallHigh   = (2 >> 1)
+} typedef APCareComValues;
 
 enum {
     APSensorTriggerBed      = APSensorValuesBedHigh,         // ##############
@@ -123,6 +131,8 @@ enum {
 #define kUUIDThermoData          @"2a1c"
 #define kUUIDCareSentinelService @"79f7744a-f8e6-4810-8f16-140b6974835d"
 #define kUUIDCareSentinelChar    @"64695f25-2326-430a-985f-aa4ae90da42f"
+#define kUUIDCareComService      @"4ce30f4c-b14c-49e6-b001-1c83488a9964"
+#define kUUIDCareComChar         @"51aa80bf-bc06-43bb-979c-fb4722d4c4e1"
 
 #define kUUIDModelNumber         @"2a24"
 #define kUUIDSerialNumber        @"2a25"
@@ -199,4 +209,5 @@ enum {
 + (APBLEDevice *)deviceFromPropertyListString:(NSString *)string;
 + (NSArray *)devicesArrayFromPropertyListArray:(NSArray *)propertyListArray;
 + (NSArray *)propertyListArrayFromDevicesArray:(NSArray *)devicesArray;
++ (NSArray *)getSmsEnabledDevices;
 @end

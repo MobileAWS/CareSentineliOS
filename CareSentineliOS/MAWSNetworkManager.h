@@ -11,4 +11,7 @@
 
 @interface MAWSNetworkManager : NSObject
 +(void)callAsyncService:(NSString *)service with:(NSDictionary *)properties method:(NSString *)method onCompletion:(void(^)(AFHTTPRequestOperation *operation, id responseObject))callback onFailure:(void(^)(AFHTTPRequestOperation *operation, NSError *responseObject))error_callback;
+
++(void)callAsyncTokenService:(NSString *)service withAction:(NSString *)action with:(NSDictionary *)properties method:(NSString *)method onCompletion:(void(^)(AFHTTPRequestOperation *operation, id responseObject))callback onFailure:(void(^)(AFHTTPRequestOperation *operation, NSError *responseObject))error_callback;
+
 @end

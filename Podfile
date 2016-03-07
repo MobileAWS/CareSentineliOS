@@ -7,4 +7,4 @@ pod 'AFNetworking', '~> 2.0'
 pod 'HexColors'
 pod 'Fabric'
 pod 'Crashlytics'
-
+pod 'NSHash', '~> 1.1.0'

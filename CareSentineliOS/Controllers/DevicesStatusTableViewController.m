@@ -32,11 +32,6 @@
     self->application = (AppDelegate *)[UIApplication sharedApplication].delegate;
 }
 
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    [AppDelegate checkLogoutWithButton:_logoutButton withConstraint:logoutButtonWidthConstraint];
-}
-
 -(void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
     if(application.switchChangedDelegate == self){
@@ -54,8 +49,9 @@
     return;
 }
 
--(void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [AppDelegate checkLogoutWithButton:_logoutButton withConstraint:logoutButtonWidthConstraint];
     application.switchChangedDelegate = self;
     [self->targetTable reloadData];
 }

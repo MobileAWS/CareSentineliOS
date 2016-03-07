@@ -26,6 +26,7 @@ PODS:
   - Fabric/Base (1.5.5)
   - HexColors (2.2.1)
   - MBProgressHUD (0.9.1)
+  - NSHash (1.1.0)
   - TSMessages (0.9.12):
     - HexColors (~> 2.2.0)
 
@@ -35,6 +36,7 @@ DEPENDENCIES:
   - Fabric
   - HexColors
   - MBProgressHUD (~> 0.9.1)
+  - NSHash (~> 1.1.0)
   - TSMessages
 
 SPEC CHECKSUMS:
@@ -43,6 +45,7 @@ SPEC CHECKSUMS:
   Fabric: 190bf1a6eb65f7500de1347d027d2e59a7e53db1
   HexColors: abfd172e329dab59888614ccba6f216cec59289d
   MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
+  NSHash: 61d598c6d48957c5557f1eef0aeafd6ef5ec5fb7
   TSMessages: c8cc7b80f2a833af533872cd02010cac061532cc
 
 COCOAPODS: 0.37.2

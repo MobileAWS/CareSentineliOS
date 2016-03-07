@@ -23,6 +23,7 @@ extern UIImage *noSignalImage;
 extern UIImage *batteryImage;
 extern UIImage *signalImage;
 extern NSDateFormatter *notificationsFormatter;
+extern NSArray *deviceTypesImages;
 
 +(void)initResources;
 @end

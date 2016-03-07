@@ -10,8 +10,8 @@
 #import "Device.h"
 
 @protocol DeviceUIDelegate
--(BOOL)deviceDiscovered:(CBPeripheral *)peripheral withName:(NSString *)deviceName;
--(BOOL)deviceIgnored:(CBPeripheral *)peripheral;
+-(BOOL)deviceDiscovered:(CBPeripheral *)peripheral withName:(NSString *)deviceName andType:(NSInteger)type;
+-(BOOL)deviceIgnored:(CBPeripheral *)peripheral withType:(NSInteger)type;
 -(void)device:(CBPeripheral *)peripheral SensorChanged:(uint16_t)value;
 -(void)disconnectDevice:(CBPeripheral *)peripheral;
 -(Device *)deviceForUDID:(NSString *)udid;

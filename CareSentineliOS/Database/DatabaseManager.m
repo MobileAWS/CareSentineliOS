@@ -129,6 +129,7 @@ static DatabaseManager *sharedInstance = nil;
     
     if (update == nil){
             NSString *insertQuery = [NSString stringWithFormat:@"INSERT INTO %@(%@)VALUES(%@)",tableName,[fields componentsJoinedByString:@","],[valuesArray componentsJoinedByString:@","]];
+        NSLog(@"%@",insertQuery);
         if (self->database == nil) {
             sqlite3_open([self->databasePath UTF8String], &self->database);
         }

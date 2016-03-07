@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>BaseServicesURL</key>
-	<string>http://caresentinel-maws-pdn.herokuapp.com/</string>
+	<string>https://caresentinel-maws.herokuapp.com/</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
@@ -21,7 +21,9 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1.0.41</string>
+	<string>1.0.52</string>
+	<key>Environment</key>
+	<string>production</string>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
@@ -38,6 +40,8 @@
 	</dict>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Care Sentinel can send your location on fall button alerts. Do you want to enable location notifications?</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>bluetooth-central</string>

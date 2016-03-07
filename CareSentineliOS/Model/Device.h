@@ -31,6 +31,7 @@
     @property NSString *name;
     @property NSString *hwId;
     @property NSString *hwName;
+    @property NSNumber *type;
     @property NSString *uuid;
     @property NSNumber *createdAt;
     @property NSNumber *ignored;
@@ -40,6 +41,7 @@
     @property BOOL chairSensorActivated;
     @property BOOL toiletSensorActivated;
     @property BOOL incontinenceSensorActivated;
+    @property BOOL fallButtonActivated;
     @property BOOL callSensorActivated;
     @property BOOL portalSensorActivated;
     @property BOOL connected;

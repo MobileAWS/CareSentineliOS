@@ -65,6 +65,21 @@ static NSString *token;
     [LNNetworkManager callUploadDevice:devices count:0 onSucess:callback onFailure:failure sucessDevices:sucessDevices];
 }
 
++(void)sendSms:(NSString *)message toNumbers:(NSArray *)numbers withLocation:(CLLocation *)location onSucess:(void(^)(void))callback onFailure:(void(^)(NSError *error))failure{
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] initWithDictionary:@{@"phone_numbers":numbers,@"message":message}];
+    if (location != nil) {
+        params[@"latitude"] = [[NSNumber alloc] initWithDouble:location.coordinate.latitude];
+        params[@"longitude"] = [[NSNumber alloc] initWithDouble:location.coordinate.longitude];
+    }
+    [MAWSNetworkManager callAsyncTokenService:@"send_sms" withAction:@"send_sms" with: params method:@"POST" onCompletion:^(AFHTTPRequestOperation *operation, id responseObject) {
+        callback();
+    } onFailure:^(AFHTTPRequestOperation *operation, NSError *responseObject) {
+        failure(responseObject);
+    }];
+
+}
+
+
 +(void)callUploadDevice:(NSArray *)devices count:(NSInteger)count onSucess:(void(^)(NSMutableArray *success))callback onFailure:(void(^)(NSError *error))failure sucessDevices:(NSMutableArray *)sucessDevices{
     
     Device *device = devices[count];

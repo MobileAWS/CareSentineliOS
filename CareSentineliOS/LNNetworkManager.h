@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+@import CoreLocation;
 
 @interface LNNetworkManager : NSObject
 
@@ -20,6 +21,8 @@
 +(void)resetPasswordFor:(NSString *)email onSucess:(void(^)(void))callback onFailure:(void(^)(NSError *error))failure;
 
 +(void)clear;
+
++(void)sendSms:(NSString *)message toNumbers:(NSArray *)numbers withLocation:(CLLocation *)location onSucess:(void(^)(void))callback onFailure:(void(^)(NSError *error))failure;
 
 +(BOOL)sessionValid;
 

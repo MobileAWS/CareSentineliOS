@@ -24,6 +24,7 @@
     UIImage *batteryImage = nil;
     UIImage *signalImage = nil;
     NSDateFormatter *notificationsFormatter;
+    NSArray *deviceTypesImages;
 
 
 +(void)initResources{
@@ -41,5 +42,6 @@
         noSignalImage = [UIImage imageNamed:@"offline"];
         notificationsFormatter = [[NSDateFormatter alloc] init];
         [notificationsFormatter setDateFormat:@"MM/dd/yyyy HH:mm:ss"];
+        deviceTypesImages = @[@"CS01-01-photo",@"CS02-02-photo"];
 }
 @end
